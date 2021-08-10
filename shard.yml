@@ -1,0 +1,21 @@
+name: rosetta
+version: 0.1.0
+
+authors:
+  - wout <hi@wout.codes>
+
+crystal: ">= 1.0.0"
+
+dependencies:
+  habitat:
+    github: luckyframework/habitat
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 0.14.3
+  spec_mirror:
+    github: wout/spec_mirror.cr
+    branch: master
+
+license: MIT
