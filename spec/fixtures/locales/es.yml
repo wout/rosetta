@@ -1,0 +1,9 @@
+es:
+  title: "Título"
+  user:
+    first_name: "Nombre"
+    last_name: "Apellido"
+    gender:
+      male: "Masculino"
+      female: "Feminino"
+      non_binary: "Non binario"
