@@ -13,7 +13,7 @@ module Rosetta
     setting fallbacks : Fallbacks
   end
 
-  class_property backends : Array(Backend::Base) = Array(Backend::Base).new
+  class_property backends : Hash(String, Hash(String, String)) = Hash(String, Hash(String, String)).new
 
   def self.init : Void
     @@translator = Translator.new(backends)
