@@ -4,7 +4,7 @@ module Rosetta
       macro load(path)
         {% parser_name = @type.name.split("::").last.underscore %}
 
-        TRANSLATIONS = {{ run("./parser/yaml", path) }}
+        TRANSLATIONS = {{ run("./parser/#{parser_name.id}", path) }}
       end
 
       macro look_up(locale, key)
