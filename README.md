@@ -17,7 +17,7 @@ easy to add those reports to your CI flow, so you'll no longer have to worry
 about deploying an app with missing translations.
 
 **IMPORTANT: This shard is still under heavy development and is not ready for
-production.**
+use.**
 
 ## Installation
 
