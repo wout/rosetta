@@ -129,7 +129,7 @@ User.new.name_label
 ```
 
 The `rosetta` macro does exactly the same as `Rosetta.find`, and the `t` method
-does is equivalent to `Rosetta.t`.
+is equivalent to `Rosetta.t`.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a period, the key prefix will be
