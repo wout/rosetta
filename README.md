@@ -31,8 +31,7 @@ dependencies:
 
 2. Run `shards install`
 
-## Usage
-
+## Setup
 Create an initializer to set up Rosetta:
 
 ```cr
@@ -50,6 +49,37 @@ both formats.
 Beware, though, that there is a fixed loading order. First JSON files are
 loaded, then YAML files. So if you have the same key in a JSON and a YAML file,
 YAML will take precedence.
+
+## Configuration
+There are a few configuration options you can add to your initializer.
+
+### `default_locale`
+Defines the default value is no locale is set. The default `default_locale` is
+set to `"en"`.
+
+```cr
+Rosetta.settings.default_locale = "de"
+```
+
+🗒️ **Note:** The default locale is used by the compiler to define the ruling set
+of locale keys. This means if one of the other available locales is missing
+some of the keys found in the key set of the default locale, the compiler will
+complain. So every available locale will need to have all the keys from the
+default locale.
+
+### `available_locales`
+Defines all the available locales, including the default locale. The default
+`available_locales` is set to `%w[en]`.
+
+```cr
+Rosetta.settings.available_locales = %w[de en-GB en-US es nl]
+```
+
+### `fallbacks`
+
+TODO: Fallbacks still need to be implemented.
+
+## Usage
 
 ## Development
 
