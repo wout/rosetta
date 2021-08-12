@@ -46,8 +46,8 @@ together, so if you started out with JSON and later on decided to use YAML
 instead, there is no need to convert your old files. Rosetta will gladly parse
 both formats.
 
-Beware, though, that there is a fixed loading order. First JSON files are
-loaded, then YAML files. So if you have the same key in a JSON and a YAML file,
+Beware, though, that there is a fixed loading order. JSON files are loaded
+first, then YAML files. So if you have the same key in a JSON and a YAML file,
 YAML will take precedence.
 
 ## Configuration
@@ -63,9 +63,9 @@ Rosetta.settings.default_locale = "de"
 
 🗒️ **Note:** The default locale is used by the compiler to define the ruling set
 of locale keys. This means that if one of the other available locales is missing
-some of the keys found in the key set of the default locale, the compiler will
-complain. So every available locale will need to have the exactr same key set as
-the default locale.
+some of the keys found in the default key set, the compiler will complain. So
+every available locale will need to have the exact same key set as the default
+locale.
 
 ### `available_locales`
 Defines all the available locales, including the default locale. The default
@@ -100,18 +100,18 @@ dutch_translation = Rosetta.t(name_translations)
 # => "Naam"
 ```
 
-In practie, you'll probably chain twose two phases togeter:
+In practie, you'll probably chain those two phases together:
 
 ```cr
 Rosetta.t(Rosetta.find("user.name"))
 ```
 
-Of course, this is pretty long to write out for every single valye that needs to
+Of course, this is pretty long to write out for every single value that needs to
 be translated. Enter the `Translator`.
 
 ### The `Translator`
-This mixin makes it more conventient to work with translated values. Here's an
-example of it's usage:
+This mixin makes it more convenient to work with translated values. Here's an
+example of its usage:
 
 ```cr
 Rosetta.locale = "es"
@@ -131,9 +131,9 @@ User.new.name_label
 The `rosetta` macro does exactly the same as `Rosetta.find`, and the `t` method
 does is equivalent to `Rosetta.t`.
 
-But you can make it even shorter with inferred locale keys. By omitting the
-prefix of the locale key and having the key start with a period, the current
-class name will be used as the prefix of the key:
+Inferred locale keys make it even more concise. By omitting the prefix of the
+locale key and having the key start with a period, the key prefix will be
+derived from the current class name:
 
 ```cr
 class User
