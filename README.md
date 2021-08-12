@@ -62,10 +62,10 @@ Rosetta.settings.default_locale = "de"
 ```
 
 🗒️ **Note:** The default locale is used by the compiler to define the ruling set
-of locale keys. This means if one of the other available locales is missing
+of locale keys. This means that if one of the other available locales is missing
 some of the keys found in the key set of the default locale, the compiler will
-complain. So every available locale will need to have all the keys from the
-default locale.
+complain. So every available locale will need to have the exactr same key set as
+the default locale.
 
 ### `available_locales`
 Defines all the available locales, including the default locale. The default
@@ -80,6 +80,80 @@ Rosetta.settings.available_locales = %w[de en-GB en-US es nl]
 TODO: Fallbacks still need to be implemented.
 
 ## Usage
+
+### Global lookup
+Looking up translations is done in two phases. The first phase happens at
+compile-time, where an object with all translations for a given key is fetched:
+
+```cr
+name_translations = Rosetta.find("user.name")
+# => { "en" => "Name", "es" => "Nombre", "nl" => "Naam" }
+```
+
+🗒️ **Note:**: If a key does not exist, the compiler will let you know.
+
+The second phase happens at runtime where the translation for the currently
+selected locale is retreived:
+
+```cr
+dutch_translation = Rosetta.t(name_translations)
+# => "Naam"
+```
+
+In practie, you'll probably chain twose two phases togeter:
+
+```cr
+Rosetta.t(Rosetta.find("user.name"))
+```
+
+Of course, this is pretty long to write out for every single valye that needs to
+be translated. Enter the `Translator`.
+
+### The `Translator`
+This mixin makes it more conventient to work with translated values. Here's an
+example of it's usage:
+
+```cr
+Rosetta.locale = "es"
+
+class User
+  include Rosetta::Translator
+
+  def name_label
+    t rosetta("user.name")
+  end
+end
+
+User.new.name_label
+# => "Nombre"
+```
+
+The `rosetta` macro does exactly the same as `Rosetta.find`, and the `t` method
+does is equivalent to `Rosetta.t`.
+
+But you can make it even shorter with inferred locale keys. By omitting the
+prefix of the locale key and having the key start with a period, the current
+class name will be used as the prefix of the key:
+
+```cr
+class User
+  include Rosetta::Translator
+
+  def name_label
+    t rosetta(".name") # => resolves to "user.name"
+  end
+end
+
+User.new.name_label
+# => "Nombre"
+```
+
+This also works with nested class names, for example:
+
+- `User` => `"user"`
+- `Components::MainMenu` => `"components.main_menu"`
+- `Helpers::SiteSections::UserSettings` => `"helpers.site_sections.user_settings"`
+
 
 ## Development
 

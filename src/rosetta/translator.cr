@@ -15,7 +15,7 @@ module Rosetta
 
     # In places where current_user / user isn't available be sure to override
     # this method with:
-    # `def user_lang, I18n.locale`
+    # `def user_lang; I18n.locale; end`
     def user_lang : String
       current_user.try(&.lang) || I18n.locale
     end
