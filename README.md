@@ -155,7 +155,7 @@ This also works with nested class names, for example:
 - `Helpers::SiteSections::UserSettings` => `"helpers.site_sections.user_settings"`
 
 Using inferred locale keys has an added bonus. You don't need to think about how
-to organise your cloce structure. And it makes find your keys a lot easier.
+to organise your locale files. And it makes find your keys a lot easier.
 
 ## To-do
 - [ ] Add specs for the existing code
