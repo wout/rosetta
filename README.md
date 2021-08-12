@@ -46,22 +46,22 @@ together, so if you started out with JSON and later on decided to use YAML
 instead, there is no need to convert your old files. Rosetta will gladly parse
 both formats.
 
-Beware, though, that there is a fixed loading order. JSON files are loaded
-first, then YAML files. So if you have the same key in a JSON and a YAML file,
-YAML will take precedence.
+🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files
+are loaded first, then YAML files. So if you have the same key in a JSON and a
+YAML file, YAML will take precedence.
 
 ## Configuration
 There are a few configuration options you can add to your initializer.
 
 ### `default_locale`
-Defines the default value is no locale is set. The default `default_locale` is
+Defines the default value if no locale is set. The default `default_locale` is
 set to `"en"`.
 
 ```cr
 Rosetta.settings.default_locale = "de"
 ```
 
-🗒️ **Note:** The default locale is used by the compiler to define the ruling set
+🗒️ **Note**: The default locale is used by the compiler to define the ruling set
 of locale keys. This means that if one of the other available locales is missing
 some of the keys found in the default key set, the compiler will complain. So
 every available locale will need to have the exact same key set as the default
@@ -90,7 +90,7 @@ name_translations = Rosetta.find("user.name")
 # => { "en" => "Name", "es" => "Nombre", "nl" => "Naam" }
 ```
 
-🗒️ **Note:**: If a key does not exist, the compiler will let you know.
+🗒️ **Note**: If a key does not exist, the compiler will let you know.
 
 The second phase happens at runtime where the translation for the currently
 selected locale is retreived:
@@ -155,7 +155,7 @@ This also works with nested class names, for example:
 - `Helpers::SiteSections::UserSettings` => `"helpers.site_sections.user_settings"`
 
 Using inferred locale keys has an added bonus. You don't need to think about how
-to organise your locale files. And it makes find your keys a lot easier.
+to organise your locale files. And it makes finding your keys a lot easier.
 
 ## To-do
 - [ ] Add specs for the existing code
