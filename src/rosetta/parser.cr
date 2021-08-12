@@ -1,6 +1,8 @@
 require "json"
 require "yaml"
 
+# require "aliases"
+
 module Rosetta
   class Parser
     alias Translation = Hash(String, Hash(String, String))

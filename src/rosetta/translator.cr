@@ -1,8 +1,12 @@
 module Rosetta
   # Include this module anywhere translations need to be added
   module Translator
-    macro look_up(key)
+    macro rosetta(key)
       Rosetta::Backend.look_up({{key}})
+    end
+
+    def t(translation : Translation) : String
+      Rosetta.t(translation)
     end
 
     # def t(key : String, count : Int32)

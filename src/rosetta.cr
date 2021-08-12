@@ -13,8 +13,12 @@ module Rosetta
     setting fallbacks : Fallbacks
   end
 
-  macro look_up(key)
+  macro find(key)
     Rosetta::Backend.look_up({{key}})
+  end
+
+  def self.t(translation : Translation) : String
+    translation[locale]
   end
 
   def self.locale=(locale : String)

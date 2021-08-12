@@ -4,7 +4,7 @@ class TranslatableTestObject
   include Rosetta::Translator
 
   def name
-    look_up("user.first_name")[Rosetta.locale]
+    t rosetta("user.first_name")
   end
 end
 
