@@ -33,11 +33,23 @@ dependencies:
 
 ## Usage
 
-```crystal
+Create an initializer to set up Rosetta:
+
+```cr
 require "rosetta"
+
+Rosetta::Backend.load("config/locales")
 ```
 
-TODO: Coming soon!
+You can chop up files and place them in subdirectories; organise them any way
+you prefer. Currently, Rosetta supports YAML and JSON files. You can mix formats
+together, so if you started out with JSON and later on decided to use YAML
+instead, there is no need to convert your old files. Rosetta will gladly parse
+both formats.
+
+Beware, though, that there is a fixed loading order. First JSON files are
+loaded, then YAML files. So if you have the same key in a JSON and a YAML file,
+YAML will take precedence.
 
 ## Development
 
