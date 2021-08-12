@@ -13,16 +13,20 @@ module Rosetta
     setting fallbacks : Fallbacks
   end
 
-  class_property backends : Hash(String, Hash(String, String)) = Hash(String, Hash(String, String)).new
-
-  def self.init : Void
-    @@translator = Translator.new(backends)
+  macro look_up(key)
+    Rosetta::Backend.look_up({{key}})
   end
 
-  def self.translator
-    @@translator.as(Translator)
+  def self.locale=(locale : String)
+    @@locale = if settings.available_locales.includes?(locale)
+                 locale
+               else
+                 # TODO: make use of a fallback here
+                 settings.default_locale
+               end
   end
 
-  delegate self.translate, to: self.translator
-  delegate self.t, to: self.translator
+  def self.locale : String
+    @@locale || settings.default_locale
+  end
 end
