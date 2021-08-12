@@ -154,6 +154,19 @@ This also works with nested class names, for example:
 - `Components::MainMenu` => `"components.main_menu"`
 - `Helpers::SiteSections::UserSettings` => `"helpers.site_sections.user_settings"`
 
+Using inferred locale keys has an added bonus. You don't need to think about how
+to organise your cloce structure. And it makes find your keys a lot easier.
+
+## To-do
+- [ ] Add specs for the existing code
+- [ ] Make settings accessible by the compiler
+- [ ] Send `default_locale` and `available_locales` to the parser
+- [ ] Implement key comparison between available locales in the parser
+- [ ] Add compiler error messages for mismatching keys
+- [ ] Implement inferred locale keys on macro level
+- [ ] Implement fallbacks
+- [ ] Interpolation (with %{} tag for interpolation keys)
+- [ ] Pluralization (with one/other/count convention)
 
 ## Development
 
