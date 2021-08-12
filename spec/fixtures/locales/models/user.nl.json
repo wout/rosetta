@@ -1,0 +1,13 @@
+{
+  "nl": {
+    "user": {
+      "first_name": "Voornaam",
+      "last_name": "Achternaam",
+      "gender": {
+        "male": "Mannelijk",
+        "female": "Vrouwelijk",
+        "non_binary": "Niet-binair"
+      }
+    }
+  }
+}
