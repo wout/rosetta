@@ -40,39 +40,43 @@ require "rosetta"
 Rosetta::Backend.load("config/locales")
 ```
 
-You can chop up files and place them in subdirectories; organise them any way
-you prefer. Currently, Rosetta supports YAML and JSON files. You can mix formats
-together, so if you started out with JSON and later on decided to use YAML
-instead, there is no need to convert your old files. Rosetta will gladly parse
-both formats.
+You can chop up locale files and place them in subdirectories; organise them any
+way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
+formats together. So if you started out with JSON and later on decided to use
+YAML instead, there is no need to convert your old files. Rosetta will gladly
+parse both formats.
 
 🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files
 are loaded first, then YAML files. So if you have the same key in a JSON and a
 YAML file, YAML will take precedence.
 
 ## Configuration
-There are a few configuration options you can add to your initializer.
+Configuration options are set as constants in your initializer file.
 
-### `default_locale`
-Defines the default value if no locale is set. The default `default_locale` is
+### `DEFAULT_LOCALE`
+Defines the default value if no locale is set. The *default* default locale is
 set to `"en"`.
 
 ```cr
-Rosetta.settings.default_locale = "de"
+module Rosetta
+  DEFAULT_LOCALE = "es-ES"
+end
 ```
 
 🗒️ **Note**: The default locale is used by the compiler to define the ruling set
-of locale keys. This means that if one of the other available locales is missing
-some of the keys found in the default key set, the compiler will complain. So
-every available locale will need to have the exact same key set as the default
-locale.
+of locale keys. This means that, if one of the other available locales is
+missing some of the keys found in the default key set, the compiler will
+complain. So every available locale will need to have the exact same key set as
+the default locale.
 
-### `available_locales`
+### `AVAILABLE_LOCALES`
 Defines all the available locales, including the default locale. The default
-`available_locales` is set to `%w[en]`.
+for this setting is `%w[en]`.
 
 ```cr
-Rosetta.settings.available_locales = %w[de en-GB en-US es nl]
+module Rosetta
+  AVAILABLE_LOCALES = %w[de en-GB en-US es nl]
+end
 ```
 
 ### `fallbacks`
