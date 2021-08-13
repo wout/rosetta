@@ -6,10 +6,6 @@ authors:
 
 crystal: ">= 1.0.0"
 
-dependencies:
-  habitat:
-    github: luckyframework/habitat
-
 development_dependencies:
   ameba:
     github: crystal-ameba/ameba
