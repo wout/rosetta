@@ -164,8 +164,8 @@ Using inferred locale keys has an added bonus. You don't need to think about how
 to organise your locale files. And it makes finding your keys a lot easier.
 
 ## To-do
-- [ ] Add specs for the existing code
-- [ ] Make settings accessible by the compiler
+- [X] Add specs for the existing code
+- [X] Make settings accessible to the compiler
 - [ ] Send `default_locale` and `available_locales` to the parser
 - [ ] Implement key comparison between available locales in the parser
 - [ ] Add compiler error messages for mismatching keys
