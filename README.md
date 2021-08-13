@@ -79,7 +79,7 @@ module Rosetta
 end
 ```
 
-### `fallbacks`
+### `FALLBACKS`
 
 TODO: Fallbacks still need to be implemented.
 
@@ -103,6 +103,8 @@ selected locale is retreived:
 dutch_translation = Rosetta.t(name_translations)
 # => "Naam"
 ```
+
+🗒️ **Note**: Translations for all available locales will always be present.
 
 In practie, you'll probably chain those two phases together:
 
