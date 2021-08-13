@@ -118,9 +118,9 @@ Rosetta.t(Rosetta.find("user.name"))
 ```
 
 Of course, this is pretty long to write out for every single value that needs to
-be translated. Enter the `Translator`.
+be translated. Enter the `Translatable`.
 
-### The `Translator`
+### The `Translatable`
 This mixin makes it more convenient to work with translated values. Here's an
 example of its usage:
 
@@ -128,7 +128,7 @@ example of its usage:
 Rosetta.locale = "es"
 
 class User
-  include Rosetta::Translator
+  include Rosetta::Translatable
 
   def name_label
     t rosetta("user.name")
@@ -148,7 +148,7 @@ derived from the current class name:
 
 ```cr
 class User
-  include Rosetta::Translator
+  include Rosetta::Translatable
 
   def name_label
     t rosetta(".name") # => resolves to "user.name"
@@ -168,13 +168,30 @@ This also works with nested class names, for example:
 Using inferred locale keys has an added bonus. You don't need to think about how
 to organise your locale files. And it makes finding your keys a lot easier.
 
+Finally, a constant can be used to define the prefix instead:
+
+```cr
+class User
+  include Rosetta::Translatable
+
+  ROSETTA_PREFIX = "guest"
+
+  def name_label
+    t rosetta(".name") # => resolves to "guest.name"
+  end
+end
+
+User.new.name_label
+# => "Guest"
+```
+
 ## To-do
 - [X] Add specs for the existing code
 - [X] Make settings accessible to the compiler
 - [ ] Send `default_locale` and `available_locales` to the parser
 - [ ] Implement key comparison between available locales in the parser
 - [ ] Add compiler error messages for mismatching keys
-- [ ] Implement inferred locale keys on macro level
+- [X] Implement inferred locale keys at macro level
 - [ ] Implement fallbacks
 - [ ] Interpolation (with %{} tag for interpolation keys)
 - [ ] Pluralization (with one/other/count convention)

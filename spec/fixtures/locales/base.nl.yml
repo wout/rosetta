@@ -2,3 +2,8 @@ nl:
   title: "Titel"
   site:
     heading: "Hoofding"
+  translatable_test_object:
+    inferred_name: "Afgeleide naam"
+  fixed:
+    prefix:
+      name: "Vast voorvoegsel"

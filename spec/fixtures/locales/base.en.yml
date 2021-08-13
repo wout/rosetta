@@ -2,3 +2,8 @@ en:
   title: "Title"
   site:
     heading: "Heading"
+  translatable_test_object:
+    inferred_name: "Inferred name"
+  fixed:
+    prefix:
+      name: "Fixed prefix"

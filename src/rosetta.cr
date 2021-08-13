@@ -24,8 +24,12 @@ module Rosetta
     Rosetta::Backend.look_up({{key}})
   end
 
-  def self.t(translation : Translation) : String
-    translation[locale]
+  def self.t(
+    translation : Translation,
+    **values
+  ) : String
+    string = Interpolatable.new(translation[locale])
+    string.interpolate(values)
   end
 
   def self.locale=(locale : String)
