@@ -37,6 +37,11 @@ Create an initializer to set up Rosetta:
 ```cr
 require "rosetta"
 
+module Rosetta
+  DEFAULT_LOCALE = "en"
+  AVAILABLE_LOCALES = %w[de en es fr nl]
+end
+
 Rosetta::Backend.load("config/locales")
 ```
 
