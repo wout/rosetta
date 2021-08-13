@@ -1,10 +1,25 @@
 require "json"
 require "yaml"
-require "habitat"
 
 require "./rosetta/**"
 
 module Rosetta
+  macro default_locale
+    {% if Rosetta.has_constant?("DEFAULT_LOCALE") %}
+      {{ Rosetta::DEFAULT_LOCALE }}
+    {% else %}
+      {{ Rosetta::Config::DEFAULT_LOCALE }}
+    {% end %}
+  end
+
+  macro available_locales
+    {% if Rosetta.has_constant?("AVAILABLE_LOCALES") %}
+      {{ Rosetta::AVAILABLE_LOCALES }}
+    {% else %}
+      {{ Rosetta::Config::AVAILABLE_LOCALES }}
+    {% end %}
+  end
+
   macro find(key)
     Rosetta::Backend.look_up({{key}})
   end
@@ -14,16 +29,11 @@ module Rosetta
   end
 
   def self.locale=(locale : String)
-    config.locale = if settings.available_locales.includes?(locale)
-                      locale
-                    else
-                      # TODO: make use of a fallback here
-                      Config.default_locale
-                    end
+    config.locale = locale
   end
 
   def self.locale : String
-    config.locale || Config.default_locale
+    config.locale
   end
 
   private def self.config

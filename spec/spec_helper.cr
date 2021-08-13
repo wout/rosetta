@@ -7,3 +7,7 @@ module Rosetta
 end
 
 Rosetta::Backend.load("spec/fixtures/locales")
+
+def reset_to_default_locale
+  Rosetta.locale = Rosetta.default_locale
+end
