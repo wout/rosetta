@@ -1,15 +1,22 @@
 require "../spec_helper"
 
 describe Rosetta::Config do
-  describe ".default_locale" do
-    it "defines the default locale" do
-      Rosetta::Config.default_locale.should eq("en")
+  describe ".locale" do
+    it "it returns the default locale if none is set yet" do
+      config = Rosetta::Config.new
+
+      config.locale.should eq(Rosetta.default_locale)
     end
   end
 
-  describe ".available_locales" do
-    it "defines the available locales" do
-      Rosetta::Config.available_locales.should eq(%w[en nl])
+  describe ".locale=" do
+    it "only locales registered in the available locales are accepted" do
+      config = Rosetta::Config.new
+
+      config.locale = "nl"
+      config.locale.should eq("nl")
+      config.locale = "pt"
+      config.locale.should eq("en")
     end
   end
 end
