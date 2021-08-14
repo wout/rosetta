@@ -92,7 +92,8 @@ TODO: Fallbacks still need to be implemented.
 
 ### Global lookup
 Looking up translations is done in two phases. The first phase happens at
-compile-time, where an object with all translations for a given key is fetched:
+compile-time, where an object with all translations for a given key is fetched
+(hence *Rosetta*):
 
 ```cr
 name_translations = Rosetta.find("user.name")
