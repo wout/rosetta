@@ -12,6 +12,20 @@ describe TranslatableTestObject do
       test_object.name_with_inferrence.should eq("Inferred name")
     end
   end
+
+  describe "#welcome_message_with_arguments" do
+    it "accepts interpolation messages" do
+      test_object.welcome_message_with_arguments
+        .should eq("Hi First name, have a fabulous whenever day!")
+    end
+  end
+
+  describe "#welcome_message_with_hash" do
+    it "accepts interpolation messages" do
+      test_object.welcome_message_with_hash
+        .should eq("Hi Willy, have a fabulous Wonka day!")
+    end
+  end
 end
 
 describe TranslatableTestObjectWithRosettaPrefix do
@@ -33,6 +47,16 @@ class TranslatableTestObject
   def name_with_inferrence
     t rosetta(".inferred_name")
   end
+
+  def welcome_message_with_arguments
+    t rosetta("interpolatable.string"), name: first_name, day_name: "whenever day"
+  end
+
+  def welcome_message_with_hash
+    interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
+
+    t rosetta("interpolatable.string"), interpolation_values
+  end
 end
 
 class TranslatableTestObjectWithRosettaPrefix
@@ -45,6 +69,7 @@ class TranslatableTestObjectWithRosettaPrefix
   end
 end
 
+# Helpers
 private def test_object
   TranslatableTestObject.new
 end

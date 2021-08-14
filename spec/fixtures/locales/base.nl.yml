@@ -7,3 +7,5 @@ nl:
   fixed:
     prefix:
       name: "Vast voorvoegsel"
+  interpolatable:
+    string: "Hey %{name}, maak er een geweldige %{day_name} van!"

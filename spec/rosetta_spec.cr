@@ -24,12 +24,23 @@ describe Rosetta do
 
   describe ".t" do
     it "translates the given translations to the current locale" do
-      translations = Rosetta.find("user.first_name")
+      translations_hash = Rosetta.find("user.first_name")
 
       Rosetta.locale.should eq("en")
-      Rosetta.t(translations).should eq("First name")
+      Rosetta.t(translations_hash).should eq("First name")
       Rosetta.locale = "nl"
-      Rosetta.t(translations).should eq("Voornaam")
+      Rosetta.t(translations_hash).should eq("Voornaam")
+    end
+
+    it "interpolates the translation string" do
+      translations_hash = Rosetta.find("interpolatable.string")
+
+      Rosetta.t(translations_hash, {:name => "Dorothy", "day_name" => "fly day"})
+        .should eq("Hi Dorothy, have a fabulous fly day!")
+      Rosetta.t(translations_hash, {name: "Kenny", day_name: "kill day"})
+        .should eq("Hi Kenny, have a fabulous kill day!")
+      Rosetta.t(translations_hash, name: "Benny", day_name: "Hill day")
+        .should eq("Hi Benny, have a fabulous Hill day!")
     end
   end
 end

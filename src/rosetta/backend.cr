@@ -4,7 +4,7 @@ module Rosetta
       TRANSLATIONS = {{ run("./parser", path) }}
     end
 
-    macro look_up(key)
+    macro find(key)
       {%
         translation = TRANSLATIONS[key]
 

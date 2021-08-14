@@ -7,3 +7,5 @@ en:
   fixed:
     prefix:
       name: "Fixed prefix"
+  interpolatable:
+    string: "Hi %{name}, have a fabulous %{day_name}!"

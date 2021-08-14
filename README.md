@@ -117,10 +117,23 @@ In practie, you'll probably chain those two phases together:
 Rosetta.t(Rosetta.find("user.name"))
 ```
 
-Of course, this is pretty long to write out for every single value that needs to
-be translated. Enter the `Translatable`.
+Interpolations are accepted as a `Hash`, a `NamedTuple` or as arguments:
 
-### The `Translatable`
+```cr
+# with a Hash
+Rosetta.t(Rosetta.find("user.welcome_message"), { "name" => "Ary" })
+
+# with a NamedTuple
+Rosetta.t(Rosetta.find("user.welcome_message"), { name: "Ary" })
+
+# or with arguments
+Rosetta.t(Rosetta.find("user.welcome_message"), name: "Ary")
+```
+
+Of course, this is pretty long to write out for every single value that needs to
+be translated. Enter the `Translatable` mixin.
+
+### The `Translatable` mixin
 This mixin makes it more convenient to work with translated values. Here's an
 example of its usage:
 
@@ -185,6 +198,21 @@ User.new.name_label
 # => "Guest"
 ```
 
+And interpolations work as well of course:
+
+```cr
+class User
+  include Rosetta::Translatable
+
+  def welcome_message
+    t rosetta(".welcome_message"), name: "Ary"
+  end
+end
+
+User.new.welcome_message
+# => "Hola Ary, ¡eres un mago!"
+```
+
 ## To-do
 - [X] Add specs for the existing code
 - [X] Make settings accessible to the compiler
@@ -193,8 +221,11 @@ User.new.name_label
 - [ ] Add compiler error messages for mismatching keys
 - [X] Implement inferred locale keys at macro level
 - [ ] Implement fallbacks
-- [ ] Interpolation (with %{} tag for interpolation keys)
-- [ ] Pluralization (with one/other/count convention)
+- [X] Interpolation (with %{} tag for interpolation keys)
+- [ ] Localization of numeric values
+- [ ] Localization of date and time values
+- [ ] Check existence of interpolation keys in all translations at compile-time
+- [ ] Pluralization (with one/many/other/count/... convention)
 
 ## Development
 

@@ -16,16 +16,25 @@ module Rosetta
         end
       %}
 
-      Rosetta::Backend.look_up({{key}})
+      Rosetta.find({{key}})
     end
 
-    # Returns the translation for the currently selected locale
-    def t(translation : Translation) : String
-      Rosetta.t(translation)
+    # Returns the translation for the currently selected locale and accepts
+    # interpolation values as a has or named tuple.
+    def t(
+      translation : Hash(String, String),
+      interpolation_values : Hash(String | Symbol, String) | NamedTuple
+    ) : String
+      Rosetta.t(translation, interpolation_values)
     end
 
-    # def t(key : String, count : Int32)
-    #   I18n.translate(inferred_key_prefix(key), count: count)
-    # end
+    # Alternative translation method with named arguments for the interpolation
+    # values.
+    def t(
+      translation : Hash(String, String),
+      **interpolation_values
+    ) : String
+      Rosetta.t(translation, interpolation_values)
+    end
   end
 end

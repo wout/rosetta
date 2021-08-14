@@ -4,43 +4,34 @@ require "yaml"
 require "./rosetta/**"
 
 module Rosetta
-  macro default_locale
-    {% if Rosetta.has_constant?("DEFAULT_LOCALE") %}
-      {{ Rosetta::DEFAULT_LOCALE }}
-    {% else %}
-      {{ Rosetta::Config::DEFAULT_LOCALE }}
-    {% end %}
-  end
-
-  macro available_locales
-    {% if Rosetta.has_constant?("AVAILABLE_LOCALES") %}
-      {{ Rosetta::AVAILABLE_LOCALES }}
-    {% else %}
-      {{ Rosetta::Config::AVAILABLE_LOCALES }}
-    {% end %}
-  end
-
+  # Finds translations for the given key. The returned object contains
+  # translations for every configured locale:
+  #
+  # ```
+  # Rosetta.find("user.name")
+  # # => { "en" => "Name", "es" => "Nombre", "nl" => "Naam" }
+  # ```
+  # If the key does not exist, a compile error will be raised.
   macro find(key)
-    Rosetta::Backend.look_up({{key}})
+    Rosetta::Backend.find({{key}})
   end
 
+  # Translates a given hash with translations, typically returned by the `find`
+  # macro, using the currently configured locale. If interpolation values are
+  # given, the string is interpolated using those values.
   def self.t(
-    translation : Translation,
-    **values
+    translation : Hash(String, String),
+    interpolation_values : Hash(String | Symbol, String) | NamedTuple
   ) : String
-    string = Interpolatable.new(translation[locale])
-    string.interpolate(values)
+    interpolate(translation[locale], interpolation_values)
   end
 
-  def self.locale=(locale : String)
-    config.locale = locale
-  end
-
-  def self.locale : String
-    config.locale
-  end
-
-  private def self.config
-    Fiber.current.rosetta_config ||= Config.new
+  # Alternative translation method with named arguments for the interpolation
+  # values
+  def self.t(
+    translation : Hash(String, String),
+    **interpolation_values
+  ) : String
+    t(translation, interpolation_values)
   end
 end
