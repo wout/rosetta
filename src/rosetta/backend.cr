@@ -26,6 +26,7 @@ module Rosetta
       TRANSLATIONS = {{
                        run(
                          "./parser",
+                         "rosetta",
                          path,
                          default_locale.id,
                          available_locales.join(',').id

@@ -79,10 +79,10 @@ module Rosetta
   end
 end
 
-unless ARGV.empty?
+if !ARGV.empty? && ARGV[0] == "rosetta" && ARGV.size == 4
   puts Rosetta::Parser.new(
-    path: ARGV[0].to_s,
-    default_locale: ARGV[1].to_s,
-    available_locales: ARGV[2].to_s.split(',')
+    path: ARGV[1].to_s,
+    default_locale: ARGV[2].to_s,
+    available_locales: ARGV[3].to_s.split(',')
   ).parse!
 end
