@@ -1,18 +1,8 @@
-require "./spec_helper"
+require "../spec_helper"
 
 describe Rosetta do
   after_each do
     reset_to_default_locale
-  end
-
-  describe ".default_locale" do
-    it "returns the default locale" do
-      Rosetta.default_locale.should eq("en")
-    end
-
-    it "returns the available locales" do
-      Rosetta.available_locales.should eq(%w[en nl])
-    end
   end
 
   describe ".find" do
