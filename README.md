@@ -2,6 +2,9 @@
 
 A Crystal library for internationalization with compile-time key lookup.
 
+![GitHub](https://img.shields.io/github/license/wout/rosetta)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/wout/rosetta)
+
 ## Description
 
 Rosetta is different from other internationalization libraries because it
@@ -233,6 +236,10 @@ User.new.welcome_message
 ## Development
 
 TODO: Coming soon!
+
+## Documentation
+
+- [API (main)](https://wout.github.io/rosetta)
 
 ## Contributing
 
