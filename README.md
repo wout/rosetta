@@ -3,7 +3,6 @@
 A Crystal library for internationalization with compile-time key lookup.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
-![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/wout/rosetta)
 
 ## Description
 
