@@ -1,4 +1,5 @@
 require "../spec_helper"
+require "../../src/rosetta/parser"
 
 describe Rosetta::Parser do
   describe "#load!" do

@@ -1,4 +1,12 @@
 require "json"
 require "yaml"
 
-require "./rosetta/**"
+require "./rosetta/version"
+require "./rosetta/ext/fiber"
+require "./rosetta/aliases"
+require "./rosetta/config"
+require "./rosetta/configuration"
+require "./rosetta/backend"
+require "./rosetta/interpolation"
+require "./rosetta/translation"
+require "./rosetta/translatable"
