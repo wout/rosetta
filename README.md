@@ -105,6 +105,8 @@ The second phase happens at runtime where the translation for the currently
 selected locale is retreived:
 
 ```cr
+Rosetta.locale = "nl"
+
 dutch_translation = Rosetta.t(name_translations)
 # => "Naam"
 ```
@@ -134,8 +136,8 @@ Of course, this is pretty long to write out for every single value that needs to
 be translated. Enter the `Translatable` mixin.
 
 ### The `Translatable` mixin
-This mixin makes it more convenient to work with translated values. Here's an
-example of its usage:
+This mixin makes it more convenient to work with translated values in your
+classes. Here's an example of its usage:
 
 ```cr
 Rosetta.locale = "es"
@@ -156,7 +158,7 @@ The `rosetta` macro does exactly the same as `Rosetta.find`, and the `t` method
 is equivalent to `Rosetta.t`.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
-locale key and having the key start with a period, the key prefix will be
+locale key and having the key start with a `.`, the key prefix will be
 derived from the current class name:
 
 ```cr
@@ -179,9 +181,10 @@ This also works with nested class names, for example:
 - `Helpers::SiteSections::UserSettings` => `"helpers.site_sections.user_settings"`
 
 Using inferred locale keys has an added bonus. You don't need to think about how
-to organise your locale files. And it makes finding your keys a lot easier.
+to organise your locale files. And it also makes finding your keys a lot easier.
 
-Finally, a constant can be used to define the prefix instead:
+Finally, in case you want to use another prefix for the current class, a
+constant can be used:
 
 ```cr
 class User
@@ -198,7 +201,7 @@ User.new.name_label
 # => "Guest"
 ```
 
-And interpolations work as well of course:
+And interpolations are accepted as arguments, as a `Hash` or as a `NamedTuple`:
 
 ```cr
 class User

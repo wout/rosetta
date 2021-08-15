@@ -1,16 +1,18 @@
 require "json"
 require "yaml"
 
-# require "aliases"
-
 module Rosetta
   class Parser
-    alias Translation = Hash(String, Hash(String, String))
+    alias TranslationsHash = Hash(String, Hash(String, String))
 
-    getter path : String?
-    getter translations = Translation.new
+    getter path : String
+    # getter default_locale : String
+    # getter available_locales : Array(String)
+    getter translations = TranslationsHash.new
 
-    def initialize(@path : String?)
+    def initialize(
+      @path : String
+    )
     end
 
     # Loads and parses JSON files, then YAML files and adds them to the list of
@@ -43,7 +45,7 @@ module Rosetta
       locales = translations.keys
 
       # TODO: pass primary language as ARGV to use as the bas set of keys
-      translations["en"].keys.each_with_object(Translation.new) do |k, h|
+      translations["en"].keys.each_with_object(TranslationsHash.new) do |k, h|
         h[k] = locales.each_with_object({} of String => String) do |l, t|
           t[l] = translations[l][k]
         end
@@ -69,4 +71,8 @@ module Rosetta
   end
 end
 
-puts Rosetta::Parser.new(ARGV.first?).parse!
+unless ARGV.empty?
+  puts Rosetta::Parser.new(
+    path: ARGV[0].to_s
+  ).parse!
+end
