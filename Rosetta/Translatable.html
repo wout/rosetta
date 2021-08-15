@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.0.0">
+<meta name="crystal_docs.project_version" content="main">
+<meta name="crystal_docs.project_name" content="rosetta">
+
+
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../js/doc.js"></script>
+
+  <meta name="repository-name" content="rosetta">
+  <title>Rosetta::Translatable - rosetta main</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "../";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="../index.html">
+          rosetta
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="rosetta/Rosetta" data-name="rosetta">
+      <a href="../Rosetta.html">Rosetta</a>
+      
+        <ul>
+  
+  <li class=" " data-id="rosetta/Rosetta/Backend" data-name="rosetta::backend">
+      <a href="../Rosetta/Backend.html">Backend</a>
+      
+    </li>
+  
+  <li class=" " data-id="rosetta/Rosetta/Config" data-name="rosetta::config">
+      <a href="../Rosetta/Config.html">Config</a>
+      
+    </li>
+  
+  <li class=" " data-id="rosetta/Rosetta/Fallbacks" data-name="rosetta::fallbacks">
+      <a href="../Rosetta/Fallbacks.html">Fallbacks</a>
+      
+    </li>
+  
+  <li class="parent " data-id="rosetta/Rosetta/Parser" data-name="rosetta::parser">
+      <a href="../Rosetta/Parser.html">Parser</a>
+      
+        <ul>
+  
+  <li class=" " data-id="rosetta/Rosetta/Parser/TranslationsHash" data-name="rosetta::parser::translationshash">
+      <a href="../Rosetta/Parser/TranslationsHash.html">TranslationsHash</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class=" current" data-id="rosetta/Rosetta/Translatable" data-name="rosetta::translatable">
+      <a href="../Rosetta/Translatable.html">Translatable</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> Rosetta::Translatable
+
+</h1>
+
+
+
+
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Include this module in any class where you need to trasnlate many keys.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/bd68b957b9a72cfb37da5ddc1776094cdfe05f53/src/rosetta/translatable.cr#L3" target="_blank">
+        rosetta/translatable.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#t(translation:Hash(String,String),interpolation_values:Hash(String%7CSymbol,String)%7CNamedTuple):String-instance-method" class="signature"><strong>#t</strong>(translation : Hash(String, String), interpolation_values : Hash(String | Symbol, String) | NamedTuple) : String</a>
+        
+          <div class="summary"><p>Returns the translation for the currently selected locale and accepts interpolation values as a has or named tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#t(translation:Hash(String,String),**interpolation_values):String-instance-method" class="signature"><strong>#t</strong>(translation : Hash(String, String), **interpolation_values) : String</a>
+        
+          <div class="summary"><p>Alternative translation method with named arguments for the interpolation values.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#rosetta(key)-macro" class="signature"><strong>rosetta</strong>(key)</a>
+        
+          <div class="summary"><p>Looks up and returns the translation for the given key.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="t(translation:Hash(String,String),interpolation_values:Hash(String|Symbol,String)|NamedTuple):String-instance-method">
+      <div class="signature">
+        
+        def <strong>t</strong>(translation : Hash(String, String), interpolation_values : Hash(String | Symbol, String) | NamedTuple) : String
+
+        <a class="method-permalink" href="#t(translation:Hash(String,String),interpolation_values:Hash(String%7CSymbol,String)%7CNamedTuple):String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns the translation for the currently selected locale and accepts
+interpolation values as a has or named tuple.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/bd68b957b9a72cfb37da5ddc1776094cdfe05f53/src/rosetta/translatable.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="t(translation:Hash(String,String),**interpolation_values):String-instance-method">
+      <div class="signature">
+        
+        def <strong>t</strong>(translation : Hash(String, String), **interpolation_values) : String
+
+        <a class="method-permalink" href="#t(translation:Hash(String,String),**interpolation_values):String-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Alternative translation method with named arguments for the interpolation
+values.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/bd68b957b9a72cfb37da5ddc1776094cdfe05f53/src/rosetta/translatable.cr#L33" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="rosetta(key)-macro">
+      <div class="signature">
+        
+        macro <strong>rosetta</strong>(key)
+
+        <a class="method-permalink" href="#rosetta(key)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Looks up and returns the translation for the given key. If the given key
+starts with a ".", a prefix based on the current class name will be used.
+Unless the constant ROSETTA_PREFIX is defined, which will then be used
+instead.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/bd68b957b9a72cfb37da5ddc1776094cdfe05f53/src/rosetta/translatable.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+</div>
+
+</body>
+</html>
