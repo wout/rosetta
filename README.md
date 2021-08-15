@@ -219,7 +219,7 @@ User.new.welcome_message
 ## To-do
 - [X] Add specs for the existing code
 - [X] Make settings accessible to the compiler
-- [ ] Send `default_locale` and `available_locales` to the parser
+- [X] Send `default_locale` and `available_locales` to the parser
 - [ ] Implement key comparison between available locales in the parser
 - [ ] Add compiler error messages for mismatching keys
 - [X] Implement inferred locale keys at macro level
