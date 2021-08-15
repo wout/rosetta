@@ -1,4 +1,6 @@
 module Rosetta
+  # Interpolates a given string with tha values from the given hash or named
+  # tuple.
   def self.interpolate(
     translation : String,
     values : Hash(String | Symbol, String) | NamedTuple
