@@ -147,34 +147,47 @@ for use.</strong></p>
 
 <ol><li>Run <code>shards install</code></li></ol>
 
-<h2><a id="setup" class="anchor" href="#setup">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>Setup</h2>
+<p>3a. Require rosetta and run the initialization task (if you're using Lucky)</p>
 
-<p>Create a directory in your project - at <code>config/locales</code> for example - where you
-want to store your locale files. Next, create an initializer to configure your
-locale settings and load the locale files:</p>
+<pre><code class="language-crystal"><span class="c"># src/shards.cr</span>
+<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span></code></pre>
 
-<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;rosetta&quot;</span>
+<pre><code class="language-bash">lucky rosetta.init</code></pre>
+
+<p>3b. Create an initializer, a locales directory and locale files (if you're not
+using Lucky)</p>
+
+<pre><code class="language-bash">mkdir -p config/rosetta
+echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
+echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
+echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
+# ... repeat for every available locale
+touch config/rosetta.cr</code></pre>
+
+<pre><code class="language-crystal"><span class="c"># config/rosetta.cr</span>
+<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span>
 
 <span class="k">module</span> <span class="t">Rosetta</span>
   <span class="t">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="s">&quot;en&quot;</span>
-  <span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%w[de en es fr nl]</span>
+  <span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%w[en es nl]</span>
 <span class="k">end</span>
 
-<span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/locales&quot;</span>)</code></pre>
+<span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/rosetta&quot;</span>)</code></pre>
 
-<p>You can chop up locale files and place them in subdirectories; organise them any
-way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
-formats together. So if you started out with JSON and later on decided to use
-YAML instead, there is no need to convert your old files. Rosetta will gladly
-parse both formats.</p>
+<ol><li>Include the <code><a href="Rosetta/Translatable.html">Rosetta::Translatable</a></code> mixin</li></ol>
 
-<p>🗒️ <strong>Note</strong>: Beware, though, that there is a fixed loading order. JSON files
-are loaded first, then YAML files. So if you have the same key in a JSON and a
-YAML file, YAML will take precedence.</p>
+<pre><code class="language-crystal"><span class="c"># e.g. src/pages/main_layout.cr</span>
+<span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span></code></pre>
+
+<ol><li>Localize your app</li></ol>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.locale <span class="o">=</span> <span class="s">&quot;es&quot;</span>
+
+<span class="k">class</span> <span class="t">Hello</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
+  <span class="k">def</span> <span class="m">content</span>
+    h1 t(rosetta(<span class="s">&quot;welcome_message&quot;</span>), name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
 
 <h2><a id="configuration" class="anchor" href="#configuration">
   <svg class="octicon-link" aria-hidden="true">
@@ -229,6 +242,22 @@ for this setting is <code>%w[en]</code>.</p>
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
+
+<h3><a id="locale-files" class="anchor" href="#locale-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Locale files</h3>
+
+<p>You can chop up locale files and place them in subdirectories; organise them any
+way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
+formats together. So if you started out with JSON and later on decided to use
+YAML instead, there is no need to convert your old files. Rosetta will gladly
+parse both formats.</p>
+
+<p>🗒️ <strong>Note</strong>: Beware, though, that there is a fixed loading order. JSON files
+are loaded first, then YAML files. So if you have the same key in a JSON and a
+YAML file, YAML will take precedence.</p>
 
 <h3><a id="global-lookup" class="anchor" href="#global-lookup">
   <svg class="octicon-link" aria-hidden="true">
