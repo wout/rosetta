@@ -17,8 +17,8 @@ to those of your primary language. Any missing or additional keys will be
 reported in development. So you'll no longer have to worry about deploying an
 app with missing translations.
 
-**IMPORTANT: This shard is still under heavy development and is not ready for
-use.**
+**IMPORTANT: This shard is still under heavy development and is not yet ready
+for use.**
 
 ## Installation
 
@@ -220,12 +220,45 @@ User.new.welcome_message
 # => "Hola Ary, ¡eres un mago!"
 ```
 
+## Compiler errors
+After loading all locales, the parser does a series of checkes on the given set.
+
+### Check 1: presence of translations for all locales
+If you configured the `AVAILABLE_LOCALES` setting to be `%w[en fr nl]`, but
+translations for one locale are missing, the parser will raise the following
+error:
+
+```bash
+Error: Expected to find translations for:
+
+  ‣ en
+  ‣ nl
+  ‣ fr
+
+But missing all translations for:
+
+  ‣ fr
+```
+
+### Check 2: presence of ruling key set in all alternative locales
+The `DEFAULT_LOCALE` will define the key set that should be present in every
+alternative locale. If keys are missing, you'll get an error like the one below:
+
+```bash
+Error: Missing keys for locale "nl":
+
+  ‣ user.first_name
+  ‣ user.gender.male
+  ‣ user.gender.female
+  ‣ user.gender.non_binary
+```
+
 ## To-do
 - [X] Add specs for the existing code
 - [X] Make settings accessible to the compiler
 - [X] Send `default_locale` and `available_locales` to the parser
-- [ ] Implement key comparison between available locales in the parser
-- [ ] Add compiler error messages for mismatching keys
+- [X] Implement key comparison between available locales in the parser
+- [X] Add compiler error messages for mismatching keys
 - [X] Implement inferred locale keys at macro level
 - [ ] Implement fallbacks
 - [X] Interpolation (with %{} tag for interpolation keys)
