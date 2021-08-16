@@ -138,7 +138,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L5" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L5" target="_blank">
         rosetta/parser.cr
       </a>
     
@@ -181,12 +181,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#alternative_locales:Array(String)-instance-method" class="signature"><strong>#alternative_locales</strong> : Array(String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#available_locales:Array(String)-instance-method" class="signature"><strong>#available_locales</strong> : Array(String)</a>
         
       </li>
     
       <li class="entry-summary">
         <a href="#default_locale:String-instance-method" class="signature"><strong>#default_locale</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#error:String?-instance-method" class="signature"><strong>#error</strong> : String?</a>
         
       </li>
     
@@ -198,7 +208,7 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#parse!:String?-instance-method" class="signature"><strong>#parse!</strong> : String?</a>
+        <a href="#parse!:String-instance-method" class="signature"><strong>#parse!</strong> : String</a>
         
           <div class="summary"><p>Returns a flat list of key/translation pairs as a string.</p></div>
         
@@ -211,6 +221,13 @@
     
       <li class="entry-summary">
         <a href="#translations:Hash(String,Hash(String,String))-instance-method" class="signature"><strong>#translations</strong> : Hash(String, Hash(String, String))</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#valid?:Bool-instance-method" class="signature"><strong>#valid?</strong> : Bool</a>
+        
+          <div class="summary"><p>Tests validity of all locale key sets.</p></div>
         
       </li>
     
@@ -265,7 +282,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -284,6 +301,22 @@
     Instance Method Detail
   </h2>
   
+    <div class="entry-detail" id="alternative_locales:Array(String)-instance-method">
+      <div class="signature">
+        
+        def <strong>alternative_locales</strong> : Array(String)
+
+        <a class="method-permalink" href="#alternative_locales:Array(String)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="available_locales:Array(String)-instance-method">
       <div class="signature">
         
@@ -295,7 +328,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -311,7 +344,23 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="error:String?-instance-method">
+      <div class="signature">
+        
+        def <strong>error</strong> : String?
+
+        <a class="method-permalink" href="#error:String?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -333,17 +382,17 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L31" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="parse!:String?-instance-method">
+    <div class="entry-detail" id="parse!:String-instance-method">
       <div class="signature">
         
-        def <strong>parse!</strong> : String?
+        def <strong>parse!</strong> : String
 
-        <a class="method-permalink" href="#parse!:String?-instance-method">#</a>
+        <a class="method-permalink" href="#parse!:String-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -354,7 +403,7 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -370,7 +419,7 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -386,7 +435,28 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/24c3dd827eeb409f1385eb04f35e184873f4d644/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="valid?:Bool-instance-method">
+      <div class="signature">
+        
+        def <strong>valid?</strong> : Bool
+
+        <a class="method-permalink" href="#valid?:Bool-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tests validity of all locale key sets.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3656e9f3b8c3a611a6ec57f4cd39aecf6e8ba4ec/src/rosetta/parser.cr#L35" target="_blank">View source</a>]
         
       </div>
     </div>

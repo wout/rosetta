@@ -130,8 +130,8 @@ to those of your primary language. Any missing or additional keys will be
 reported in development. So you'll no longer have to worry about deploying an
 app with missing translations.</p>
 
-<p><strong>IMPORTANT: This shard is still under heavy development and is not ready for
-use.</strong></p>
+<p><strong>IMPORTANT: This shard is still under heavy development and is not yet ready
+for use.</strong></p>
 
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
@@ -349,13 +349,57 @@ constant can be used:</p>
 <span class="t">User</span>.<span class="k">new</span>.welcome_message
 <span class="c"># =&gt; &quot;Hola Ary, ¡eres un mago!&quot;</span></code></pre>
 
+<h2><a id="compiler-errors" class="anchor" href="#compiler-errors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Compiler errors</h2>
+
+<p>After loading all locales, the parser does a series of checkes on the given set.</p>
+
+<h3><a id="check-1-presence-of-translations-for-all-locales" class="anchor" href="#check-1-presence-of-translations-for-all-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 1: presence of translations for all locales</h3>
+
+<p>If you configured the <code>AVAILABLE_LOCALES</code> setting to be <code>%w[en fr nl]</code>, but
+translations for one locale are missing, the parser will raise the following
+error:</p>
+
+<pre><code class="language-bash">Error: Expected to find translations for:
+
+  ‣ en
+  ‣ nl
+  ‣ fr
+
+But missing all translations for:
+
+  ‣ fr</code></pre>
+
+<h3><a id="check-2-presence-of-ruling-key-set-in-all-alternative-locales" class="anchor" href="#check-2-presence-of-ruling-key-set-in-all-alternative-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 2: presence of ruling key set in all alternative locales</h3>
+
+<p>The <code>DEFAULT_LOCALE</code> will define the key set that should be present in every
+alternative locale. If keys are missing, you'll get an error like the one below:</p>
+
+<pre><code class="language-bash">Error: Missing keys for locale "nl":
+
+  ‣ user.first_name
+  ‣ user.gender.male
+  ‣ user.gender.female
+  ‣ user.gender.non_binary</code></pre>
+
 <h2><a id="to-do" class="anchor" href="#to-do">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>To-do</h2>
 
-<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[ ] Implement key comparison between available locales in the parser</li><li>[ ] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[ ] Implement fallbacks</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[ ] Localization of numeric values</li><li>[ ] Localization of date and time values</li><li>[ ] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li></ul>
+<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[ ] Implement fallbacks</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[ ] Localization of numeric values</li><li>[ ] Localization of date and time values</li><li>[ ] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li></ul>
 
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
