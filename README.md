@@ -12,7 +12,7 @@ advantage is that you'll be able to find missing localizations - or typos in
 your locale keys - during development rather than after you've deployed your
 app.
 
-The parser will even compare all locale keys of additional (localized) languages
+The parser also compares all locale keys of additional (localized) languages
 to those of your primary language. Any missing or additional keys will be
 reported in development. So you'll no longer have to worry about deploying an
 app with missing translations.
