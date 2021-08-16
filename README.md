@@ -32,31 +32,59 @@ dependencies:
 
 2. Run `shards install`
 
-## Setup
-Create a directory in your project - at `config/locales` for example - where you
-want to store your locale files. Next, create an initializer to configure your
-locale settings and load the locale files:
+3a. Require rosetta and run the initialization task (if you're using Lucky)
 
 ```cr
+# src/shards.cr
+require "rosetta"
+```
+
+```bash
+lucky rosetta.init
+``` 
+
+3b. Create an initializer, a locales directory and locale files (if you're not
+using Lucky)
+
+```bash
+mkdir -p config/rosetta
+echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
+echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
+echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
+# ... repeat for every available locale
+touch config/rosetta.cr
+```
+
+```cr
+# config/rosetta.cr
 require "rosetta"
 
 module Rosetta
   DEFAULT_LOCALE = "en"
-  AVAILABLE_LOCALES = %w[de en es fr nl]
+  AVAILABLE_LOCALES = %w[en es nl]
 end
 
-Rosetta::Backend.load("config/locales")
+Rosetta::Backend.load("config/rosetta")
 ```
 
-You can chop up locale files and place them in subdirectories; organise them any
-way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
-formats together. So if you started out with JSON and later on decided to use
-YAML instead, there is no need to convert your old files. Rosetta will gladly
-parse both formats.
+4. Include the `Rosetta::Translatable` mixin
 
-🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files
-are loaded first, then YAML files. So if you have the same key in a JSON and a
-YAML file, YAML will take precedence.
+```cr
+# e.g. src/pages/main_layout.cr
+include Rosetta::Translatable
+```
+
+5. Localize your app
+
+```cr
+Rosetta.locale = "es"
+
+class Hello::ShowPage < MainLayout
+  def content
+    h1 t(rosetta("welcome_message"), name: "Brian") # => "¡Hola Brian!"
+  end
+end
+```
 
 ## Configuration
 Configuration options are set as constants in your initializer file.
@@ -92,6 +120,17 @@ end
 TODO: Fallbacks still need to be implemented.
 
 ## Usage
+
+### Locale files
+You can chop up locale files and place them in subdirectories; organise them any
+way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
+formats together. So if you started out with JSON and later on decided to use
+YAML instead, there is no need to convert your old files. Rosetta will gladly
+parse both formats.
+
+🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files
+are loaded first, then YAML files. So if you have the same key in a JSON and a
+YAML file, YAML will take precedence.
 
 ### Global lookup
 Looking up translations is done in two phases. The first phase happens at
