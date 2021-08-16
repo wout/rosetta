@@ -8,7 +8,7 @@ A Crystal library for internationalization with compile-time key lookup.
 
 Rosetta is different from other internationalization libraries because it
 handles key lookup at compile-time rather than runtime. The significant
-advantage is that you'll be able to find missing localizations - or typos in
+advantage is that you'll be able to find missing translations - or typos in
 your locale keys - during development rather than after you've deployed your
 app.
 
