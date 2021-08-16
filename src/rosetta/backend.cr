@@ -23,15 +23,19 @@ module Rosetta
         end
       %}
 
-      TRANSLATIONS = {{
-                       run(
+      {%
+        translations = run(
                          "./parser",
                          "rosetta",
                          path,
                          default_locale.id,
                          available_locales.join(',').id
                        )
-                     }}
+
+        raise translations.stringify if !translations.stringify.starts_with?('{')
+      %}
+
+      TRANSLATIONS = {{ translations }}
     end
 
     # Finds the translations hash for a given key at compile-time. If the key
