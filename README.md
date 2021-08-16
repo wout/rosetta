@@ -32,41 +32,39 @@ dependencies:
 
 2. Run `shards install`
 
-3. Require the shard, and create an initializer, a locales directory and locale
-   files
-  
-  a. If you're using Lucky
-  ```cr
-  # src/shards.cr
-  require "rosetta"
-  ```
+3. Require the shard and set up the required files
 
-  ```bash
-  lucky rosetta.init
-  ``` 
+```cr
+# src/shards.cr
+require "rosetta"
+```
 
-  b. (if you're not using Lucky) 
+```bash
+lucky rosetta.init
+``` 
 
-  ```bash
-  mkdir -p config/rosetta
-  echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
-  echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
-  echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
-  # ... repeat for every available locale
-  touch config/rosetta.cr
-  ```
+Or if you're not using Lucky:
 
-  ```cr
-  # config/rosetta.cr
-  require "rosetta"
+```bash
+mkdir -p config/rosetta
+echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
+echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
+echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
+# ... repeat for every available locale
+touch config/rosetta.cr
+```
 
-  module Rosetta
-    DEFAULT_LOCALE = "en"
-    AVAILABLE_LOCALES = %w[en es nl]
-  end
+```cr
+# config/rosetta.cr
+require "rosetta"
 
-  Rosetta::Backend.load("config/rosetta")
-  ```
+module Rosetta
+  DEFAULT_LOCALE = "en"
+  AVAILABLE_LOCALES = %w[en es nl]
+end
+
+Rosetta::Backend.load("config/rosetta")
+```
 
 4. Include the `Rosetta::Translatable` mixin
 
