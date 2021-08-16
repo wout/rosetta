@@ -33,7 +33,9 @@ dependencies:
 2. Run `shards install`
 
 ## Setup
-Create an initializer to set up Rosetta:
+Create a directory in your project - at `config/locales` for example - where you
+want to store your locale files. Next, create an initializer to configure your
+locale settings and load the locale files:
 
 ```cr
 require "rosetta"
@@ -148,7 +150,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t rosetta("user.name")
+    t rosetta("user.name_label")
   end
 end
 
@@ -168,7 +170,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t rosetta(".name") # => resolves to "user.name"
+    t rosetta(".name_label") # => resolves to "user.name_label"
   end
 end
 
@@ -195,7 +197,7 @@ class User
   ROSETTA_PREFIX = "guest"
 
   def name_label
-    t rosetta(".name") # => resolves to "guest.name"
+    t rosetta(".name_label") # => resolves to "guest.name_label"
   end
 end
 
