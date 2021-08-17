@@ -6,7 +6,7 @@ module Rosetta
   AVAILABLE_LOCALES = %w[en nl]
 end
 
-Rosetta::Backend.load("spec/fixtures/locales")
+Rosetta::Backend.load("spec/fixtures/rosetta")
 
 def reset_to_default_locale
   Rosetta.locale = Rosetta.default_locale
