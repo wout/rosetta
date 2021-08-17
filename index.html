@@ -76,6 +76,11 @@
       
         <ul>
   
+  <li class=" " data-id="rosetta/Rosetta/Parser/HS2" data-name="rosetta::parser::hs2">
+      <a href="Rosetta/Parser/HS2.html">HS2</a>
+      
+    </li>
+  
   <li class=" " data-id="rosetta/Rosetta/Parser/TranslationsHash" data-name="rosetta::parser::translationshash">
       <a href="Rosetta/Parser/TranslationsHash.html">TranslationsHash</a>
       
@@ -421,13 +426,44 @@ alternative locale. If keys are missing, you'll get an error like the one below:
   ‣ user.gender.female
   ‣ user.gender.non_binary</code></pre>
 
+<h3><a id="check-3-no-additional-keys-in-alternative-locales" class="anchor" href="#check-3-no-additional-keys-in-alternative-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 3: no additional keys in alternative locales</h3>
+
+<p>If any of the alternative locales has keys that aren't present in the key set 
+of the <code>DEFAULT_LOCALE</code>, the parser will raise an error:</p>
+
+<pre><code class="language-bash">Error: The "nl" locale has unused keys:
+
+  ‣ user.name
+  ‣ user.date_of_birth</code></pre>
+
+<h3><a id="check-4-interpolation-keys-are-present-in-every-locale" class="anchor" href="#check-4-interpolation-keys-are-present-in-every-locale">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 4: interpolation keys are present in every locale</h3>
+
+<p>If a translation in the <code>DEFAULT_LOCALE</code> has one or more interpolation keys,
+then those interpolation keys should also be present in the alternative locales.
+If not, the following error will be thrown:</p>
+
+<pre><code class="language-bash">Error: Some translations have mismatching interpolation keys:
+
+  ‣ nl: message.welcome should contain "%{first_name}"
+  ‣ nl: base.validations.min_max should contain "%{min}"
+  ‣ nl: base.validations.min_max should contain "%{max}"
+  ‣ fr: message.welcome should contain "%{first_name}"</code></pre>
+
 <h2><a id="to-do" class="anchor" href="#to-do">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>To-do</h2>
 
-<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[ ] Implement fallbacks</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[ ] Localization of numeric values</li><li>[ ] Localization of date and time values</li><li>[ ] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li></ul>
+<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[X] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Implement fallbacks</li><li>[ ] Localization of numeric values</li><li>[ ] Localization of date and time values</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li></ul>
 
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
