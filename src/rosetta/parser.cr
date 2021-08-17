@@ -4,12 +4,14 @@ require "yaml"
 module Rosetta
   class Parser
     alias TranslationsHash = Hash(String, Hash(String, String))
+    alias HS2 = Hash(String, String)
 
     getter path : String
     getter default_locale : String
     getter available_locales : Array(String)
     getter alternative_locales : Array(String)
     getter translations = TranslationsHash.new
+    getter flipped_translations = TranslationsHash.new
     getter error : String? = nil
 
     def initialize(
@@ -28,7 +30,7 @@ module Rosetta
 
       return "{} of String => Hash(String, String)" if translations.empty?
 
-      "#{flip(translations)}"
+      "#{flipped_translations}"
     end
 
     # Tests validity of all locale key sets.
@@ -118,6 +120,29 @@ module Rosetta
 
     # Checks if interpolation keys are maching in all available locales.
     private def check_interpolation_keys_matching? : Bool
+      errors = ruling_key_set.each_with_object([] of String) do |k, e|
+        ruling_translation = flipped_translations[k][default_locale]
+        i12n_keys = ruling_translation.scan(/%\{[^\}]+\}/).map { |m| m[0] }
+
+        next if i12n_keys.empty?
+
+        alternative_locales.each do |l|
+          i12n_keys.each do |key|
+            next if flipped_translations[k][l].index(key)
+
+            e << %(#{l}: #{k} should contain "#{key}")
+          end
+        end
+      end
+
+      unless errors.empty?
+        @error = <<-ERROR
+        Some translations have mismatching interpolation keys:
+        #{pretty_list_for_error(errors)}
+
+        ERROR
+      end
+
       true
     end
 
@@ -132,23 +157,24 @@ module Rosetta
     end
 
     # Flips translations from top-level locales to top-level keys.
-    private def flip(translations)
-      ruling_key_set.each_with_object(TranslationsHash.new) do |k, h|
-        h[k] = available_locales.each_with_object({} of String => String) do |l, t|
-          t[l] = translations[l][k]
+    private def flipped_translations
+      ruling_key_set
+        .each_with_object(TranslationsHash.new) do |k, h|
+          h[k] = available_locales.each_with_object(HS2.new) do |l, t|
+            t[l] = translations[l][k]
+          end
         end
-      end
     end
 
     # Adds a set of translations for a given locale to the translations store.
     private def add_translations(locale : String, hash_from_any)
-      translations[locale] = {} of String => String unless translations[locale]?
+      translations[locale] = HS2.new unless translations[locale]?
       translations[locale].merge!(flatten_hash_from_any(hash_from_any))
     end
 
     # Flattens a nested hash to a key/value hash.
     private def flatten_hash_from_any(hash)
-      hash.as_h.each_with_object({} of String => String) do |(k, v), h|
+      hash.as_h.each_with_object(HS2.new) do |(k, v), h|
         if v.as_h?
           flatten_hash_from_any(v).map do |h_k, h_v|
             h["#{k}.#{h_k}"] = h_v

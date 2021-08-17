@@ -291,6 +291,31 @@ Error: Missing keys for locale "nl":
   ‣ user.gender.non_binary
 ```
 
+### Check 3: no additional keys in alternative locales
+If any of the alternative locales has keys that aren't present in the key set 
+of the `DEFAULT_LOCALE`, the parser will raise an error:
+
+```bash
+Error: The "nl" locale has unused keys:
+
+  ‣ user.name
+  ‣ user.date_of_birth
+```
+
+### Check 4: interpolation keys are present in every locale
+If a translation in the `DEFAULT_LOCALE` has one or more interpolation keys,
+then those interpolation keys should also be present in the alternative locales.
+If not, the following error will be thrown:
+
+```bash
+Error: Some translations have mismatching interpolation keys:
+
+  ‣ nl: message.welcome should contain "%{first_name}"
+  ‣ nl: base.validations.min_max should contain "%{min}"
+  ‣ nl: base.validations.min_max should contain "%{max}"
+  ‣ fr: message.welcome should contain "%{first_name}"
+```
+
 ## To-do
 - [X] Add specs for the existing code
 - [X] Make settings accessible to the compiler
@@ -298,11 +323,11 @@ Error: Missing keys for locale "nl":
 - [X] Implement key comparison between available locales in the parser
 - [X] Add compiler error messages for mismatching keys
 - [X] Implement inferred locale keys at macro level
-- [ ] Implement fallbacks
 - [X] Interpolation (with %{} tag for interpolation keys)
+- [X] Check existence of interpolation keys in all translations at compile-time
+- [ ] Implement fallbacks
 - [ ] Localization of numeric values
 - [ ] Localization of date and time values
-- [ ] Check existence of interpolation keys in all translations at compile-time
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
 

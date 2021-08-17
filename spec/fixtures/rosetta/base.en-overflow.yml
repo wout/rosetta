@@ -1,12 +1,4 @@
 en-overflow:
-  i_am_overflowing: "One key too many"
   title: "Title"
   site:
     heading: "Heading"
-  translatable_test_object:
-    inferred_name: "Inferred name"
-  fixed:
-    prefix:
-      name: "Fixed prefix"
-  interpolatable:
-    string: "Hi %{name}, have a fabulous %{day_name}!"

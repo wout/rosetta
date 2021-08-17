@@ -1,0 +1,6 @@
+en-interpolation:
+  interpolatable:
+    string: "Hi %{name}, have a fabulous %{day_name}!"
+    missing: "I'm missing my %{pet}."
+    one_missing: "I'm missing my %{pet} but not my %{anything}"
+    overflow: "I'm missing my pet."

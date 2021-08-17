@@ -1,4 +1,5 @@
-require "../spec_helper"
+require "spec"
+require "../../src/rosetta"
 require "../../src/rosetta/parser"
 
 describe Rosetta::Parser do
@@ -21,9 +22,11 @@ describe Rosetta::Parser do
   describe "#parse!" do
     it "flips translations and outputs the hash as a string" do
       output = make_parser.parse!
-      json = JSON.parse(output.gsub(/ => /, ':')) # a bit hackish, but does the job
 
       output.should contain(%("title" => {"en" => "Title", "nl" => "Titel"}))
+
+      json = JSON.parse(output.gsub(/ => /, ':')) # a bit hackish, but does the job
+
       json["user.first_name"]["en"].should eq("First name")
       json["user.gender.non_binary"]["nl"].should eq("Niet-binair")
     end
@@ -47,27 +50,44 @@ describe Rosetta::Parser do
     end
 
     it "returns an error when keys are missing" do
-      output = make_parser(available_locales: %w[en en-missing]).parse!
+      output = make_parser(
+        default_locale: "en-missing",
+        available_locales: %w[en-missing nl-missing]
+      ).parse!
 
       output.should eq <<-ERROR
-      Missing keys for locale "en-missing":
-        ‣ user.first_name
-        ‣ user.last_name
-        ‣ user.gender.male
-        ‣ user.gender.female
-        ‣ user.gender.non_binary
+      Missing keys for locale "nl-missing":
+        ‣ title
+        ‣ site.tagline
 
 
       ERROR
     end
 
     it "returns an error when there are overflowing keys" do
-      output = make_parser(available_locales: %w[en en-overflow]).parse!
+      output = make_parser(
+        default_locale: "en-overflow",
+        available_locales: %w[en-overflow nl-overflow]
+      ).parse!
 
       output.should eq <<-ERROR
-      The "en-overflow" locale has unused keys:
-        ‣ i_am_overflowing
-        ‣ user.email
+      The "nl-overflow" locale has unused keys:
+        ‣ site.subtitle
+
+
+      ERROR
+    end
+
+    it "returns an error when there are mismatching interpolations" do
+      output = make_parser(
+        default_locale: "en-interpolation",
+        available_locales: %w[en-interpolation nl-interpolation]
+      ).parse!
+
+      output.should eq <<-ERROR
+      Some translations have mismatching interpolation keys:
+        ‣ nl-interpolation: interpolatable.missing should contain "%{pet}"
+        ‣ nl-interpolation: interpolatable.one_missing should contain "%{anything}"
 
 
       ERROR
