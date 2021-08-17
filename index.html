@@ -382,11 +382,11 @@ constant can be used:</p>
 <span class="t">User</span>.<span class="k">new</span>.welcome_message
 <span class="c"># =&gt; &quot;Hola Ary, ¡eres un mago!&quot;</span></code></pre>
 
-<h2><a id="compiler-errors" class="anchor" href="#compiler-errors">
+<h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Compiler errors</h2>
+</a>Parser checks</h2>
 
 <p>After loading all locales, the parser does a series of checkes on the given set.</p>
 
@@ -396,9 +396,8 @@ constant can be used:</p>
   </svg>
 </a>Check 1: presence of translations for all locales</h3>
 
-<p>If you configured the <code>AVAILABLE_LOCALES</code> setting to be <code>%w[en fr nl]</code>, but
-translations for one locale are missing, the parser will raise the following
-error:</p>
+<p>If the full set of translations is missing for a locale in the configured
+<code>AVAILABLE_LOCALES</code>, the parser will raise an error similar to the following:</p>
 
 <pre><code class="language-bash">Error: Expected to find translations for:
 
@@ -440,15 +439,15 @@ of the <code>DEFAULT_LOCALE</code>, the parser will raise an error:</p>
   ‣ user.name
   ‣ user.date_of_birth</code></pre>
 
-<h3><a id="check-4-interpolation-keys-are-present-in-every-locale" class="anchor" href="#check-4-interpolation-keys-are-present-in-every-locale">
+<h3><a id="check-4-interpolation-keys-are-present-in-every-translation" class="anchor" href="#check-4-interpolation-keys-are-present-in-every-translation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Check 4: interpolation keys are present in every locale</h3>
+</a>Check 4: interpolation keys are present in every translation</h3>
 
 <p>If a translation in the <code>DEFAULT_LOCALE</code> has one or more interpolation keys,
 then those interpolation keys should also be present in the alternative locales.
-If not, the following error will be thrown:</p>
+If not, an error similar to the following will be raised:</p>
 
 <pre><code class="language-bash">Error: Some translations have mismatching interpolation keys:
 
