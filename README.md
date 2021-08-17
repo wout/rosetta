@@ -258,13 +258,12 @@ User.new.welcome_message
 # => "Hola Ary, ¡eres un mago!"
 ```
 
-## Compiler errors
+## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.
 
 ### Check 1: presence of translations for all locales
-If you configured the `AVAILABLE_LOCALES` setting to be `%w[en fr nl]`, but
-translations for one locale are missing, the parser will raise the following
-error:
+If the full set of translations is missing for a locale in the configured
+`AVAILABLE_LOCALES`, the parser will raise an error similar to the following:
 
 ```bash
 Error: Expected to find translations for:
@@ -302,10 +301,10 @@ Error: The "nl" locale has unused keys:
   ‣ user.date_of_birth
 ```
 
-### Check 4: interpolation keys are present in every locale
+### Check 4: interpolation keys are present in every translation
 If a translation in the `DEFAULT_LOCALE` has one or more interpolation keys,
 then those interpolation keys should also be present in the alternative locales.
-If not, the following error will be thrown:
+If not, an error similar to the following will be raised:
 
 ```bash
 Error: Some translations have mismatching interpolation keys:
