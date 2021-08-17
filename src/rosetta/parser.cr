@@ -3,16 +3,17 @@ require "yaml"
 
 module Rosetta
   class Parser
-    alias TranslationsHash = Hash(String, Hash(String, String))
     alias HS2 = Hash(String, String)
+    alias TranslationsHash = Hash(String, HS2)
 
-    getter path : String
-    getter default_locale : String
-    getter available_locales : Array(String)
     getter alternative_locales : Array(String)
-    getter translations = TranslationsHash.new
-    getter flipped_translations : TranslationsHash? = nil
+    getter available_locales : Array(String)
+    getter default_locale : String
     getter error : String? = nil
+    getter flipped_translations : TranslationsHash? = nil
+    getter path : String
+    getter ruling_key_set : Array(String)? = nil
+    getter translations = TranslationsHash.new
 
     def initialize(
       @path : String,
@@ -33,8 +34,10 @@ module Rosetta
       "#{flipped_translations}"
     end
 
-    # Tests validity of all locale key sets.
+    # Tests validity of alternative locale key sets.
     def valid? : Bool
+      return true if available_locales.one?
+
       check_available_locales_present? &&
         check_key_set_complete? &&
         check_key_set_overflowing? &&
@@ -48,7 +51,7 @@ module Rosetta
     def load! : Void
       Dir.glob("#{path}/**/*.json") do |file|
         JSON.parse(File.read(file)).as_h.each do |locale, locale_data|
-          next unless available_locales.includes?(locale.to_s)
+          next unless available_locales.includes?(locale.to_s) && locale_data.as_h?
 
           add_translations(locale.to_s, locale_data)
         end
@@ -56,7 +59,7 @@ module Rosetta
 
       Dir.glob("#{path}/**/*.yml", "#{path}/**/*.yaml") do |file|
         YAML.parse(File.read(file)).as_h.each do |locale, locale_data|
-          next unless available_locales.includes?(locale.to_s)
+          next unless available_locales.includes?(locale.to_s) && locale_data.as_h?
 
           add_translations(locale.to_s, locale_data)
         end
@@ -148,7 +151,7 @@ module Rosetta
 
     # Returns the key set of the default locale.
     private def ruling_key_set
-      translations[default_locale].keys
+      @ruling_key_set ||= translations[default_locale].keys
     end
 
     # Generate a visual list for errors from an array of strings.

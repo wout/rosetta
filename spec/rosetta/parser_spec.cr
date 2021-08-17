@@ -92,6 +92,15 @@ describe Rosetta::Parser do
 
       ERROR
     end
+
+    it "returns and empty hash as string if no translations are present" do
+      output = make_parser(
+        default_locale: "none",
+        available_locales: %w[none]
+      ).parse!
+
+      output.should eq("{} of String => Hash(String, String)")
+    end
   end
 end
 
