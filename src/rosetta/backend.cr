@@ -25,12 +25,12 @@ module Rosetta
 
       {%
         translations = run(
-                         "./parser",
-                         "rosetta",
-                         path,
-                         default_locale.id,
-                         available_locales.join(',').id
-                       )
+          "./parser",
+          "rosetta",
+          path,
+          default_locale.id,
+          available_locales.join(',').id
+        )
 
         raise translations.stringify if !translations.stringify.starts_with?('{')
       %}
