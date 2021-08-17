@@ -304,6 +304,7 @@ Error: Missing keys for locale "nl":
 - [ ] Localization of date and time values
 - [ ] Check existence of interpolation keys in all translations at compile-time
 - [ ] Pluralization (with one/many/other/count/... convention)
+- [ ] Add setup scripts for Lucky and other frameworks
 
 ## Development
 
