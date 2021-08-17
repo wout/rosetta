@@ -11,7 +11,7 @@ module Rosetta
     getter available_locales : Array(String)
     getter alternative_locales : Array(String)
     getter translations = TranslationsHash.new
-    getter flipped_translations = TranslationsHash.new
+    getter flipped_translations : TranslationsHash? = nil
     getter error : String? = nil
 
     def initialize(
@@ -158,7 +158,7 @@ module Rosetta
 
     # Flips translations from top-level locales to top-level keys.
     private def flipped_translations
-      ruling_key_set
+      @flipped_translations ||= ruling_key_set
         .each_with_object(TranslationsHash.new) do |k, h|
           h[k] = available_locales.each_with_object(HS2.new) do |l, t|
             t[l] = translations[l][k]
