@@ -17,7 +17,7 @@ module Rosetta::Cli
     # touch config/rosetta.cr
     # ```
 
-    # ```cr
+    # ```
     # # config/rosetta.cr
     # require "rosetta"
 
