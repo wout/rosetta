@@ -154,7 +154,7 @@ for use.</strong></p>
 
 <ol><li>Run <code>bin/rosetta --init</code></li></ol>
 
-<ol><li>Require the shard and set up the required files</li></ol>
+<ol><li>Require the shard</li></ol>
 
 <pre><code class="language-crystal"><span class="c"># src/shards.cr</span>
 <span class="k">require</span> <span class="s">&quot;rosetta&quot;</span></code></pre>
@@ -196,8 +196,9 @@ for use.</strong></p>
 
 <p>An example locale file:</p>
 
-<pre><code class="language-yaml">en:
-  hello_world: "Hello world" </code></pre>
+<pre><code class="language-yaml"># config/rosetta/example.en.yml
+en:
+  welcome_message: "Hi %{name}!" </code></pre>
 
 <h2><a id="configuration" class="anchor" href="#configuration">
   <svg class="octicon-link" aria-hidden="true">
