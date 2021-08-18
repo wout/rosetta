@@ -20,15 +20,40 @@ describe Rosetta::Parser do
   end
 
   describe "#parse!" do
-    it "flips translations and outputs the hash as a string" do
+    it "builds a module for every translation" do
       output = make_parser.parse!
 
-      output.should contain(%("title" => {"en" => "Title", "nl" => "Titel"}))
-
-      json = JSON.parse(output.gsub(/ => /, ':')) # a bit hackish, but does the job
-
-      json["user.first_name"]["en"].should eq("First name")
-      json["user.gender.non_binary"]["nl"].should eq("Niet-binair")
+      output.should contain <<-MODULE
+          module Title
+            extend self
+            def raw
+              {"en" => "Title", "nl" => "Titel"}[Rosetta.locale]
+            end
+            def to_s
+              raw
+            end
+          end
+      MODULE
+      output.should contain <<-MODULE
+          module Interpolatable::String
+            extend self
+            def raw
+              {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}[Rosetta.locale]
+            end
+            def with(name : ::String, day_name : ::String)
+              self.with({name: name, day_name: day_name})
+            end
+            def with(values : NamedTuple(name: ::String, day_name: ::String))
+              Rosetta.interpolate(raw, values)
+            end
+            def with_hash(values : ::Hash(::String | ::Symbol, ::String))
+              Rosetta.interpolate(raw, values)
+            end
+            def to_s
+              self.with
+            end
+          end
+      MODULE
     end
 
     it "returns an error when a complete locale is missing" do
@@ -99,7 +124,14 @@ describe Rosetta::Parser do
         available_locales: %w[none]
       ).parse!
 
-      output.should eq("{} of String => Hash(String, String)")
+      output.should eq <<-MODULE
+      module Rosetta
+        module Locales
+          KEYS = []
+
+        end
+      end
+      MODULE
     end
   end
 end

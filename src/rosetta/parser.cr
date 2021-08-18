@@ -23,27 +23,19 @@ module Rosetta
       @alternative_locales = available_locales - [default_locale]
     end
 
-    # Returns a flat list of key/translation pairs as a string.
+    # Returns a list of self-containing translation modules
     def parse! : String
       load!
 
       return error.to_s unless valid?
+      return build_wrapper_module([] of String) if translations.empty?
 
-      return "{} of String => Hash(String, String)" if translations.empty?
+      translation_modules = flipped_translations
+        .each_with_object([] of String) do |(key, translations), modules|
+          modules << build_module(key, translations)
+        end
 
-      "#{flipped_translations}"
-    end
-
-    # Tests validity of alternative locale key sets.
-    def valid? : Bool
-      return true if available_locales.one?
-
-      check_available_locales_present? &&
-        check_key_set_complete? &&
-        check_key_set_overflowing? &&
-        check_interpolation_keys_matching?
-
-      error.nil?
+      build_wrapper_module(translation_modules)
     end
 
     # Loads and parses JSON files, then YAML files, adds them to the list of
@@ -64,6 +56,79 @@ module Rosetta
           add_translations(locale.to_s, locale_data)
         end
       end
+    end
+
+    private def build_wrapper_module(translation_modules)
+      <<-MODULES
+      module Rosetta
+        module Locales
+          KEYS = [#{ruling_key_set_as_strings}]
+      #{translation_modules.join("\n")}
+        end
+      end
+      MODULES
+    end
+
+    private def ruling_key_set_as_strings
+      return if translations.empty?
+
+      ruling_key_set.map { |k| %("#{k}") }.join(", ")
+    end
+
+    private def build_module(key, translations)
+      module_name = key.split('.').map(&.camelcase).join("::")
+      i12n_keys = translations[default_locale]
+        .scan(/%\{([^\}]+)\}/)
+        .map { |m| m[1] }
+
+      if i12n_keys.empty?
+        methods = <<-METHODS
+              def to_s
+                raw
+              end
+        METHODS
+      else
+        with_arguments = i12n_keys.map { |k| "#{k} : ::String" }.join(", ")
+        arguments_tuple = "{#{i12n_keys.map { |k| "#{k}: #{k}" }.join(", ")}}"
+        tuple_arguments = i12n_keys.map { |k| "#{k}: ::String" }.join(", ")
+
+        methods = <<-METHODS
+              def with(#{with_arguments})
+                self.with(#{arguments_tuple})
+              end
+              def with(values : NamedTuple(#{tuple_arguments}))
+                Rosetta.interpolate(raw, values)
+              end
+              def with_hash(values : ::Hash(::String | ::Symbol, ::String))
+                Rosetta.interpolate(raw, values)
+              end
+              def to_s
+                self.with
+              end
+        METHODS
+      end
+
+      <<-MODULE
+          module #{module_name}
+            extend self
+            def raw
+              #{translations}[Rosetta.locale]
+            end
+      #{methods}
+          end
+      MODULE
+    end
+
+    # Tests validity of alternative locale key sets.
+    private def valid? : Bool
+      return true if available_locales.one?
+
+      check_available_locales_present? &&
+        check_key_set_complete? &&
+        check_key_set_overflowing? &&
+        check_interpolation_keys_matching?
+
+      error.nil?
     end
 
     # Checks if available locales are present.
@@ -188,12 +253,4 @@ module Rosetta
       end
     end
   end
-end
-
-if !ARGV.empty? && ARGV[0] == "rosetta" && ARGV.size == 4
-  puts Rosetta::Parser.new(
-    path: ARGV[1].to_s,
-    default_locale: ARGV[2].to_s,
-    available_locales: ARGV[3].to_s.split(',')
-  ).parse!
 end

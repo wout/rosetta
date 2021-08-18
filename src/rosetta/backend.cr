@@ -25,33 +25,18 @@ module Rosetta
 
       {%
         translations = run(
-          "./parser",
-          "rosetta",
+          "./runner",
           path,
           default_locale.id,
           available_locales.join(',').id
         )
 
-        raise translations.stringify if !translations.stringify.starts_with?('{')
-      %}
-
-      TRANSLATIONS = {{ translations }}
-    end
-
-    # Finds the translations hash for a given key at compile-time. If the key
-    # could not be found, an error will be raised at compilation.
-    macro find(key)
-      {%
-        translation = TRANSLATIONS[key]
-
-        if translation.is_a?(NilLiteral)
-          raise <<-ERROR
-          Missing translation for #{key}.
-          ERROR
+        if !translations.stringify.starts_with?("module Rosetta")
+          raise translations.stringify
         end
       %}
 
-      {{ translation }}
+      {{ translations }}
     end
   end
 end

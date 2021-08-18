@@ -5,32 +5,34 @@ describe Rosetta do
     reset_to_default_locale
   end
 
-  describe ".find" do
-    it "fetches translations for for a given key" do
-      Rosetta.find("user.first_name")
-        .should eq({"en" => "First name", "nl" => "Voornaam"})
-    end
-  end
-
   describe ".t" do
-    it "translates the given translations to the current locale" do
-      translations_hash = Rosetta.find("user.first_name")
+    it "returns a module for the given translation key" do
+      translation = Rosetta.t("user.first_name")
 
+      translation.should eq(Rosetta::Locales::User::FirstName)
       Rosetta.locale.should eq("en")
-      Rosetta.t(translations_hash).should eq("First name")
+      translation.to_s.should eq("First name")
+
       Rosetta.locale = "nl"
-      Rosetta.t(translations_hash).should eq("Voornaam")
+
+      "#{translation}".should eq("Voornaam")
     end
 
     it "interpolates the translation string" do
-      translations_hash = Rosetta.find("interpolatable.string")
-
-      Rosetta.t(translations_hash, {:name => "Dorothy", "day_name" => "fly day"})
-        .should eq("Hi Dorothy, have a fabulous fly day!")
-      Rosetta.t(translations_hash, {name: "Kenny", day_name: "kill day"})
-        .should eq("Hi Kenny, have a fabulous kill day!")
-      Rosetta.t(translations_hash, name: "Benny", day_name: "Hill day")
+      Rosetta.t("interpolatable.string")
+        .with(name: "Benny", day_name: "Hill day")
         .should eq("Hi Benny, have a fabulous Hill day!")
+      Rosetta.t("interpolatable.string")
+        .with({name: "Kenny", day_name: "kill day"})
+        .should eq("Hi Kenny, have a fabulous kill day!")
+      Rosetta.t("interpolatable.string")
+        .with_hash({:name => "Dorothy", "day_name" => "fly day"})
+        .should eq("Hi Dorothy, have a fabulous fly day!")
     end
+
+    # NOTE: uncomment this to see compilation error
+    # it "raises a compilation error" do
+    #   Rosetta.t("i_am_definitely_not_in_one_of_the_files")
+    # end
   end
 end

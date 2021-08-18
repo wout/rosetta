@@ -55,7 +55,7 @@ Rosetta.locale = "es"
 
 class Hello::ShowPage < MainLayout
   def content
-    h1 t(rosetta("welcome_message"), name: "Brian") # => "¡Hola Brian!"
+    h1 t("welcome_message").with(name: "Brian") # => "¡Hola Brian!"
   end
 end
 ```
@@ -131,51 +131,48 @@ parse both formats.
 are loaded first, then YAML files. So if you have the same key in a JSON and a
 YAML file, YAML will take precedence.
 
-### Global lookup
-Looking up translations is done in two phases. The first phase happens at
-compile-time, where an object with all translations for a given key is fetched
-(hence *Rosetta*):
+### Lookup
+Looking up translations is done with the `t` macro:
 
 ```cr
-name_translations = Rosetta.find("user.name")
-# => { "en" => "Name", "es" => "Nombre", "nl" => "Naam" }
+Rosetta.t("user.name")
 ```
 
-🗒️ **Note**: If a key does not exist, the compiler will let you know.
+**Note**: that the return value of the `t` macro needs to be converted to a
+string. Most frameworks with call `to_s` on the given object in the background.
+But in a context where `to_s` isn't called, you'll need to take care of that
+yourself:
 
-The second phase happens at runtime where the translation for the currently
-selected locale is retreived:
+```
+Rosetta.t("user.name").to_s
+# => "User name"
+```
+
+### Interpolations
+Interpolations can be passed by using the `with` method on the value returned by
+the `t` macro:
+
+TO-DO: what about passing objects using the with method?
 
 ```cr
-Rosetta.locale = "nl"
-
-dutch_translation = Rosetta.t(name_translations)
-# => "Naam"
+Rosetta.t("user.welcome_message").with(name: "Ary")
+# => "Hi Ary!"
 ```
 
-🗒️ **Note**: Translations for all available locales will always be present at this point.
-
-In practie, you'll probably chain those two phases together:
+Important to know here is that translations with interpolation keys will always
+require you to call the `with` method, or the compiler will complain:
 
 ```cr
-Rosetta.t(Rosetta.find("user.name"))
+# user.welcome_message: "Hi %{name}!"
+Rosetta.t("user.welcome_message").to_s
+
+Error: wrong number of arguments for 'Rosetta::Locales::User::WelcomeMessage#with' (given 0, expected 1)
+
+Overloads are:
+ - Rosetta::Locales::User::WelcomeMessage#with(name : String)
 ```
 
-Interpolations are accepted as a `Hash`, a `NamedTuple` or as arguments:
-
-```cr
-# with a Hash
-Rosetta.t(Rosetta.find("user.welcome_message"), { "name" => "Ary" })
-
-# with a NamedTuple
-Rosetta.t(Rosetta.find("user.welcome_message"), { name: "Ary" })
-
-# or with arguments
-Rosetta.t(Rosetta.find("user.welcome_message"), name: "Ary")
-```
-
-Of course, this is pretty long to write out for every single value that needs to
-be translated. Enter the `Translatable` mixin.
+This is to ensure you're not missing any interpolation values.
 
 ### The `Translatable` mixin
 This mixin makes it more convenient to work with translated values in your
@@ -188,16 +185,13 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t rosetta("user.name_label")
+    t("user.name_label")
   end
 end
 
-User.new.name_label
+User.new.name_label.to_s
 # => "Nombre"
 ```
-
-The `rosetta` macro does exactly the same as `Rosetta.find`, and the `t` method
-is equivalent to `Rosetta.t`.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a `.`, the key prefix will be
@@ -208,12 +202,9 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t rosetta(".name_label") # => resolves to "user.name_label"
+    t(".name_label") # => resolves to "user.name_label"
   end
 end
-
-User.new.name_label
-# => "Nombre"
 ```
 
 This also works with nested class names, for example:
@@ -235,27 +226,22 @@ class User
   ROSETTA_PREFIX = "guest"
 
   def name_label
-    t rosetta(".name_label") # => resolves to "guest.name_label"
+    t(".name_label") # => resolves to "guest.name_label"
   end
 end
-
-User.new.name_label
-# => "Guest"
 ```
 
-And interpolations are accepted as arguments, as a `Hash` or as a `NamedTuple`:
+Just like the global `t` marco, interpolations are passed using the `with`
+method:
 
 ```cr
 class User
   include Rosetta::Translatable
 
   def welcome_message
-    t rosetta(".welcome_message"), name: "Ary"
+    t(".welcome_message").with(name: "Ary")
   end
 end
-
-User.new.welcome_message
-# => "Hola Ary, ¡eres un mago!"
 ```
 
 ## Parser checks
