@@ -34,7 +34,7 @@ dependencies:
 
 3. Run `bin/rosetta --init`
 
-4. Require the shard and set up the required files
+4. Require the shard
 
 ```cr
 # src/shards.cr
@@ -80,8 +80,9 @@ Rosetta::Backend.load("config/rosetta")
 An example locale file:
 
 ```yaml
+# config/rosetta/example.en.yml
 en:
-  hello_world: "Hello world" 
+  welcome_message: "Hi %{name}!" 
 ```
 
 ## Configuration
