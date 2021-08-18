@@ -32,48 +32,23 @@ dependencies:
 
 2. Run `shards install`
 
-3. Require the shard and set up the required files
+3. Run `bin/rosetta --init`
+
+4. Require the shard and set up the required files
 
 ```cr
 # src/shards.cr
 require "rosetta"
 ```
 
-```bash
-lucky rosetta.init
-``` 
-
-Or if you're not using Lucky:
-
-```bash
-mkdir -p config/rosetta
-echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
-echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
-echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
-# ... repeat for every available locale
-touch config/rosetta.cr
-```
-
-```cr
-# config/rosetta.cr
-require "rosetta"
-
-module Rosetta
-  DEFAULT_LOCALE = "en"
-  AVAILABLE_LOCALES = %w[en es nl]
-end
-
-Rosetta::Backend.load("config/rosetta")
-```
-
-4. Include the `Rosetta::Translatable` mixin
+5. Include the `Rosetta::Translatable` mixin
 
 ```cr
 # e.g. src/pages/main_layout.cr
 include Rosetta::Translatable
 ```
 
-5. Localize your app
+6. Localize your app
 
 ```cr
 Rosetta.locale = "es"
@@ -83,6 +58,30 @@ class Hello::ShowPage < MainLayout
     h1 t(rosetta("welcome_message"), name: "Brian") # => "¡Hola Brian!"
   end
 end
+```
+
+## Setup
+The `bin/rosetta --init` command will generate the initial files to get started.
+
+An initializer has the following content:
+
+```cr
+# config/rosetta.cr
+require "rosetta"
+
+module Rosetta
+  DEFAULT_LOCALE = "en"
+  AVAILABLE_LOCALES = %w[en]
+end
+
+Rosetta::Backend.load("config/rosetta")
+```
+
+An example locale file:
+
+```yaml
+en:
+  hello_world: "Hello world" 
 ```
 
 ## Configuration
