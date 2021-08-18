@@ -1,6 +1,7 @@
 /docs/
 /lib/
 /bin/
+!/bin/rosetta.cr
 !/bin/run_spec.cr
 /.shards/
 *.dwarf
