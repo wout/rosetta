@@ -143,7 +143,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L5" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L5" target="_blank">
         rosetta/parser.cr
       </a>
     
@@ -215,7 +215,7 @@
       <li class="entry-summary">
         <a href="#parse!:String-instance-method" class="signature"><strong>#parse!</strong> : String</a>
         
-          <div class="summary"><p>Returns a flat list of key/translation pairs as a string.</p></div>
+          <div class="summary"><p>Returns a list of self-containing translation modules</p></div>
         
       </li>
     
@@ -226,13 +226,6 @@
     
       <li class="entry-summary">
         <a href="#translations:Hash(String,Hash(String,String))-instance-method" class="signature"><strong>#translations</strong> : Hash(String, Hash(String, String))</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#valid?:Bool-instance-method" class="signature"><strong>#valid?</strong> : Bool</a>
-        
-          <div class="summary"><p>Tests validity of alternative locale key sets.</p></div>
         
       </li>
     
@@ -287,7 +280,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -317,7 +310,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -333,7 +326,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -349,7 +342,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -365,7 +358,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -387,7 +380,7 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -402,13 +395,13 @@ translations.</p>
       
         <div class="doc">
           
-          <p>Returns a flat list of key/translation pairs as a string.</p>
+          <p>Returns a list of self-containing translation modules</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -424,7 +417,7 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -440,28 +433,7 @@ translations.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L16" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="valid?:Bool-instance-method">
-      <div class="signature">
-        
-        def <strong>valid?</strong> : Bool
-
-        <a class="method-permalink" href="#valid?:Bool-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Tests validity of alternative locale key sets.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/parser.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/parser.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>

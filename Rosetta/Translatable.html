@@ -152,7 +152,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/translatable.cr#L3" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/translatable.cr#L3" target="_blank">
         rosetta/translatable.cr
       </a>
     
@@ -167,32 +167,6 @@
 
 
 
-  <h2>
-    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#t(translation:Hash(String,String),interpolation_values:Hash(String%7CSymbol,String)%7CNamedTuple):String-instance-method" class="signature"><strong>#t</strong>(translation : Hash(String, String), interpolation_values : Hash(String | Symbol, String) | NamedTuple) : String</a>
-        
-          <div class="summary"><p>Returns the translation for the currently selected locale and accepts interpolation values as a has or named tuple.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#t(translation:Hash(String,String),**interpolation_values):String-instance-method" class="signature"><strong>#t</strong>(translation : Hash(String, String), **interpolation_values) : String</a>
-        
-          <div class="summary"><p>Alternative translation method with named arguments for the interpolation values.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
 
   <h2>
@@ -206,7 +180,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#rosetta(key)-macro" class="signature"><strong>rosetta</strong>(key)</a>
+        <a href="#t(key)-macro" class="signature"><strong>t</strong>(key)</a>
         
           <div class="summary"><p>Looks up and returns the translation for the given key.</p></div>
         
@@ -225,60 +199,6 @@
 
 
 
-  <h2>
-    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Instance Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="t(translation:Hash(String,String),interpolation_values:Hash(String|Symbol,String)|NamedTuple):String-instance-method">
-      <div class="signature">
-        
-        def <strong>t</strong>(translation : Hash(String, String), interpolation_values : Hash(String | Symbol, String) | NamedTuple) : String
-
-        <a class="method-permalink" href="#t(translation:Hash(String,String),interpolation_values:Hash(String%7CSymbol,String)%7CNamedTuple):String-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Returns the translation for the currently selected locale and accepts
-interpolation values as a has or named tuple.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/translatable.cr#L24" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="t(translation:Hash(String,String),**interpolation_values):String-instance-method">
-      <div class="signature">
-        
-        def <strong>t</strong>(translation : Hash(String, String), **interpolation_values) : String
-
-        <a class="method-permalink" href="#t(translation:Hash(String,String),**interpolation_values):String-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Alternative translation method with named arguments for the interpolation
-values.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/translatable.cr#L33" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
 
 
   <h2>
@@ -290,12 +210,12 @@ values.</p>
     Macro Detail
   </h2>
   
-    <div class="entry-detail" id="rosetta(key)-macro">
+    <div class="entry-detail" id="t(key)-macro">
       <div class="signature">
         
-        macro <strong>rosetta</strong>(key)
+        macro <strong>t</strong>(key)
 
-        <a class="method-permalink" href="#rosetta(key)-macro">#</a>
+        <a class="method-permalink" href="#t(key)-macro">#</a>
       </div>
       
         <div class="doc">
@@ -309,7 +229,7 @@ instead.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/7d8115c5193def719e7decdce95c56c3704b342f/src/rosetta/translatable.cr#L8" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/c5c743130952d75635e9a63b672f01b5965a081c/src/rosetta/translatable.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>

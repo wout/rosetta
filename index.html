@@ -170,7 +170,7 @@ for use.</strong></p>
 
 <span class="k">class</span> <span class="t">Hello</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
   <span class="k">def</span> <span class="m">content</span>
-    h1 t(rosetta(<span class="s">&quot;welcome_message&quot;</span>), name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
+    h1 t(<span class="s">&quot;welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
@@ -270,48 +270,50 @@ parse both formats.</p>
 are loaded first, then YAML files. So if you have the same key in a JSON and a
 YAML file, YAML will take precedence.</p>
 
-<h3><a id="global-lookup" class="anchor" href="#global-lookup">
+<h3><a id="lookup" class="anchor" href="#lookup">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Global lookup</h3>
+</a>Lookup</h3>
 
-<p>Looking up translations is done in two phases. The first phase happens at
-compile-time, where an object with all translations for a given key is fetched
-(hence <em>Rosetta</em>):</p>
+<p>Looking up translations is done with the <code>t</code> macro:</p>
 
-<pre><code class="language-crystal">name_translations <span class="o">=</span> <span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>)
-<span class="c"># =&gt; { &quot;en&quot; =&gt; &quot;Name&quot;, &quot;es&quot; =&gt; &quot;Nombre&quot;, &quot;nl&quot; =&gt; &quot;Naam&quot; }</span></code></pre>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.name&quot;</span>)</code></pre>
 
-<p>🗒️ <strong>Note</strong>: If a key does not exist, the compiler will let you know.</p>
+<p><strong>Note</strong>: that the return value of the <code>t</code> macro needs to be converted to a
+string. Most frameworks with call <code>to_s</code> on the given object in the background.
+But in a context where <code>to_s</code> isn't called, you'll need to take care of that
+yourself:</p>
 
-<p>The second phase happens at runtime where the translation for the currently
-selected locale is retreived:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.name&quot;</span>).to_s
+<span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.locale <span class="o">=</span> <span class="s">&quot;nl&quot;</span>
+<h3><a id="interpolations" class="anchor" href="#interpolations">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Interpolations</h3>
 
-dutch_translation <span class="o">=</span> <span class="t">Rosetta</span>.t(name_translations)
-<span class="c"># =&gt; &quot;Naam&quot;</span></code></pre>
+<p>Interpolations can be passed by using the <code>with</code> method on the value returned by
+the <code>t</code> macro:</p>
 
-<p>🗒️ <strong>Note</strong>: Translations for all available locales will always be present at this point.</p>
+<p>TO-DO: what about passing objects using the with method?</p>
 
-<p>In practie, you'll probably chain those two phases together:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Ary&quot;</span>)
+<span class="c"># =&gt; &quot;Hi Ary!&quot;</span></code></pre>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>))</code></pre>
+<p>Important to know here is that translations with interpolation keys will always
+require you to call the <code>with</code> method, or the compiler will complain:</p>
 
-<p>Interpolations are accepted as a <code>Hash</code>, a <code>NamedTuple</code> or as arguments:</p>
+<pre><code class="language-crystal"># user.welcome_message: "Hi %{name}!"
+Rosetta.t("user.welcome_message").to_s
 
-<pre><code class="language-crystal"><span class="c"># with a Hash</span>
-<span class="t">Rosetta</span>.t(<span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>), { <span class="s">&quot;name&quot;</span> => <span class="s">&quot;Ary&quot;</span> })
+Error: wrong number of arguments for 'Rosetta::Locales::User::WelcomeMessage#with' (given 0, expected 1)
 
-<span class="c"># with a NamedTuple</span>
-<span class="t">Rosetta</span>.t(<span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>), { name: <span class="s">&quot;Ary&quot;</span> })
+Overloads are:
+ - Rosetta::Locales::User::WelcomeMessage#with(name : String)</code></pre>
 
-<span class="c"># or with arguments</span>
-<span class="t">Rosetta</span>.t(<span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>), name: <span class="s">&quot;Ary&quot;</span>)</code></pre>
-
-<p>Of course, this is pretty long to write out for every single value that needs to
-be translated. Enter the <code>Translatable</code> mixin.</p>
+<p>This is to ensure you're not missing any interpolation values.</p>
 
 <h3><a id="the-translatable-mixin" class="anchor" href="#the-translatable-mixin">
   <svg class="octicon-link" aria-hidden="true">
@@ -328,15 +330,12 @@ classes. Here's an example of its usage:</p>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t rosetta(<span class="s">&quot;user.name_label&quot;</span>)
+    t(<span class="s">&quot;user.name_label&quot;</span>)
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="t">User</span>.<span class="k">new</span>.name_label
+<span class="t">User</span>.<span class="k">new</span>.name_label.to_s
 <span class="c"># =&gt; &quot;Nombre&quot;</span></code></pre>
-
-<p>The <code>rosetta</code> macro does exactly the same as <code>Rosetta.find</code>, and the <code>t</code> method
-is equivalent to <code>Rosetta.t</code>.</p>
 
 <p>Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a <code>.</code>, the key prefix will be
@@ -346,12 +345,9 @@ derived from the current class name:</p>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t rosetta(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;user.name_label&quot;</span>
+    t(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;user.name_label&quot;</span>
   <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="t">User</span>.<span class="k">new</span>.name_label
-<span class="c"># =&gt; &quot;Nombre&quot;</span></code></pre>
+<span class="k">end</span></code></pre>
 
 <p>This also works with nested class names, for example:</p>
 
@@ -369,25 +365,20 @@ constant can be used:</p>
   <span class="t">ROSETTA_PREFIX</span> <span class="o">=</span> <span class="s">&quot;guest&quot;</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t rosetta(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;guest.name_label&quot;</span>
+    t(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;guest.name_label&quot;</span>
   <span class="k">end</span>
-<span class="k">end</span>
+<span class="k">end</span></code></pre>
 
-<span class="t">User</span>.<span class="k">new</span>.name_label
-<span class="c"># =&gt; &quot;Guest&quot;</span></code></pre>
-
-<p>And interpolations are accepted as arguments, as a <code>Hash</code> or as a <code>NamedTuple</code>:</p>
+<p>Just like the global <code>t</code> marco, interpolations are passed using the <code>with</code>
+method:</p>
 
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">welcome_message</span>
-    t rosetta(<span class="s">&quot;.welcome_message&quot;</span>), name: <span class="s">&quot;Ary&quot;</span>
+    t(<span class="s">&quot;.welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Ary&quot;</span>)
   <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="t">User</span>.<span class="k">new</span>.welcome_message
-<span class="c"># =&gt; &quot;Hola Ary, ¡eres un mago!&quot;</span></code></pre>
+<span class="k">end</span></code></pre>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">
