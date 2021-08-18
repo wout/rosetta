@@ -152,31 +152,12 @@ for use.</strong></p>
 
 <ol><li>Run <code>shards install</code></li></ol>
 
+<ol><li>Run <code>bin/rosetta --init</code></li></ol>
+
 <ol><li>Require the shard and set up the required files</li></ol>
 
 <pre><code class="language-crystal"><span class="c"># src/shards.cr</span>
 <span class="k">require</span> <span class="s">&quot;rosetta&quot;</span></code></pre>
-
-<pre><code class="language-bash">lucky rosetta.init</code></pre>
-
-<p>Or if you're not using Lucky:</p>
-
-<pre><code class="language-bash">mkdir -p config/rosetta
-echo -e 'en:\n  welcome_message: "Hello %{name}!"' >> config/rosetta/en.yml
-echo -e 'es:\n  welcome_message: "¡Hola %{name}!"' >> config/rosetta/es.yml
-echo -e 'nl:\n  welcome_message: "Hallo %{name}!"' >> config/rosetta/nl.yml
-# ... repeat for every available locale
-touch config/rosetta.cr</code></pre>
-
-<pre><code class="language-crystal"><span class="c"># config/rosetta.cr</span>
-<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span>
-
-<span class="k">module</span> <span class="t">Rosetta</span>
-  <span class="t">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="s">&quot;en&quot;</span>
-  <span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%w[en es nl]</span>
-<span class="k">end</span>
-
-<span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/rosetta&quot;</span>)</code></pre>
 
 <ol><li>Include the <code><a href="Rosetta/Translatable.html">Rosetta::Translatable</a></code> mixin</li></ol>
 
@@ -192,6 +173,31 @@ touch config/rosetta.cr</code></pre>
     h1 t(rosetta(<span class="s">&quot;welcome_message&quot;</span>), name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
+
+<h2><a id="setup" class="anchor" href="#setup">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Setup</h2>
+
+<p>The <code>bin/rosetta --init</code> command will generate the initial files to get started.</p>
+
+<p>An initializer has the following content:</p>
+
+<pre><code class="language-crystal"><span class="c"># config/rosetta.cr</span>
+<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span>
+
+<span class="k">module</span> <span class="t">Rosetta</span>
+  <span class="t">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="s">&quot;en&quot;</span>
+  <span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%w[en]</span>
+<span class="k">end</span>
+
+<span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/rosetta&quot;</span>)</code></pre>
+
+<p>An example locale file:</p>
+
+<pre><code class="language-yaml">en:
+  hello_world: "Hello world" </code></pre>
 
 <h2><a id="configuration" class="anchor" href="#configuration">
   <svg class="octicon-link" aria-hidden="true">
