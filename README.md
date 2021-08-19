@@ -1,6 +1,7 @@
 # Rosetta
 
-A Crystal library for internationalization with compile-time key lookup.
+A Crystal library for internationalization with compile-time key lookup. You'll
+never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 
