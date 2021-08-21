@@ -9,7 +9,7 @@ describe Rosetta do
     it "returns a module for the given translation key" do
       translation = Rosetta.t("user.first_name")
 
-      translation.should eq(Rosetta::Locales::User::FirstName)
+      translation.should be_a(Rosetta::Locales::User::FirstName)
       Rosetta.locale.should eq("en")
       translation.to_s.should eq("First name")
 
@@ -30,7 +30,7 @@ describe Rosetta do
         .should eq("Hi Dorothy, have a fabulous fly day!")
     end
 
-    # NOTE: uncomment this to see compilation error
+    # NOTE: uncomment this to see the compilation error
     # it "raises a compilation error" do
     #   Rosetta.t("i_am_definitely_not_in_one_of_the_files")
     # end

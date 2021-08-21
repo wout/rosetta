@@ -23,19 +23,19 @@ module Rosetta
       @alternative_locales = available_locales - [default_locale]
     end
 
-    # Returns a list of self-containing translation modules
+    # Returns a list of self-containing translation modules.
     def parse! : String
       load!
 
       return error.to_s unless valid?
       return build_wrapper_module([] of String) if translations.empty?
 
-      translation_modules = flipped_translations
+      translation_classes = flipped_translations
         .each_with_object([] of String) do |(key, translations), modules|
-          modules << build_module(key, translations)
+          modules << build_class(key, translations)
         end
 
-      build_wrapper_module(translation_modules)
+      build_wrapper_module(translation_classes)
     end
 
     # Loads and parses JSON files, then YAML files, adds them to the list of
@@ -58,25 +58,21 @@ module Rosetta
       end
     end
 
-    private def build_wrapper_module(translation_modules)
-      <<-MODULES
+    private def build_wrapper_module(translation_classes : Array(String))
+      key_set = translations.empty? ? [] of String : ruling_key_set
+
+      <<-MODULE
       module Rosetta
         module Locales
-          KEYS = [#{ruling_key_set_as_strings}]
-      #{translation_modules.join("\n")}
+          KEYS = %w[#{key_set.join(' ')}]
+      #{translation_classes.join("\n")}
         end
       end
-      MODULES
+      MODULE
     end
 
-    private def ruling_key_set_as_strings
-      return if translations.empty?
-
-      ruling_key_set.map { |k| %("#{k}") }.join(", ")
-    end
-
-    private def build_module(key, translations)
-      module_name = key.split('.').map(&.camelcase).join("::")
+    private def build_class(key, translations)
+      class_name = key.split('.').map(&.camelcase).join("::")
       i12n_keys = translations[default_locale]
         .scan(/%\{([^\}]+)\}/)
         .map { |m| m[1] }
@@ -108,15 +104,14 @@ module Rosetta
         METHODS
       end
 
-      <<-MODULE
-          module #{module_name}
-            extend self
-            def raw
+      <<-CLASS
+          class #{class_name} < Rosetta::Translation
+      #{methods}
+            def raw : ::String
               #{translations}[Rosetta.locale]
             end
-      #{methods}
           end
-      MODULE
+      CLASS
     end
 
     # Tests validity of alternative locale key sets.

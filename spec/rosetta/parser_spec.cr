@@ -24,22 +24,17 @@ describe Rosetta::Parser do
       output = make_parser.parse!
 
       output.should contain <<-MODULE
-          module Title
-            extend self
-            def raw
-              {"en" => "Title", "nl" => "Titel"}[Rosetta.locale]
-            end
+          class Title < Rosetta::Translation
             def to_s
               raw
+            end
+            def raw : ::String
+              {"en" => "Title", "nl" => "Titel"}[Rosetta.locale]
             end
           end
       MODULE
       output.should contain <<-MODULE
-          module Interpolatable::String
-            extend self
-            def raw
-              {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}[Rosetta.locale]
-            end
+          class Interpolatable::String < Rosetta::Translation
             def with(name : ::String, day_name : ::String)
               self.with({name: name, day_name: day_name})
             end
@@ -51,6 +46,9 @@ describe Rosetta::Parser do
             end
             def to_s
               self.with
+            end
+            def raw : ::String
+              {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}[Rosetta.locale]
             end
           end
       MODULE
@@ -127,7 +125,7 @@ describe Rosetta::Parser do
       output.should eq <<-MODULE
       module Rosetta
         module Locales
-          KEYS = []
+          KEYS = %w[]
 
         end
       end
