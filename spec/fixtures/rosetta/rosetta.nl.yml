@@ -1,0 +1,69 @@
+rosetta:
+  date:
+    abbr_day_names:
+      - Zo
+      - Ma
+      - Di
+      - Wo
+      - Do
+      - Vr
+      - Za
+    abbr_month_names:
+      - Jan
+      - Feb
+      - Maa
+      - Apr
+      - Mei
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Dec
+    day_names:
+      - Maandag
+      - Dinsdag
+      - Woensdag
+      - Donderdag
+      - Vrijdag
+      - Zaterdag
+      - Zondag
+    month_names:
+      - Januari
+      - Februari
+      - Maart
+      - April
+      - Mei
+      - Juni
+      - Juli
+      - Augustus
+      - September
+      - Oktober
+      - November
+      - December
+    formats:
+      default: "%Y-%m-%d"
+      long: "%B %d, %Y"
+      short: "%b %d"
+  time:
+    am: am
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+    pm: pm
+  number:
+    formats:
+      default:
+        delimiter: ","
+        separator: "."
+        decimal_places: null
+        group: 3
+        only_significant: false
+      custom:
+        delimiter: ","
+        separator: "."
+        decimal_places: 2
+        group: 3
+        only_significant: true
