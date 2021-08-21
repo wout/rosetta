@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="rosetta">
-  <title>Rosetta::Config - rosetta main</title>
+  <title>Rosetta::Translation - rosetta main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -76,7 +76,7 @@
       
     </li>
   
-  <li class=" current" data-id="rosetta/Rosetta/Config" data-name="rosetta::config">
+  <li class=" " data-id="rosetta/Rosetta/Config" data-name="rosetta::config">
       <a href="../Rosetta/Config.html">Config</a>
       
     </li>
@@ -126,7 +126,7 @@
       
     </li>
   
-  <li class=" " data-id="rosetta/Rosetta/Translation" data-name="rosetta::translation">
+  <li class=" current" data-id="rosetta/Rosetta/Translation" data-name="rosetta::translation">
       <a href="../Rosetta/Translation.html">Translation</a>
       
     </li>
@@ -145,12 +145,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Rosetta::Config
+  <span class="kind">abstract class</span> Rosetta::Translation
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/Config.html">Rosetta::Config</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/Translation.html">Rosetta::Translation</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -158,6 +158,20 @@
 
 
 
+
+  <h2>
+    <a id="included-modules" class="anchor" href="#included-modules">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Included Modules
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Lucky/AllowedInTags.html">Lucky::AllowedInTags</a></li>
+    
+  </ul>
 
 
 
@@ -178,38 +192,14 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L2" target="_blank">
-        rosetta/config.cr
+      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/translation.cr#L16" target="_blank">
+        rosetta/translation.cr
       </a>
     
     <br/>
   
 
 
-
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-      Constant Summary
-    </h2>
-  
-  <dl>
-    
-      <dt class="entry-const" id="AVAILABLE_LOCALES">
-        <strong>AVAILABLE_LOCALES</strong> = <code>[<span class="s">&quot;en&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span></code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="DEFAULT_LOCALE">
-        <strong>DEFAULT_LOCALE</strong> = <code><span class="s">&quot;en&quot;</span></code>
-      </dt>
-      
-    
-  </dl>
 
 
 
@@ -228,21 +218,14 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#locale:String-instance-method" class="signature"><strong>#locale</strong> : String</a>
-        
-          <div class="summary"><p>Gets the current locale or falls back to the default locale if it's not defined.</p></div>
+        <a href="#raw:String-instance-method" class="signature"><strong>#raw</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#locale=(locale:String)-instance-method" class="signature"><strong>#locale=</strong>(locale : String)</a>
+        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
-          <div class="summary"><p>Sets the current locale with the given value, if it's found in the available locales.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#locale=(locale:String?)-instance-method" class="signature"><strong>#locale=</strong>(locale : String?)</a>
+          <div class="summary"><p>For Lucky</p></div>
         
       </li>
     
@@ -253,6 +236,16 @@
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
   
     
 
@@ -290,62 +283,39 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="locale:String-instance-method">
+    <div class="entry-detail" id="raw:String-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>raw</strong> : String
+
+        <a class="method-permalink" href="#raw:String-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/translation.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io)-instance-method">
       <div class="signature">
         
-        def <strong>locale</strong> : String
+        def <strong>to_s</strong>(io)
 
-        <a class="method-permalink" href="#locale:String-instance-method">#</a>
+        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Gets the current locale or falls back to the default locale if it's not
-defined.</p>
+          <p>For Lucky</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L21" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="locale=(locale:String)-instance-method">
-      <div class="signature">
-        
-        def <strong>locale=</strong>(locale : String)
-
-        <a class="method-permalink" href="#locale=(locale:String)-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Sets the current locale with the given value, if it's found in the
-available locales.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="locale=(locale:String?)-instance-method">
-      <div class="signature">
-        
-        def <strong>locale=</strong>(locale : String?)
-
-        <a class="method-permalink" href="#locale=(locale:String?)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/translation.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>

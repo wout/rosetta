@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="rosetta">
-  <title>Rosetta::Backend - rosetta main</title>
+  <title>Lucky::AllowedInTags - rosetta main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -51,12 +51,12 @@
   <div class="types-list">
     <ul>
   
-  <li class="parent " data-id="rosetta/Lucky" data-name="lucky">
+  <li class="parent open current" data-id="rosetta/Lucky" data-name="lucky">
       <a href="../Lucky.html">Lucky</a>
       
         <ul>
   
-  <li class=" " data-id="rosetta/Lucky/AllowedInTags" data-name="lucky::allowedintags">
+  <li class=" current" data-id="rosetta/Lucky/AllowedInTags" data-name="lucky::allowedintags">
       <a href="../Lucky/AllowedInTags.html">AllowedInTags</a>
       
     </li>
@@ -66,12 +66,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="rosetta/Rosetta" data-name="rosetta">
+  <li class="parent " data-id="rosetta/Rosetta" data-name="rosetta">
       <a href="../Rosetta.html">Rosetta</a>
       
         <ul>
   
-  <li class=" current" data-id="rosetta/Rosetta/Backend" data-name="rosetta::backend">
+  <li class=" " data-id="rosetta/Rosetta/Backend" data-name="rosetta::backend">
       <a href="../Rosetta/Backend.html">Backend</a>
       
     </li>
@@ -145,7 +145,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Rosetta::Backend
+  <span class="kind">module</span> Lucky::AllowedInTags
 
 </h1>
 
@@ -153,6 +153,17 @@
 
 
 
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Objects including this module can safely be used in Lucky as a value for html
+tags, without the need to explicitly convert them to a string.</p>
 
 
 
@@ -162,6 +173,23 @@
 
 
 
+
+
+  <h2>
+    <a id="direct-including-types" class="anchor" href="#direct-including-types">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Direct including types
+  </h2>
+  <ul class="other-types-list">
+    
+      <li class="other-type"><a href="../Rosetta/Localization.html">Rosetta::Localization</a></li>
+    
+      <li class="other-type"><a href="../Rosetta/Translation.html">Rosetta::Translation</a></li>
+    
+  </ul>
 
 
 
@@ -176,8 +204,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/backend.cr#L2" target="_blank">
-        rosetta/backend.cr
+      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/lucky/allowed_in_tags.cr#L3" target="_blank">
+        rosetta/lucky/allowed_in_tags.cr
       </a>
     
     <br/>
@@ -193,25 +221,6 @@
 
 
 
-  <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#load(path)-macro" class="signature"><strong>load</strong>(path)</a>
-        
-          <div class="summary"><p>Loads the parsed set of locales from the given path.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
 
 <div class="methods-inherited">
@@ -224,40 +233,6 @@
 
 
 
-
-  <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Detail
-  </h2>
-  
-    <div class="entry-detail" id="load(path)-macro">
-      <div class="signature">
-        
-        macro <strong>load</strong>(path)
-
-        <a class="method-permalink" href="#load(path)-macro">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Loads the parsed set of locales from the given path. This macro should be
-called in an initializer:</p>
-
-<pre><code class="language-crystal"><span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/locales&quot;</span>)</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/backend.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 </div>

@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="rosetta">
-  <title>Rosetta::Config - rosetta main</title>
+  <title>Rosetta::LocalizedTime - rosetta main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -76,7 +76,7 @@
       
     </li>
   
-  <li class=" current" data-id="rosetta/Rosetta/Config" data-name="rosetta::config">
+  <li class=" " data-id="rosetta/Rosetta/Config" data-name="rosetta::config">
       <a href="../Rosetta/Config.html">Config</a>
       
     </li>
@@ -96,7 +96,7 @@
       
     </li>
   
-  <li class=" " data-id="rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
+  <li class=" current" data-id="rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
       <a href="../Rosetta/LocalizedTime.html">LocalizedTime</a>
       
     </li>
@@ -145,12 +145,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Rosetta::Config
+  <span class="kind">class</span> Rosetta::LocalizedTime
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/Config.html">Rosetta::Config</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/LocalizedTime.html">Rosetta::LocalizedTime</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -178,8 +178,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L2" target="_blank">
-        rosetta/config.cr
+      <a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L39" target="_blank">
+        rosetta/localization.cr
       </a>
     
     <br/>
@@ -187,31 +187,29 @@
 
 
 
-  
-    <h2>
-      <a id="constant-summary" class="anchor" href="#constant-summary">
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-      Constant Summary
-    </h2>
-  
-  <dl>
+    Constructors
+  </h2>
+  <ul class="list-summary">
     
-      <dt class="entry-const" id="AVAILABLE_LOCALES">
-        <strong>AVAILABLE_LOCALES</strong> = <code>[<span class="s">&quot;en&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#new(format:String)-class-method" class="signature"><strong>.new</strong>(format : String)</a>
+        
+      </li>
     
-      <dt class="entry-const" id="DEFAULT_LOCALE">
-        <strong>DEFAULT_LOCALE</strong> = <code><span class="s">&quot;en&quot;</span></code>
-      </dt>
-      
+      <li class="entry-summary">
+        <a href="#new(translations)-class-method" class="signature"><strong>.new</strong>(translations)</a>
+        
+      </li>
     
-  </dl>
-
-
+  </ul>
 
 
 
@@ -228,21 +226,21 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#locale:String-instance-method" class="signature"><strong>#locale</strong> : String</a>
-        
-          <div class="summary"><p>Gets the current locale or falls back to the default locale if it's not defined.</p></div>
+        <a href="#translations-instance-method" class="signature"><strong>#translations</strong></a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#locale=(locale:String)-instance-method" class="signature"><strong>#locale=</strong>(locale : String)</a>
+        <a href="#with(time:Time,**values):String-instance-method" class="signature"><strong>#with</strong>(time : Time, **values) : String</a>
         
-          <div class="summary"><p>Sets the current locale with the given value, if it's found in the available locales.</p></div>
+          <div class="summary"><p>Localizes date and time.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#locale=(locale:String?)-instance-method" class="signature"><strong>#locale=</strong>(locale : String?)</a>
+        <a href="#with(date:Tuple(Int32,Int32,Int32),**values):String-instance-method" class="signature"><strong>#with</strong>(date : Tuple(Int32, Int32, Int32), **values) : String</a>
+        
+          <div class="summary"><p>Localizes a date as tuple.</p></div>
         
       </li>
     
@@ -277,6 +275,48 @@
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(format:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(format : String)
+
+        <a class="method-permalink" href="#new(format:String)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L45" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="new(translations)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(translations)
+
+        <a class="method-permalink" href="#new(translations)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 
@@ -290,62 +330,60 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="locale:String-instance-method">
+    <div class="entry-detail" id="translations-instance-method">
       <div class="signature">
         
-        def <strong>locale</strong> : String
+        def <strong>translations</strong>
 
-        <a class="method-permalink" href="#locale:String-instance-method">#</a>
+        <a class="method-permalink" href="#translations-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with(time:Time,**values):String-instance-method">
+      <div class="signature">
+        
+        def <strong>with</strong>(time : Time, **values) : String
+
+        <a class="method-permalink" href="#with(time:Time,**values):String-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Gets the current locale or falls back to the default locale if it's not
-defined.</p>
+          <p>Localizes date and time.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L53" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="locale=(locale:String)-instance-method">
+    <div class="entry-detail" id="with(date:Tuple(Int32,Int32,Int32),**values):String-instance-method">
       <div class="signature">
         
-        def <strong>locale=</strong>(locale : String)
+        def <strong>with</strong>(date : Tuple(Int32, Int32, Int32), **values) : String
 
-        <a class="method-permalink" href="#locale=(locale:String)-instance-method">#</a>
+        <a class="method-permalink" href="#with(date:Tuple(Int32,Int32,Int32),**values):String-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Sets the current locale with the given value, if it's found in the
-available locales.</p>
+          <p>Localizes a date as tuple.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="locale=(locale:String?)-instance-method">
-      <div class="signature">
-        
-        def <strong>locale=</strong>(locale : String?)
-
-        <a class="method-permalink" href="#locale=(locale:String?)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/config.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/3d29aee0ec4de4e89e829c4c17f66fa6171547dd/src/rosetta/localization.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
