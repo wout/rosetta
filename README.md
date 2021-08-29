@@ -21,35 +21,6 @@ app with missing translations.
 **IMPORTANT: This shard is still under heavy development and is not yet ready
 for use.**
 
-<!-- MarkdownTOC -->
-
-- Installation
-- Setup
-- Configuration
-  - `DEFAULT_LOCALE`
-  - `AVAILABLE_LOCALES`
-  - `FALLBACKS`
-- Usage
-  - Locale files
-  - Lookup
-  - Interpolations
-  - The `Translatable` mixin
-  - Localization
-    - Localized time
-    - Localized date
-- Parser checks
-  - Check 1: presence of translations for all locales
-  - Check 2: presence of ruling key set in all alternative locales
-  - Check 3: no additional keys in alternative locales
-  - Check 4: interpolation keys are present in every translation
-- To-do
-- Development
-- Documentation
-- Contributing
-- Contributors
-
-<!-- /MarkdownTOC -->
-
 ## Installation
 
 1. Add the dependency to your `shard.yml`:
@@ -392,7 +363,7 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Check existence of interpolation keys in all translations at compile-time
 - [ ] Implement fallbacks
 - [ ] Localization of numeric values
-- [ ] Localization of date and time values
+- [X] Localization of date and time values
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
 
