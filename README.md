@@ -380,7 +380,7 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Interpolation (with %{} tag for interpolation keys)
 - [X] Check existence of interpolation keys in all translations at compile-time
 - [ ] Implement fallbacks
-- [ ] Localization of numeric values
+- [X] Localization of numeric values
 - [X] Localization of date and time values
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks

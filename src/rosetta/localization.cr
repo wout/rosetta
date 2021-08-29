@@ -151,7 +151,7 @@ module Rosetta
   {% end %}
 
   # LocalizedTime is similar to a Translation object; it implements a similar
-  # interface but it's sole purpose is to localize time objects.
+  # interface but its sole purpose is to localize time objects.
   class LocalizedTime
     getter format
 
@@ -172,7 +172,7 @@ module Rosetta
   end
 
   # LocalizedNumber is similar to a Translation object; it implements a similar
-  # interface but it's sole purpose is to localize numeric objects.
+  # interface but its sole purpose is to localize numeric objects.
   class LocalizedNumber
     getter separator
     getter delimiter
