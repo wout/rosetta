@@ -164,6 +164,12 @@ app with missing translations.</p>
 <p><strong>IMPORTANT: This shard is still under heavy development and is not yet ready
 for use.</strong></p>
 
+<p>&lt;!-- MarkdownTOC --></p>
+
+<ul><li>Installation</li><li>Setup</li><li>Configuration</li><ul><li><code>DEFAULT_LOCALE</code></li><li><code>AVAILABLE_LOCALES</code></li><li><code>FALLBACKS</code></li></ul><li>Usage</li><ul><li>Locale files</li><li>Lookup</li><li>Interpolations</li><li>The <code>Translatable</code> mixin</li><li>Localization</li><li>Localized time</li><li>Localized date</li></ul><li>Parser checks</li><ul><li>Check 1: presence of translations for all locales</li><li>Check 2: presence of ruling key set in all alternative locales</li><li>Check 3: no additional keys in alternative locales</li><li>Check 4: interpolation keys are present in every translation</li></ul><li>To-do</li><li>Development</li><li>Documentation</li><li>Contributing</li><li>Contributors</li></ul>
+
+<p>&lt;!-- /MarkdownTOC --></p>
+
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -306,8 +312,9 @@ YAML file, YAML will take precedence.</p>
 
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.name&quot;</span>)</code></pre>
 
-<p><strong>Note</strong>: that the return value of the <code>t</code> macro needs to be converted to a
-string. Most frameworks with call <code>to_s</code> on the given object in the background.
+<p><strong>Note</strong>: the return value of the <code>t</code> macro needs to be converted to a string.
+If you're using Lucky, you're in luck (pun intended). The returned object
+includes the <code><a href="Lucky/AllowedInTags.html">Lucky::AllowedInTags</a></code> module, so there's no need to call <code>to_s</code>.
 But in a context where <code>to_s</code> isn't called, you'll need to take care of that
 yourself:</p>
 
@@ -405,6 +412,57 @@ method:</p>
     t(<span class="s">&quot;.welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Ary&quot;</span>)
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
+
+<h3><a id="localization" class="anchor" href="#localization">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localization</h3>
+
+<p>Rosetta supports localization for a time, a date or a number.</p>
+
+<h4><a id="localized-time" class="anchor" href="#localized-time">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized time</h4>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time.<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;Sun, 29 Aug 2021 18:30:57 +0200&quot;</span></code></pre>
+
+<p>This will use the <code>:default</code> format to convert the given <code>Time</code> object. Another predefined format can be passed:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:short</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;29 Aug 18:30&quot;</span></code></pre>
+
+<p>For specific formats, a string can be passed as well:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%H:%M:%S&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;18:30:57&quot;</span></code></pre>
+
+<h4><a id="localized-date" class="anchor" href="#localized-date">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized date</h4>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; 2021-08-29</span></code></pre>
+
+<p>Or with a date-formatted tuple:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.<span class="k">with</span>({<span class="n">1991</span>, <span class="n">9</span>, <span class="n">17</span>})
+<span class="c"># =&gt; &quot;1991-09-17&quot;</span></code></pre>
+
+<p>Similar to the <code>time</code> macro, a predefined format can be passed:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:long</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;August 29, 2021&quot;</span></code></pre>
+
+<p>Or a a specific format:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%Y&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;2021&quot;</span></code></pre>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">
