@@ -91,6 +91,11 @@
       
     </li>
   
+  <li class=" " data-id="rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
+      <a href="Rosetta/LocalizedNumber.html">LocalizedNumber</a>
+      
+    </li>
+  
   <li class=" " data-id="rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
       <a href="Rosetta/LocalizedTime.html">LocalizedTime</a>
       
@@ -166,77 +171,77 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/aliases.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/aliases.cr#L1" target="_blank">
         rosetta/aliases.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/backend.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/backend.cr#L1" target="_blank">
         rosetta/backend.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/config.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/config.cr#L1" target="_blank">
         rosetta/config.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/configuration.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/configuration.cr#L1" target="_blank">
         rosetta/configuration.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/interpolation.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/interpolation.cr#L1" target="_blank">
         rosetta/interpolation.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/localization.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/localization.cr#L1" target="_blank">
         rosetta/localization.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/parser.cr#L5" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/parser.cr#L5" target="_blank">
         rosetta/parser.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/parser/builder.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/parser/builder.cr#L1" target="_blank">
         rosetta/parser/builder.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/translatable.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/translatable.cr#L1" target="_blank">
         rosetta/translatable.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/translation.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/translation.cr#L1" target="_blank">
         rosetta/translation.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/version.cr#L1" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/version.cr#L1" target="_blank">
         rosetta/version.cr
       </a>
     
@@ -344,6 +349,13 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#number(format=:default)-macro" class="signature"><strong>number</strong>(format = <span class="n">:default</span>)</a>
+        
+          <div class="summary"><p>Localizes a numeric value, for example:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#t(key)-macro" class="signature"><strong>t</strong>(key)</a>
         
           <div class="summary"><p>Finds translations for the given key.</p></div>
@@ -394,7 +406,7 @@ tuple.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/interpolation.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/interpolation.cr#L4" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -416,7 +428,7 @@ current fiber.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/configuration.cr#L30" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/configuration.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -438,7 +450,7 @@ current fiber.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/configuration.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/configuration.cr#L24" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -461,7 +473,7 @@ current fiber.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/localization.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/localization.cr#L63" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -497,7 +509,7 @@ the available locales defined in the config class is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/configuration.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/configuration.cr#L14" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -523,7 +535,7 @@ the available locales defined in the config class is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/localization.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/localization.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -545,7 +557,31 @@ the default locale defined in the config class is used.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/configuration.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/configuration.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="number(format=:default)-macro">
+      <div class="signature">
+        
+        macro <strong>number</strong>(format = <span class="n">:default</span>)
+
+        <a class="method-permalink" href="#number(format=:default)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes a numeric value, for example:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.<span class="k">with</span>(<span class="n">123_456.789</span>)
+<span class="t">Rosetta</span>.number(<span class="n">:custom</span>).<span class="k">with</span>(<span class="n">123_456.789</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/localization.cr#L43" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -569,7 +605,7 @@ module for the translation.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/translation.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/translation.cr#L6" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -594,7 +630,7 @@ module for the translation.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/83f1e1e52ca449fbfb9d685725847a755094e9fd/src/rosetta/localization.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/6dda75de04836361261b2e55112d8b716f0bcdc5/src/rosetta/localization.cr#L27" target="_blank">View source</a>]
         
       </div>
     </div>

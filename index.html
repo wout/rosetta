@@ -91,6 +91,11 @@
       
     </li>
   
+  <li class=" " data-id="rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
+      <a href="Rosetta/LocalizedNumber.html">LocalizedNumber</a>
+      
+    </li>
+  
   <li class=" " data-id="rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
       <a href="Rosetta/LocalizedTime.html">LocalizedTime</a>
       
@@ -413,7 +418,10 @@ method:</p>
   </svg>
 </a>Localization</h3>
 
-<p>Rosetta supports localization for a time, a date or a number.</p>
+<p>Rosetta supports localization for a time, a date or a number. Localization
+instructions live under a the <code>rosetta_localization</code> namespace in the locale
+files. The initializer script will install the required files for you in order
+to be able to work with Rosetta.</p>
 
 <h4><a id="localized-time" class="anchor" href="#localized-time">
   <svg class="octicon-link" aria-hidden="true">
@@ -441,7 +449,7 @@ method:</p>
 </a>Localized date</h4>
 
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.date.<span class="k">with</span>(<span class="t">Time</span>.local)
-<span class="c"># =&gt; 2021-08-29</span></code></pre>
+<span class="c"># =&gt; &quot;2021-08-29&quot;</span></code></pre>
 
 <p>Or with a date-formatted tuple:</p>
 
@@ -457,6 +465,20 @@ method:</p>
 
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%Y&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;2021&quot;</span></code></pre>
+
+<h4><a id="localized-number" class="anchor" href="#localized-number">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized number</h4>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.<span class="k">with</span>(<span class="n">123_456.789</span>)
+<span class="c"># =&gt; &quot;123,456.79&quot;</span></code></pre>
+
+<p>With a specific predefined format:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number(<span class="n">:custom</span>).<span class="k">with</span>(<span class="n">123_456.789</span>)
+<span class="c"># =&gt; &quot;12 34 56.8&quot;</span></code></pre>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">
