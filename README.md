@@ -21,6 +21,35 @@ app with missing translations.
 **IMPORTANT: This shard is still under heavy development and is not yet ready
 for use.**
 
+<!-- MarkdownTOC -->
+
+- Installation
+- Setup
+- Configuration
+  - `DEFAULT_LOCALE`
+  - `AVAILABLE_LOCALES`
+  - `FALLBACKS`
+- Usage
+  - Locale files
+  - Lookup
+  - Interpolations
+  - The `Translatable` mixin
+  - Localization
+    - Localized time
+    - Localized date
+- Parser checks
+  - Check 1: presence of translations for all locales
+  - Check 2: presence of ruling key set in all alternative locales
+  - Check 3: no additional keys in alternative locales
+  - Check 4: interpolation keys are present in every translation
+- To-do
+- Development
+- Documentation
+- Contributing
+- Contributors
+
+<!-- /MarkdownTOC -->
+
 ## Installation
 
 1. Add the dependency to your `shard.yml`:
@@ -139,11 +168,11 @@ Looking up translations is done with the `t` macro:
 Rosetta.t("user.name")
 ```
 
-**Note**: that the return value of the `t` macro needs to be converted to a
-string. Most frameworks with call `to_s` on the given object in the background.
+**Note**: the return value of the `t` macro needs to be converted to a string.
+If you're using Lucky, you're in luck (pun intended). The returned object
+includes the `Lucky::AllowedInTags` module, so there's no need to call `to_s`.
 But in a context where `to_s` isn't called, you'll need to take care of that
 yourself:
-
 ```
 Rosetta.t("user.name").to_s
 # => "User name"
@@ -243,6 +272,56 @@ class User
     t(".welcome_message").with(name: "Ary")
   end
 end
+```
+
+### Localization
+Rosetta supports localization for a time, a date or a number.
+
+#### Localized time
+```cr
+Rosetta.time.with(Time.local)
+# => "Sun, 29 Aug 2021 18:30:57 +0200"
+```
+
+This will use the `:default` format to convert the given `Time` object. Another predefined format can be passed:
+
+```cr
+Rosetta.time(:short).with(Time.local)
+# => "29 Aug 18:30"
+```
+
+For specific formats, a string can be passed as well:
+
+```cr
+Rosetta.time("%H:%M:%S").with(Time.local)
+# => "18:30:57"
+```
+
+#### Localized date
+```cr
+Rosetta.date.with(Time.local)
+# => 2021-08-29
+```
+
+Or with a date-formatted tuple:
+
+```cr
+Rosetta.date.with({1991, 9, 17})
+# => "1991-09-17"
+```
+
+Similar to the `time` macro, a predefined format can be passed:
+
+```cr
+Rosetta.time(:long).with(Time.local)
+# => "August 29, 2021"
+```
+
+Or a a specific format:
+
+```cr
+Rosetta.time("%Y").with(Time.local)
+# => "2021"
 ```
 
 ## Parser checks
