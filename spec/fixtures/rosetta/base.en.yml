@@ -9,3 +9,5 @@ en:
       name: "Fixed prefix"
   interpolatable:
     string: "Hi %{name}, have a fabulous %{day_name}!"
+  localizable:
+    string: "%{first_name} was born on %A %d %B %Y at %H:%M:%S."

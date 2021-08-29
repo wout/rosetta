@@ -9,3 +9,5 @@ nl:
       name: "Vast voorvoegsel"
   interpolatable:
     string: "Hey %{name}, maak er een geweldige %{day_name} van!"
+  localizable:
+    string: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."

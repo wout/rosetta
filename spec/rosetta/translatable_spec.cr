@@ -20,12 +20,12 @@ describe TranslatableTestObject do
     end
   end
 
-  describe "#welcome_message_with_hash" do
-    it "accepts interpolation messages" do
-      test_object.welcome_message_with_hash
-        .should eq("Hi Willy, have a fabulous Wonka day!")
-    end
-  end
+  # describe "#welcome_message_with_hash" do
+  #   it "accepts interpolation messages" do
+  #     test_object.welcome_message_with_hash
+  #       .should eq("Hi Willy, have a fabulous Wonka day!")
+  #   end
+  # end
 end
 
 describe TranslatableTestObjectWithRosettaPrefix do
@@ -55,11 +55,11 @@ class TranslatableTestObject
     )
   end
 
-  def welcome_message_with_hash
-    interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
+  # def welcome_message_with_hash
+  #   interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
 
-    t("interpolatable.string").with_hash(interpolation_values)
-  end
+  #   t("interpolatable.string").with_hash(interpolation_values)
+  # end
 end
 
 class TranslatableTestObjectWithRosettaPrefix

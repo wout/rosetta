@@ -1,11 +1,12 @@
 require "json"
 require "yaml"
+require "./parser/builder"
 
 module Rosetta
-  class Parser
-    alias HS2 = Hash(String, String)
-    alias TranslationsHash = Hash(String, HS2)
+  alias Translations = Hash(String, String)
+  alias TranslationsHash = Hash(String, Translations)
 
+  class Parser
     getter alternative_locales : Array(String)
     getter available_locales : Array(String)
     getter default_locale : String
@@ -28,14 +29,12 @@ module Rosetta
       load!
 
       return error.to_s unless valid?
-      return build_wrapper_module([] of String) if translations.empty?
 
-      translation_classes = flipped_translations
-        .each_with_object([] of String) do |(key, translations), modules|
-          modules << build_class(key, translations)
-        end
+      builder = Builder.new(default_locale)
 
-      build_wrapper_module(translation_classes)
+      return builder.build_locales(TranslationsHash.new) if translations.empty?
+
+      builder.build_locales(flipped_translations)
     end
 
     # Loads and parses JSON files, then YAML files, adds them to the list of
@@ -56,62 +55,6 @@ module Rosetta
           add_translations(locale.to_s, locale_data)
         end
       end
-    end
-
-    private def build_wrapper_module(translation_classes : Array(String))
-      key_set = translations.empty? ? [] of String : ruling_key_set
-
-      <<-MODULE
-      module Rosetta
-        module Locales
-          KEYS = %w[#{key_set.join(' ')}]
-      #{translation_classes.join("\n")}
-        end
-      end
-      MODULE
-    end
-
-    private def build_class(key, translations)
-      class_name = key.split('.').map(&.camelcase).join("::")
-      i12n_keys = translations[default_locale]
-        .scan(/%\{([^\}]+)\}/)
-        .map { |m| m[1] }
-
-      if i12n_keys.empty?
-        methods = <<-METHODS
-              def to_s
-                raw
-              end
-        METHODS
-      else
-        with_arguments = i12n_keys.map { |k| "#{k} : ::String" }.join(", ")
-        arguments_tuple = "{#{i12n_keys.map { |k| "#{k}: #{k}" }.join(", ")}}"
-        tuple_arguments = i12n_keys.map { |k| "#{k}: ::String" }.join(", ")
-
-        methods = <<-METHODS
-              def with(#{with_arguments})
-                self.with(#{arguments_tuple})
-              end
-              def with(values : NamedTuple(#{tuple_arguments}))
-                Rosetta.interpolate(raw, values)
-              end
-              def with_hash(values : ::Hash(::String | ::Symbol, ::String))
-                Rosetta.interpolate(raw, values)
-              end
-              def to_s
-                self.with
-              end
-        METHODS
-      end
-
-      <<-CLASS
-          class #{class_name} < Rosetta::Translation
-      #{methods}
-            def raw : ::String
-              #{translations}[Rosetta.locale]
-            end
-          end
-      CLASS
     end
 
     # Tests validity of alternative locale key sets.
@@ -185,7 +128,7 @@ module Rosetta
     private def check_interpolation_keys_matching? : Bool
       errors = ruling_key_set.each_with_object([] of String) do |k, e|
         ruling_translation = flipped_translations[k][default_locale]
-        i12n_keys = ruling_translation.scan(/%\{[^\}]+\}/).map { |m| m[0] }
+        i12n_keys = ruling_translation.to_s.scan(/%\{[^\}]+\}/).map { |m| m[0] }
 
         next if i12n_keys.empty?
 
@@ -223,7 +166,7 @@ module Rosetta
     private def flipped_translations
       @flipped_translations ||= ruling_key_set
         .each_with_object(TranslationsHash.new) do |k, h|
-          h[k] = available_locales.each_with_object(HS2.new) do |l, t|
+          h[k] = available_locales.each_with_object(Translations.new) do |l, t|
             t[l] = translations[l][k]
           end
         end
@@ -231,14 +174,15 @@ module Rosetta
 
     # Adds a set of translations for a given locale to the translations store.
     private def add_translations(locale : String, hash_from_any)
-      translations[locale] = HS2.new unless translations[locale]?
+      translations[locale] = Translations.new unless translations[locale]?
       translations[locale].merge!(flatten_hash_from_any(hash_from_any))
     end
 
     # Flattens a nested hash to a key/value hash.
     private def flatten_hash_from_any(hash)
-      hash.as_h.each_with_object(HS2.new) do |(k, v), h|
-        if v.as_h?
+      hash.as_h.each_with_object(Translations.new) do |(k, v), h|
+        case v
+        when .as_h?
           flatten_hash_from_any(v).map do |h_k, h_v|
             h["#{k}.#{h_k}"] = h_v
           end

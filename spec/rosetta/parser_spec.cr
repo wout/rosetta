@@ -20,35 +20,43 @@ describe Rosetta::Parser do
   end
 
   describe "#parse!" do
-    it "builds a module for every translation" do
-      output = make_parser.parse!
-
-      output.should contain <<-MODULE
-          class Title < Rosetta::Translation
+    it "builds a class for translations without interpolations" do
+      make_parser.parse!.should contain <<-MODULE
+          class TitleTranslation < Rosetta::Translation
+            getter translations = {"en" => "Title", "nl" => "Titel"}
             def to_s
               raw
             end
-            def raw : ::String
-              {"en" => "Title", "nl" => "Titel"}[Rosetta.locale]
+            def with
+              raw
             end
           end
       MODULE
-      output.should contain <<-MODULE
-          class Interpolatable::String < Rosetta::Translation
-            def with(name : ::String, day_name : ::String)
-              self.with({name: name, day_name: day_name})
+    end
+
+    it "builds a class for translations with interpolations" do
+      make_parser.parse!.should contain <<-MODULE
+          class Interpolatable::StringTranslation < Rosetta::Translation
+            getter translations = {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}
+            def with(name : String, day_name : String)
+              Rosetta.interpolate(raw, {name: name, day_name: day_name})
             end
-            def with(values : NamedTuple(name: ::String, day_name: ::String))
-              Rosetta.interpolate(raw, values)
+            def with(values : NamedTuple(name: String, day_name: String))
+              self.with(**values)
             end
-            def with_hash(values : ::Hash(::String | ::Symbol, ::String))
-              Rosetta.interpolate(raw, values)
+          end
+      MODULE
+    end
+
+    it "builds a class for translations with localizations" do
+      make_parser.parse!.should contain <<-MODULE
+          class Localizable::StringTranslation < Rosetta::Translation
+            getter translations = {"en" => "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", "nl" => "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
+            def with(first_name : String, time : Time)
+              Rosetta.interpolate(raw, {first_name: first_name, time: time})
             end
-            def to_s
-              self.with
-            end
-            def raw : ::String
-              {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}[Rosetta.locale]
+            def with(values : NamedTuple(first_name: String, time: Time))
+              self.with(**values)
             end
           end
       MODULE
