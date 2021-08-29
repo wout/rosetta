@@ -379,9 +379,11 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Implement inferred locale keys at macro level
 - [X] Interpolation (with %{} tag for interpolation keys)
 - [X] Check existence of interpolation keys in all translations at compile-time
+- [X] Translatable mixin
 - [ ] Implement fallbacks
 - [X] Localization of numeric values
 - [X] Localization of date and time values
+- [ ] Localizable mixin
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
 
