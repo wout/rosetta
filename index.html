@@ -164,12 +164,6 @@ app with missing translations.</p>
 <p><strong>IMPORTANT: This shard is still under heavy development and is not yet ready
 for use.</strong></p>
 
-<p>&lt;!-- MarkdownTOC --></p>
-
-<ul><li>Installation</li><li>Setup</li><li>Configuration</li><ul><li><code>DEFAULT_LOCALE</code></li><li><code>AVAILABLE_LOCALES</code></li><li><code>FALLBACKS</code></li></ul><li>Usage</li><ul><li>Locale files</li><li>Lookup</li><li>Interpolations</li><li>The <code>Translatable</code> mixin</li><li>Localization</li><li>Localized time</li><li>Localized date</li></ul><li>Parser checks</li><ul><li>Check 1: presence of translations for all locales</li><li>Check 2: presence of ruling key set in all alternative locales</li><li>Check 3: no additional keys in alternative locales</li><li>Check 4: interpolation keys are present in every translation</li></ul><li>To-do</li><li>Development</li><li>Documentation</li><li>Contributing</li><li>Contributors</li></ul>
-
-<p>&lt;!-- /MarkdownTOC --></p>
-
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -544,7 +538,7 @@ If not, an error similar to the following will be raised:</p>
   </svg>
 </a>To-do</h2>
 
-<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[X] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Implement fallbacks</li><li>[ ] Localization of numeric values</li><li>[ ] Localization of date and time values</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li></ul>
+<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[X] Check existence of interpolation keys in all translations at compile-time</li><li>[ ] Implement fallbacks</li><li>[ ] Localization of numeric values</li><li>[X] Localization of date and time values</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li></ul>
 
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
