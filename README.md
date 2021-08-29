@@ -246,7 +246,10 @@ end
 ```
 
 ### Localization
-Rosetta supports localization for a time, a date or a number.
+Rosetta supports localization for a time, a date or a number. Localization
+instructions live under a the `rosetta_localization` namespace in the locale
+files. The initializer script will install the required files for you in order
+to be able to work with Rosetta.
 
 #### Localized time
 ```cr
@@ -271,7 +274,7 @@ Rosetta.time("%H:%M:%S").with(Time.local)
 #### Localized date
 ```cr
 Rosetta.date.with(Time.local)
-# => 2021-08-29
+# => "2021-08-29"
 ```
 
 Or with a date-formatted tuple:
@@ -294,6 +297,21 @@ Or a a specific format:
 Rosetta.time("%Y").with(Time.local)
 # => "2021"
 ```
+
+#### Localized number
+```cr
+Rosetta.number.with(123_456.789)
+# => "123,456.79"
+```
+
+With a specific predefined format:
+
+```cr
+Rosetta.number(:custom).with(123_456.789)
+# => "12 34 56.8"
+```
+
+
 
 ## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.

@@ -59,12 +59,12 @@ en:
         default:
           delimiter: ","
           separator: "."
-          decimal_places: null
+          decimal_places: 2
           group: 3
           only_significant: false
         custom:
-          delimiter: ","
+          delimiter: " "
           separator: "."
-          decimal_places: 2
-          group: 3
+          decimal_places: 1
+          group: 2
           only_significant: true

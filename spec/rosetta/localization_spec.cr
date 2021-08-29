@@ -63,4 +63,14 @@ describe Rosetta do
         .should eq("1984 | 08 | 06 | 10")
     end
   end
+
+  describe ".number" do
+    it "localizes a number " do
+      Rosetta.number.with(123_456.789).should eq("123,456.79")
+    end
+
+    it "localizes a number according to a given predefined format " do
+      Rosetta.number(:custom).with(123_456.789).should eq("12 34 56.8")
+    end
+  end
 end

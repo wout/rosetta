@@ -59,7 +59,7 @@ nl:
         default:
           delimiter: "."
           separator: ","
-          decimal_places: null
+          decimal_places: 0
           group: 3
           only_significant: false
         custom:

@@ -34,6 +34,27 @@ module Rosetta
     Rosetta::LocalizedTime.new(format)
   end
 
+  # Localizes a numeric value, for example:
+  #
+  # ```
+  # Rosetta.number.with(123_456.789)
+  # Rosetta.number(:custom).with(123_456.789)
+  # ```
+  macro number(format = :default)
+    {%
+      namespace = "Rosetta::Locales::RosettaLocalization::Number::Formats".id
+      prefix = "#{namespace}::#{format.id.camelcase}".id
+    %}
+
+    Rosetta::LocalizedNumber.new(
+      separator: {{prefix}}::SeparatorTranslation.new.to_s,
+      delimiter: {{prefix}}::DelimiterTranslation.new.to_s,
+      decimal_places: {{prefix}}::DecimalPlacesTranslation.new.to_s.to_i,
+      group: {{prefix}}::GroupTranslation.new.to_s.to_i,
+      only_significant: {{prefix}}::OnlySignificantTranslation.new.to_s == "true"
+    )
+  end
+
   # Uses a given format to localize a given Time object, for example:
   #
   # ```
@@ -150,8 +171,32 @@ module Rosetta
     end
   end
 
-  # TO-DO: localize numbers
-  # macro number(format = :default)
-  #   t("rosetta_localization.date.formats.#{format}")
-  # end
+  # LocalizedNumber is similar to a Translation object; it implements a similar
+  # interface but it's sole purpose is to localize numeric objects.
+  class LocalizedNumber
+    getter separator
+    getter delimiter
+    getter decimal_places
+    getter group
+    getter only_significant
+
+    def initialize(
+      @separator : String,
+      @delimiter : String,
+      @decimal_places : Int32,
+      @group : Int32,
+      @only_significant : Bool
+    )
+    end
+
+    def with(number : Number)
+      number.format(
+        separator: separator,
+        delimiter: delimiter,
+        decimal_places: decimal_places.to_i,
+        group: group.to_i,
+        only_significant: only_significant == "true"
+      )
+    end
+  end
 end
