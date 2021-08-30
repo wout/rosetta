@@ -36,7 +36,7 @@ describe Rosetta::Parser do
 
     it "builds a class for translations with interpolations" do
       make_parser.parse!.should contain <<-MODULE
-          class Interpolatable::StringTranslation < Rosetta::Translation
+          class Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}
             def with(name : String, day_name : String)
               Rosetta.interpolate(raw, {name: name, day_name: day_name})
@@ -50,7 +50,7 @@ describe Rosetta::Parser do
 
     it "builds a class for translations with localizations" do
       make_parser.parse!.should contain <<-MODULE
-          class Localizable::StringTranslation < Rosetta::Translation
+          class Localizable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", "nl" => "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
             def with(first_name : String, time : Time)
               Rosetta.interpolate(raw, {first_name: first_name, time: time})

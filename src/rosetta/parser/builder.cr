@@ -30,7 +30,7 @@ module Rosetta
       key : String,
       translation : Translations
     )
-      class_name = key.split('.').map(&.camelcase).join("::")
+      class_name = key.split('.').map(&.camelcase).join('_')
 
       <<-CLASS
           class #{class_name}Translation < Rosetta::Translation

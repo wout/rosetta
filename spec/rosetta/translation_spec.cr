@@ -9,7 +9,7 @@ describe Rosetta do
     it "returns a module for the given translation key" do
       translation = Rosetta.t("user.first_name")
 
-      translation.should be_a(Rosetta::Locales::User::FirstNameTranslation)
+      translation.should be_a(Rosetta::Locales::User_FirstNameTranslation)
       Rosetta.locale.should eq("en")
       translation.to_s.should eq("First name")
 
