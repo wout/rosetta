@@ -91,6 +91,11 @@
       
     </li>
   
+  <li class=" " data-id="rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
+      <a href="Rosetta/Localizable.html">Localizable</a>
+      
+    </li>
+  
   <li class=" " data-id="rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
       <a href="Rosetta/LocalizedNumber.html">LocalizedNumber</a>
       
@@ -458,12 +463,12 @@ to be able to work with Rosetta.</p>
 
 <p>Similar to the <code>time</code> macro, a predefined format can be passed:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:long</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="n">:long</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;August 29, 2021&quot;</span></code></pre>
 
-<p>Or a a specific format:</p>
+<p>Or a completely custom format:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%Y&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="s">&quot;%Y&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;2021&quot;</span></code></pre>
 
 <h4><a id="localized-number" class="anchor" href="#localized-number">
@@ -478,7 +483,14 @@ to be able to work with Rosetta.</p>
 <p>With a specific predefined format:</p>
 
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.number(<span class="n">:custom</span>).<span class="k">with</span>(<span class="n">123_456.789</span>)
-<span class="c"># =&gt; &quot;12 34 56.8&quot;</span></code></pre>
+<span class="c"># =&gt; &quot;12 34 56.789&quot;</span></code></pre>
+
+<p>Or with specific formatting options:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.<span class="k">with</span>(<span class="n">123_456.789</span>, decimal_places: <span class="n">6</span>)
+<span class="c"># =&gt; &quot;123,456.789000&quot;</span></code></pre>
+
+<p>🗒️ <strong>Note</strong>: In the background, Rosetta uses Crystal's native <code>Number#format</code> method and accepts the same parameters.</p>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">

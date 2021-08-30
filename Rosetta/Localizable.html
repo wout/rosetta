@@ -13,7 +13,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="rosetta">
-  <title>Rosetta::TranslationsHash - rosetta main</title>
+  <title>Rosetta::Localizable - rosetta main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -91,7 +91,7 @@
       
     </li>
   
-  <li class=" " data-id="rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
+  <li class=" current" data-id="rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
       <a href="../Rosetta/Localizable.html">Localizable</a>
       
     </li>
@@ -126,7 +126,7 @@
       
     </li>
   
-  <li class=" current" data-id="rosetta/Rosetta/TranslationsHash" data-name="rosetta::translationshash">
+  <li class=" " data-id="rosetta/Rosetta/TranslationsHash" data-name="rosetta::translationshash">
       <a href="../Rosetta/TranslationsHash.html">TranslationsHash</a>
       
     </li>
@@ -145,7 +145,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">alias</span> Rosetta::TranslationsHash
+  <span class="kind">module</span> Rosetta::Localizable
 
 </h1>
 
@@ -153,17 +153,18 @@
 
 
 
-
-
   <h2>
-    <a id="alias-definition" class="anchor" href="#alias-definition">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Alias Definition
+    Overview
   </h2>
-  <code>Hash(String, Hash(String, String))</code>
+
+  <p>Include this module in any class where you need to localize many values.</p>
+
+
 
 
 
@@ -186,8 +187,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/parser.cr#L7" target="_blank">
-        rosetta/parser.cr
+      <a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localizable.cr#L3" target="_blank">
+        rosetta/localizable.cr
       </a>
     
     <br/>
@@ -203,6 +204,39 @@
 
 
 
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#l_date(format)-macro" class="signature"><strong>l_date</strong>(format)</a>
+        
+          <div class="summary"><p>Localizes a date</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#l_number(format)-macro" class="signature"><strong>l_number</strong>(format)</a>
+        
+          <div class="summary"><p>Localizes a number</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#l_time(format)-macro" class="signature"><strong>l_time</strong>(format)</a>
+        
+          <div class="summary"><p>Localizes time</p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
 <div class="methods-inherited">
@@ -215,6 +249,79 @@
 
 
 
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="l_date(format)-macro">
+      <div class="signature">
+        
+        macro <strong>l_date</strong>(format)
+
+        <a class="method-permalink" href="#l_date(format)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes a date</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localizable.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="l_number(format)-macro">
+      <div class="signature">
+        
+        macro <strong>l_number</strong>(format)
+
+        <a class="method-permalink" href="#l_number(format)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes a number</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localizable.cr#L15" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="l_time(format)-macro">
+      <div class="signature">
+        
+        macro <strong>l_time</strong>(format)
+
+        <a class="method-permalink" href="#l_time(format)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes time</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localizable.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 </div>

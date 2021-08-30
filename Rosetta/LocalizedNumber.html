@@ -91,6 +91,11 @@
       
     </li>
   
+  <li class=" " data-id="rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
+      <a href="../Rosetta/Localizable.html">Localizable</a>
+      
+    </li>
+  
   <li class=" current" data-id="rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
       <a href="../Rosetta/LocalizedNumber.html">LocalizedNumber</a>
       
@@ -185,7 +190,7 @@ interface but its sole purpose is to localize numeric objects.</p>
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L176" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localization.cr#L176" target="_blank">
         rosetta/localization.cr
       </a>
     
@@ -207,7 +212,7 @@ interface but its sole purpose is to localize numeric objects.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(separator:String,delimiter:String,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method" class="signature"><strong>.new</strong>(separator : String, delimiter : String, decimal_places : Int32, group : Int32, only_significant : Bool)</a>
+        <a href="#new(separator:String%7CChar,delimiter:String%7CChar,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method" class="signature"><strong>.new</strong>(separator : String | Char, delimiter : String | Char, decimal_places : Int32, group : Int32, only_significant : Bool)</a>
         
       </li>
     
@@ -228,32 +233,7 @@ interface but its sole purpose is to localize numeric objects.</p>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#decimal_places:Int32-instance-method" class="signature"><strong>#decimal_places</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#delimiter:String-instance-method" class="signature"><strong>#delimiter</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#group:Int32-instance-method" class="signature"><strong>#group</strong> : Int32</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#only_significant:Bool-instance-method" class="signature"><strong>#only_significant</strong> : Bool</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#separator:String-instance-method" class="signature"><strong>#separator</strong> : String</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#with(number:Number)-instance-method" class="signature"><strong>#with</strong>(number : Number)</a>
+        <a href="#with(number:Number,separator:String%7CChar=@separator,delimiter:String%7CChar=@delimiter,decimal_places:Int32=@decimal_places,group:Int32=@group,only_significant:Bool=@only_significant)-instance-method" class="signature"><strong>#with</strong>(number : Number, separator : String | Char = @separator, delimiter : String | Char = @delimiter, decimal_places : Int32 = @decimal_places, group : Int32 = @group, only_significant : Bool = @only_significant)</a>
         
       </li>
     
@@ -297,18 +277,18 @@ interface but its sole purpose is to localize numeric objects.</p>
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(separator:String,delimiter:String,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method">
+    <div class="entry-detail" id="new(separator:String|Char,delimiter:String|Char,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(separator : String, delimiter : String, decimal_places : Int32, group : Int32, only_significant : Bool)
+        def self.<strong>new</strong>(separator : String | Char, delimiter : String | Char, decimal_places : Int32, group : Int32, only_significant : Bool)
 
-        <a class="method-permalink" href="#new(separator:String,delimiter:String,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method">#</a>
+        <a class="method-permalink" href="#new(separator:String%7CChar,delimiter:String%7CChar,decimal_places:Int32,group:Int32,only_significant:Bool)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L183" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localization.cr#L177" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -327,98 +307,18 @@ interface but its sole purpose is to localize numeric objects.</p>
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="decimal_places:Int32-instance-method">
+    <div class="entry-detail" id="with(number:Number,separator:String|Char=@separator,delimiter:String|Char=@delimiter,decimal_places:Int32=@decimal_places,group:Int32=@group,only_significant:Bool=@only_significant)-instance-method">
       <div class="signature">
         
-        def <strong>decimal_places</strong> : Int32
+        def <strong>with</strong>(number : Number, separator : String | Char = @separator, delimiter : String | Char = @delimiter, decimal_places : Int32 = @decimal_places, group : Int32 = @group, only_significant : Bool = @only_significant)
 
-        <a class="method-permalink" href="#decimal_places:Int32-instance-method">#</a>
+        <a class="method-permalink" href="#with(number:Number,separator:String%7CChar=@separator,delimiter:String%7CChar=@delimiter,decimal_places:Int32=@decimal_places,group:Int32=@group,only_significant:Bool=@only_significant)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L179" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="delimiter:String-instance-method">
-      <div class="signature">
-        
-        def <strong>delimiter</strong> : String
-
-        <a class="method-permalink" href="#delimiter:String-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L178" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="group:Int32-instance-method">
-      <div class="signature">
-        
-        def <strong>group</strong> : Int32
-
-        <a class="method-permalink" href="#group:Int32-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L180" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="only_significant:Bool-instance-method">
-      <div class="signature">
-        
-        def <strong>only_significant</strong> : Bool
-
-        <a class="method-permalink" href="#only_significant:Bool-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L181" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="separator:String-instance-method">
-      <div class="signature">
-        
-        def <strong>separator</strong> : String
-
-        <a class="method-permalink" href="#separator:String-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L177" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="with(number:Number)-instance-method">
-      <div class="signature">
-        
-        def <strong>with</strong>(number : Number)
-
-        <a class="method-permalink" href="#with(number:Number)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c87e0a6f119ede804f46b047f54e873a6904b254/src/rosetta/localization.cr#L192" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/2ba1a437b5eb4b2a786df3aa17aa425d29fc27fe/src/rosetta/localization.cr#L186" target="_blank">View source</a>]
         
       </div>
     </div>
