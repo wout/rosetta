@@ -70,7 +70,12 @@ describe Rosetta do
     end
 
     it "localizes a number according to a given predefined format " do
-      Rosetta.number(:custom).with(123_456.789).should eq("12 34 56.8")
+      Rosetta.number(:custom).with(123_456.789).should eq("12 34 56.789")
+    end
+
+    it "allows for individual parameters to be overridden" do
+      Rosetta.number(:custom).with(123_456.789, only_significant: false)
+        .should eq("12 34 56.789000")
     end
   end
 end

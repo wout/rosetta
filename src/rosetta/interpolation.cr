@@ -8,7 +8,7 @@ module Rosetta
   )
     values.each do |key, value|
       translation = if value.is_a?(Time)
-                      localize(value, translation)
+                      localize(translation, value)
                     else
                       translation.gsub(/\%{#{key}}/, value)
                     end

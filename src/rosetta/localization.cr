@@ -42,16 +42,16 @@ module Rosetta
   # ```
   macro number(format = :default)
     {%
-      namespace = "Rosetta::Locales::RosettaLocalization::Number::Formats".id
-      prefix = "#{namespace}::#{format.id.camelcase}".id
+      namespace = "Rosetta::Locales::RosettaLocalization_Number_Formats".id
+      prefix = "#{namespace}_#{format.id.camelcase}".id
     %}
 
     Rosetta::LocalizedNumber.new(
-      separator: {{prefix}}::SeparatorTranslation.new.to_s,
-      delimiter: {{prefix}}::DelimiterTranslation.new.to_s,
-      decimal_places: {{prefix}}::DecimalPlacesTranslation.new.to_s.to_i,
-      group: {{prefix}}::GroupTranslation.new.to_s.to_i,
-      only_significant: {{prefix}}::OnlySignificantTranslation.new.to_s == "true"
+      separator: {{prefix}}_SeparatorTranslation.new.to_s,
+      delimiter: {{prefix}}_DelimiterTranslation.new.to_s,
+      decimal_places: {{prefix}}_DecimalPlacesTranslation.new.to_s.to_i,
+      group: {{prefix}}_GroupTranslation.new.to_s.to_i,
+      only_significant: {{prefix}}_OnlySignificantTranslation.new.to_s == "true"
     )
   end
 
@@ -88,9 +88,9 @@ module Rosetta
                   localized_month_name(time.to_s("%B")).to_s
                 when "%p", "%P"
                   t = if time.hour < 12
-                        {{namespace}}::Time::AmTranslation.new.to_s
+                        {{namespace}}_Time_AmTranslation.new.to_s
                       else
-                        {{namespace}}::Time::PmTranslation.new.to_s
+                        {{namespace}}_Time_PmTranslation.new.to_s
                       end
                   match == "%P" ? t.downcase : t.upcase
                 else
@@ -106,7 +106,7 @@ module Rosetta
       case day_name
       {% for name in Time::Format::DAY_NAMES %}
         when {{name}}
-          {{namespace}}::Date::DayNames::{{name.id}}Translation.new.to_s
+          {{namespace}}_Date_DayNames_{{name.id}}Translation.new.to_s
       {% end %}
       else
         raise "Unknown day name #{day_name}"
@@ -118,7 +118,7 @@ module Rosetta
       case day_name
       {% for name in Time::Format::DAY_NAMES %}
         when {{name}}
-          {{namespace}}::Date::AbbrDayNames::{{name.id}}Translation.new.to_s
+          {{namespace}}_Date_AbbrDayNames_{{name.id}}Translation.new.to_s
       {% end %}
       else
         raise "Unknown abbreviated day name #{day_name}"
@@ -130,7 +130,7 @@ module Rosetta
       case month_name
       {% for name in Time::Format::MONTH_NAMES %}
         when {{name}}
-          {{namespace}}::Date::MonthNames::{{name.id}}Translation.new.to_s
+          {{namespace}}_Date_MonthNames_{{name.id}}Translation.new.to_s
       {% end %}
       else
         raise "Unknown month name #{month_name}"
@@ -142,7 +142,7 @@ module Rosetta
       case month_name
       {% for name in Time::Format::MONTH_NAMES %}
         when {{name}}
-          {{namespace}}::Date::AbbrMonthNames::{{name.id}}Translation.new.to_s
+          {{namespace}}_Date_AbbrMonthNames_{{name.id}}Translation.new.to_s
       {% end %}
       else
         raise "Unknown abbreviated month name #{month_name}"
@@ -174,28 +174,29 @@ module Rosetta
   # LocalizedNumber is similar to a Translation object; it implements a similar
   # interface but its sole purpose is to localize numeric objects.
   class LocalizedNumber
-    getter separator
-    getter delimiter
-    getter decimal_places
-    getter group
-    getter only_significant
-
     def initialize(
-      @separator : String,
-      @delimiter : String,
+      @separator : String | Char,
+      @delimiter : String | Char,
       @decimal_places : Int32,
       @group : Int32,
       @only_significant : Bool
     )
     end
 
-    def with(number : Number)
+    def with(
+      number : Number,
+      separator : String | Char = @separator,
+      delimiter : String | Char = @delimiter,
+      decimal_places : Int32 = @decimal_places,
+      group : Int32 = @group,
+      only_significant : Bool = @only_significant
+    )
       number.format(
         separator: separator,
         delimiter: delimiter,
-        decimal_places: decimal_places.to_i,
-        group: group.to_i,
-        only_significant: only_significant == "true"
+        decimal_places: decimal_places,
+        group: group,
+        only_significant: only_significant
       )
     end
   end

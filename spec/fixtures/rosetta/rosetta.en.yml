@@ -65,6 +65,6 @@ en:
         custom:
           delimiter: " "
           separator: "."
-          decimal_places: 1
+          decimal_places: 6
           group: 2
           only_significant: true
