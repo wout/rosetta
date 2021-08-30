@@ -287,14 +287,14 @@ Rosetta.date.with({1991, 9, 17})
 Similar to the `time` macro, a predefined format can be passed:
 
 ```cr
-Rosetta.time(:long).with(Time.local)
+Rosetta.date(:long).with(Time.local)
 # => "August 29, 2021"
 ```
 
-Or a a specific format:
+Or a completely custom format:
 
 ```cr
-Rosetta.time("%Y").with(Time.local)
+Rosetta.date("%Y").with(Time.local)
 # => "2021"
 ```
 
@@ -308,10 +308,17 @@ With a specific predefined format:
 
 ```cr
 Rosetta.number(:custom).with(123_456.789)
-# => "12 34 56.8"
+# => "12 34 56.789"
 ```
 
+Or with specific formatting options:
 
+```cr
+Rosetta.number.with(123_456.789, decimal_places: 6)
+# => "123,456.789000"
+```
+
+🗒️ **Note**: In the background, Rosetta uses Crystal's native `Number#format` method and accepts the same parameters.
 
 ## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.
