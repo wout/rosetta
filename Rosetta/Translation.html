@@ -203,7 +203,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/c3a60e7b9749ee9575d5ee14f3a7d9f0b59169eb/src/rosetta/translation.cr#L17" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L17" target="_blank">
         rosetta/translation.cr
       </a>
     
@@ -243,12 +243,19 @@
       <li class="entry-summary">
         <a href="#to_s-instance-method" class="signature"><strong>#to_s</strong></a>
         
-          <div class="summary"><p>For values with interpolation errors, this will raise a compiler error.</p></div>
+          <div class="summary"><p>For values with interpolation keys, this will raise a compiler error.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#translations-instance-method" class="signature"><strong>#translations</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_hash(values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#with_hash</strong>(values : Hash(String | Symbol, String))</a>
+        
+          <div class="summary"><p>Using a hash is considered unsafe since the content of hashes can't be checked at compile-time.</p></div>
         
       </li>
     
@@ -317,7 +324,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c3a60e7b9749ee9575d5ee14f3a7d9f0b59169eb/src/rosetta/translation.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -338,7 +345,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c3a60e7b9749ee9575d5ee14f3a7d9f0b59169eb/src/rosetta/translation.cr#L38" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L34" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -353,7 +360,7 @@
       
         <div class="doc">
           
-          <p>For values with interpolation errors, this will raise a compiler error.
+          <p>For values with interpolation keys, this will raise a compiler error.
 This is intentionally to ensure no interpolation or localization values
 are missing.</p>
         </div>
@@ -361,7 +368,7 @@ are missing.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c3a60e7b9749ee9575d5ee14f3a7d9f0b59169eb/src/rosetta/translation.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -377,7 +384,29 @@ are missing.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c3a60e7b9749ee9575d5ee14f3a7d9f0b59169eb/src/rosetta/translation.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_hash(values:Hash(String|Symbol,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>with_hash</strong>(values : Hash(String | Symbol, String))
+
+        <a class="method-permalink" href="#with_hash(values:Hash(String%7CSymbol,String))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Using a hash is considered unsafe since the content of hashes can't be
+checked at compile-time. Try to avoid using this method if you can.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/ba4c2912c21fd862301e7462fbaf1de005c73f7d/src/rosetta/translation.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
