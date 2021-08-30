@@ -167,10 +167,10 @@ require you to call the `with` method, or the compiler will complain:
 # user.welcome_message: "Hi %{name}!"
 Rosetta.t("user.welcome_message").to_s
 
-Error: wrong number of arguments for 'Rosetta::Locales::User::WelcomeMessage#with' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#with' (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User::WelcomeMessage#with(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#with(name : String)
 ```
 
 This is to ensure you're not missing any interpolation values.
@@ -246,7 +246,7 @@ end
 ```
 
 ### Localization
-Rosetta supports localization for a time, a date or a number. Localization
+Rosetta supports localization for times, dates and numbers. Localization
 instructions live under a the `rosetta_localization` namespace in the locale
 files. The initializer script will install the required files for you in order
 to be able to work with Rosetta.
@@ -320,6 +320,24 @@ Rosetta.number.with(123_456.789, decimal_places: 6)
 
 🗒️ **Note**: In the background, Rosetta uses Crystal's native `Number#format` method and accepts the same parameters.
 
+### The `Localizable` mixin
+Include this mixin anywhere you want to work with localized dates, times and numbers. Here's an example of its usage:
+
+```cr
+class User
+  include Rosetta::Localizable
+
+  def birthday
+    l_date(:short).with(born_at)
+  end
+end
+
+User.new.birthday
+# => "Feb 20"
+```
+
+Similarly there are the `l_time` and the `l_number` macros.
+
 ## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.
 
@@ -387,12 +405,12 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Interpolation (with %{} tag for interpolation keys)
 - [X] Check existence of interpolation keys in all translations at compile-time
 - [X] Translatable mixin
-- [ ] Implement fallbacks
 - [X] Localization of numeric values
 - [X] Localization of date and time values
-- [ ] Localizable mixin
+- [X] Localizable mixin
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
+- [ ] Implement fallbacks
 
 ## Development
 
