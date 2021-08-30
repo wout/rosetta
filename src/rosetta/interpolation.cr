@@ -3,8 +3,7 @@ module Rosetta
   # tuple.
   def self.interpolate(
     translation : String,
-    # values : Hash(String | Symbol, String | Time) | NamedTuple
-    values : NamedTuple
+    values : Hash(String | Symbol, String | Time) | NamedTuple
   )
     values.each do |key, value|
       translation = if value.is_a?(Time)

@@ -24,9 +24,9 @@ describe Rosetta do
       Rosetta.t("interpolatable.string")
         .with({name: "Kenny", day_name: "kill day"})
         .should eq("Hi Kenny, have a fabulous kill day!")
-      # Rosetta.t("interpolatable.string")
-      #   .with_hash({:name => "Dorothy", "day_name" => "fly day"})
-      #   .should eq("Hi Dorothy, have a fabulous fly day!")
+      Rosetta.t("interpolatable.string")
+        .with_hash({:name => "Dorothy", "day_name" => "fly day"})
+        .should eq("Hi Dorothy, have a fabulous fly day!")
     end
 
     it "localizes a time-formatted translation string" do

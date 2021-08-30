@@ -23,24 +23,22 @@ module Rosetta
       translations[Rosetta.locale]
     end
 
-    # For values with interpolation errors, this will raise a compiler error.
+    # For values with interpolation keys, this will raise a compiler error.
     # This is intentionally to ensure no interpolation or localization values
     # are missing.
     def to_s
       self.with
     end
 
-    # def with
-    #   raw
-    # end
-
     # For Lucky
     def to_s(io)
       io.puts to_s
     end
 
-    # def with_hash(values : Hash(String | Symbol, String))
-    #   Rosetta.interpolate(raw, values)
-    # end
+    # Using a hash is considered unsafe since the content of hashes can't be
+    # checked at compile-time. Try to avoid using this method if you can.
+    def with_hash(values : Hash(String | Symbol, String))
+      Rosetta.interpolate(raw, values)
+    end
   end
 end
