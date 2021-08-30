@@ -345,10 +345,10 @@ require you to call the <code>with</code> method, or the compiler will complain:
 <pre><code class="language-crystal"># user.welcome_message: "Hi %{name}!"
 Rosetta.t("user.welcome_message").to_s
 
-Error: wrong number of arguments for 'Rosetta::Locales::User::WelcomeMessage#with' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#with' (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User::WelcomeMessage#with(name : String)</code></pre>
+ - Rosetta::Locales::User_WelcomeMessage#with(name : String)</code></pre>
 
 <p>This is to ensure you're not missing any interpolation values.</p>
 
@@ -423,7 +423,7 @@ method:</p>
   </svg>
 </a>Localization</h3>
 
-<p>Rosetta supports localization for a time, a date or a number. Localization
+<p>Rosetta supports localization for times, dates and numbers. Localization
 instructions live under a the <code>rosetta_localization</code> namespace in the locale
 files. The initializer script will install the required files for you in order
 to be able to work with Rosetta.</p>
@@ -491,6 +491,27 @@ to be able to work with Rosetta.</p>
 <span class="c"># =&gt; &quot;123,456.789000&quot;</span></code></pre>
 
 <p>🗒️ <strong>Note</strong>: In the background, Rosetta uses Crystal's native <code>Number#format</code> method and accepts the same parameters.</p>
+
+<h3><a id="the-localizable-mixin" class="anchor" href="#the-localizable-mixin">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>The <code>Localizable</code> mixin</h3>
+
+<p>Include this mixin anywhere you want to work with localized dates, times and numbers. Here's an example of its usage:</p>
+
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Localizable</span>
+
+  <span class="k">def</span> <span class="m">birthday</span>
+    l_date(<span class="n">:short</span>).<span class="k">with</span>(born_at)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">User</span>.<span class="k">new</span>.birthday
+<span class="c"># =&gt; &quot;Feb 20&quot;</span></code></pre>
+
+<p>Similarly there are the <code>l_time</code> and the <code>l_number</code> macros.</p>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">
@@ -572,7 +593,7 @@ If not, an error similar to the following will be raised:</p>
   </svg>
 </a>To-do</h2>
 
-<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[X] Check existence of interpolation keys in all translations at compile-time</li><li>[X] Translatable mixin</li><li>[ ] Implement fallbacks</li><li>[X] Localization of numeric values</li><li>[X] Localization of date and time values</li><li>[ ] Localizable mixin</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li></ul>
+<ul><li>[X] Add specs for the existing code</li><li>[X] Make settings accessible to the compiler</li><li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li><li>[X] Implement key comparison between available locales in the parser</li><li>[X] Add compiler error messages for mismatching keys</li><li>[X] Implement inferred locale keys at macro level</li><li>[X] Interpolation (with %{} tag for interpolation keys)</li><li>[X] Check existence of interpolation keys in all translations at compile-time</li><li>[X] Translatable mixin</li><li>[X] Localization of numeric values</li><li>[X] Localization of date and time values</li><li>[X] Localizable mixin</li><li>[ ] Pluralization (with one/many/other/count/... convention)</li><li>[ ] Add setup scripts for Lucky and other frameworks</li><li>[ ] Implement fallbacks</li></ul>
 
 <h2><a id="development" class="anchor" href="#development">
   <svg class="octicon-link" aria-hidden="true">
