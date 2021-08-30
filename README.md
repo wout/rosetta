@@ -153,8 +153,6 @@ Rosetta.t("user.name").to_s
 Interpolations can be passed by using the `with` method on the value returned by
 the `t` macro:
 
-TO-DO: what about passing objects using the with method?
-
 ```cr
 Rosetta.t("user.welcome_message").with(name: "Ary")
 # => "Hi Ary!"
@@ -174,6 +172,17 @@ Overloads are:
 ```
 
 This is to ensure you're not missing any interpolation values.
+
+The `with` method does not accept hashes, only arguments or a `NamedTuple`. For
+situations where you have to use a hash, there's the `with_hash` method:
+
+```cr
+Rosetta.t("user.welcome_message").with_hash({ :name => "Beta" })
+# => "Hi Beta!"
+```
+
+However, this method is considered unsafe because the content of hashes can't be
+checked at compile-time. Only use it when there's no other way.
 
 ### The `Translatable` mixin
 This mixin makes it more convenient to work with translated values in your
