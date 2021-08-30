@@ -19,7 +19,7 @@ module Rosetta
 
     abstract def translations
 
-    def raw : String | Array(String)
+    def raw : String
       translations[Rosetta.locale]
     end
 
