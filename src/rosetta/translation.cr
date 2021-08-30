@@ -23,13 +23,6 @@ module Rosetta
       translations[Rosetta.locale]
     end
 
-    # For values with interpolation keys, this will raise a compiler error.
-    # This is intentionally to ensure no interpolation or localization values
-    # are missing.
-    def to_s
-      self.with
-    end
-
     # For Lucky
     def to_s(io)
       io.puts to_s

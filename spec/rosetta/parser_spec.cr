@@ -38,6 +38,13 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           class Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}
+            def to_s
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
+
+                Rosetta.t("interpolatable.string").with(name : String, day_name : String)
+              ERROR
+            end
             def with(name : String, day_name : String)
               Rosetta.interpolate(raw, {name: name, day_name: day_name})
             end
@@ -52,6 +59,13 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           class Localizable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", "nl" => "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
+            def to_s
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
+
+                Rosetta.t("localizable.string").with(first_name : String, time : Time)
+              ERROR
+            end
             def with(first_name : String, time : Time)
               Rosetta.interpolate(raw, {first_name: first_name, time: time})
             end

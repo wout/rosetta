@@ -62,9 +62,17 @@ module Rosetta
       args = i12n_keys.map { |k| [k, "String"] }
       args << ["time", "Time"] unless l10n_keys.empty?
       args_tuple = args.map { |k| "#{k[0]}: #{k[0]}" }.join(", ")
+      with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
-            def with(#{args.map(&.join(" : ")).join(", ")})
+            def to_s
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
+
+                Rosetta.t("#{key}").with(#{with_args})
+              ERROR
+            end
+            def with(#{with_args})
               Rosetta.interpolate(raw, {#{args_tuple}})
             end
             def with(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
