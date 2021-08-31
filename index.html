@@ -206,7 +206,7 @@ for use.</strong></p>
 
 <span class="k">class</span> <span class="t">Hello</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
   <span class="k">def</span> <span class="m">content</span>
-    h1 t(<span class="s">&quot;welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
+    h1 r(<span class="s">&quot;welcome_message&quot;</span>).t(name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
@@ -312,18 +312,32 @@ YAML file, YAML will take precedence.</p>
   </svg>
 </a>Lookup</h3>
 
-<p>Looking up translations is done with the <code>t</code> macro:</p>
+<p>Looking up translations is done with the <code>find</code> macro:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.name&quot;</span>)</code></pre>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>)</code></pre>
 
-<p><strong>Note</strong>: the return value of the <code>t</code> macro needs to be converted to a string.
-If you're using Lucky, you're in luck (pun intended). The returned object
-includes the <code><a href="Lucky/AllowedInTags.html">Lucky::AllowedInTags</a></code> module, so there's no need to call <code>to_s</code>.
-But in a context where <code>to_s</code> isn't called, you'll need to take care of that
-yourself:</p>
+<p>This will return a struct containing all the translation data for the given key.
+To get the translation for the currently selected locale, call the <code>t</code>method:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.name&quot;</span>).to_s
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).t
 <span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
+
+<p>Optionally, you can also call <code>to_s</code> or use the struct with string
+interpolation:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).to_s
+<span class="c"># =&gt; &quot;User name&quot;</span>
+
+<span class="s">&quot;</span><span class="i">#{</span><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>)<span class="i">}</span><span class="s">&quot;</span>
+<span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
+
+<p>The translation struct also includes the <code><a href="Lucky/AllowedInTags.html">Lucky::AllowedInTags</a></code> module, so it works with Lucky templates as well, even without having to call <code>t</code>:</p>
+
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Products</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
+  <span class="k">def</span> <span class="m">content</span>
+    h1 <span class="t">Rosetta</span>.find(<span class="s">&quot;.heading&quot;</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
 
 <h3><a id="interpolations" class="anchor" href="#interpolations">
   <svg class="octicon-link" aria-hidden="true">
@@ -331,33 +345,35 @@ yourself:</p>
   </svg>
 </a>Interpolations</h3>
 
-<p>Interpolations can be passed by using the <code>with</code> method on the value returned by
-the <code>t</code> macro:</p>
+<p>Interpolations can be passed as arguments for the <code>t</code> method:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Ary&quot;</span>)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).t(name: <span class="s">&quot;Ary&quot;</span>)
 <span class="c"># =&gt; &quot;Hi Ary!&quot;</span></code></pre>
 
 <p>Important to know here is that translations with interpolation keys will always
-require you to call the <code>with</code> method, or the compiler will complain:</p>
+require you to call the <code>t</code> method with the right number of interpolation keys,
+or the compiler will complain:</p>
 
 <pre><code class="language-crystal"># user.welcome_message: "Hi %{name}!"
-Rosetta.t("user.welcome_message").to_s
+Rosetta.find("user.welcome_message").t
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#with' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t' (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User_WelcomeMessage#with(name : String)</code></pre>
+ - Rosetta::Locales::User_WelcomeMessage#t(name : String)</code></pre>
 
 <p>This is to ensure you're not missing any interpolation values.</p>
 
-<p>The <code>with</code> method does not accept hashes, only arguments or a <code>NamedTuple</code>. For
-situations where you have to use a hash, there's the <code>with_hash</code> method:</p>
+<p>One final note on interpolations. The <code>t</code> method does not accept hashes, only
+arguments or a <code>NamedTuple</code>. For situations where you have to use a hash,
+there's the <code>t_hash</code> method:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.t(<span class="s">&quot;user.welcome_message&quot;</span>).with_hash({ <span class="n">:name</span> => <span class="s">&quot;Beta&quot;</span> })
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).t_hash({ <span class="n">:name</span> => <span class="s">&quot;Beta&quot;</span> })
 <span class="c"># =&gt; &quot;Hi Beta!&quot;</span></code></pre>
 
 <p>However, this method is considered unsafe because the content of hashes can't be
-checked at compile-time. Only use it when there's no other way.</p>
+checked at compile-time. Only use it when there's no other way, and use it with
+care.</p>
 
 <h3><a id="the-translatable-mixin" class="anchor" href="#the-translatable-mixin">
   <svg class="octicon-link" aria-hidden="true">
@@ -374,11 +390,11 @@ classes. Here's an example of its usage:</p>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t(<span class="s">&quot;user.name_label&quot;</span>)
+    r(<span class="s">&quot;user.name_label&quot;</span>).t
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="t">User</span>.<span class="k">new</span>.name_label.to_s
+<span class="t">User</span>.<span class="k">new</span>.name_label
 <span class="c"># =&gt; &quot;Nombre&quot;</span></code></pre>
 
 <p>Inferred locale keys make it even more concise. By omitting the prefix of the
@@ -389,7 +405,7 @@ derived from the current class name:</p>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;user.name_label&quot;</span>
+    r(<span class="s">&quot;.name_label&quot;</span>).t <span class="c"># =&gt; resolves to &quot;user.name_label&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
@@ -409,20 +425,22 @@ constant can be used:</p>
   <span class="t">ROSETTA_PREFIX</span> <span class="o">=</span> <span class="s">&quot;guest&quot;</span>
 
   <span class="k">def</span> <span class="m">name_label</span>
-    t(<span class="s">&quot;.name_label&quot;</span>) <span class="c"># =&gt; resolves to &quot;guest.name_label&quot;</span>
+    r(<span class="s">&quot;.name_label&quot;</span>).t <span class="c"># =&gt; resolves to &quot;guest.name_label&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 
-<p>Just like the global <code>t</code> marco, interpolations are passed using the <code>with</code>
-method:</p>
+<p>Just like the global <code>Rosetta.find</code> marco, interpolations are passed using the
+<code>t</code> method:</p>
 
 <pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
 
   <span class="k">def</span> <span class="m">welcome_message</span>
-    t(<span class="s">&quot;.welcome_message&quot;</span>).<span class="k">with</span>(name: <span class="s">&quot;Ary&quot;</span>)
+    r(<span class="s">&quot;.welcome_message&quot;</span>).t(name: <span class="s">&quot;Ary&quot;</span>)
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
+
+<p>So the <code>r</code> macro retrieves all the translations for a given key at compile-time. Then the <code>t</code> method translates the value at runtime.P</p>
 
 <h3><a id="localization" class="anchor" href="#localization">
   <svg class="octicon-link" aria-hidden="true">
@@ -441,17 +459,20 @@ to be able to work with Rosetta.</p>
   </svg>
 </a>Localized time</h4>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.time.<span class="k">with</span>(<span class="t">Time</span>.local)
+<p>Similar to translations, localization formats are retrieved at compile-time and 
+localized at runtime.</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time.l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;Sun, 29 Aug 2021 18:30:57 +0200&quot;</span></code></pre>
 
 <p>This will use the <code>:default</code> format to convert the given <code>Time</code> object. Another predefined format can be passed:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:short</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:short</span>).l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;29 Aug 18:30&quot;</span></code></pre>
 
 <p>For specific formats, a string can be passed as well:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%H:%M:%S&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%H:%M:%S&quot;</span>).l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;18:30:57&quot;</span></code></pre>
 
 <h4><a id="localized-date" class="anchor" href="#localized-date">
@@ -460,22 +481,22 @@ to be able to work with Rosetta.</p>
   </svg>
 </a>Localized date</h4>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;2021-08-29&quot;</span></code></pre>
 
 <p>Or with a date-formatted tuple:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.<span class="k">with</span>({<span class="n">1991</span>, <span class="n">9</span>, <span class="n">17</span>})
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.l({<span class="n">1991</span>, <span class="n">9</span>, <span class="n">17</span>})
 <span class="c"># =&gt; &quot;1991-09-17&quot;</span></code></pre>
 
 <p>Similar to the <code>time</code> macro, a predefined format can be passed:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="n">:long</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="n">:long</span>).l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;August 29, 2021&quot;</span></code></pre>
 
 <p>Or a completely custom format:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="s">&quot;%Y&quot;</span>).<span class="k">with</span>(<span class="t">Time</span>.local)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="s">&quot;%Y&quot;</span>).l(<span class="t">Time</span>.local)
 <span class="c"># =&gt; &quot;2021&quot;</span></code></pre>
 
 <h4><a id="localized-number" class="anchor" href="#localized-number">
@@ -484,17 +505,19 @@ to be able to work with Rosetta.</p>
   </svg>
 </a>Localized number</h4>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.<span class="k">with</span>(<span class="n">123_456.789</span>)
+<p>Number formats work the same as date and time formats.</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.l(<span class="n">123_456.789</span>)
 <span class="c"># =&gt; &quot;123,456.79&quot;</span></code></pre>
 
 <p>With a specific predefined format:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.number(<span class="n">:custom</span>).<span class="k">with</span>(<span class="n">123_456.789</span>)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number(<span class="n">:custom</span>).l(<span class="n">123_456.789</span>)
 <span class="c"># =&gt; &quot;12 34 56.789&quot;</span></code></pre>
 
 <p>Or with specific formatting options:</p>
 
-<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.<span class="k">with</span>(<span class="n">123_456.789</span>, decimal_places: <span class="n">6</span>)
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.l(<span class="n">123_456.789</span>, decimal_places: <span class="n">6</span>)
 <span class="c"># =&gt; &quot;123,456.789000&quot;</span></code></pre>
 
 <p>🗒️ <strong>Note</strong>: In the background, Rosetta uses Crystal's native <code>Number#format</code> method and accepts the same parameters.</p>
@@ -511,14 +534,15 @@ to be able to work with Rosetta.</p>
   <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Localizable</span>
 
   <span class="k">def</span> <span class="m">birthday</span>
-    l_date(<span class="n">:short</span>).<span class="k">with</span>(born_at)
+    r_date(<span class="n">:short</span>).l(born_at)
   <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="t">User</span>.<span class="k">new</span>.birthday
 <span class="c"># =&gt; &quot;Feb 20&quot;</span></code></pre>
 
-<p>Similarly there are the <code>l_time</code> and the <code>l_number</code> macros.</p>
+<p>Similarly there are the <code>r_time</code> and the <code>r_number</code> macros for retrieval,
+returning a struct which accepts the <code>l</code> method for localization.</p>
 
 <h2><a id="parser-checks" class="anchor" href="#parser-checks">
   <svg class="octicon-link" aria-hidden="true">

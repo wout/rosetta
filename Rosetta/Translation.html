@@ -145,12 +145,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Rosetta::Translation
+  <span class="kind">abstract struct</span> Rosetta::Translation
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/Translation.html">Rosetta::Translation</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/Translation.html">Rosetta::Translation</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
@@ -164,7 +164,7 @@
     Overview
   </h2>
 
-  <p>Base class for translation values</p>
+  <p>Base struct for translation values</p>
 
 
 
@@ -203,7 +203,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/c7f51a3a06c391daf1ca756a8e5fb9117902eae6/src/rosetta/translation.cr#L17" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L18" target="_blank">
         rosetta/translation.cr
       </a>
     
@@ -213,6 +213,23 @@
 
 
 
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -234,6 +251,18 @@
       </li>
     
       <li class="entry-summary">
+        <a href="#t-instance-method" class="signature"><strong>#t</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#t_hash</strong>(values : Hash(String | Symbol, String))</a>
+        
+          <div class="summary"><p>Using a hash for interpolation is considered unsafe since the content of hashes can't be checked at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
         
           <div class="summary"><p>For Lucky</p></div>
@@ -241,14 +270,14 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#translations-instance-method" class="signature"><strong>#translations</strong></a>
+        <a href="#to_s-instance-method" class="signature"><strong>#to_s</strong></a>
+        
+          <div class="summary"><p>Returns a string representation of this object.</p></div>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#with_hash(values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#with_hash</strong>(values : Hash(String | Symbol, String))</a>
-        
-          <div class="summary"><p>Using a hash is considered unsafe since the content of hashes can't be checked at compile-time.</p></div>
+        <a href="#translations-instance-method" class="signature"><strong>#translations</strong></a>
         
       </li>
     
@@ -290,8 +319,44 @@
 
 
   
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L18" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -317,7 +382,46 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c7f51a3a06c391daf1ca756a8e5fb9117902eae6/src/rosetta/translation.cr#L22" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="t-instance-method">
+      <div class="signature">
+        abstract 
+        def <strong>t</strong>
+
+        <a class="method-permalink" href="#t-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L22" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="t_hash(values:Hash(String|Symbol,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>t_hash</strong>(values : Hash(String | Symbol, String))
+
+        <a class="method-permalink" href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Using a hash for interpolation is considered unsafe since the content of
+hashes can't be checked at compile-time. Try to avoid using this method if
+you can.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -338,7 +442,36 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c7f51a3a06c391daf1ca756a8e5fb9117902eae6/src/rosetta/translation.cr#L27" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L29" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>
+
+        <a class="method-permalink" href="#to_s-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+            <div class="doc-inherited">
+              Description copied from class Object
+            </div>
+          
+          <p>Returns a string representation of this object.</p>
+
+<p>Descendants must usually <strong>not</strong> override this method. Instead,
+they must override <code><a href="../Rosetta/Translation.html#to_s(io)-instance-method">#to_s(io)</a></code>, which must append to the given
+IO object.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L33" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -354,29 +487,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/c7f51a3a06c391daf1ca756a8e5fb9117902eae6/src/rosetta/translation.cr#L20" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="with_hash(values:Hash(String|Symbol,String))-instance-method">
-      <div class="signature">
-        
-        def <strong>with_hash</strong>(values : Hash(String | Symbol, String))
-
-        <a class="method-permalink" href="#with_hash(values:Hash(String%7CSymbol,String))-instance-method">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Using a hash is considered unsafe since the content of hashes can't be
-checked at compile-time. Try to avoid using this method if you can.</p>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/c7f51a3a06c391daf1ca756a8e5fb9117902eae6/src/rosetta/translation.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/5639a42c2491a9a039e5211880813f83be3b3782/src/rosetta/translation.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
