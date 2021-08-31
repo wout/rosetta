@@ -2,8 +2,8 @@ require "spec"
 require "../src/rosetta"
 
 module Rosetta
-  DEFAULT_LOCALE    = "en"
-  AVAILABLE_LOCALES = %w[en nl]
+  DEFAULT_LOCALE    = :en
+  AVAILABLE_LOCALES = %i[en nl]
 end
 
 Rosetta::Backend.load("spec/fixtures/rosetta")

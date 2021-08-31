@@ -23,7 +23,7 @@ describe Rosetta::Parser do
     it "builds a struct for translations without interpolations" do
       make_parser.parse!.should contain <<-MODULE
           struct TitleTranslation < Rosetta::Translation
-            getter translations = {"en" => "Title", "nl" => "Titel"}
+            getter translations = {en: "Title", nl: "Titel"}
             def t
               raw
             end
@@ -34,7 +34,7 @@ describe Rosetta::Parser do
     it "builds a struct for translations with interpolations" do
       make_parser.parse!.should contain <<-MODULE
           struct Interpolatable_StringTranslation < Rosetta::Translation
-            getter translations = {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}
+            getter translations = {en: "Hi %{name}, have a fabulous %{day_name}!", nl: "Hey %{name}, maak er een geweldige %{day_name} van!"}
             def t
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
@@ -55,7 +55,7 @@ describe Rosetta::Parser do
     it "builds a struct for translations with localizations" do
       make_parser.parse!.should contain <<-MODULE
           struct Localizable_StringTranslation < Rosetta::Translation
-            getter translations = {"en" => "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", "nl" => "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
+            getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
             def t
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
@@ -74,7 +74,7 @@ describe Rosetta::Parser do
     end
 
     it "returns an error when a complete locale is missing" do
-      output = make_parser(available_locales: %w[en fr nl]).parse!
+      output = make_parser(available_locales: %i[en fr nl]).parse!
 
       output.should eq <<-ERROR
       Expected to find translations for:

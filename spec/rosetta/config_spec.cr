@@ -5,7 +5,7 @@ describe Rosetta::Config do
     it "it returns the default locale if none is set yet" do
       config = Rosetta::Config.new
 
-      config.locale.should eq(Rosetta.default_locale)
+      config.locale.should eq(Rosetta.default_locale.to_s)
     end
   end
 
@@ -17,6 +17,14 @@ describe Rosetta::Config do
       config.locale.should eq("nl")
       config.locale = "pt"
       config.locale.should eq("en")
+    end
+
+    it "accepts symbols" do
+      config = Rosetta::Config.new
+
+      config.locale.should eq("en")
+      config.locale = :nl
+      config.locale.should eq("nl")
     end
   end
 end

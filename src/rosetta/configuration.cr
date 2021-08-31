@@ -21,7 +21,7 @@ module Rosetta
 
   # Sets the current locale at runtime using the config instance stored in the
   # current fiber.
-  def self.locale=(locale : String)
+  def self.locale=(locale : String | Symbol)
     config.locale = locale
   end
 

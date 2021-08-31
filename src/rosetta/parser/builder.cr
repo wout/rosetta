@@ -28,16 +28,25 @@ module Rosetta
     # Build a dedicated struct for a given translation key.
     private def build_struct(
       key : String,
-      translation : Translations
+      translations : Translations
     )
       class_name = key.split('.').map(&.camelcase).join('_')
 
       <<-CLASS
           struct #{class_name}Translation < Rosetta::Translation
-            getter translations = #{translation}
-      #{build_struct_methods(key, translation)}
+            getter translations = #{build_translations_tuple(translations)}
+      #{build_struct_methods(key, translations)}
           end
       CLASS
+    end
+
+    # Build a tuple with translation values.
+    private def build_translations_tuple(translations : Translations)
+      pairs = translations.each_with_object([] of String) do |(k, t), s|
+        s << %(#{k}: "#{t}")
+      end
+
+      "{#{pairs.join(", ")}}"
     end
 
     # Build the struct methods for the given interpolation and localization

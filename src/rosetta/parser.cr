@@ -18,10 +18,12 @@ module Rosetta
 
     def initialize(
       @path : String,
-      @default_locale : String,
-      @available_locales : Array(String)
+      default_locale : String | Symbol,
+      available_locales : Array(String | Symbol)
     )
-      @alternative_locales = available_locales - [default_locale]
+      @default_locale = default_locale.to_s
+      @available_locales = available_locales.map(&.to_s)
+      @alternative_locales = @available_locales - [@default_locale]
     end
 
     # Returns a list of self-containing translation modules.
