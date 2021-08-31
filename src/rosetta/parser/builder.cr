@@ -12,36 +12,37 @@ module Rosetta
       module Rosetta
         module Locales
           KEYS = %w[#{translations.keys.join(' ')}]
-      #{build_classes(translations).join("\n")}
+      #{build_structs(translations).join("\n")}
         end
       end
       MODULE
     end
 
-    # Build a translation class for every single key.
-    private def build_classes(translations : TranslationsHash)
-      translations.each_with_object([] of String) do |(key, translation), classes|
-        classes << build_class(key, translation)
+    # Build a translation struct for every single key.
+    private def build_structs(translations : TranslationsHash)
+      translations.each_with_object([] of String) do |(k, t), s|
+        s << build_struct(k, t)
       end
     end
 
-    # Build a dedicated class for a given translation key.
-    private def build_class(
+    # Build a dedicated struct for a given translation key.
+    private def build_struct(
       key : String,
       translation : Translations
     )
       class_name = key.split('.').map(&.camelcase).join('_')
 
       <<-CLASS
-          class #{class_name}Translation < Rosetta::Translation
+          struct #{class_name}Translation < Rosetta::Translation
             getter translations = #{translation}
-      #{build_class_methods(key, translation)}
+      #{build_struct_methods(key, translation)}
           end
       CLASS
     end
 
-    # Build the class methods for the given interpolation and localization keys.
-    private def build_class_methods(
+    # Build the struct methods for the given interpolation and localization
+    # keys.
+    private def build_struct_methods(
       key : String,
       translation : Translations
     )
@@ -50,10 +51,7 @@ module Rosetta
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
-              def to_s
-                raw
-              end
-              def with
+              def t
                 raw
               end
         METHODS
@@ -65,18 +63,18 @@ module Rosetta
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
-            def to_s
+            def t
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
 
-                Rosetta.t("#{key}").with(#{with_args})
+                Rosetta.find("#{key}").t(#{with_args})
               ERROR
             end
-            def with(#{with_args})
+            def t(#{with_args})
               Rosetta.interpolate(raw, {#{args_tuple}})
             end
-            def with(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
-              self.with(**values)
+            def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
+              self.t(**values)
             end
       METHODS
     end

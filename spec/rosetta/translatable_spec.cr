@@ -20,12 +20,12 @@ describe TranslatableTestObject do
     end
   end
 
-  # describe "#welcome_message_with_hash" do
-  #   it "accepts interpolation messages" do
-  #     test_object.welcome_message_with_hash
-  #       .should eq("Hi Willy, have a fabulous Wonka day!")
-  #   end
-  # end
+  describe "#welcome_message_with_hash" do
+    it "accepts interpolation messages" do
+      test_object.welcome_message_with_hash
+        .should eq("Hi Willy, have a fabulous Wonka day!")
+    end
+  end
 end
 
 describe TranslatableTestObjectWithRosettaPrefix do
@@ -41,25 +41,25 @@ class TranslatableTestObject
   include Rosetta::Translatable
 
   def first_name
-    t("user.first_name").to_s
+    r("user.first_name").to_s
   end
 
   def name_with_inferrence
-    t(".inferred_name").to_s
+    r(".inferred_name").to_s
   end
 
   def welcome_message_with_arguments
-    t("interpolatable.string").with(
+    r("interpolatable.string").t(
       name: "#{first_name}",
       day_name: "whenever day"
     )
   end
 
-  # def welcome_message_with_hash
-  #   interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
+  def welcome_message_with_hash
+    interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
 
-  #   t("interpolatable.string").with_hash(interpolation_values)
-  # end
+    r("interpolatable.string").t_hash(interpolation_values)
+  end
 end
 
 class TranslatableTestObjectWithRosettaPrefix
@@ -68,7 +68,7 @@ class TranslatableTestObjectWithRosettaPrefix
   ROSETTA_PREFIX = "fixed.prefix"
 
   def name
-    t(".name").to_s
+    r(".name").to_s
   end
 end
 

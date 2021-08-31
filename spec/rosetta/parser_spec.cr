@@ -20,57 +20,54 @@ describe Rosetta::Parser do
   end
 
   describe "#parse!" do
-    it "builds a class for translations without interpolations" do
+    it "builds a struct for translations without interpolations" do
       make_parser.parse!.should contain <<-MODULE
-          class TitleTranslation < Rosetta::Translation
+          struct TitleTranslation < Rosetta::Translation
             getter translations = {"en" => "Title", "nl" => "Titel"}
-            def to_s
-              raw
-            end
-            def with
+            def t
               raw
             end
           end
       MODULE
     end
 
-    it "builds a class for translations with interpolations" do
+    it "builds a struct for translations with interpolations" do
       make_parser.parse!.should contain <<-MODULE
-          class Interpolatable_StringTranslation < Rosetta::Translation
+          struct Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "Hi %{name}, have a fabulous %{day_name}!", "nl" => "Hey %{name}, maak er een geweldige %{day_name} van!"}
-            def to_s
+            def t
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
 
-                Rosetta.t("interpolatable.string").with(name : String, day_name : String)
+                Rosetta.find("interpolatable.string").t(name : String, day_name : String)
               ERROR
             end
-            def with(name : String, day_name : String)
+            def t(name : String, day_name : String)
               Rosetta.interpolate(raw, {name: name, day_name: day_name})
             end
-            def with(values : NamedTuple(name: String, day_name: String))
-              self.with(**values)
+            def t(values : NamedTuple(name: String, day_name: String))
+              self.t(**values)
             end
           end
       MODULE
     end
 
-    it "builds a class for translations with localizations" do
+    it "builds a struct for translations with localizations" do
       make_parser.parse!.should contain <<-MODULE
-          class Localizable_StringTranslation < Rosetta::Translation
+          struct Localizable_StringTranslation < Rosetta::Translation
             getter translations = {"en" => "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", "nl" => "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
-            def to_s
+            def t
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
 
-                Rosetta.t("localizable.string").with(first_name : String, time : Time)
+                Rosetta.find("localizable.string").t(first_name : String, time : Time)
               ERROR
             end
-            def with(first_name : String, time : Time)
+            def t(first_name : String, time : Time)
               Rosetta.interpolate(raw, {first_name: first_name, time: time})
             end
-            def with(values : NamedTuple(first_name: String, time: Time))
-              self.with(**values)
+            def t(values : NamedTuple(first_name: String, time: Time))
+              self.t(**values)
             end
           end
       MODULE

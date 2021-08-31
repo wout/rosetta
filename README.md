@@ -56,7 +56,7 @@ Rosetta.locale = "es"
 
 class Hello::ShowPage < MainLayout
   def content
-    h1 t("welcome_message").with(name: "Brian") # => "¡Hola Brian!"
+    h1 r("welcome_message").t(name: "Brian") # => "¡Hola Brian!"
   end
 end
 ```
@@ -133,56 +133,77 @@ are loaded first, then YAML files. So if you have the same key in a JSON and a
 YAML file, YAML will take precedence.
 
 ### Lookup
-Looking up translations is done with the `t` macro:
+Looking up translations is done with the `find` macro:
 
 ```cr
-Rosetta.t("user.name")
+Rosetta.find("user.name")
 ```
 
-**Note**: the return value of the `t` macro needs to be converted to a string.
-If you're using Lucky, you're in luck (pun intended). The returned object
-includes the `Lucky::AllowedInTags` module, so there's no need to call `to_s`.
-But in a context where `to_s` isn't called, you'll need to take care of that
-yourself:
-```
-Rosetta.t("user.name").to_s
+This will return a struct containing all the translation data for the given key.
+To get the translation for the currently selected locale, call the `t`method:
+
+```cr
+Rosetta.find("user.name").t
 # => "User name"
 ```
 
-### Interpolations
-Interpolations can be passed by using the `with` method on the value returned by
-the `t` macro:
+Optionally, you can also call `to_s` or use the struct with string
+interpolation:
 
 ```cr
-Rosetta.t("user.welcome_message").with(name: "Ary")
+Rosetta.find("user.name").to_s
+# => "User name"
+
+"#{Rosetta.find("user.name")}"
+# => "User name"
+```
+
+The translation struct also includes the `Lucky::AllowedInTags` module, so it works with Lucky templates as well, even without having to call `t`:
+
+```cr
+class Products::ShowPage < MainLayout
+  def content
+    h1 Rosetta.find(".heading")
+  end
+end
+```
+
+### Interpolations
+Interpolations can be passed as arguments for the `t` method:
+
+```cr
+Rosetta.find("user.welcome_message").t(name: "Ary")
 # => "Hi Ary!"
 ```
 
 Important to know here is that translations with interpolation keys will always
-require you to call the `with` method, or the compiler will complain:
+require you to call the `t` method with the right number of interpolation keys,
+or the compiler will complain:
 
 ```cr
 # user.welcome_message: "Hi %{name}!"
-Rosetta.t("user.welcome_message").to_s
+Rosetta.find("user.welcome_message").t
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#with' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t' (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User_WelcomeMessage#with(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#t(name : String)
 ```
 
 This is to ensure you're not missing any interpolation values.
 
-The `with` method does not accept hashes, only arguments or a `NamedTuple`. For
-situations where you have to use a hash, there's the `with_hash` method:
+One final note on interpolations. The `t` method does not accept hashes, only
+arguments or a `NamedTuple`. For situations where you have to use a hash,
+there's the `t_hash` method:
 
 ```cr
-Rosetta.t("user.welcome_message").with_hash({ :name => "Beta" })
+Rosetta.find("user.welcome_message").t_hash({ :name => "Beta" })
 # => "Hi Beta!"
 ```
 
 However, this method is considered unsafe because the content of hashes can't be
-checked at compile-time. Only use it when there's no other way.
+checked at compile-time. Only use it when there's no other way, and use it with
+care.
 
 ### The `Translatable` mixin
 This mixin makes it more convenient to work with translated values in your
@@ -195,11 +216,11 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t("user.name_label")
+    r("user.name_label").t
   end
 end
 
-User.new.name_label.to_s
+User.new.name_label
 # => "Nombre"
 ```
 
@@ -212,7 +233,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t(".name_label") # => resolves to "user.name_label"
+    r(".name_label").t # => resolves to "user.name_label"
   end
 end
 ```
@@ -236,23 +257,25 @@ class User
   ROSETTA_PREFIX = "guest"
 
   def name_label
-    t(".name_label") # => resolves to "guest.name_label"
+    r(".name_label").t # => resolves to "guest.name_label"
   end
 end
 ```
 
-Just like the global `t` marco, interpolations are passed using the `with`
-method:
+Just like the global `Rosetta.find` marco, interpolations are passed using the
+`t` method:
 
 ```cr
 class User
   include Rosetta::Translatable
 
   def welcome_message
-    t(".welcome_message").with(name: "Ary")
+    r(".welcome_message").t(name: "Ary")
   end
 end
 ```
+
+So the `r` macro retrieves all the translations for a given key at compile-time. Then the `t` method translates the value at runtime.P
 
 ### Localization
 Rosetta supports localization for times, dates and numbers. Localization
@@ -261,69 +284,74 @@ files. The initializer script will install the required files for you in order
 to be able to work with Rosetta.
 
 #### Localized time
+Similar to translations, localization formats are retrieved at compile-time and 
+localized at runtime.
+
 ```cr
-Rosetta.time.with(Time.local)
+Rosetta.time.l(Time.local)
 # => "Sun, 29 Aug 2021 18:30:57 +0200"
 ```
 
 This will use the `:default` format to convert the given `Time` object. Another predefined format can be passed:
 
 ```cr
-Rosetta.time(:short).with(Time.local)
+Rosetta.time(:short).l(Time.local)
 # => "29 Aug 18:30"
 ```
 
 For specific formats, a string can be passed as well:
 
 ```cr
-Rosetta.time("%H:%M:%S").with(Time.local)
+Rosetta.time("%H:%M:%S").l(Time.local)
 # => "18:30:57"
 ```
 
 #### Localized date
 ```cr
-Rosetta.date.with(Time.local)
+Rosetta.date.l(Time.local)
 # => "2021-08-29"
 ```
 
 Or with a date-formatted tuple:
 
 ```cr
-Rosetta.date.with({1991, 9, 17})
+Rosetta.date.l({1991, 9, 17})
 # => "1991-09-17"
 ```
 
 Similar to the `time` macro, a predefined format can be passed:
 
 ```cr
-Rosetta.date(:long).with(Time.local)
+Rosetta.date(:long).l(Time.local)
 # => "August 29, 2021"
 ```
 
 Or a completely custom format:
 
 ```cr
-Rosetta.date("%Y").with(Time.local)
+Rosetta.date("%Y").l(Time.local)
 # => "2021"
 ```
 
 #### Localized number
+Number formats work the same as date and time formats.
+
 ```cr
-Rosetta.number.with(123_456.789)
+Rosetta.number.l(123_456.789)
 # => "123,456.79"
 ```
 
 With a specific predefined format:
 
 ```cr
-Rosetta.number(:custom).with(123_456.789)
+Rosetta.number(:custom).l(123_456.789)
 # => "12 34 56.789"
 ```
 
 Or with specific formatting options:
 
 ```cr
-Rosetta.number.with(123_456.789, decimal_places: 6)
+Rosetta.number.l(123_456.789, decimal_places: 6)
 # => "123,456.789000"
 ```
 
@@ -337,7 +365,7 @@ class User
   include Rosetta::Localizable
 
   def birthday
-    l_date(:short).with(born_at)
+    r_date(:short).l(born_at)
   end
 end
 
@@ -345,7 +373,8 @@ User.new.birthday
 # => "Feb 20"
 ```
 
-Similarly there are the `l_time` and the `l_number` macros.
+Similarly there are the `r_time` and the `r_number` macros for retrieval,
+returning a struct which accepts the `l` method for localization.
 
 ## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.

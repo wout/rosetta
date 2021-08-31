@@ -1,11 +1,10 @@
 module Rosetta
   # Include this module in any class where you need to translate many keys.
   module Translatable
-    # Looks up and returns the translation for the given key. If the given key
-    # starts with a ".", a prefix based on the current class name will be used.
-    # Unless the constant ROSETTA_PREFIX is defined, which will then be used
-    # instead.
-    macro t(key)
+    # Retrieves the translation for the given key. If the given key starts with
+    # a ".", a prefix based on the current class name will be used. Unless the
+    # constant ROSETTA_PREFIX is defined, which will then be used instead.
+    macro r(key)
       {%
         if key.starts_with?('.')
           if @type.has_constant?("ROSETTA_PREFIX")
@@ -16,7 +15,7 @@ module Rosetta
         end
       %}
 
-      Rosetta.t({{key}})
+      Rosetta.find({{key}})
     end
   end
 end

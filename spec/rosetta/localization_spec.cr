@@ -30,51 +30,51 @@ describe Rosetta do
 
   describe ".date" do
     it "localizes a date with a time object" do
-      Rosetta.date.with(Time.local(2000, 2, 20)).should eq("2000-02-20")
+      Rosetta.date.l(Time.local(2000, 2, 20)).should eq("2000-02-20")
     end
 
     it "localizes a date with a named tuple" do
-      Rosetta.date.with({2000, 2, 20}).should eq("2000-02-20")
+      Rosetta.date.l({2000, 2, 20}).should eq("2000-02-20")
     end
 
     it "localizes a date according to a given predefined format" do
-      Rosetta.date(:short).with({2000, 2, 20}).should eq("Feb 20")
+      Rosetta.date(:short).l({2000, 2, 20}).should eq("Feb 20")
     end
 
     it "localizes a date according to a given formatted string" do
-      Rosetta.date("%B %Y").with(Time.local(2000, 2, 20))
+      Rosetta.date("%B %Y").l(Time.local(2000, 2, 20))
         .should eq("February 2000")
     end
   end
 
   describe ".time" do
     it "localizes time with a time object" do
-      Rosetta.time.with(Time.local(1984, 6, 7, 8, 9, 10))
+      Rosetta.time.l(Time.local(1984, 6, 7, 8, 9, 10))
         .should eq("Thu, 07 Jun 1984 08:09:10 +0200")
     end
 
     it "localizes time according to a given predefined format" do
-      Rosetta.time(:long).with(Time.local(1984, 6, 7, 8, 9, 10))
+      Rosetta.time(:long).l(Time.local(1984, 6, 7, 8, 9, 10))
         .should eq("June 07, 1984 08:09")
     end
 
     it "localizes time according to a given predefined format" do
-      Rosetta.time("%Y | %H | %m | %S").with(Time.local(1984, 6, 7, 8, 9, 10))
+      Rosetta.time("%Y | %H | %m | %S").l(Time.local(1984, 6, 7, 8, 9, 10))
         .should eq("1984 | 08 | 06 | 10")
     end
   end
 
   describe ".number" do
     it "localizes a number " do
-      Rosetta.number.with(123_456.789).should eq("123,456.79")
+      Rosetta.number.l(123_456.789).should eq("123,456.79")
     end
 
     it "localizes a number according to a given predefined format " do
-      Rosetta.number(:custom).with(123_456.789).should eq("12 34 56.789")
+      Rosetta.number(:custom).l(123_456.789).should eq("12 34 56.789")
     end
 
     it "allows for individual parameters to be overridden" do
-      Rosetta.number(:custom).with(123_456.789, only_significant: false)
+      Rosetta.number(:custom).l(123_456.789, only_significant: false)
         .should eq("12 34 56.789000")
     end
   end

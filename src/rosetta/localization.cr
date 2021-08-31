@@ -2,14 +2,14 @@ module Rosetta
   # Localizes a date, for example:
   #
   # ```
-  # Rosetta.date.with(Time.local)
-  # Rosetta.date.with({2021, 8, 20})
-  # Rosetta.date(:long).with(Time.local)
-  # Rosetta.date("%a, %d %b %Y").with(Time.local.date)
+  # Rosetta.date.t(Time.local)
+  # Rosetta.date.t({2021, 8, 20})
+  # Rosetta.date(:long).t(Time.local)
+  # Rosetta.date("%a, %d %b %Y").t(Time.local.date)
   # ```
   macro date(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.t("rosetta_localization.date.formats.{{format.id}}")
+      format = Rosetta.find("rosetta_localization.date.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}
@@ -20,13 +20,13 @@ module Rosetta
   # Localizes time, for example:
   #
   # ```
-  # Rosetta.time.with(Time.local)
-  # Rosetta.time(:short).with(Time.local)
-  # Rosetta.time("%d %b %Y %H:%M:%S").with(Time.local)
+  # Rosetta.time.t(Time.local)
+  # Rosetta.time(:short).t(Time.local)
+  # Rosetta.time("%d %b %Y %H:%M:%S").t(Time.local)
   # ```
   macro time(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.t("rosetta_localization.time.formats.{{format.id}}")
+      format = Rosetta.find("rosetta_localization.time.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}
@@ -37,8 +37,8 @@ module Rosetta
   # Localizes a numeric value, for example:
   #
   # ```
-  # Rosetta.number.with(123_456.789)
-  # Rosetta.number(:custom).with(123_456.789)
+  # Rosetta.number.t(123_456.789)
+  # Rosetta.number(:custom).t(123_456.789)
   # ```
   macro number(format = :default)
     {%
@@ -162,11 +162,11 @@ module Rosetta
     def initialize(@format : String)
     end
 
-    def with(time : Time)
+    def l(time : Time)
       Rosetta.localize(format, time)
     end
 
-    def with(date : Tuple(Int32, Int32, Int32))
+    def l(date : Tuple(Int32, Int32, Int32))
       Rosetta.localize(format, Time.local(*date))
     end
   end
@@ -183,7 +183,7 @@ module Rosetta
     )
     end
 
-    def with(
+    def l(
       number : Number,
       separator : String | Char = @separator,
       delimiter : String | Char = @delimiter,
