@@ -52,7 +52,7 @@ include Rosetta::Translatable
 6. Localize your app
 
 ```cr
-Rosetta.locale = "es"
+Rosetta.locale = :es
 
 class Hello::ShowPage < MainLayout
   def content
@@ -71,8 +71,8 @@ An initializer has the following content:
 require "rosetta"
 
 module Rosetta
-  DEFAULT_LOCALE = "en"
-  AVAILABLE_LOCALES = %w[en]
+  DEFAULT_LOCALE = :en
+  AVAILABLE_LOCALES = %i[en]
 end
 
 Rosetta::Backend.load("config/rosetta")
@@ -91,7 +91,7 @@ Configuration options are set as constants in your initializer file.
 
 ### `DEFAULT_LOCALE`
 Defines the default value if no locale is set. The *default* default locale is
-set to `"en"`.
+set to `:en`.
 
 ```cr
 module Rosetta
@@ -107,11 +107,11 @@ the default locale.
 
 ### `AVAILABLE_LOCALES`
 Defines all the available locales, including the default locale. The default
-for this setting is `%w[en]`.
+for this setting is `%i[en]`.
 
 ```cr
 module Rosetta
-  AVAILABLE_LOCALES = %w[de en-GB en-US es nl]
+  AVAILABLE_LOCALES = %i[de en-GB en-US es nl]
 end
 ```
 
@@ -210,7 +210,7 @@ This mixin makes it more convenient to work with translated values in your
 classes. Here's an example of its usage:
 
 ```cr
-Rosetta.locale = "es"
+Rosetta.locale = :es
 
 class User
   include Rosetta::Translatable
