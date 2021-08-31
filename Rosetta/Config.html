@@ -178,7 +178,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/9df29b6cc81e7cc94ef9dcae545f00a26f4e1b0a/src/rosetta/config.cr#L2" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/f15c9109972652375b17ed3e669a6fbc016af753/src/rosetta/config.cr#L2" target="_blank">
         rosetta/config.cr
       </a>
     
@@ -200,12 +200,12 @@
   <dl>
     
       <dt class="entry-const" id="AVAILABLE_LOCALES">
-        <strong>AVAILABLE_LOCALES</strong> = <code>[<span class="s">&quot;en&quot;</span>] <span class="k">of</span> <span class="t">::</span><span class="t">String</span></code>
+        <strong>AVAILABLE_LOCALES</strong> = <code>[<span class="n">:en</span>] <span class="k">of</span> <span class="t">::</span><span class="t">Symbol</span></code>
       </dt>
       
     
       <dt class="entry-const" id="DEFAULT_LOCALE">
-        <strong>DEFAULT_LOCALE</strong> = <code><span class="s">&quot;en&quot;</span></code>
+        <strong>DEFAULT_LOCALE</strong> = <code><span class="n">:en</span></code>
       </dt>
       
     
@@ -235,14 +235,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#locale=(locale:String)-instance-method" class="signature"><strong>#locale=</strong>(locale : String)</a>
+        <a href="#locale=(locale:String%7CSymbol)-instance-method" class="signature"><strong>#locale=</strong>(locale : String | Symbol)</a>
         
           <div class="summary"><p>Sets the current locale with the given value, if it's found in the available locales.</p></div>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#locale=(locale:String?)-instance-method" class="signature"><strong>#locale=</strong>(locale : String?)</a>
         
       </li>
     
@@ -307,17 +302,17 @@ defined.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/9df29b6cc81e7cc94ef9dcae545f00a26f4e1b0a/src/rosetta/config.cr#L21" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/f15c9109972652375b17ed3e669a6fbc016af753/src/rosetta/config.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="locale=(locale:String)-instance-method">
+    <div class="entry-detail" id="locale=(locale:String|Symbol)-instance-method">
       <div class="signature">
         
-        def <strong>locale=</strong>(locale : String)
+        def <strong>locale=</strong>(locale : String | Symbol)
 
-        <a class="method-permalink" href="#locale=(locale:String)-instance-method">#</a>
+        <a class="method-permalink" href="#locale=(locale:String%7CSymbol)-instance-method">#</a>
       </div>
       
         <div class="doc">
@@ -329,23 +324,7 @@ available locales.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/9df29b6cc81e7cc94ef9dcae545f00a26f4e1b0a/src/rosetta/config.cr#L10" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="locale=(locale:String?)-instance-method">
-      <div class="signature">
-        
-        def <strong>locale=</strong>(locale : String?)
-
-        <a class="method-permalink" href="#locale=(locale:String?)-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/9df29b6cc81e7cc94ef9dcae545f00a26f4e1b0a/src/rosetta/config.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/f15c9109972652375b17ed3e669a6fbc016af753/src/rosetta/config.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>
