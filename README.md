@@ -203,8 +203,7 @@ Overloads are:
 
 This is to ensure you're not missing any interpolation values.
 
-If you need access to the raw, uninterpolated string, it can be accessed with
-the `raw` method:
+The raw, uninterpolated string, can be accessed with the `raw` method:
 
 ```cr
 Rosetta.find("user.welcome_message").raw
