@@ -86,15 +86,13 @@ module Rosetta
                   localized_abbr_month_name(time.to_s("%B")).to_s
                 when "%B", "%^B"
                   localized_month_name(time.to_s("%B")).to_s
-                when "%p", "%P"
+                else
                   t = if time.hour < 12
                         {{namespace}}_Time_AmTranslation.new.to_s
                       else
                         {{namespace}}_Time_PmTranslation.new.to_s
                       end
                   match == "%P" ? t.downcase : t.upcase
-                else
-                  ""
                 end
 
         match.index("%^") ? value.upcase : value
@@ -152,7 +150,7 @@ module Rosetta
 
   # LocalizedTime is similar to a Translation object; it implements a similar
   # interface but its sole purpose is to localize time objects.
-  class LocalizedTime
+  struct LocalizedTime
     getter format
 
     def initialize(translation : Translation)
@@ -173,7 +171,7 @@ module Rosetta
 
   # LocalizedNumber is similar to a Translation object; it implements a similar
   # interface but its sole purpose is to localize numeric objects.
-  class LocalizedNumber
+  struct LocalizedNumber
     def initialize(
       @separator : String | Char,
       @delimiter : String | Char,
