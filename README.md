@@ -374,7 +374,8 @@ User.new.birthday
 ```
 
 Similarly there are the `r_time` and the `r_number` macros for retrieval,
-returning a struct which accepts the `l` method for localization.
+returning a struct which accepts the `l` method for the value that needs to be
+localized.
 
 ## Parser checks
 After loading all locales, the parser does a series of checkes on the given set.
