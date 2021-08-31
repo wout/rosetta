@@ -55,6 +55,8 @@ include Rosetta::Translatable
 Rosetta.locale = :es
 
 class Hello::ShowPage < MainLayout
+  include Rosetta::Translatable
+
   def content
     h1 r("welcome_message").t(name: "Brian") # => "¡Hola Brian!"
   end
@@ -147,7 +149,7 @@ Rosetta.find("user.name").t
 # => "User name"
 ```
 
-Optionally, you can also call `to_s` or use the struct with string
+Optionally, you can call `to_s` or use the struct with string
 interpolation:
 
 ```cr
@@ -168,6 +170,14 @@ class Products::ShowPage < MainLayout
 end
 ```
 
+If required, the translations for all locales can be accessed with the
+`translations` property:
+
+```cr
+Rosetta.find("user.first_name").translations
+# => {en: "First name", nl: "Voornaam"}
+```
+
 ### Interpolations
 Interpolations can be passed as arguments for the `t` method:
 
@@ -184,13 +194,22 @@ or the compiler will complain:
 # user.welcome_message: "Hi %{name}!"
 Rosetta.find("user.welcome_message").t
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
+(given 0, expected 1)
 
 Overloads are:
  - Rosetta::Locales::User_WelcomeMessage#t(name : String)
 ```
 
 This is to ensure you're not missing any interpolation values.
+
+If you need access to the raw, uninterpolated string, it can be accessed with
+the `raw` method:
+
+```cr
+Rosetta.find("user.welcome_message").raw
+# => "Hi %{name}!"
+```
 
 One final note on interpolations. The `t` method does not accept hashes, only
 arguments or a `NamedTuple`. For situations where you have to use a hash,
@@ -223,6 +242,8 @@ end
 User.new.name_label
 # => "Nombre"
 ```
+
+The `r` macro essentially is an alias for the `Rosetta.find` macro.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a `.`, the key prefix will be

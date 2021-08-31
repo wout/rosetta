@@ -46,4 +46,18 @@ describe Rosetta do
     #   Rosetta.find("i_am_definitely_not_in_one_of_the_files")
     # end
   end
+
+  describe "#translations" do
+    it "returns the original translations" do
+      Rosetta.find("user.first_name").translations
+        .should eq({en: "First name", nl: "Voornaam"})
+    end
+  end
+
+  describe "#raw" do
+    it "returns an uninterpolated string for the current locale" do
+      Rosetta.find("interpolatable.string").raw
+        .should eq("Hi %{name}, have a fabulous %{day_name}!")
+    end
+  end
 end
