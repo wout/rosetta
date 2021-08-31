@@ -140,7 +140,7 @@ Rosetta.find("user.name")
 ```
 
 This will return a struct containing all the translation data for the given key.
-To get the translation for the currently selected locale, call the `t`method:
+To get the translation for the currently selected locale, call the `t` method:
 
 ```cr
 Rosetta.find("user.name").t
@@ -275,7 +275,7 @@ class User
 end
 ```
 
-So the `r` macro retrieves all the translations for a given key at compile-time. Then the `t` method translates the value at runtime.P
+So the `r` macro retrieves all the translations for a given key at compile-time. Then the `t` method translates the value at runtime.
 
 ### Localization
 Rosetta supports localization for times, dates and numbers. Localization
