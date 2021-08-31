@@ -205,6 +205,8 @@ for use.</strong></p>
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.locale <span class="o">=</span> <span class="n">:es</span>
 
 <span class="k">class</span> <span class="t">Hello</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
+
   <span class="k">def</span> <span class="m">content</span>
     h1 r(<span class="s">&quot;welcome_message&quot;</span>).t(name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
   <span class="k">end</span>
@@ -322,7 +324,7 @@ To get the translation for the currently selected locale, call the <code>t</code
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).t
 <span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
 
-<p>Optionally, you can also call <code>to_s</code> or use the struct with string
+<p>Optionally, you can call <code>to_s</code> or use the struct with string
 interpolation:</p>
 
 <pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).to_s
@@ -338,6 +340,12 @@ interpolation:</p>
     h1 <span class="t">Rosetta</span>.find(<span class="s">&quot;.heading&quot;</span>)
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
+
+<p>If required, the translations for all locales can be accessed with the
+<code>translations</code> property:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.first_name&quot;</span>).translations
+<span class="c"># =&gt; {en: &quot;First name&quot;, nl: &quot;Voornaam&quot;}</span></code></pre>
 
 <h3><a id="interpolations" class="anchor" href="#interpolations">
   <svg class="octicon-link" aria-hidden="true">
@@ -357,12 +365,19 @@ or the compiler will complain:</p>
 <pre><code class="language-crystal"># user.welcome_message: "Hi %{name}!"
 Rosetta.find("user.welcome_message").t
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t' (given 0, expected 1)
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
+(given 0, expected 1)
 
 Overloads are:
  - Rosetta::Locales::User_WelcomeMessage#t(name : String)</code></pre>
 
 <p>This is to ensure you're not missing any interpolation values.</p>
+
+<p>If you need access to the raw, uninterpolated string, it can be accessed with
+the <code>raw</code> method:</p>
+
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).raw
+<span class="c"># =&gt; &quot;Hi %{name}!&quot;</span></code></pre>
 
 <p>One final note on interpolations. The <code>t</code> method does not accept hashes, only
 arguments or a <code>NamedTuple</code>. For situations where you have to use a hash,
@@ -396,6 +411,8 @@ classes. Here's an example of its usage:</p>
 
 <span class="t">User</span>.<span class="k">new</span>.name_label
 <span class="c"># =&gt; &quot;Nombre&quot;</span></code></pre>
+
+<p>The <code>r</code> macro essentially is an alias for the <code>Rosetta.find</code> macro.</p>
 
 <p>Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a <code>.</code>, the key prefix will be
