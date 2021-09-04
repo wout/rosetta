@@ -154,25 +154,54 @@ never have a <code>missing translation</code> in your app, ever again.</p>
 
 <p><img src="https://img.shields.io/github/license/wout/rosetta" alt="GitHub"/></p>
 
-<h2><a id="description" class="anchor" href="#description">
+<p><strong>IMPORTANT: This shard is still under heavy development and is not yet ready
+for use.</strong></p>
+
+<h2><a id="why-use-rosetta" class="anchor" href="#why-use-rosetta">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Description</h2>
+</a>Why use Rosetta?</h2>
+
+<h3><a id="youll-never-have-a-missing-translation" class="anchor" href="#youll-never-have-a-missing-translation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>You'll never have a missing translation</h3>
 
 <p>Rosetta is different from other internationalization libraries because it
 handles key lookup at compile-time rather than runtime. The significant
 advantage is that you'll be able to find missing translations - or typos in
 your locale keys - during development rather than after you've deployed your
-app.</p>
+app. This is also true for translation keys in all additional locales.</p>
 
-<p>The parser also compares all locale keys of additional (localized) languages
-to those of your primary language. Any missing or additional keys will be
-reported in development. So you'll no longer have to worry about deploying an
-app with missing translations.</p>
+<h3><a id="youll-never-have-a-missing-interpolation" class="anchor" href="#youll-never-have-a-missing-interpolation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>You'll never have a missing interpolation</h3>
 
-<p><strong>IMPORTANT: This shard is still under heavy development and is not yet ready
-for use.</strong></p>
+<p>The parser will compare interpolation keys in additional locales to the ones
+found in the default locale. If locale keys are missing, the compiler will let
+you know.</p>
+
+<h3><a id="its-more-that-10x-faster" class="anchor" href="#its-more-that-10x-faster">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>It's more that 10x faster</h3>
+
+<p>Testing against <a href="https://github.com/crystal-i18n/i18n">crystal-i18n</a>, which also
+uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
+translations:</p>
+
+<pre><code class="language-crystal">crystal<span class="o">-</span>i18n translation   <span class="n">2.24</span><span class="t">M</span> (<span class="n">446.21</span>ns) (± <span class="n">4.27</span><span class="o">%</span>)  <span class="n">48.0</span><span class="t">B</span><span class="s">/op  10.82× slower
+     Rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/</span>op        fastest</code></pre>
+
+<p>And more than 20x faster for translations with interpolations:</p>
+
+<pre><code class="language-crystal">crystal<span class="o">-</span>i18n interpolation <span class="n">138.84</span>k (  <span class="n">7.20</span>µs) (± <span class="n">4.16</span><span class="o">%</span>)  <span class="n">2.05</span>kB<span class="s">/op  21.23× slower
+     Rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/</span>op        fastest</code></pre>
 
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
