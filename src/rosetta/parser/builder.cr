@@ -68,7 +68,6 @@ module Rosetta
 
       args = i12n_keys.map { |k| [k, "String"] }
       args << ["time", "Time"] unless l10n_keys.empty?
-      args_tuple = args.map { |k| "#{k[0]}: #{k[0]}" }.join(", ")
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
@@ -80,12 +79,25 @@ module Rosetta
               ERROR
             end
             def t(#{with_args})
-              Rosetta.interpolate(raw, {#{args_tuple}})
+              #{build_translation_return_value(translation, l10n_keys)}
             end
             def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
               self.t(**values)
             end
       METHODS
+    end
+
+    private def build_translation_return_value(
+      translation : Translations,
+      l10n_keys : Array(String)
+    )
+      parsed_tuple = build_translations_tuple(translation).gsub(/\%\{/, "\#{")
+
+      if l10n_keys.empty?
+        "#{parsed_tuple}[Rosetta.locale]"
+      else
+        "Rosetta.localize(#{parsed_tuple}[Rosetta.locale], time)"
+      end
     end
   end
 end

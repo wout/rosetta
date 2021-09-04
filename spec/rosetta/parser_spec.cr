@@ -43,7 +43,7 @@ describe Rosetta::Parser do
               ERROR
             end
             def t(name : String, day_name : String)
-              Rosetta.interpolate(raw, {name: name, day_name: day_name})
+              {en: "Hi \#{name}, have a fabulous \#{day_name}!", nl: "Hey \#{name}, maak er een geweldige \#{day_name} van!"}[Rosetta.locale]
             end
             def t(values : NamedTuple(name: String, day_name: String))
               self.t(**values)
@@ -64,7 +64,7 @@ describe Rosetta::Parser do
               ERROR
             end
             def t(first_name : String, time : Time)
-              Rosetta.interpolate(raw, {first_name: first_name, time: time})
+              Rosetta.localize({en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale], time)
             end
             def t(values : NamedTuple(first_name: String, time: Time))
               self.t(**values)
