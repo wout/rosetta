@@ -1,7 +1,7 @@
 # Rosetta
 
-A Crystal library for internationalization with compile-time key lookup. You'll
-never have a `missing translation` in your app, ever again.
+A fast internationalization (i18n) library for Crystal with compile-time key
+lookup. You'll never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 
@@ -23,7 +23,7 @@ you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
-### Rosetta is more than 10x faster
+### Rosetta is 10x faster than similar libraries
 Testing against [crystal-i18n](https://github.com/crystal-i18n/i18n), which also
 uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
 translations:
