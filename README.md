@@ -18,11 +18,12 @@ your locale keys - during development rather than after you've deployed your
 app. This is also true for translation keys in all additional locales.
 
 ### You'll never have a missing interpolation
-The parser will compare interpolation keys in additional locales to the ones
-found in the default locale. If locale keys are missing, the compiler will let
-you know.
+In Rosetta, interpolation keys are arguments to the translation method. So if
+you're missing an argument, the compiler will complain. The parser will also
+compare interpolation keys in additional locales to the ones found in the
+default locale, and complain if some are missing.
 
-### It's more that 10x faster
+### Rosetta is more than 10x faster
 Testing against [crystal-i18n](https://github.com/crystal-i18n/i18n), which also
 uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
 translations:
