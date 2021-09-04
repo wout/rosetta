@@ -5,21 +5,39 @@ never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 
-## Description
+**IMPORTANT: This shard is still under heavy development and is not yet ready
+for use.**
 
+## Why use Rosetta?
+
+### You'll never have a missing translation
 Rosetta is different from other internationalization libraries because it
 handles key lookup at compile-time rather than runtime. The significant
 advantage is that you'll be able to find missing translations - or typos in
 your locale keys - during development rather than after you've deployed your
-app.
+app. This is also true for translation keys in all additional locales.
 
-The parser also compares all locale keys of additional (localized) languages
-to those of your primary language. Any missing or additional keys will be
-reported in development. So you'll no longer have to worry about deploying an
-app with missing translations.
+### You'll never have a missing interpolation
+The parser will compare interpolation keys in additional locales to the ones
+found in the default locale. If locale keys are missing, the compiler will let
+you know.
 
-**IMPORTANT: This shard is still under heavy development and is not yet ready
-for use.**
+### It's more that 10x faster
+Testing against [crystal-i18n](https://github.com/crystal-i18n/i18n), which also
+uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
+translations:
+
+```
+crystal-i18n translation   2.24M (446.21ns) (± 4.27%)  48.0B/op  10.82× slower
+     Rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/op        fastest
+```
+
+And more than 20x faster for translations with interpolations:
+
+```
+crystal-i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
+     Rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op        fastest
+```
 
 ## Installation
 
