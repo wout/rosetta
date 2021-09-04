@@ -181,15 +181,16 @@ app. This is also true for translation keys in all additional locales.</p>
   </svg>
 </a>You'll never have a missing interpolation</h3>
 
-<p>The parser will compare interpolation keys in additional locales to the ones
-found in the default locale. If locale keys are missing, the compiler will let
-you know.</p>
+<p>In Rosetta, interpolation keys are arguments to the translation method. So if
+you're missing an argument, the compiler will complain. The parser will also
+compare interpolation keys in additional locales to the ones found in the
+default locale, and complain if some are missing.</p>
 
-<h3><a id="its-more-that-10x-faster" class="anchor" href="#its-more-that-10x-faster">
+<h3><a id="rosetta-is-more-than-10x-faster" class="anchor" href="#rosetta-is-more-than-10x-faster">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>It's more that 10x faster</h3>
+</a>Rosetta is more than 10x faster</h3>
 
 <p>Testing against <a href="https://github.com/crystal-i18n/i18n">crystal-i18n</a>, which also
 uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
