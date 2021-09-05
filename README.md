@@ -501,7 +501,7 @@ TODO: Coming soon!
 
 ## Documentation
 
-- [API (main)](https://wout.github.io/rosetta)
+- [API (main)](https://wout.github.io/rosetta/)
 
 ## Contributing
 
