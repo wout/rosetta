@@ -24,20 +24,21 @@ compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
 ### Rosetta is 10x faster than similar libraries
-Testing against [crystal-i18n](https://github.com/crystal-i18n/i18n), which also
-uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
-translations:
+Testing against other libraries which also use YAML or JSON files for locales,
+Rosetta is at least 10x faster for simple translations:
 
 ```
-crystal-i18n translation   2.24M (446.21ns) (± 4.27%)  48.0B/op  10.82× slower
-     Rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/op        fastest
+crimson-knight/i18n.cr translation 147.72k (  6.77µs) (± 3.36%)  0.99kB/op  178.77× slower
+     crystal-i18n/i18n translation   2.24M (446.21ns) (± 4.27%)  48.0B/op    10.82× slower
+          wout/rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/op          fastest
 ```
 
 And more than 20x faster for translations with interpolations:
 
 ```
-crystal-i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
-     Rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op        fastest
+crimson-knight/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  23.12× slower
+     crystal-i18n/i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
+          wout/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op        fastest
 ```
 
 ## Installation
