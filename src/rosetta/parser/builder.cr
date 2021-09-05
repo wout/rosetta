@@ -5,7 +5,7 @@ module Rosetta
     def initialize(@default_locale : String)
     end
 
-    # Build the wrapping module including the KEYS constant containing an array
+    # Builds the wrapping module including the KEYS constant containing an array
     # of all included translation keys.
     def build_locales(translations : TranslationsHash)
       <<-MODULE
@@ -25,7 +25,7 @@ module Rosetta
       end
     end
 
-    # Build a dedicated struct for a given translation key.
+    # Builds a dedicated struct for a given translation key.
     private def build_struct(
       key : String,
       translations : Translations
@@ -40,16 +40,7 @@ module Rosetta
       CLASS
     end
 
-    # Build a tuple with translation values.
-    private def build_translations_tuple(translations : Translations)
-      pairs = translations.each_with_object([] of String) do |(k, t), s|
-        s << %(#{k}: "#{t}")
-      end
-
-      "{#{pairs.join(", ")}}"
-    end
-
-    # Build the struct methods for the given interpolation and localization
+    # Builds the struct methods for the given interpolation and localization
     # keys.
     private def build_struct_methods(
       key : String,
@@ -87,11 +78,21 @@ module Rosetta
       METHODS
     end
 
+    # Builds a tuple with translation values.
+    private def build_translations_tuple(translations : Translations)
+      pairs = translations.each_with_object([] of String) do |(k, t), s|
+        s << %(#{k}: "#{t}")
+      end
+
+      "{#{pairs.join(", ")}}"
+    end
+
+    # Builds a translation return value and localize it if required.
     private def build_translation_return_value(
-      translation : Translations,
+      translations : Translations,
       l10n_keys : Array(String)
     )
-      parsed_tuple = build_translations_tuple(translation).gsub(/\%\{/, "\#{")
+      parsed_tuple = build_translations_tuple(translations).gsub(/\%\{/, "\#{")
 
       if l10n_keys.empty?
         "#{parsed_tuple}[Rosetta.locale]"
