@@ -30,10 +30,10 @@ Rosetta is roughly 10x faster.
 For simple translations:
 
 ```
-crimson-knight/i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/op  178.77× slower
+crimson-knight/i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/op 178.77× slower
      crystal-i18n/i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/op  11.05× slower
          syeopite/lens translation   1.10M (912.67ns) (± 7.10%)   176B/op  22.72× slower
-          wout/rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/op        fastest
+          wout/rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/op         fastest
 
 ```
 
@@ -43,7 +43,7 @@ For translations with interpolations:
 crimson-knight/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  23.12× slower
      crystal-i18n/i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
          syeopite/lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/op   9.29× slower
-          wout/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op        fastest
+          wout/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
 ```
 
 ## Installation
@@ -159,7 +159,7 @@ This will return a struct containing all the translation data for the given key.
 To get the translation for the currently selected locale, call the `t` method:
 
 ```cr
-Rosetta.t("user.name").t
+Rosetta.t("user.name").l
 # => "User name"
 ```
 
