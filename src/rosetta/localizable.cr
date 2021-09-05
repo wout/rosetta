@@ -1,18 +1,18 @@
 module Rosetta
   # Include this module in any class where you need to localize many values.
   module Localizable
-    # Retrieves a date localizer
-    macro r_date(format)
+    # Finds the translations for a given format to localize a date
+    macro t_date(format)
       Rosetta.date({{format}})
     end
 
-    # Retrieves a time localizer
-    macro r_time(format)
+    # Finds the translations for a given format to localize a time
+    macro t_time(format)
       Rosetta.time({{format}})
     end
 
-    # Retrieves a number localizer
-    macro r_number(format)
+    # Finds the translations for a given format to localize a number
+    macro t_number(format)
       Rosetta.number({{format}})
     end
   end

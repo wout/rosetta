@@ -1,7 +1,7 @@
 # Rosetta
 
-A fast internationalization (i18n) library for Crystal with compile-time key
-lookup. You'll never have a `missing translation` in your app, ever again.
+A blazing fast internationalization (i18n) library for Crystal with compile-time
+key lookup. You'll never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 
@@ -80,10 +80,8 @@ include Rosetta::Translatable
 Rosetta.locale = :es
 
 class Hello::ShowPage < MainLayout
-  include Rosetta::Translatable
-
   def content
-    h1 r("welcome_message").t(name: "Brian") # => "¡Hola Brian!"
+    h1 t("welcome_message").l(name: "Brian") # => "¡Hola Brian!"
   end
 end
 ```
@@ -97,11 +95,8 @@ An initializer has the following content:
 # config/rosetta.cr
 require "rosetta"
 
-module Rosetta
-  DEFAULT_LOCALE = :en
-  AVAILABLE_LOCALES = %i[en]
-end
-
+Rosetta::DEFAULT_LOCALE = :en
+Rosetta::AVAILABLE_LOCALES = %i[en]
 Rosetta::Backend.load("config/rosetta")
 ```
 
@@ -121,9 +116,7 @@ Defines the default value if no locale is set. The *default* default locale is
 set to `:en`.
 
 ```cr
-module Rosetta
-  DEFAULT_LOCALE = "es-ES"
-end
+Rosetta::DEFAULT_LOCALE = "es-ES"
 ```
 
 🗒️ **Note**: The default locale is used by the compiler to define the ruling set
@@ -137,9 +130,7 @@ Defines all the available locales, including the default locale. The default
 for this setting is `%i[en]`.
 
 ```cr
-module Rosetta
-  AVAILABLE_LOCALES = %i[de en-GB en-US es nl]
-end
+Rosetta::AVAILABLE_LOCALES = %i[de en-GB en-US es nl]
 ```
 
 ### `FALLBACKS`
@@ -149,28 +140,26 @@ TODO: Fallbacks still need to be implemented.
 ## Usage
 
 ### Locale files
-You can chop up locale files and place them in subdirectories; organise them any
+Chop up your locale files and place them in subdirectories; organise them any
 way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
-formats together. So if you started out with JSON and later on decided to use
-YAML instead, there is no need to convert your old files. Rosetta will gladly
-parse both formats.
+formats together.
 
-🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files
-are loaded first, then YAML files. So if you have the same key in a JSON and a
-YAML file, YAML will take precedence.
+🗒️ **Note**: Beware, though, that there is a fixed loading order. JSON files are
+loaded first, then YAML files. So in the unlikely situation where you have the
+same key in a JSON and a YAML file, YAML will take precedence.
 
 ### Lookup
-Looking up translations is done with the `find` macro:
+Looking up translations is done with the `t` macro:
 
 ```cr
-Rosetta.find("user.name")
+Rosetta.t("user.name")
 ```
 
 This will return a struct containing all the translation data for the given key.
 To get the translation for the currently selected locale, call the `t` method:
 
 ```cr
-Rosetta.find("user.name").t
+Rosetta.t("user.name").t
 # => "User name"
 ```
 
@@ -178,19 +167,20 @@ Optionally, you can call `to_s` or use the struct with string
 interpolation:
 
 ```cr
-Rosetta.find("user.name").to_s
+Rosetta.t("user.name").to_s
 # => "User name"
 
-"#{Rosetta.find("user.name")}"
+"#{Rosetta.t("user.name")}"
 # => "User name"
 ```
 
-The translation struct also includes the `Lucky::AllowedInTags` module, so it works with Lucky templates as well, even without having to call `t`:
+The translation struct also includes the `Lucky::AllowedInTags` module, so it
+works with Lucky templates as well, even without having to call `t`:
 
 ```cr
 class Products::ShowPage < MainLayout
   def content
-    h1 Rosetta.find(".heading")
+    h1 Rosetta.t(".heading")
   end
 end
 ```
@@ -199,31 +189,31 @@ If required, the translations for all locales can be accessed with the
 `translations` property:
 
 ```cr
-Rosetta.find("user.first_name").translations
+Rosetta.t("user.first_name").translations
 # => {en: "First name", nl: "Voornaam"}
 ```
 
 ### Interpolations
-Interpolations can be passed as arguments for the `t` method:
+Interpolations can be passed as arguments for the `l` (for localize) method:
 
 ```cr
-Rosetta.find("user.welcome_message").t(name: "Ary")
+Rosetta.t("user.welcome_message").l(name: "Ary")
 # => "Hi Ary!"
 ```
 
 Important to know here is that translations with interpolation keys will always
-require you to call the `t` method with the right number of interpolation keys,
+require you to call the `l` method with the right number of interpolation keys,
 or the compiler will complain:
 
 ```cr
 # user.welcome_message: "Hi %{name}!"
-Rosetta.find("user.welcome_message").t
+Rosetta.t("user.welcome_message").l
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#l'
 (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User_WelcomeMessage#t(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#l(name : String)
 ```
 
 This is to ensure you're not missing any interpolation values.
@@ -231,16 +221,16 @@ This is to ensure you're not missing any interpolation values.
 The raw, uninterpolated string, can be accessed with the `raw` method:
 
 ```cr
-Rosetta.find("user.welcome_message").raw
+Rosetta.t("user.welcome_message").raw
 # => "Hi %{name}!"
 ```
 
-One final note on interpolations. The `t` method does not accept hashes, only
+One final note on interpolations. The `l` method does not accept hashes, only
 arguments or a `NamedTuple`. For situations where you have to use a hash,
-there's the `t_hash` method:
+there's the `l_hash` method:
 
 ```cr
-Rosetta.find("user.welcome_message").t_hash({ :name => "Beta" })
+Rosetta.t("user.welcome_message").l_hash({ :name => "Beta" })
 # => "Hi Beta!"
 ```
 
@@ -259,7 +249,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    r("user.name_label").t
+    t("user.name_label").l
   end
 end
 
@@ -267,7 +257,7 @@ User.new.name_label
 # => "Nombre"
 ```
 
-The `r` macro essentially is an alias for the `Rosetta.find` macro.
+The `t` macro essentially is an alias for the `Rosetta.t` macro.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a `.`, the key prefix will be
@@ -278,7 +268,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    r(".name_label").t # => resolves to "user.name_label"
+    t(".name_label").l # => resolves to "user.name_label"
   end
 end
 ```
@@ -302,31 +292,31 @@ class User
   ROSETTA_PREFIX = "guest"
 
   def name_label
-    r(".name_label").t # => resolves to "guest.name_label"
+    t(".name_label").l # => resolves to "guest.name_label"
   end
 end
 ```
 
-Just like the global `Rosetta.find` marco, interpolations are passed using the
-`t` method:
+Just like the global `Rosetta.t` marco, interpolations are passed using the
+`l` method:
 
 ```cr
 class User
   include Rosetta::Translatable
 
   def welcome_message
-    r(".welcome_message").t(name: "Ary")
+    t(".welcome_message").l(name: "Ary")
   end
 end
 ```
 
-So the `r` macro retrieves all the translations for a given key at compile-time. Then the `t` method translates the value at runtime.
+So the `t` macro returns the translations for a given key at compile-time. Then
+the `l` method localizes the value at runtime.
 
-### Localization
-Rosetta supports localization for times, dates and numbers. Localization
-instructions live under a the `rosetta_localization` namespace in the locale
-files. The initializer script will install the required files for you in order
-to be able to work with Rosetta.
+### Date, time and numeric localization
+Localization instructions live under a the `rosetta_localization` namespace in
+the locale files. The initializer script will install the required files for you
+in order to be able to work with Rosetta.
 
 #### Localized time
 Similar to translations, localization formats are retrieved at compile-time and 
@@ -400,17 +390,19 @@ Rosetta.number.l(123_456.789, decimal_places: 6)
 # => "123,456.789000"
 ```
 
-🗒️ **Note**: In the background, Rosetta uses Crystal's native `Number#format` method and accepts the same parameters.
+🗒️ **Note**: In the background, Rosetta uses Crystal's native `Number#format`
+method and accepts the same parameters.
 
 ### The `Localizable` mixin
-Include this mixin anywhere you want to work with localized dates, times and numbers. Here's an example of its usage:
+Include this mixin anywhere you want to work with localized dates, times and
+numbers. Here's an example of its usage:
 
 ```cr
 class User
   include Rosetta::Localizable
 
   def birthday
-    r_date(:short).l(born_at)
+    t_date(:short).l(born_at)
   end
 end
 
@@ -418,7 +410,7 @@ User.new.birthday
 # => "Feb 20"
 ```
 
-Similarly there are the `r_time` and the `r_number` macros for retrieval,
+Similarly there are the `t_time` and the `t_number` macros for retrieval,
 returning a struct which accepts the `l` method for the value that needs to be
 localized.
 

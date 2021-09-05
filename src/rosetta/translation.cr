@@ -1,10 +1,9 @@
 module Rosetta
-  # Finds translations for the given key. The returned object is a dedicated
-  # class instance for the translation, which inherits from
-  # `Rosetta::Translation`.
+  # Returns translations for the given key as a dedicated class instance for the
+  # translation, which inherits from `Rosetta::Translation`.
   #
   # If the key does not exist, a compile error will be raised.
-  macro find(key)
+  macro t(key)
     {% class_name = key.split('.').map(&.camelcase).join('_') %}
 
     {% if Rosetta::Locales::KEYS.includes?(key) %}
@@ -19,7 +18,7 @@ module Rosetta
     include Lucky::AllowedInTags
 
     abstract def translations
-    abstract def t
+    abstract def l
 
     def raw : String
       translations[Rosetta.locale]
@@ -27,17 +26,17 @@ module Rosetta
 
     # For Lucky
     def to_s(io)
-      io.puts t
+      io.puts l
     end
 
     def to_s
-      t
+      l
     end
 
     # Using a hash for interpolation is considered unsafe since the content of
     # hashes can't be checked at compile-time. Try to avoid using this method if
     # you can.
-    def t_hash(values : Hash(String | Symbol, String))
+    def l_hash(values : Hash(String | Symbol, String))
       Rosetta.interpolate(raw, values)
     end
   end

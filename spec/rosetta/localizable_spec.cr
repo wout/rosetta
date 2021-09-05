@@ -25,17 +25,17 @@ class LocalizableTestObject
   include Rosetta::Localizable
 
   def created_on
-    r_date(:long).l(time_of_creation)
+    t_date(:long).l(time_of_creation)
   end
 
   def created_at
-    r_time(:short).l(time_of_creation)
+    t_time(:short).l(time_of_creation)
   end
 
   def seconds_since_creation
     seconds = (Time.local(2021, 8, 30) - time_of_creation).to_f
 
-    r_number(:default).l(seconds, delimiter: ' ')
+    t_number(:default).l(seconds, delimiter: ' ')
   end
 
   private def time_of_creation

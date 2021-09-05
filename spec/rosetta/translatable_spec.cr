@@ -41,24 +41,21 @@ class TranslatableTestObject
   include Rosetta::Translatable
 
   def first_name
-    r("user.first_name").to_s
+    t("user.first_name").l
   end
 
   def name_with_inferrence
-    r(".inferred_name").to_s
+    t(".inferred_name").l
   end
 
   def welcome_message_with_arguments
-    r("interpolatable.string").t(
-      name: "#{first_name}",
-      day_name: "whenever day"
-    )
+    t("interpolatable.string")
+      .l(name: "#{first_name}", day_name: "whenever day")
   end
 
   def welcome_message_with_hash
-    interpolation_values = {:name => "Willy", "day_name" => "Wonka day"}
-
-    r("interpolatable.string").t_hash(interpolation_values)
+    t("interpolatable.string")
+      .l_hash({:name => "Willy", "day_name" => "Wonka day"})
   end
 end
 
@@ -68,7 +65,7 @@ class TranslatableTestObjectWithRosettaPrefix
   ROSETTA_PREFIX = "fixed.prefix"
 
   def name
-    r(".name").to_s
+    t(".name").l
   end
 end
 

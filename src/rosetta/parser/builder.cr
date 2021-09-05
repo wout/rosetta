@@ -51,7 +51,7 @@ module Rosetta
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
-              def t
+              def l
                 raw
               end
         METHODS
@@ -62,18 +62,18 @@ module Rosetta
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
-            def t
+            def l
               raise <<-ERROR
               Missing interpolation values, use the "with" method:
 
-                Rosetta.find("#{key}").t(#{with_args})
+                Rosetta.t("#{key}").l(#{with_args})
               ERROR
             end
-            def t(#{with_args})
+            def l(#{with_args})
               #{build_translation_return_value(translation, l10n_keys)}
             end
-            def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
-              self.t(**values)
+            def l(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
+              self.l(**values)
             end
       METHODS
     end
@@ -97,7 +97,7 @@ module Rosetta
       if l10n_keys.empty?
         "#{parsed_tuple}[Rosetta.locale]"
       else
-        "Rosetta.localize(#{parsed_tuple}[Rosetta.locale], time)"
+        "Rosetta.localize_time(#{parsed_tuple}[Rosetta.locale], time)"
       end
     end
   end

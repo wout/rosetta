@@ -4,12 +4,12 @@ module Rosetta
   # ```
   # Rosetta.date.t(Time.local)
   # Rosetta.date.t({2021, 8, 20})
-  # Rosetta.date(:long).t(Time.local)
-  # Rosetta.date("%a, %d %b %Y").t(Time.local.date)
+  # Rosetta.date(:long).l(Time.local)
+  # Rosetta.date("%a, %d %b %Y").l(Time.local.date)
   # ```
   macro date(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.find("rosetta_localization.date.formats.{{format.id}}")
+      format = Rosetta.t("rosetta_localization.date.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}
@@ -21,12 +21,12 @@ module Rosetta
   #
   # ```
   # Rosetta.time.t(Time.local)
-  # Rosetta.time(:short).t(Time.local)
-  # Rosetta.time("%d %b %Y %H:%M:%S").t(Time.local)
+  # Rosetta.time(:short).l(Time.local)
+  # Rosetta.time("%d %b %Y %H:%M:%S").l(Time.local)
   # ```
   macro time(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.find("rosetta_localization.time.formats.{{format.id}}")
+      format = Rosetta.t("rosetta_localization.time.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}
@@ -38,7 +38,7 @@ module Rosetta
   #
   # ```
   # Rosetta.number.t(123_456.789)
-  # Rosetta.number(:custom).t(123_456.789)
+  # Rosetta.number(:custom).l(123_456.789)
   # ```
   macro number(format = :default)
     {%
@@ -58,9 +58,9 @@ module Rosetta
   # Uses a given format to localize a given Time object, for example:
   #
   # ```
-  # Rosetta.localize("%d %b %Y %H:%M:%S", Time.local)
+  # Rosetta.localize_time("%d %b %Y %H:%M:%S", Time.local)
   # ```
-  def self.localize(
+  def self.localize_time(
     format : String,
     time : Time
   )
@@ -161,11 +161,11 @@ module Rosetta
     end
 
     def l(time : Time)
-      Rosetta.localize(format, time)
+      Rosetta.localize_time(format, time)
     end
 
     def l(date : Tuple(Int32, Int32, Int32))
-      Rosetta.localize(format, Time.local(*date))
+      Rosetta.localize_time(format, Time.local(*date))
     end
   end
 
