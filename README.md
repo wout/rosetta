@@ -24,8 +24,8 @@ compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
 ### Rosetta is 10x faster than similar libraries
-Testing against other libraries which also use YAML or JSON files for locales,
-Rosetta is roughly 10x faster.
+Benchmarking against other libraries which also use YAML or JSON files for
+locales, Rosetta is about 10x faster than any other library.
 
 For simple translations:
 
@@ -45,6 +45,12 @@ crimson-knight/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  
          syeopite/lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/op   9.29× slower
           wout/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
 ```
+
+Rosetta is that much faster because a lot of the hard work happens at
+compile-time. But also because the majority of the data is immutable and stored
+on the [stack rather than the
+heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap),
+out of the scope of garbage collector.
 
 ## Installation
 
@@ -156,7 +162,8 @@ Rosetta.t("user.name")
 ```
 
 This will return a struct containing all the translation data for the given key.
-To get the translation for the currently selected locale, call the `t` method:
+To get the translation for the currently selected locale, call the `l`
+(localize) method:
 
 ```cr
 Rosetta.t("user.name").l
