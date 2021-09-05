@@ -192,17 +192,18 @@ default locale, and complain if some are missing.</p>
   </svg>
 </a>Rosetta is 10x faster than similar libraries</h3>
 
-<p>Testing against <a href="https://github.com/crystal-i18n/i18n">crystal-i18n</a>, which also
-uses YAML or JSON files for locales, Rosetta is more than 10x faster for simple
-translations:</p>
+<p>Testing against other libraries which also use YAML or JSON files for locales,
+Rosetta is at least 10x faster for simple translations:</p>
 
-<pre><code class="language-crystal">crystal<span class="o">-</span>i18n translation   <span class="n">2.24</span><span class="t">M</span> (<span class="n">446.21</span>ns) (± <span class="n">4.27</span><span class="o">%</span>)  <span class="n">48.0</span><span class="t">B</span><span class="s">/op  10.82× slower
-     Rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/</span>op        fastest</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr translation 147.72k (  6.77µs) (± 3.36%)  0.99kB/</span>op  <span class="n">178.77</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n translation   2.24M (446.21ns) (± 4.27%)  48.0B/</span>op    <span class="n">10.82</span>× slower
+          wout<span class="s">/rosetta translation  24.25M ( 41.23ns) (± 6.64%)   0.0B/</span>op          fastest</code></pre>
 
 <p>And more than 20x faster for translations with interpolations:</p>
 
-<pre><code class="language-crystal">crystal<span class="o">-</span>i18n interpolation <span class="n">138.84</span>k (  <span class="n">7.20</span>µs) (± <span class="n">4.16</span><span class="o">%</span>)  <span class="n">2.05</span>kB<span class="s">/op  21.23× slower
-     Rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/</span>op        fastest</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/</span>op  <span class="n">23.12</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/</span>op  <span class="n">21.23</span>× slower
+          wout<span class="s">/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/</span>op        fastest</code></pre>
 
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
