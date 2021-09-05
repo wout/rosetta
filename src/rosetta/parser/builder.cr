@@ -11,7 +11,6 @@ module Rosetta
       <<-MODULE
       module Rosetta
         module Locales
-          KEYS = %w[#{translations.keys.join(' ')}]
       #{build_structs(translations).join("\n")}
         end
       end

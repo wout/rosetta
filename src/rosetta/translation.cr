@@ -4,10 +4,13 @@ module Rosetta
   #
   # If the key does not exist, a compile error will be raised.
   macro t(key)
-    {% class_name = key.split('.').map(&.camelcase).join('_') %}
+    {%
+      class_name_from_key = key.split('.').map(&.camelcase).join('_')
+      translation_class_name = "#{class_name_from_key.id}Translation".id
+    %}
 
-    {% if Rosetta::Locales::KEYS.includes?(key) %}
-      Rosetta::Locales::{{ class_name.id }}Translation.new
+    {% if Rosetta::Locales.has_constant?(translation_class_name) %}
+      Rosetta::Locales::{{ translation_class_name.id }}.new
     {% else %}
       {% raise "Missing translation for #{key} for all locales" %}
     {% end %}

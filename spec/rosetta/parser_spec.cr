@@ -144,7 +144,6 @@ describe Rosetta::Parser do
       output.should eq <<-MODULE
       module Rosetta
         module Locales
-          KEYS = %w[]
 
         end
       end
