@@ -5,8 +5,7 @@ module Rosetta
     def initialize(@default_locale : String)
     end
 
-    # Builds the wrapping module including the KEYS constant containing an array
-    # of all included translation keys.
+    # Builds the wrapping module for all translation structs.
     def build_locales(translations : TranslationsHash)
       <<-MODULE
       module Rosetta
@@ -17,7 +16,7 @@ module Rosetta
       MODULE
     end
 
-    # Build a translation struct for every single key.
+    # Builds a translation struct for every single translation key.
     private def build_structs(translations : TranslationsHash)
       translations.each_with_object([] of String) do |(k, t), s|
         s << build_struct(k, t)
