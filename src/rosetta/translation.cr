@@ -18,21 +18,10 @@ module Rosetta
 
   # Base struct for translation values
   abstract struct Translation
-    include Lucky::AllowedInTags
-
     abstract def translations
 
     def raw : String
       translations[Rosetta.locale]
-    end
-
-    # For Lucky
-    def to_s(io)
-      io.puts t
-    end
-
-    def to_s
-      t
     end
 
     # Using a hash for interpolation is considered unsafe since the content of

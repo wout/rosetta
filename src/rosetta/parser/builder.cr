@@ -49,8 +49,15 @@ module Rosetta
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
+              include Lucky::AllowedInTags
               def t
                 raw
+              end
+              def to_s
+                raw
+              end
+              def to_s(io)
+                io.puts raw
               end
         METHODS
       end

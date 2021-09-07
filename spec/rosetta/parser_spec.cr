@@ -24,8 +24,15 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           struct TitleTranslation < Rosetta::Translation
             getter translations = {en: "Title", nl: "Titel"}
+            include Lucky::AllowedInTags
             def t
               raw
+            end
+            def to_s
+              raw
+            end
+            def to_s(io)
+              io.puts raw
             end
           end
       MODULE
