@@ -205,7 +205,8 @@ If a different locale needs to be used in a specific place, use the
 
 ```cr
 Rosetta.with_locale(:nl) do
-  Rosetta.find("user.first_name").t.should eq("Voornaam")
+  Rosetta.find("user.first_name").t
+  # => "Voornaam"
 end
 ```
 
