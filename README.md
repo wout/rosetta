@@ -221,6 +221,7 @@ Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
 
 Overloads are:
  - Rosetta::Locales::User_WelcomeMessage#t(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#t(values : NamedTuple(name: String))
 ```
 
 This is to ensure you're not missing any interpolation values.

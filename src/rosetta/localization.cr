@@ -20,9 +20,9 @@ module Rosetta
   # Localizes time, for example:
   #
   # ```
-  # Rosetta.findime.t(Time.local)
-  # Rosetta.findime(:short).l(Time.local)
-  # Rosetta.findime("%d %b %Y %H:%M:%S").l(Time.local)
+  # Rosetta.time.t(Time.local)
+  # Rosetta.time(:short).l(Time.local)
+  # Rosetta.time("%d %b %Y %H:%M:%S").l(Time.local)
   # ```
   macro time(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
