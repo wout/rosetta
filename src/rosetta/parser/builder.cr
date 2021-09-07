@@ -49,7 +49,7 @@ module Rosetta
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
-              def l
+              def t
                 raw
               end
         METHODS
@@ -60,18 +60,11 @@ module Rosetta
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
-            def l
-              raise <<-ERROR
-              Missing interpolation values, use the "with" method:
-
-                Rosetta.t("#{key}").l(#{with_args})
-              ERROR
-            end
-            def l(#{with_args})
+            def t(#{with_args})
               #{build_translation_return_value(translation, l10n_keys)}
             end
-            def l(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
-              self.l(**values)
+            def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
+              self.t(**values)
             end
       METHODS
     end

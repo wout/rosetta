@@ -24,7 +24,7 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           struct TitleTranslation < Rosetta::Translation
             getter translations = {en: "Title", nl: "Titel"}
-            def l
+            def t
               raw
             end
           end
@@ -35,18 +35,11 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           struct Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {en: "Hi %{name}, have a fabulous %{day_name}!", nl: "Hey %{name}, maak er een geweldige %{day_name} van!"}
-            def l
-              raise <<-ERROR
-              Missing interpolation values, use the "with" method:
-
-                Rosetta.t("interpolatable.string").l(name : String, day_name : String)
-              ERROR
-            end
-            def l(name : String, day_name : String)
+            def t(name : String, day_name : String)
               {en: "Hi \#{name}, have a fabulous \#{day_name}!", nl: "Hey \#{name}, maak er een geweldige \#{day_name} van!"}[Rosetta.locale]
             end
-            def l(values : NamedTuple(name: String, day_name: String))
-              self.l(**values)
+            def t(values : NamedTuple(name: String, day_name: String))
+              self.t(**values)
             end
           end
       MODULE
@@ -56,18 +49,11 @@ describe Rosetta::Parser do
       make_parser.parse!.should contain <<-MODULE
           struct Localizable_StringTranslation < Rosetta::Translation
             getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
-            def l
-              raise <<-ERROR
-              Missing interpolation values, use the "with" method:
-
-                Rosetta.t("localizable.string").l(first_name : String, time : Time)
-              ERROR
-            end
-            def l(first_name : String, time : Time)
+            def t(first_name : String, time : Time)
               Rosetta.localize_time({en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale], time)
             end
-            def l(values : NamedTuple(first_name: String, time: Time))
-              self.l(**values)
+            def t(values : NamedTuple(first_name: String, time: Time))
+              self.t(**values)
             end
           end
       MODULE

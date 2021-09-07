@@ -29,4 +29,16 @@ module Rosetta::Cli
     # Rosetta::Backend.load("config/rosetta")
     # ```
   end
+
+  private def generate_dir
+  end
+
+  private def generate_initializer
+  end
+
+  private def generate_localization_rules
+  end
+
+  private def generate_example
+  end
 end

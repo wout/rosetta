@@ -9,7 +9,7 @@ module Rosetta
   # ```
   macro date(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.t("rosetta_localization.date.formats.{{format.id}}")
+      format = Rosetta.find("rosetta_localization.date.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}
@@ -20,13 +20,13 @@ module Rosetta
   # Localizes time, for example:
   #
   # ```
-  # Rosetta.time.t(Time.local)
-  # Rosetta.time(:short).l(Time.local)
-  # Rosetta.time("%d %b %Y %H:%M:%S").l(Time.local)
+  # Rosetta.findime.t(Time.local)
+  # Rosetta.findime(:short).l(Time.local)
+  # Rosetta.findime("%d %b %Y %H:%M:%S").l(Time.local)
   # ```
   macro time(format = :default)
     {% if format.is_a?(SymbolLiteral) %}
-      format = Rosetta.t("rosetta_localization.time.formats.{{format.id}}")
+      format = Rosetta.find("rosetta_localization.time.formats.{{format.id}}")
     {% else %}
       format = {{format}}
     {% end %}

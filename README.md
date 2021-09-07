@@ -87,7 +87,7 @@ Rosetta.locale = :es
 
 class Hello::ShowPage < MainLayout
   def content
-    h1 t("welcome_message").l(name: "Brian") # => "¡Hola Brian!"
+    h1 r("welcome_message").t(name: "Brian") # => "¡Hola Brian!"
   end
 end
 ```
@@ -155,10 +155,10 @@ loaded first, then YAML files. So in the unlikely situation where you have the
 same key in a JSON and a YAML file, YAML will take precedence.
 
 ### Lookup
-Looking up translations is done with the `t` macro:
+Looking up translations is done with the `find` macro:
 
 ```cr
-Rosetta.t("user.name")
+Rosetta.find("user.name")
 ```
 
 This will return a struct containing all the translation data for the given key.
@@ -166,7 +166,7 @@ To get the translation for the currently selected locale, call the `l`
 (localize) method:
 
 ```cr
-Rosetta.t("user.name").l
+Rosetta.find("user.name").t
 # => "User name"
 ```
 
@@ -174,10 +174,10 @@ Optionally, you can call `to_s` or use the struct with string
 interpolation:
 
 ```cr
-Rosetta.t("user.name").to_s
+Rosetta.find("user.name").to_s
 # => "User name"
 
-"#{Rosetta.t("user.name")}"
+"#{Rosetta.find("user.name")}"
 # => "User name"
 ```
 
@@ -187,7 +187,7 @@ works with Lucky templates as well, even without having to call `t`:
 ```cr
 class Products::ShowPage < MainLayout
   def content
-    h1 Rosetta.t(".heading")
+    h1 Rosetta.find(".heading")
   end
 end
 ```
@@ -196,31 +196,31 @@ If required, the translations for all locales can be accessed with the
 `translations` property:
 
 ```cr
-Rosetta.t("user.first_name").translations
+Rosetta.find("user.first_name").translations
 # => {en: "First name", nl: "Voornaam"}
 ```
 
 ### Interpolations
-Interpolations can be passed as arguments for the `l` (for localize) method:
+Interpolations can be passed as arguments for the `t` (for localize) method:
 
 ```cr
-Rosetta.t("user.welcome_message").l(name: "Ary")
+Rosetta.find("user.welcome_message").t(name: "Ary")
 # => "Hi Ary!"
 ```
 
 Important to know here is that translations with interpolation keys will always
-require you to call the `l` method with the right number of interpolation keys,
+require you to call the `t` method with the right number of interpolation keys,
 or the compiler will complain:
 
 ```cr
 # user.welcome_message: "Hi %{name}!"
-Rosetta.t("user.welcome_message").l
+Rosetta.find("user.welcome_message").t
 
-Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#l'
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
 (given 0, expected 1)
 
 Overloads are:
- - Rosetta::Locales::User_WelcomeMessage#l(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#t(name : String)
 ```
 
 This is to ensure you're not missing any interpolation values.
@@ -228,16 +228,16 @@ This is to ensure you're not missing any interpolation values.
 The raw, uninterpolated string, can be accessed with the `raw` method:
 
 ```cr
-Rosetta.t("user.welcome_message").raw
+Rosetta.find("user.welcome_message").raw
 # => "Hi %{name}!"
 ```
 
-One final note on interpolations. The `l` method does not accept hashes, only
+One final note on interpolations. The `t` method does not accept hashes, only
 arguments or a `NamedTuple`. For situations where you have to use a hash,
-there's the `l_hash` method:
+there's the `t_hash` method:
 
 ```cr
-Rosetta.t("user.welcome_message").l_hash({ :name => "Beta" })
+Rosetta.find("user.welcome_message").t_hash({ :name => "Beta" })
 # => "Hi Beta!"
 ```
 
@@ -256,7 +256,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t("user.name_label").l
+    r("user.name_label").t
   end
 end
 
@@ -264,7 +264,7 @@ User.new.name_label
 # => "Nombre"
 ```
 
-The `t` macro essentially is an alias for the `Rosetta.t` macro.
+The `r` macro essentially is an alias for the `Rosetta.find` macro.
 
 Inferred locale keys make it even more concise. By omitting the prefix of the
 locale key and having the key start with a `.`, the key prefix will be
@@ -275,7 +275,7 @@ class User
   include Rosetta::Translatable
 
   def name_label
-    t(".name_label").l # => resolves to "user.name_label"
+    r(".name_label").t # => resolves to "user.name_label"
   end
 end
 ```
@@ -299,26 +299,26 @@ class User
   ROSETTA_PREFIX = "guest"
 
   def name_label
-    t(".name_label").l # => resolves to "guest.name_label"
+    r(".name_label").t # => resolves to "guest.name_label"
   end
 end
 ```
 
-Just like the global `Rosetta.t` marco, interpolations are passed using the
-`l` method:
+Just like the global `Rosetta.find` marco, interpolations are passed using the
+`t` method:
 
 ```cr
 class User
   include Rosetta::Translatable
 
   def welcome_message
-    t(".welcome_message").l(name: "Ary")
+    r(".welcome_message").t(name: "Ary")
   end
 end
 ```
 
-So the `t` macro returns the translations for a given key at compile-time. Then
-the `l` method localizes the value at runtime.
+The `r` macro uses `Rosetta.find` to get the translations for a given key at
+compile-time. Then the `t` method localizes the value at runtime.
 
 ### Date, time and numeric localization
 Localization instructions live under a the `rosetta_localization` namespace in
@@ -409,7 +409,7 @@ class User
   include Rosetta::Localizable
 
   def birthday
-    t_date(:short).l(born_at)
+    r_date(:short).l(born_at)
   end
 end
 
@@ -417,7 +417,7 @@ User.new.birthday
 # => "Feb 20"
 ```
 
-Similarly there are the `t_time` and the `t_number` macros for retrieval,
+Similarly there are the `r_time` and the `r_number` macros for retrieval,
 returning a struct which accepts the `l` method for the value that needs to be
 localized.
 
