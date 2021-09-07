@@ -492,6 +492,7 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Localization of numeric values
 - [X] Localization of date and time values
 - [X] Localizable mixin
+- [ ] Locale exceptions
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
 - [ ] Implement fallbacks
