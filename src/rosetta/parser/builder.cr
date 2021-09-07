@@ -61,13 +61,11 @@ module Rosetta
 
       <<-METHODS
             def l
-              {%
-                raise <<-ERROR
-                Missing interpolation values, use the "l" method with arguments:
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
 
-                  Rosetta.t("#{key}").l(#{with_args})
-                ERROR
-              %}
+                Rosetta.t("#{key}").l(#{with_args})
+              ERROR
             end
             def l(#{with_args})
               #{build_translation_return_value(translation, l10n_keys)}

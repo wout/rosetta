@@ -36,13 +36,11 @@ describe Rosetta::Parser do
           struct Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {en: "Hi %{name}, have a fabulous %{day_name}!", nl: "Hey %{name}, maak er een geweldige %{day_name} van!"}
             def l
-              {%
-                raise <<-ERROR
-                Missing interpolation values, use the "l" method with arguments:
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
 
-                  Rosetta.t("interpolatable.string").l(name : String, day_name : String)
-                ERROR
-              %}
+                Rosetta.t("interpolatable.string").l(name : String, day_name : String)
+              ERROR
             end
             def l(name : String, day_name : String)
               {en: "Hi \#{name}, have a fabulous \#{day_name}!", nl: "Hey \#{name}, maak er een geweldige \#{day_name} van!"}[Rosetta.locale]
@@ -59,13 +57,11 @@ describe Rosetta::Parser do
           struct Localizable_StringTranslation < Rosetta::Translation
             getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
             def l
-              {%
-                raise <<-ERROR
-                Missing interpolation values, use the "l" method with arguments:
+              raise <<-ERROR
+              Missing interpolation values, use the "with" method:
 
-                  Rosetta.t("localizable.string").l(first_name : String, time : Time)
-                ERROR
-              %}
+                Rosetta.t("localizable.string").l(first_name : String, time : Time)
+              ERROR
             end
             def l(first_name : String, time : Time)
               Rosetta.localize_time({en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale], time)
