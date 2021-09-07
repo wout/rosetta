@@ -16,10 +16,11 @@ module Rosetta
     {% end %}
   end
 
-  # Base struct for translation values
+  # Base struct for translation values.
   abstract struct Translation
     abstract def translations
 
+    # Return the raw translation value for the current locale.
     def raw : String
       translations[Rosetta.locale]
     end
@@ -30,5 +31,14 @@ module Rosetta
     def t_hash(values : Hash(String | Symbol, String))
       Rosetta.interpolate(raw, values)
     end
+  end
+
+  # Temporarily use a different locale.
+  def self.with_locale(locale : String | Symbol)
+    current_locale = Rosetta.locale
+    Rosetta.locale = locale
+    yield
+  ensure
+    Rosetta.locale = current_locale || default_locale
   end
 end

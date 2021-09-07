@@ -5,7 +5,7 @@ describe Rosetta do
     reset_to_default_locale
   end
 
-  describe ".l" do
+  describe ".t" do
     it "returns a module for the given translation key" do
       translation = Rosetta.find("user.first_name")
 
@@ -58,6 +58,18 @@ describe Rosetta do
     it "returns an uninterpolated string for the current locale" do
       Rosetta.find("interpolatable.string").raw
         .should eq("Hi %{name}, have a fabulous %{day_name}!")
+    end
+  end
+
+  describe ".with_locale" do
+    it "temporarily uses a different locale" do
+      Rosetta.find("user.first_name").t.should eq("First name")
+
+      Rosetta.with_locale(:nl) do
+        Rosetta.find("user.first_name").t.should eq("Voornaam")
+      end
+
+      Rosetta.find("user.first_name").t.should eq("First name")
     end
   end
 end

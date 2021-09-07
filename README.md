@@ -192,12 +192,21 @@ class Products::ShowPage < MainLayout
 end
 ```
 
-If required, the translations for all locales can be accessed with the
+Wehn required, the translations for all locales can be accessed with the
 `translations` property:
 
 ```cr
 Rosetta.find("user.first_name").translations
 # => {en: "First name", nl: "Voornaam"}
+```
+
+If a different locale needs to be used in a specific place, use the
+`with_locale` method:
+
+```cr
+Rosetta.with_locale(:nl) do
+  Rosetta.find("user.first_name").t.should eq("Voornaam")
+end
 ```
 
 ### Interpolations
@@ -492,7 +501,7 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Localization of numeric values
 - [X] Localization of date and time values
 - [X] Localizable mixin
-- [ ] Locale exceptions
+- [X] Locale exceptions
 - [ ] Pluralization (with one/many/other/count/... convention)
 - [ ] Add setup scripts for Lucky and other frameworks
 - [ ] Implement fallbacks
