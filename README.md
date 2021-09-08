@@ -5,9 +5,6 @@ key lookup. You'll never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 
-**IMPORTANT: This shard is still under heavy development and is not yet ready
-for use.**
-
 ## Why use Rosetta?
 
 ### You'll never have a missing translation
@@ -503,8 +500,8 @@ Error: Some translations have mismatching interpolation keys:
 - [X] Localization of date and time values
 - [X] Localizable mixin
 - [X] Locale exceptions
+- [X] Add setup scripts
 - [ ] Pluralization (with one/many/other/count/... convention)
-- [ ] Add setup scripts for Lucky and other frameworks
 - [ ] Implement fallbacks
 
 ## Development
