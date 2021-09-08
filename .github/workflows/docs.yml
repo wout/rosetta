@@ -95,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
 
       - name: Install Crystal
         uses: oprypin/install-crystal@v1.2.4
