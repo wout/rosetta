@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#why-use-rosetta" class="md-skip">
+        <a href="#rosetta" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Why Rosetta?
+              Introduction
             
           </span>
         </div>
@@ -240,54 +240,25 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Why Rosetta?
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="." class="md-nav__link md-nav__link--active">
-        Why Rosetta?
+        Introduction
       </a>
       
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+    </li>
   
-  
-  
+
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
-        <li class="md-nav__item">
-  <a href="#youll-never-have-a-missing-translation" class="md-nav__link">
-    You'll never have a missing translation
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#youll-never-have-a-missing-interpolation" class="md-nav__link">
-    You'll never have a missing interpolation
-  </a>
-  
-</li>
       
-        <li class="md-nav__item">
-  <a href="#rosetta-is-10x-faster-than-similar-libraries" class="md-nav__link">
-    Rosetta is 10x faster than similar libraries
-  </a>
+
   
-</li>
-      
-    </ul>
   
-</nav>
-      
+  
+    <li class="md-nav__item">
+      <a href="why_rosetta/" class="md-nav__link">
+        Why Rosetta?
+      </a>
     </li>
   
 
@@ -431,35 +402,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#youll-never-have-a-missing-translation" class="md-nav__link">
-    You'll never have a missing translation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#youll-never-have-a-missing-interpolation" class="md-nav__link">
-    You'll never have a missing interpolation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rosetta-is-10x-faster-than-similar-libraries" class="md-nav__link">
-    Rosetta is 10x faster than similar libraries
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -475,38 +417,8 @@
                   </a>
                 
                 
-                <h1 id="why-use-rosetta">Why use Rosetta?</h1>
-<h2 id="youll-never-have-a-missing-translation">You'll never have a missing translation</h2>
-<p>Rosetta is different from other internationalization libraries because it
-handles key lookup at compile-time rather than runtime. The significant
-advantage is that you'll be able to find missing translations - or typos in
-your locale keys - during development rather than after you've deployed your
-app. This is also true for translation keys in all additional locales.</p>
-<h2 id="youll-never-have-a-missing-interpolation">You'll never have a missing interpolation</h2>
-<p>In Rosetta, interpolation keys are arguments to the translation method. So if
-you're missing an argument, the compiler will complain. The parser will also
-compare interpolation keys in additional locales to the ones found in the
-default locale, and complain if some are missing.</p>
-<h2 id="rosetta-is-10x-faster-than-similar-libraries">Rosetta is 10x faster than similar libraries</h2>
-<p>Benchmarking against other libraries which also use YAML or JSON files for
-locales, Rosetta is about 10x faster than any other one.</p>
-<p>For simple translations:</p>
-<div class="highlight"><pre><span></span><code>i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/op 178.77× slower
-   i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/op  11.05× slower
-   lens translation   1.10M (912.67ns) (± 7.10%)   176B/op  22.72× slower
-rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/op         fastest
-</code></pre></div>
-<p>For translations with interpolations:</p>
-<div class="highlight"><pre><span></span><code>i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  23.12× slower
-   i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
-   lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/op   9.29× slower
-rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
-</code></pre></div>
-<p>Rosetta is that much faster because a lot of the hard work happens at
-compile-time. And because the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
-rather than the
-heap</a>,
-out of the scope of garbage collector.</p>
+                <h1 id="rosetta">Rosetta</h1>
+<p>A blazing fast internationalization (i18n) library for Crystal with compile-time key lookup. You'll never have a <code>missing translation</code> in your app, ever again.</p>
                 
               
               
@@ -527,13 +439,13 @@ out of the scope of garbage collector.</p>
       
       
         
-        <a href="installation/" class="md-footer__link md-footer__link--next" aria-label="Next: Getting started" rel="next">
+        <a href="why_rosetta/" class="md-footer__link md-footer__link--next" aria-label="Next: Why Rosetta?" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Getting started
+              Why Rosetta?
             </div>
           </div>
           <div class="md-footer__button md-icon">

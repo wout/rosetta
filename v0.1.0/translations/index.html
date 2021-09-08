@@ -232,6 +232,21 @@
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why_rosetta/" class="md-nav__link">
         Why Rosetta?
       </a>
     </li>
@@ -490,8 +505,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.name&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p>This will return a struct containing all the translation data for the given key.
-To get the translation for the currently selected locale, call the <code>l</code>
-(localize) method:</p>
+To get the translation for the currently selected locale, call the <code>t</code> method:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
 <span class="c1"># =&gt; &quot;User name&quot;</span>
 </code></pre></div>
@@ -541,9 +555,9 @@ classes. Here's an example of its usage:</p>
 <span class="n">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">name_label</span>
 <span class="c1"># =&gt; &quot;Nombre&quot;</span>
 </code></pre></div>
-<p>The <code>r</code> macro essentially is an alias for the <code>Rosetta.find</code> macro.</p>
-<p>Inferred locale keys make it even more concise. By omitting the prefix of the
-locale key and having the key start with a <code>.</code>, the key prefix will be
+<p>The <code>r</code> macro essentially is an alias for the <code>Rosetta.find</code> macro, but it
+introduces the possibility to use inferred locale keys. By omitting the prefix
+of the locale key and having the key start with a <code>.</code>, the key prefix will be
 derived from the current class name:</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span>
   <span class="k">include</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Translatable</span>
