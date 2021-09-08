@@ -1,8 +1,0 @@
-files: ./**/*.cr
-run: bin/ameba
----
-files: ./spec/**/*_spec.cr
-run: bin/spec_mirror %file%
----
-files: ./src/**/*.cr
-run: bin/spec_mirror %file%

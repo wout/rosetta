@@ -1,6 +1,0 @@
-nl-interpolation:
-  interpolatable:
-    string: "Hey %{name}, maak er een geweldige %{day_name} van!"
-    missing: "Ik mis mijn %{huisdier}."
-    one_missing: "Ik mis mijn %{pet}."
-    overflow: "Ik mis mijn %{pet}"
