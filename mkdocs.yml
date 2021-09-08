@@ -32,7 +32,7 @@ theme:
       icon: material/toggle-switch
       name: Use light mode
   icon:
-    repo: octicons/mark-github-16
+    repo: fontawesome/brands/github
 
 markdown_extensions:
   - admonition
