@@ -1,5 +1,10 @@
 # Rosetta
 
+<div style="text-align: center">
+  <img src="https://wout.github.io/rosetta/v0.1.0/assets/rosetta-logo-accent.png" width="256" alt="Rosetta logo">
+</div>
+
+
 A blazing fast internationalization (i18n) library for Crystal with compile-time
 key lookup. You'll never have a `missing translation` in your app, ever again.
 
