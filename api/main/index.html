@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.1.1">
+<meta name="crystal_docs.project_version" content="v0.2.0-dev">
+<meta name="crystal_docs.project_name" content="Rosetta">
+
+  <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
+
+
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest">
+  
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Rosetta">
+  <title>Rosetta v0.2.0-dev</title>
+  <script type="text/javascript">
+  CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          Rosetta
+        </a>
+      </h1>
+
+      <span class="project-version">
+        v0.2.0-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="Rosetta/Lucky" data-name="lucky">
+      <a href="Lucky.html">Lucky</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Lucky/AllowedInTags" data-name="lucky::allowedintags">
+      <a href="Lucky/AllowedInTags.html">AllowedInTags</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent " data-id="Rosetta/Rosetta" data-name="rosetta">
+      <a href="Rosetta.html">Rosetta</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Backend" data-name="rosetta::backend">
+      <a href="Rosetta/Backend.html">Backend</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Builder" data-name="rosetta::builder">
+      <a href="Rosetta/Builder.html">Builder</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Config" data-name="rosetta::config">
+      <a href="Rosetta/Config.html">Config</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Fallbacks" data-name="rosetta::fallbacks">
+      <a href="Rosetta/Fallbacks.html">Fallbacks</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
+      <a href="Rosetta/Localizable.html">Localizable</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
+      <a href="Rosetta/LocalizedNumber.html">LocalizedNumber</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
+      <a href="Rosetta/LocalizedTime.html">LocalizedTime</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
+      <a href="Rosetta/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translatable" data-name="rosetta::translatable">
+      <a href="Rosetta/Translatable.html">Translatable</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translation" data-name="rosetta::translation">
+      <a href="Rosetta/Translation.html">Translation</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translations" data-name="rosetta::translations">
+      <a href="Rosetta/Translations.html">Translations</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/TranslationsHash" data-name="rosetta::translationshash">
+      <a href="Rosetta/TranslationsHash.html">TranslationsHash</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1><a id="rosetta" class="anchor" href="#rosetta">  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Rosetta</h1>
+<p>A blazing fast internationalization (i18n) library for Crystal with compile-time
+key lookup. You'll never have a <code>missing translation</code> in your app, ever again.</p>
+<p><img src="https://img.shields.io/github/license/wout/rosetta" alt="GitHub" /></p>
+<h2><a id="why-use-rosetta" class="anchor" href="#why-use-rosetta">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Why use Rosetta?</h2>
+<h3><a id="youll-never-have-a-missing-translation" class="anchor" href="#youll-never-have-a-missing-translation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>You'll never have a missing translation</h3>
+<p>Rosetta is different from other internationalization libraries because it
+handles key lookup at compile-time rather than runtime. The significant
+advantage is that you'll be able to find missing translations - or typos in
+your locale keys - during development rather than after you've deployed your
+app. This is also true for translation keys in all additional locales.</p>
+<h3><a id="youll-never-have-a-missing-interpolation" class="anchor" href="#youll-never-have-a-missing-interpolation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>You'll never have a missing interpolation</h3>
+<p>In Rosetta, interpolation keys are arguments to the translation method. So if
+you're missing an argument, the compiler will complain. The parser will also
+compare interpolation keys in additional locales to the ones found in the
+default locale, and complain if some are missing.</p>
+<h3><a id="rosetta-is-10x-faster-than-similar-libraries" class="anchor" href="#rosetta-is-10x-faster-than-similar-libraries">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Rosetta is 10x faster than similar libraries</h3>
+<p>Benchmarking against other libraries which also use YAML or JSON files for
+locales, Rosetta is about 10x faster than any other one.</p>
+<p>For simple translations:</p>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/</span>op <span class="n">178.77</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/</span>op  <span class="n">11.05</span>× slower
+         syeopite<span class="s">/lens translation   1.10M (912.67ns) (± 7.10%)   176B/</span>op  <span class="n">22.72</span>× slower
+          wout<span class="s">/rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/</span>op         fastest
+</code></pre>
+<p>For translations with interpolations:</p>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/</span>op  <span class="n">23.12</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/</span>op  <span class="n">21.23</span>× slower
+         syeopite<span class="s">/lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/</span>op   <span class="n">9.29</span>× slower
+          wout<span class="s">/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/</span>op         fastest</code></pre>
+<p>Rosetta is that much faster because a lot of the hard work happens at
+compile-time. And because the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
+rather than the
+heap</a>,
+out of the scope of garbage collector.</p>
+<h2><a id="installation" class="anchor" href="#installation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Installation</h2>
+<ol>
+<li>Add the dependency to your <code>shard.yml</code>:</li>
+</ol>
+<pre><code class="language-yaml">dependencies:
+  rosetta:
+    github: wout/rosetta</code></pre>
+<ol start="2">
+<li>
+<p>Run <code>shards install</code></p>
+</li>
+<li>
+<p>Run <code>bin/rosetta --init</code></p>
+</li>
+<li>
+<p>Require the shard</p>
+</li>
+</ol>
+<pre><code class="language-crystal"><span class="c"># src/shards.cr</span>
+<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span></code></pre>
+<ol start="5">
+<li>Include the <code><a href="Rosetta/Translatable.html">Rosetta::Translatable</a></code> mixin</li>
+</ol>
+<pre><code class="language-crystal"><span class="c"># e.g. src/pages/main_layout.cr</span>
+<span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span></code></pre>
+<ol start="6">
+<li>Localize your app</li>
+</ol>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.locale <span class="o">=</span> <span class="n">:es</span>
+
+<span class="k">class</span> <span class="t">Hello</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
+  <span class="k">def</span> <span class="m">content</span>
+    h1 r(<span class="s">&quot;welcome_message&quot;</span>).t(name: <span class="s">&quot;Brian&quot;</span>) <span class="c"># =&gt; &quot;¡Hola Brian!&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<h2><a id="setup" class="anchor" href="#setup">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Setup</h2>
+<p>The <code>bin/rosetta --init</code> command will generate the initial files to get started.</p>
+<p>An initializer has the following content:</p>
+<pre><code class="language-crystal"><span class="c"># config/rosetta.cr</span>
+<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span>
+
+<span class="t">Rosetta</span><span class="t">::</span><span class="t">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="n">:en</span>
+<span class="t">Rosetta</span><span class="t">::</span><span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%i[en]</span>
+<span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/rosetta&quot;</span>)</code></pre>
+<p>An example locale file:</p>
+<pre><code class="language-yaml"># config/rosetta/example.en.yml
+en:
+  welcome_message: &quot;Hi %{name}!&quot; </code></pre>
+<h2><a id="configuration" class="anchor" href="#configuration">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Configuration</h2>
+<p>Configuration options are set as constants in your initializer file.</p>
+<h3><a id="default-locale" class="anchor" href="#default-locale">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>DEFAULT_LOCALE</code></h3>
+<p>Defines the default value if no locale is set. The <em>default</em> default locale is
+set to <code>:en</code>.</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span><span class="t">::</span><span class="t">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="s">&quot;es-ES&quot;</span></code></pre>
+<p>🗒️ <strong>Note</strong>: The default locale is used by the compiler to define the ruling set
+of locale keys. This means that, if one of the other available locales is
+missing some of the keys found in the default key set, the compiler will
+complain. So every available locale will need to have the exact same key set as
+the default locale.</p>
+<h3><a id="available-locales" class="anchor" href="#available-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>AVAILABLE_LOCALES</code></h3>
+<p>Defines all the available locales, including the default locale. The default
+for this setting is <code>%i[en]</code>.</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span><span class="t">::</span><span class="t">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="s">%i[de en-GB en-US es nl]</span></code></pre>
+<h3><a id="fallbacks" class="anchor" href="#fallbacks">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a><code>FALLBACKS</code></h3>
+<p><span class="flag orange">TODO</span>  Fallbacks still need to be implemented.</p>
+<h2><a id="usage" class="anchor" href="#usage">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Usage</h2>
+<h3><a id="locale-files" class="anchor" href="#locale-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Locale files</h3>
+<p>Chop up your locale files and place them in subdirectories; organise them any
+way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
+formats together.</p>
+<p>🗒️ <strong>Note</strong>: Beware, though, that there is a fixed loading order. JSON files are
+loaded first, then YAML files. So in the unlikely situation where you have the
+same key in a JSON and a YAML file, YAML will take precedence.</p>
+<h3><a id="lookup" class="anchor" href="#lookup">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Lookup</h3>
+<p>Looking up translations is done with the <code>find</code> macro:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>)</code></pre>
+<p>This will return a struct containing all the translation data for the given key.
+To get the translation for the currently selected locale, call the <code>l</code>
+(localize) method:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).t
+<span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
+<p>Optionally, you can call <code>to_s</code> or use the struct with string
+interpolation:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>).to_s
+<span class="c"># =&gt; &quot;User name&quot;</span>
+
+<span class="s">&quot;</span><span class="i">#{</span><span class="t">Rosetta</span>.find(<span class="s">&quot;user.name&quot;</span>)<span class="i">}</span><span class="s">&quot;</span>
+<span class="c"># =&gt; &quot;User name&quot;</span></code></pre>
+<p>The translation struct also includes the <code><a href="Lucky/AllowedInTags.html">Lucky::AllowedInTags</a></code> module, so it
+works with Lucky templates as well, even without having to call <code>t</code>:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">Products</span><span class="t">::</span><span class="t">ShowPage</span> <span class="o">&lt;</span> <span class="t">MainLayout</span>
+  <span class="k">def</span> <span class="m">content</span>
+    h1 <span class="t">Rosetta</span>.find(<span class="s">&quot;.heading&quot;</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Wehn required, the translations for all locales can be accessed with the
+<code>translations</code> property:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.first_name&quot;</span>).translations
+<span class="c"># =&gt; {en: &quot;First name&quot;, nl: &quot;Voornaam&quot;}</span></code></pre>
+<p>If a different locale needs to be used in a specific place, use the
+<code>with_locale</code> method:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.with_locale(<span class="n">:nl</span>) <span class="k">do</span>
+  <span class="t">Rosetta</span>.find(<span class="s">&quot;user.first_name&quot;</span>).t
+  <span class="c"># =&gt; &quot;Voornaam&quot;</span>
+<span class="k">end</span></code></pre>
+<h3><a id="interpolations" class="anchor" href="#interpolations">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Interpolations</h3>
+<p>Interpolations can be passed as arguments for the <code>t</code> (for localize) method:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).t(name: <span class="s">&quot;Ary&quot;</span>)
+<span class="c"># =&gt; &quot;Hi Ary!&quot;</span></code></pre>
+<p>Important to know here is that translations with interpolation keys will always
+require you to call the <code>t</code> method with the right number of interpolation keys,
+or the compiler will complain:</p>
+<pre><code class="language-crystal"># user.welcome_message: "Hi %{name}!"
+Rosetta.find("user.welcome_message").t
+
+Error: wrong number of arguments for 'Rosetta::Locales::User_WelcomeMessage#t'
+(given 0, expected 1)
+
+Overloads are:
+ - Rosetta::Locales::User_WelcomeMessage#t(name : String)
+ - Rosetta::Locales::User_WelcomeMessage#t(values : NamedTuple(name: String))</code></pre>
+<p>This is to ensure you're not missing any interpolation values.</p>
+<p>The raw, uninterpolated string, can be accessed with the <code>raw</code> method:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).raw
+<span class="c"># =&gt; &quot;Hi %{name}!&quot;</span></code></pre>
+<p>One final note on interpolations. The <code>t</code> method does not accept hashes, only
+arguments or a <code>NamedTuple</code>. For situations where you have to use a hash,
+there's the <code>t_hash</code> method:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.find(<span class="s">&quot;user.welcome_message&quot;</span>).t_hash({ <span class="n">:name</span> => <span class="s">&quot;Beta&quot;</span> })
+<span class="c"># =&gt; &quot;Hi Beta!&quot;</span></code></pre>
+<p>However, this method is considered unsafe because the content of hashes can't be
+checked at compile-time. Only use it when there's no other way, and use it with
+care.</p>
+<h3><a id="the-translatable-mixin" class="anchor" href="#the-translatable-mixin">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>The <code>Translatable</code> mixin</h3>
+<p>This mixin makes it more convenient to work with translated values in your
+classes. Here's an example of its usage:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.locale <span class="o">=</span> <span class="n">:es</span>
+
+<span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
+
+  <span class="k">def</span> <span class="m">name_label</span>
+    r(<span class="s">&quot;user.name_label&quot;</span>).t
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">User</span>.<span class="k">new</span>.name_label
+<span class="c"># =&gt; &quot;Nombre&quot;</span></code></pre>
+<p>The <code>r</code> macro essentially is an alias for the <code>Rosetta.find</code> macro.</p>
+<p>Inferred locale keys make it even more concise. By omitting the prefix of the
+locale key and having the key start with a <code>.</code>, the key prefix will be
+derived from the current class name:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
+
+  <span class="k">def</span> <span class="m">name_label</span>
+    r(<span class="s">&quot;.name_label&quot;</span>).t <span class="c"># =&gt; resolves to &quot;user.name_label&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>This also works with nested class names, for example:</p>
+<ul>
+<li><code>User</code> =&gt; <code>"user"</code></li>
+<li><code>Components::MainMenu</code> =&gt; <code>"components.main_menu"</code></li>
+<li><code>Helpers::SiteSections::UserSettings</code> =&gt; <code>"helpers.site_sections.user_settings"</code></li>
+</ul>
+<p>Using inferred locale keys has an added bonus. You don't need to think about how
+to organise your locale files. And it also makes finding your keys a lot easier.</p>
+<p>Finally, in case you want to use another prefix for the current class, a
+constant can be used:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
+
+  <span class="t">ROSETTA_PREFIX</span> <span class="o">=</span> <span class="s">&quot;guest&quot;</span>
+
+  <span class="k">def</span> <span class="m">name_label</span>
+    r(<span class="s">&quot;.name_label&quot;</span>).t <span class="c"># =&gt; resolves to &quot;guest.name_label&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>Just like the global <code>Rosetta.find</code> marco, interpolations are passed using the
+<code>t</code> method:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span>
+
+  <span class="k">def</span> <span class="m">welcome_message</span>
+    r(<span class="s">&quot;.welcome_message&quot;</span>).t(name: <span class="s">&quot;Ary&quot;</span>)
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<p>The <code>r</code> macro uses <code>Rosetta.find</code> to get the translations for a given key at
+compile-time. Then the <code>t</code> method localizes the value at runtime.</p>
+<h3><a id="date-time-and-numeric-localization" class="anchor" href="#date-time-and-numeric-localization">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Date, time and numeric localization</h3>
+<p>Localization instructions live under a the <code>rosetta_localization</code> namespace in
+the locale files. The initializer script will install the required files for you
+in order to be able to work with Rosetta.</p>
+<h4><a id="localized-time" class="anchor" href="#localized-time">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized time</h4>
+<p>Similar to translations, localization formats are retrieved at compile-time and
+localized at runtime.</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time.l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;Sun, 29 Aug 2021 18:30:57 +0200&quot;</span></code></pre>
+<p>This will use the <code>:default</code> format to convert the given <code>Time</code> object. Another predefined format can be passed:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="n">:short</span>).l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;29 Aug 18:30&quot;</span></code></pre>
+<p>For specific formats, a string can be passed as well:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time(<span class="s">&quot;%H:%M:%S&quot;</span>).l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;18:30:57&quot;</span></code></pre>
+<h4><a id="localized-date" class="anchor" href="#localized-date">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized date</h4>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;2021-08-29&quot;</span></code></pre>
+<p>Or with a date-formatted tuple:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.l({<span class="n">1991</span>, <span class="n">9</span>, <span class="n">17</span>})
+<span class="c"># =&gt; &quot;1991-09-17&quot;</span></code></pre>
+<p>Similar to the <code>time</code> macro, a predefined format can be passed:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="n">:long</span>).l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;August 29, 2021&quot;</span></code></pre>
+<p>Or a completely custom format:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date(<span class="s">&quot;%Y&quot;</span>).l(<span class="t">Time</span>.local)
+<span class="c"># =&gt; &quot;2021&quot;</span></code></pre>
+<h4><a id="localized-number" class="anchor" href="#localized-number">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Localized number</h4>
+<p>Number formats work the same as date and time formats.</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.l(<span class="n">123_456.789</span>)
+<span class="c"># =&gt; &quot;123,456.79&quot;</span></code></pre>
+<p>With a specific predefined format:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number(<span class="n">:custom</span>).l(<span class="n">123_456.789</span>)
+<span class="c"># =&gt; &quot;12 34 56.789&quot;</span></code></pre>
+<p>Or with specific formatting options:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.l(<span class="n">123_456.789</span>, decimal_places: <span class="n">6</span>)
+<span class="c"># =&gt; &quot;123,456.789000&quot;</span></code></pre>
+<p>🗒️ <strong>Note</strong>: In the background, Rosetta uses Crystal's native <code>Number#format</code>
+method and accepts the same parameters.</p>
+<h3><a id="the-localizable-mixin" class="anchor" href="#the-localizable-mixin">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>The <code>Localizable</code> mixin</h3>
+<p>Include this mixin anywhere you want to work with localized dates, times and
+numbers. Here's an example of its usage:</p>
+<pre><code class="language-crystal"><span class="k">class</span> <span class="t">User</span>
+  <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Localizable</span>
+
+  <span class="k">def</span> <span class="m">birthday</span>
+    r_date(<span class="n">:short</span>).l(born_at)
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">User</span>.<span class="k">new</span>.birthday
+<span class="c"># =&gt; &quot;Feb 20&quot;</span></code></pre>
+<p>Similarly there are the <code>r_time</code> and the <code>r_number</code> macros for retrieval,
+returning a struct which accepts the <code>l</code> method for the value that needs to be
+localized.</p>
+<h2><a id="parser-checks" class="anchor" href="#parser-checks">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Parser checks</h2>
+<p>After loading all locales, the parser does a series of checkes on the given set.</p>
+<h3><a id="check-1-presence-of-translations-for-all-locales" class="anchor" href="#check-1-presence-of-translations-for-all-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 1: presence of translations for all locales</h3>
+<p>If the full set of translations is missing for a locale in the configured
+<code>AVAILABLE_LOCALES</code>, the parser will raise an error similar to the following:</p>
+<pre><code class="language-bash">Error: Expected to find translations for:
+
+  ‣ en
+  ‣ nl
+  ‣ fr
+
+But missing all translations for:
+
+  ‣ fr</code></pre>
+<h3><a id="check-2-presence-of-ruling-key-set-in-all-alternative-locales" class="anchor" href="#check-2-presence-of-ruling-key-set-in-all-alternative-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 2: presence of ruling key set in all alternative locales</h3>
+<p>The <code>DEFAULT_LOCALE</code> will define the key set that should be present in every
+alternative locale. If keys are missing, you'll get an error like the one below:</p>
+<pre><code class="language-bash">Error: Missing keys for locale &quot;nl&quot;:
+
+  ‣ user.first_name
+  ‣ user.gender.male
+  ‣ user.gender.female
+  ‣ user.gender.non_binary</code></pre>
+<h3><a id="check-3-no-additional-keys-in-alternative-locales" class="anchor" href="#check-3-no-additional-keys-in-alternative-locales">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 3: no additional keys in alternative locales</h3>
+<p>If any of the alternative locales has keys that aren't present in the key set
+of the <code>DEFAULT_LOCALE</code>, the parser will raise an error:</p>
+<pre><code class="language-bash">Error: The &quot;nl&quot; locale has unused keys:
+
+  ‣ user.name
+  ‣ user.date_of_birth</code></pre>
+<h3><a id="check-4-interpolation-keys-are-present-in-every-translation" class="anchor" href="#check-4-interpolation-keys-are-present-in-every-translation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Check 4: interpolation keys are present in every translation</h3>
+<p>If a translation in the <code>DEFAULT_LOCALE</code> has one or more interpolation keys,
+then those interpolation keys should also be present in the alternative locales.
+If not, an error similar to the following will be raised:</p>
+<pre><code class="language-bash">Error: Some translations have mismatching interpolation keys:
+
+  ‣ nl: message.welcome should contain &quot;%{first_name}&quot;
+  ‣ nl: base.validations.min_max should contain &quot;%{min}&quot;
+  ‣ nl: base.validations.min_max should contain &quot;%{max}&quot;
+  ‣ fr: message.welcome should contain &quot;%{first_name}&quot;</code></pre>
+<h2><a id="to-do" class="anchor" href="#to-do">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>To-do</h2>
+<ul>
+<li>[X] Add specs for the existing code</li>
+<li>[X] Make settings accessible to the compiler</li>
+<li>[X] Send <code>default_locale</code> and <code>available_locales</code> to the parser</li>
+<li>[X] Implement key comparison between available locales in the parser</li>
+<li>[X] Add compiler error messages for mismatching keys</li>
+<li>[X] Implement inferred locale keys at macro level</li>
+<li>[X] Interpolation (with %{} tag for interpolation keys)</li>
+<li>[X] Check existence of interpolation keys in all translations at compile-time</li>
+<li>[X] Translatable mixin</li>
+<li>[X] Localization of numeric values</li>
+<li>[X] Localization of date and time values</li>
+<li>[X] Localizable mixin</li>
+<li>[X] Locale exceptions</li>
+<li>[X] Add setup scripts</li>
+<li>[ ] Pluralization (with one/many/other/count/... convention)</li>
+<li>[ ] Implement fallbacks</li>
+</ul>
+<h2><a id="development" class="anchor" href="#development">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Development</h2>
+<p>Make sure you have <a href="https://github.com/f/guardian">Guardian.cr</a> installed. Then
+run:</p>
+<pre><code class="language-bash">$ guardian</code></pre>
+<p>This will automatically:</p>
+<ul>
+<li>run ameba for src and spec files</li>
+<li>run the relevant spec for any file in src</li>
+<li>run spec file whenever they are saved</li>
+<li>install shards whenever you save shard.yml</li>
+</ul>
+<h2><a id="documentation" class="anchor" href="#documentation">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Documentation</h2>
+<ul>
+<li><a href="https://wout.github.io/rosetta/">API (main)</a></li>
+</ul>
+<h2><a id="contributing" class="anchor" href="#contributing">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributing</h2>
+<ol>
+<li>Fork it (<a href="https://github.com/wout/rosetta/fork">https://github.com/wout/rosetta/fork</a>)</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create a new Pull Request</li>
+</ol>
+<h2><a id="contributors" class="anchor" href="#contributors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Contributors</h2>
+<ul>
+<li><a href="https://github.com/wout">wout</a> - creator and maintainer</li>
+</ul>
+</div>
+</body>
+</html>

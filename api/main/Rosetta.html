@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 1.1.1">
+<meta name="crystal_docs.project_version" content="v0.2.0-dev">
+<meta name="crystal_docs.project_name" content="Rosetta">
+
+  <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
+
+
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Rosetta">
+  <title>Rosetta - Rosetta v0.2.0-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          Rosetta
+        </a>
+      </h1>
+
+      <span class="project-version">
+        v0.2.0-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent " data-id="Rosetta/Lucky" data-name="lucky">
+      <a href="Lucky.html">Lucky</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Lucky/AllowedInTags" data-name="lucky::allowedintags">
+      <a href="Lucky/AllowedInTags.html">AllowedInTags</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+  <li class="parent open current" data-id="Rosetta/Rosetta" data-name="rosetta">
+      <a href="Rosetta.html">Rosetta</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Backend" data-name="rosetta::backend">
+      <a href="Rosetta/Backend.html">Backend</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Builder" data-name="rosetta::builder">
+      <a href="Rosetta/Builder.html">Builder</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Config" data-name="rosetta::config">
+      <a href="Rosetta/Config.html">Config</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Fallbacks" data-name="rosetta::fallbacks">
+      <a href="Rosetta/Fallbacks.html">Fallbacks</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Localizable" data-name="rosetta::localizable">
+      <a href="Rosetta/Localizable.html">Localizable</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/LocalizedNumber" data-name="rosetta::localizednumber">
+      <a href="Rosetta/LocalizedNumber.html">LocalizedNumber</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/LocalizedTime" data-name="rosetta::localizedtime">
+      <a href="Rosetta/LocalizedTime.html">LocalizedTime</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
+      <a href="Rosetta/Parser.html">Parser</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translatable" data-name="rosetta::translatable">
+      <a href="Rosetta/Translatable.html">Translatable</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translation" data-name="rosetta::translation">
+      <a href="Rosetta/Translation.html">Translation</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translations" data-name="rosetta::translations">
+      <a href="Rosetta/Translations.html">Translations</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/TranslationsHash" data-name="rosetta::translationshash">
+      <a href="Rosetta/TranslationsHash.html">TranslationsHash</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">module</span> Rosetta
+
+</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/aliases.cr#L1" target="_blank">
+        rosetta/aliases.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/backend.cr#L1" target="_blank">
+        rosetta/backend.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/config.cr#L1" target="_blank">
+        rosetta/config.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/configuration.cr#L1" target="_blank">
+        rosetta/configuration.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/interpolation.cr#L1" target="_blank">
+        rosetta/interpolation.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localizable.cr#L1" target="_blank">
+        rosetta/localizable.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localization.cr#L1" target="_blank">
+        rosetta/localization.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/parser.cr#L5" target="_blank">
+        rosetta/parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/parser/builder.cr#L1" target="_blank">
+        rosetta/parser/builder.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/translatable.cr#L1" target="_blank">
+        rosetta/translatable.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/translation.cr#L1" target="_blank">
+        rosetta/translation.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/version.cr#L1" target="_blank">
+        rosetta/version.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="VERSION">
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.0&quot;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+
+
+  <h2>
+    <a id="class-method-summary" class="anchor" href="#class-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#interpolate(translation:String,values:Hash(String%7CSymbol,String%7CTime)%7CNamedTuple)-class-method" class="signature"><strong>.interpolate</strong>(translation : String, values : Hash(String | Symbol, String | Time) | NamedTuple)</a>
+        
+          <div class="summary"><p>Interpolates a given string with the values from the given hash or named tuple.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#locale:String-class-method" class="signature"><strong>.locale</strong> : String</a>
+        
+          <div class="summary"><p>Gets the current locale at runtime using the config instance stored in the current fiber.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#locale=(locale:String%7CSymbol)-class-method" class="signature"><strong>.locale=</strong>(locale : String | Symbol)</a>
+        
+          <div class="summary"><p>Sets the current locale at runtime using the config instance stored in the current fiber.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#localize_time(format:String,time:Time)-class-method" class="signature"><strong>.localize_time</strong>(format : String, time : Time)</a>
+        
+          <div class="summary"><p>Uses a given format to localize a given Time object, for example:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_locale(locale:String%7CSymbol,&)-class-method" class="signature"><strong>.with_locale</strong>(locale : String | Symbol, &)</a>
+        
+          <div class="summary"><p>Temporarily use a different locale.</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="macro-summary" class="anchor" href="#macro-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#available_locales-macro" class="signature"><strong>available_locales</strong></a>
+        
+          <div class="summary"><p>Tries to find the available locales configurad by the user.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#date(format=:default)-macro" class="signature"><strong>date</strong>(format = <span class="n">:default</span>)</a>
+        
+          <div class="summary"><p>Localizes a date, for example:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_locale-macro" class="signature"><strong>default_locale</strong></a>
+        
+          <div class="summary"><p>Tries to find the default locale configurad by the user.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#find(key)-macro" class="signature"><strong>find</strong>(key)</a>
+        
+          <div class="summary"><p>Finds the translations for the given key as a dedicated class instance for the translation, which inherits from <code><a href="Rosetta/Translation.html">Rosetta::Translation</a></code>.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#number(format=:default)-macro" class="signature"><strong>number</strong>(format = <span class="n">:default</span>)</a>
+        
+          <div class="summary"><p>Localizes a numeric value, for example:</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#time(format=:default)-macro" class="signature"><strong>time</strong>(format = <span class="n">:default</span>)</a>
+        
+          <div class="summary"><p>Localizes time, for example:</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+<div class="methods-inherited">
+  
+</div>
+
+
+
+
+  <h2>
+    <a id="class-method-detail" class="anchor" href="#class-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Class Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="interpolate(translation:String,values:Hash(String|Symbol,String|Time)|NamedTuple)-class-method">
+      <div class="signature">
+        
+        def self.<strong>interpolate</strong>(translation : String, values : Hash(String | Symbol, String | Time) | NamedTuple)
+
+        <a class="method-permalink" href="#interpolate(translation:String,values:Hash(String%7CSymbol,String%7CTime)%7CNamedTuple)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Interpolates a given string with the values from the given hash or named
+tuple.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/interpolation.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="locale:String-class-method">
+      <div class="signature">
+        
+        def self.<strong>locale</strong> : String
+
+        <a class="method-permalink" href="#locale:String-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Gets the current locale at runtime using the config instance stored in the
+current fiber.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/configuration.cr#L30" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="locale=(locale:String|Symbol)-class-method">
+      <div class="signature">
+        
+        def self.<strong>locale=</strong>(locale : String | Symbol)
+
+        <a class="method-permalink" href="#locale=(locale:String%7CSymbol)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Sets the current locale at runtime using the config instance stored in the
+current fiber.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/configuration.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="localize_time(format:String,time:Time)-class-method">
+      <div class="signature">
+        
+        def self.<strong>localize_time</strong>(format : String, time : Time)
+
+        <a class="method-permalink" href="#localize_time(format:String,time:Time)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Uses a given format to localize a given Time object, for example:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.localize_time(<span class="s">&quot;%d %b %Y %H:%M:%S&quot;</span>, <span class="t">Time</span>.local)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localization.cr#L63" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_locale(locale:String|Symbol,&amp;)-class-method">
+      <div class="signature">
+        
+        def self.<strong>with_locale</strong>(locale : String | Symbol, &)
+
+        <a class="method-permalink" href="#with_locale(locale:String%7CSymbol,&)-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Temporarily use a different locale.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/translation.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="macro-detail" class="anchor" href="#macro-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Macro Detail
+  </h2>
+  
+    <div class="entry-detail" id="available_locales-macro">
+      <div class="signature">
+        
+        macro <strong>available_locales</strong>
+
+        <a class="method-permalink" href="#available_locales-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tries to find the available locales configurad by the user. If it's not set,
+the available locales defined in the config class is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/configuration.cr#L14" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="date(format=:default)-macro">
+      <div class="signature">
+        
+        macro <strong>date</strong>(format = <span class="n">:default</span>)
+
+        <a class="method-permalink" href="#date(format=:default)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes a date, for example:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.date.t(<span class="t">Time</span>.local)
+<span class="t">Rosetta</span>.date.t({<span class="n">2021</span>, <span class="n">8</span>, <span class="n">20</span>})
+<span class="t">Rosetta</span>.date(<span class="n">:long</span>).l(<span class="t">Time</span>.local)
+<span class="t">Rosetta</span>.date(<span class="s">&quot;%a, %d %b %Y&quot;</span>).l(<span class="t">Time</span>.local.date)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localization.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_locale-macro">
+      <div class="signature">
+        
+        macro <strong>default_locale</strong>
+
+        <a class="method-permalink" href="#default_locale-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Tries to find the default locale configurad by the user. If it's not set,
+the default locale defined in the config class is used.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/configuration.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="find(key)-macro">
+      <div class="signature">
+        
+        macro <strong>find</strong>(key)
+
+        <a class="method-permalink" href="#find(key)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Finds the translations for the given key as a dedicated class instance for
+the translation, which inherits from <code><a href="Rosetta/Translation.html">Rosetta::Translation</a></code>.</p>
+<p>If the key does not exist, a compile error will be raised.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/translation.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="number(format=:default)-macro">
+      <div class="signature">
+        
+        macro <strong>number</strong>(format = <span class="n">:default</span>)
+
+        <a class="method-permalink" href="#number(format=:default)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes a numeric value, for example:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.number.t(<span class="n">123_456.789</span>)
+<span class="t">Rosetta</span>.number(<span class="n">:custom</span>).l(<span class="n">123_456.789</span>)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localization.cr#L43" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="time(format=:default)-macro">
+      <div class="signature">
+        
+        macro <strong>time</strong>(format = <span class="n">:default</span>)
+
+        <a class="method-permalink" href="#time(format=:default)-macro">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Localizes time, for example:</p>
+<pre><code class="language-crystal"><span class="t">Rosetta</span>.time.t(<span class="t">Time</span>.local)
+<span class="t">Rosetta</span>.time(<span class="n">:short</span>).l(<span class="t">Time</span>.local)
+<span class="t">Rosetta</span>.time(<span class="s">&quot;%d %b %Y %H:%M:%S&quot;</span>).l(<span class="t">Time</span>.local)</code></pre>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/a3fda4a5/src/rosetta/localization.cr#L27" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+</div>
+
+</body>
+</html>
