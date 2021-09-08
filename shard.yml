@@ -22,4 +22,4 @@ development_dependencies:
     branch: master
 
 scripts:
-  postinstall: make generator
+  postinstall: make initializer
