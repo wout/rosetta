@@ -4,7 +4,6 @@ repo_url: https://github.com/wout/rosetta
 edit_uri: https://github.com/wout/rosetta/tree/docs/docs
 
 nav:
-  - Introduction: index.md
   - Why Rosetta?: why_rosetta.md
   - Getting started: installation.md
   - Setup: setup.md
