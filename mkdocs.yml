@@ -1,1 +1,49 @@
-site_name: My Docs
+site_name: Rosetta Docs
+site_url: https://wout.github.io/rosetta/
+repo_url: https://github.com/wout/rosetta
+edit_uri: https://github.com/wout/rosetta/tree/docs/docs
+
+nav:
+  - Why Rosetta?: index.md
+  - Getting started: installation.md
+  - Setup: setup.md
+  - Configuration: configuration.md
+  - Locale files: locale_files.md
+  - Translations: translations.md
+  - Interpolations: interpolations.md
+  - Date, time and numbers: localization.md
+  - Parser checks: parser_checks.md
+
+theme:
+  name: material
+  palette:
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    accent: cyan
+    primary: cyan
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Use dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    accent: cyan
+    primary: cyan
+    toggle:
+      icon: material/toggle-switch
+      name: Use light mode
+  icon:
+    repo: octicons/mark-github-16
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+extra:
+  version:
+    provider: mike
+
+extra_css:
+  - stylesheets/extra.css
