@@ -127,4 +127,4 @@ end
 ```
 
 The `r` macro uses `Rosetta.find` to get the translations for a given key at
-compile-time. Then the `t` method localizes the value at runtime.
+compile-time. Then the `t` method translates the value at runtime.

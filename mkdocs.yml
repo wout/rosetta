@@ -32,6 +32,7 @@ theme:
     toggle:
       icon: material/toggle-switch
       name: Use light mode
+  logo: assets/rosetta-logo-light.png
   icon:
     repo: fontawesome/brands/github
 
