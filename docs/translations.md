@@ -6,8 +6,7 @@ Rosetta.find("user.name")
 ```
 
 This will return a struct containing all the translation data for the given key.
-To get the translation for the currently selected locale, call the `l`
-(localize) method:
+To get the translation for the currently selected locale, call the `t` method:
 
 ```cr
 Rosetta.find("user.name").t
@@ -75,10 +74,9 @@ User.new.name_label
 # => "Nombre"
 ```
 
-The `r` macro essentially is an alias for the `Rosetta.find` macro.
-
-Inferred locale keys make it even more concise. By omitting the prefix of the
-locale key and having the key start with a `.`, the key prefix will be
+The `r` macro essentially is an alias for the `Rosetta.find` macro, but it
+introduces the possibility to use inferred locale keys. By omitting the prefix
+of the locale key and having the key start with a `.`, the key prefix will be
 derived from the current class name:
 
 ```cr
