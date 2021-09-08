@@ -43,7 +43,7 @@ jobs:
 
   add_crystal_api_docs_versions_file:
     runs-on: "ubuntu-latest"
-    needs: deploy-documentation-for-master
+    needs: deploy-docs
     name: "Deploy Crystal API versions file"
     steps:
       # First we checkout the deploy branch and check
