@@ -124,5 +124,5 @@ jobs:
         with:
           branch: gh-pages
           folder: api
-          target-folder: api/master
+          target-folder: api/main
           clean: false
