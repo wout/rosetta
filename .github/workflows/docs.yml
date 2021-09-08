@@ -37,7 +37,7 @@ jobs:
           git config --global user.name GitHub Actions
           git config --global user.email actions@github.com
       - name: "Deploy documentation for nightly"
-        run: mike deploy v0.2.0 nightly master --push
+        run: mike deploy v0.2.0 nightly main --push
       - name: "Label development version with -dev suffix"
         run: mike retitle v0.2.0 v0.2.0-dev --push
 
