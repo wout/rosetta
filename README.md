@@ -44,8 +44,8 @@ crimson-knight/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  
 ```
 
 Rosetta is that much faster because a lot of the hard work happens at
-compile-time. But also because the majority of the data is immutable and stored
-on the [stack rather than the
+compile-time. And because the majority of the data is stored on the [stack
+rather than the
 heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap),
 out of the scope of garbage collector.
 
@@ -506,7 +506,18 @@ Error: Some translations have mismatching interpolation keys:
 
 ## Development
 
-TODO: Coming soon!
+Make sure you have [Guardian.cr](https://github.com/f/guardian) installed. Then
+run:
+
+```bash
+$ guardian
+```
+
+This will automatically:
+- run ameba for src and spec files
+- run the relevant spec for any file in src
+- run spec file whenever they are saved
+- install shards whenever you save shard.yml
 
 ## Documentation
 
