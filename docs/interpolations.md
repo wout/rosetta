@@ -51,10 +51,11 @@ Rosetta.find("user.welcome_message").t_hash({ :name => "Beta" })
 # => "Hi Beta!"
 ```
 
-However, this method is considered unsafe because the content of hashes can't be
-checked at compile-time. It's also much slower, because interpolation values are
-inserted using `gsub` instead of native string interpolation. So, only use it
-when there's no other way, and use it with care.
+!!! warning
+    This method is considered unsafe because the content of hashes can't be
+    checked at compile-time. It's also much slower, because interpolation values
+    are inserted using `gsub` instead of native string interpolation. So, only
+    use it when there's no other way, and use it with care.
 
 ## The uninterpolated string
 The raw, uninterpolated string, can be accessed with the `raw` method:
@@ -73,6 +74,7 @@ Rosetta.interpolate(value, {name: "Ary", time: Time.local})
 # => "¡Hola Ary, que tengas un buen domingo!"
 ```
 
-Note that the `Rosetta.interpolate` method uses `gsub` rather than native string
-interpolation, so it's a lot slower and it doesn't check if all the required
-interpolation keys are given.
+!!! warning
+    The `Rosetta.interpolate` method uses `gsub` rather than native string
+    interpolation, so it's a lot slower and it doesn't check if all the required
+    interpolation keys are given.

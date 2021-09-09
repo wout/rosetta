@@ -1,9 +1,10 @@
-Localization instructions live under a the `rosetta_localization` namespace in
-the locale files. The initializer script will install the required files for you
-in order to be able to work with Rosetta.
+Predefined localization formats, day names and month names, live under the
+`rosetta_localization` namespace in the locale files. The initializer script
+will install the required files for you in order to be able to work with
+Rosetta.
 
 ## Localized time
-Similar to translations, localization formats are retrieved at compile-time and 
+Similar to translations, localization formats are fetched at compile-time and 
 localized at runtime.
 
 ```cr
@@ -74,8 +75,9 @@ Rosetta.number.l(123_456.789, decimal_places: 6)
 # => "123,456.789000"
 ```
 
-🗒️ **Note**: In the background, Rosetta uses Crystal's native `Number#format`
-method and accepts the same parameters.
+!!! info
+    In the background, Rosetta uses Crystal's native `Number#format` method and
+    accepts the same parameters.
 
 ## The `Localizable` mixin
 Include this mixin anywhere you want to work with localized dates, times and

@@ -11,11 +11,12 @@ Rosetta::DEFAULT_LOCALE = "es-ES"
 
 The value can be either a `String` or a `Symbol`.
 
-🗒️ **Note**: The default locale is used by the compiler to define the ruling set
-of locale keys. This means that, if one of the other available locales is
-missing some of the keys found in the default key set, the compiler will
-complain. So every available locale will need to have the exact same key set as
-the default locale.
+!!! info
+    The `DEFAULT_LOCALE` is used by the compiler to define the ruling set of
+    locale keys. Which means that, if one of the other available locales is
+    missing some of the keys found in the default key set, the compiler will
+    complain. So every available locale will need to have the exact same key set
+    as the default locale.
 
 ## `AVAILABLE_LOCALES`
 Defines all the available locales, including the default locale. The default
