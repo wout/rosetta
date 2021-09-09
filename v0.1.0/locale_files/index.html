@@ -244,7 +244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../installation/" class="md-nav__link">
+      <a href="../getting_started/" class="md-nav__link">
         Getting started
       </a>
     </li>
@@ -401,9 +401,16 @@
                 
                 
                 <h1 id="locale-files">Locale files</h1>
-<p>Chop up your locale files and place them in subdirectories; organise them any
-way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
-formats together.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">en</span><span class="p">:</span>
+  <span class="nt">example</span><span class="p">:</span>
+    <span class="nt">translation</span><span class="p">:</span> <span class="s">&quot;Hello</span><span class="nv"> </span><span class="s">world!&quot;</span>
+    <span class="nt">interpolation</span><span class="p">:</span> <span class="s">&quot;Hi</span><span class="nv"> </span><span class="s">%{name},</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">great</span><span class="nv"> </span><span class="s">%A!&quot;</span>
+    <span class="nt">pluralization</span><span class="p">:</span>
+      <span class="nt">one</span><span class="p">:</span> <span class="s">&quot;One</span><span class="nv"> </span><span class="s">item&quot;</span>
+      <span class="nt">other</span><span class="p">:</span> <span class="s">&quot;%{count}</span><span class="nv"> </span><span class="s">items&quot;</span>
+</code></pre></div>
+<p>Chop up your locale files and place them in subdirectories. Use YAML or JSON
+files, or mix them together. Organise them any way you prefer.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Beware, though, that there is a fixed loading order. JSON files are loaded
