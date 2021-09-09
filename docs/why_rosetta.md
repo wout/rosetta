@@ -11,7 +11,7 @@ app. This is also true for translation keys in all additional locales.
 In Rosetta, interpolation keys are arguments to the translation method. So if
 you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
-default locale, and complain if some are missing.
+default locale, and let you know if some are missing.
 
 ## Rosetta is 10x faster than similar libraries
 Benchmarking against other libraries which also use YAML or JSON files for
