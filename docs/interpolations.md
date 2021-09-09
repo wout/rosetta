@@ -61,5 +61,18 @@ The raw, uninterpolated string, can be accessed with the `raw` method:
 
 ```cr
 Rosetta.find("user.welcome_message").raw
-# => "Hi %{name}!"
+# => "¡Hola %{name}, que tengas un buen %A!"
 ```
+
+Which can then be interpolated later:
+
+```cr
+value = Rosetta.find("messages.great_day").raw
+# => "¡Hola %{name}, que tengas un buen %A!"
+Rosetta.interpolate(value, {name: "Ary", time: Time.local})
+# => "¡Hola Ary, que tengas un buen domingo!"
+```
+
+Note that the `Rosetta.interpolate` method uses `gsub` rather than native string
+interpolation, so it's a lot slower and it doesn't check if all the required
+interpolation keys are given.
