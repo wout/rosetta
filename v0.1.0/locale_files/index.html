@@ -404,9 +404,12 @@
 <p>Chop up your locale files and place them in subdirectories; organise them any
 way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
 formats together.</p>
-<p>🗒️ <strong>Note</strong>: Beware, though, that there is a fixed loading order. JSON files are
-loaded first, then YAML files. So in the unlikely situation where you have the
-same key in a JSON and a YAML file, YAML will take precedence.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Beware, though, that there is a fixed loading order. JSON files are loaded
+first, then YAML files. So in the unlikely situation where you have the same
+key in a JSON and a YAML file, YAML will take precedence.</p>
+</div>
                 
               
               

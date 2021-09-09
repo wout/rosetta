@@ -355,6 +355,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#time-directives" class="md-nav__link">
+    Time directives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#working-with-a-hash" class="md-nav__link">
     Working with a Hash
   </a>
@@ -437,6 +444,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#time-directives" class="md-nav__link">
+    Time directives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#working-with-a-hash" class="md-nav__link">
     Working with a Hash
   </a>
@@ -481,7 +495,7 @@
 <p>Important to know here is that translations with interpolation keys will always
 require you to call the <code>t</code> method with the right number of interpolation keys,
 or the compiler will complain:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># user.welcome_message: &quot;Hi %{name}!&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># en.user.welcome_message: &quot;Hi %{name}!&quot;</span>
 <span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
 
 <span class="ss">Error</span><span class="p">:</span> <span class="n">wrong</span> <span class="n">number</span> <span class="k">of</span> <span class="n">arguments</span> <span class="n">for</span> <span class="err">&#39;</span><span class="n">Rosetta</span><span class="o">::</span><span class="n">Locales</span><span class="o">::</span><span class="n">User_WelcomeMessage</span><span class="c1">#t&#39;</span>
@@ -492,20 +506,44 @@ or the compiler will complain:</p>
  <span class="o">-</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Locales</span><span class="o">::</span><span class="n">User_WelcomeMessage</span><span class="c1">#t(values : NamedTuple(name: String))</span>
 </code></pre></div>
 <p>This is to ensure you're not missing any interpolation values.</p>
+<h2 id="time-directives">Time directives</h2>
+<p>If the string in your locale files contains time format directives, Rosetta will
+require a time object as one of the interpolation arguments and translate the
+value to the current locale:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># es.messages.great_day: &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;messages.great_day&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Brian&quot;</span><span class="p">,</span> <span class="ss">time</span><span class="p">:</span> <span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
+<span class="c1"># =&gt; &quot;¡Hola Brian, que tengas un buen domingo!&quot;</span>
+</code></pre></div>
 <h2 id="working-with-a-hash">Working with a <code>Hash</code></h2>
 <p>The <code>t</code> method does not accept hashes, only arguments or a <code>NamedTuple</code>. For
 situations where you have to use a hash, there's the <code>t_hash</code> method:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t_hash</span><span class="p">({</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;Beta&quot;</span> <span class="p">})</span>
 <span class="c1"># =&gt; &quot;Hi Beta!&quot;</span>
 </code></pre></div>
-<p>However, this method is considered unsafe because the content of hashes can't be
-checked at compile-time. Only use it when there's no other way, and use it with
-care.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is considered unsafe because the content of hashes can't be
+checked at compile-time. It's also much slower, because interpolation values
+are inserted using <code>gsub</code> instead of native string interpolation. So, only
+use it when there's no other way, and use it with care.</p>
+</div>
 <h2 id="the-uninterpolated-string">The uninterpolated string</h2>
 <p>The raw, uninterpolated string, can be accessed with the <code>raw</code> method:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span>
-<span class="c1"># =&gt; &quot;Hi %{name}!&quot;</span>
+<span class="c1"># =&gt; &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
 </code></pre></div>
+<p>Which can then be interpolated later:</p>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;messages.great_day&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span>
+<span class="c1"># =&gt; &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">{</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Ary&quot;</span><span class="p">,</span> <span class="ss">time</span><span class="p">:</span> <span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">})</span>
+<span class="c1"># =&gt; &quot;¡Hola Ary, que tengas un buen domingo!&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>Rosetta.interpolate</code> method uses <code>gsub</code> rather than native string
+interpolation, so it's a lot slower and it doesn't check if all the required
+interpolation keys are given.</p>
+</div>
                 
               
               

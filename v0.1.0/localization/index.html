@@ -483,11 +483,12 @@
                 
                   <h1>Date, time and numbers</h1>
                 
-                <p>Localization instructions live under a the <code>rosetta_localization</code> namespace in
-the locale files. The initializer script will install the required files for you
-in order to be able to work with Rosetta.</p>
+                <p>Predefined localization formats, day names and month names, live under the
+<code>rosetta_localization</code> namespace in the locale files. The initializer script
+will install the required files for you in order to be able to work with
+Rosetta.</p>
 <h2 id="localized-time">Localized time</h2>
-<p>Similar to translations, localization formats are retrieved at compile-time and 
+<p>Similar to translations, localization formats are fetched at compile-time and 
 localized at runtime.</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
 <span class="c1"># =&gt; &quot;Sun, 29 Aug 2021 18:30:57 +0200&quot;</span>
@@ -529,8 +530,11 @@ localized at runtime.</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">number</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mf">123_456.789</span><span class="p">,</span> <span class="ss">decimal_places</span><span class="p">:</span> <span class="mi">6</span><span class="p">)</span>
 <span class="c1"># =&gt; &quot;123,456.789000&quot;</span>
 </code></pre></div>
-<p>🗒️ <strong>Note</strong>: In the background, Rosetta uses Crystal's native <code>Number#format</code>
-method and accepts the same parameters.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In the background, Rosetta uses Crystal's native <code>Number#format</code> method and
+accepts the same parameters.</p>
+</div>
 <h2 id="the-localizable-mixin">The <code>Localizable</code> mixin</h2>
 <p>Include this mixin anywhere you want to work with localized dates, times and
 numbers. Here's an example of its usage:</p>

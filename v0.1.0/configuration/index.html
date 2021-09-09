@@ -481,11 +481,14 @@ set to <code>:en</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">::</span><span class="no">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="s2">&quot;es-ES&quot;</span>
 </code></pre></div>
 <p>The value can be either a <code>String</code> or a <code>Symbol</code>.</p>
-<p>🗒️ <strong>Note</strong>: The default locale is used by the compiler to define the ruling set
-of locale keys. This means that, if one of the other available locales is
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>DEFAULT_LOCALE</code> is used by the compiler to define the ruling set of
+locale keys. Which means that, if one of the other available locales is
 missing some of the keys found in the default key set, the compiler will
-complain. So every available locale will need to have the exact same key set as
-the default locale.</p>
+complain. So every available locale will need to have the exact same key set
+as the default locale.</p>
+</div>
 <h2 id="available_locales"><code>AVAILABLE_LOCALES</code></h2>
 <p>Defines all the available locales, including the default locale. The default
 for this setting is <code>%i[en]</code>.</p>
