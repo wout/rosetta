@@ -1,7 +1,17 @@
 # Locale files
-Chop up your locale files and place them in subdirectories; organise them any
-way you prefer. Currently, Rosetta supports YAML and JSON files and you can mix
-formats together.
+
+```yaml
+en:
+  example:
+    translation: "Hello world!"
+    interpolation: "Hi %{name}, have a great %A!"
+    pluralization:
+      one: "One item"
+      other: "%{count} items"
+```
+
+Chop up your locale files and place them in subdirectories. Use YAML or JSON
+files, or mix them together. Organise them any way you prefer.
 
 !!! warning
     Beware, though, that there is a fixed loading order. JSON files are loaded

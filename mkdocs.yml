@@ -5,7 +5,7 @@ edit_uri: https://github.com/wout/rosetta/tree/docs/docs
 
 nav:
   - Why Rosetta?: why_rosetta.md
-  - Getting started: installation.md
+  - Getting started: getting_started.md
   - Setup: setup.md
   - Configuration: configuration.md
   - Locale files: locale_files.md
