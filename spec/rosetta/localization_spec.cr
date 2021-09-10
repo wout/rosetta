@@ -48,11 +48,6 @@ describe Rosetta do
   end
 
   describe ".time" do
-    it "localizes time with a time object" do
-      Rosetta.time.l(Time.local(1984, 6, 7, 8, 9, 10))
-        .should eq("Thu, 07 Jun 1984 08:09:10 +0200")
-    end
-
     it "localizes time according to a given predefined format" do
       Rosetta.time(:long).l(Time.local(1984, 6, 7, 8, 9, 10))
         .should eq("June 07, 1984 08:09")
