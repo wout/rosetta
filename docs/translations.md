@@ -44,17 +44,6 @@ Rosetta.find("user.first_name").translations
 # => {en: "First name", nl: "Voornaam"}
 ```
 
-## Forcing a different locale
-If a different locale needs to be used in a specific place, use the
-`with_locale` method:
-
-```cr
-Rosetta.with_locale(:nl) do
-  Rosetta.find("user.first_name").t
-  # => "Voornaam"
-end
-```
-
 ## The `Translatable` mixin
 This mixin makes it more convenient to work with translated values in your
 classes. Here's an example of its usage:
