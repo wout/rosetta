@@ -41,3 +41,6 @@ compile-time, and the majority of the data is stored on the [stack
 rather than the
 heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap),
 out of the scope of garbage collector.
+
+!!! info
+    Libraries used in benchmarks are [crimson-knight/i18n.cr](https://github.com/crimson-knight/i18n.cr), [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n) and [syeopite/lens](https://github.com/syeopite/lens).
