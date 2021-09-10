@@ -9,6 +9,8 @@ A blazing fast internationalization (i18n) library for Crystal with compile-time
 key lookup. You'll never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/wout/rosetta)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/wout/rosetta/Rosetta%20CI)
 
 ## Why use Rosetta?
 
