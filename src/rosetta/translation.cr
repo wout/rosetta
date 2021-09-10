@@ -16,6 +16,15 @@ module Rosetta
     {% end %}
   end
 
+  # Temporarily use a different locale.
+  def self.with_locale(locale : String | Symbol)
+    current_locale = Rosetta.locale
+    Rosetta.locale = locale
+    yield
+  ensure
+    Rosetta.locale = current_locale || default_locale
+  end
+
   # Base struct for translation values.
   abstract struct Translation
     abstract def translations
@@ -24,6 +33,28 @@ module Rosetta
     def raw : String
       translations[Rosetta.locale]
     end
+  end
+
+  # Methods for translations without interpolations
+  module SimpleTranslation
+    def t
+      raw
+    end
+
+    def to_s
+      raw
+    end
+
+    def to_s(io)
+      io.puts raw
+    end
+  end
+
+  # Methods for translations with interpolations
+  module InterpolatedTranslation
+    def to_s(io)
+      to_s
+    end
 
     # Using a hash for interpolation is considered unsafe since the content of
     # hashes can't be checked at compile-time. Try to avoid using this method if
@@ -31,14 +62,5 @@ module Rosetta
     def t_hash(values : Hash(String | Symbol, String))
       Rosetta.interpolate(raw, values)
     end
-  end
-
-  # Temporarily use a different locale.
-  def self.with_locale(locale : String | Symbol)
-    current_locale = Rosetta.locale
-    Rosetta.locale = locale
-    yield
-  ensure
-    Rosetta.locale = current_locale || default_locale
   end
 end
