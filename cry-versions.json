@@ -1,7 +1,7 @@
 {
   "versions": [
-    {"name": "nightly", "url": "/rosetta/api/main/", "released": false},
+    {"name": "nightly", "url": "/rosetta/api/nightly/", "released": false},
+    {"name": "v0.2.0", "url": "/rosetta/api/v0.2.0/"},
     {"name": "v0.1.0", "url": "/rosetta/api/v0.1.0/"}
   ]
-}
 }
