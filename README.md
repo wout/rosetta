@@ -54,6 +54,8 @@ rather than the
 heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap),
 out of the scope of garbage collector.
 
+Read more on [the official docs page](https://wout.github.io/rosetta/latest).
+
 ## Installation
 
 1. Add the dependency to your `shard.yml`:
@@ -94,7 +96,7 @@ class Hello::ShowPage < MainLayout
 end
 ```
 
-Read more on [the official docs page](https://wout.github.io/rosetta/main).
+Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 
 ## To-do
 - [X] Add specs for the existing code
