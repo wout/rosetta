@@ -50,15 +50,7 @@ module Rosetta
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
               include Lucky::AllowedInTags
-              def t
-                raw
-              end
-              def to_s
-                raw
-              end
-              def to_s(io)
-                io.puts raw
-              end
+              include Rosetta::SimpleTranslation
         METHODS
       end
 
@@ -67,11 +59,15 @@ module Rosetta
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
+            include Rosetta::InterpolatedTranslation
             def t(#{with_args})
               #{build_translation_return_value(translation, l10n_keys)}
             end
             def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
               self.t(**values)
+            end
+            def to_s
+              {% raise %(Rosetta.find("#{key}") expected to receive t(#{with_args}) but to_s was called instead) %}
             end
       METHODS
     end
