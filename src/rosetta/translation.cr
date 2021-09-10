@@ -35,7 +35,7 @@ module Rosetta
     end
   end
 
-  # Methods for translations without interpolations
+  # Methods for translations without interpolations.
   module SimpleTranslation
     def t
       raw
@@ -50,8 +50,9 @@ module Rosetta
     end
   end
 
-  # Methods for translations with interpolations
+  # Methods for translations with interpolations.
   module InterpolatedTranslation
+    # Alias to_s to raise a compile error.
     def to_s(io)
       to_s
     end
