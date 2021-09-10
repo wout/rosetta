@@ -14,8 +14,8 @@ compare interpolation keys in additional locales to the ones found in the
 default locale, and let you know if some are missing.
 
 ## Rosetta is 10x faster than similar libraries
-Benchmarking against other libraries which also use YAML or JSON files for
-locales, Rosetta is about 10x faster than any other one.
+Benchmarking against other libraries which also use YAML or JSON backends,
+Rosetta is about 10x faster than any other one.
 
 For simple translations:
 
@@ -37,7 +37,7 @@ rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
 ```
 
 Rosetta is that much faster because a lot of the hard work happens at
-compile-time. And because the majority of the data is stored on the [stack
+compile-time, and the majority of the data is stored on the [stack
 rather than the
 heap](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap),
 out of the scope of garbage collector.
