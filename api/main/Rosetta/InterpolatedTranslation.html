@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Fallbacks.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/InterpolatedTranslation.html">
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Fallbacks - Rosetta v0.2.0-dev</title>
+  <title>Rosetta::InterpolatedTranslation - Rosetta v0.2.0-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -89,12 +89,12 @@
       
     </li>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Fallbacks" data-name="rosetta::fallbacks">
+  <li class=" " data-id="Rosetta/Rosetta/Fallbacks" data-name="rosetta::fallbacks">
       <a href="../Rosetta/Fallbacks.html">Fallbacks</a>
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/InterpolatedTranslation" data-name="rosetta::interpolatedtranslation">
+  <li class=" current" data-id="Rosetta/Rosetta/InterpolatedTranslation" data-name="rosetta::interpolatedtranslation">
       <a href="../Rosetta/InterpolatedTranslation.html">InterpolatedTranslation</a>
       
     </li>
@@ -158,7 +158,7 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">alias</span> Rosetta::Fallbacks
+  <span class="kind">module</span> Rosetta::InterpolatedTranslation
 
 </h1>
 
@@ -166,17 +166,18 @@
 
 
 
-
-
   <h2>
-    <a id="alias-definition" class="anchor" href="#alias-definition">
+    <a id="overview" class="anchor" href="#overview">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Alias Definition
+    Overview
   </h2>
-  <code>Array(String) | Hash(String, Array(String) | String) | Nil</code>
+
+  <p>Methods for translations with interpolations</p>
+
+
 
 
 
@@ -199,8 +200,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/0d3d043e/src/rosetta/aliases.cr#L2" target="_blank">
-        rosetta/aliases.cr
+      <a href="https://github.com/wout/rosetta/blob/0d3d043e/src/rosetta/translation.cr#L54" target="_blank">
+        rosetta/translation.cr
       </a>
     
     <br/>
@@ -214,6 +215,30 @@
 
 
 
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#t_hash</strong>(values : Hash(String | Symbol, String))</a>
+        
+          <div class="summary"><p>Using a hash for interpolation is considered unsafe since the content of hashes can't be checked at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#to_s(io)-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
+        
+      </li>
+    
+  </ul>
+
 
 
 
@@ -226,6 +251,55 @@
 
 
 
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="t_hash(values:Hash(String|Symbol,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>t_hash</strong>(values : Hash(String | Symbol, String))
+
+        <a class="method-permalink" href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Using a hash for interpolation is considered unsafe since the content of
+hashes can't be checked at compile-time. Try to avoid using this method if
+you can.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/0d3d043e/src/rosetta/translation.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="to_s(io)-instance-method">
+      <div class="signature">
+        
+        def <strong>to_s</strong>(io)
+
+        <a class="method-permalink" href="#to_s(io)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/0d3d043e/src/rosetta/translation.cr#L55" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
