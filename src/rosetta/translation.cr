@@ -37,6 +37,10 @@ module Rosetta
 
   # Methods for translations without interpolations.
   module SimpleTranslation
+    macro included
+      include ::Lucky::AllowedInTags
+    end
+
     def t
       raw
     end

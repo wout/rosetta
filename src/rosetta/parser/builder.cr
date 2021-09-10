@@ -49,7 +49,6 @@ module Rosetta
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
-              include Lucky::AllowedInTags
               include Rosetta::SimpleTranslation
         METHODS
       end
