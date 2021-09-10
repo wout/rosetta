@@ -486,8 +486,8 @@ you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and let you know if some are missing.</p>
 <h2 id="rosetta-is-10x-faster-than-similar-libraries">Rosetta is 10x faster than similar libraries</h2>
-<p>Benchmarking against other libraries which also use YAML or JSON files for
-locales, Rosetta is about 10x faster than any other one.</p>
+<p>Benchmarking against other libraries which also use YAML or JSON backends,
+Rosetta is about 10x faster than any other one.</p>
 <p>For simple translations:</p>
 <div class="highlight"><pre><span></span><code>i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/op 178.77× slower
    i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/op  11.05× slower
@@ -501,10 +501,14 @@ rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/op         fastest
 rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
 </code></pre></div>
 <p>Rosetta is that much faster because a lot of the hard work happens at
-compile-time. And because the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
+compile-time, and the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
 rather than the
 heap</a>,
 out of the scope of garbage collector.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Libraries used in benchmarks are <a href="https://github.com/crimson-knight/i18n.cr">crimson-knight/i18n.cr</a>, <a href="https://github.com/crystal-i18n/i18n">crystal-i18n/i18n</a> and <a href="https://github.com/syeopite/lens">syeopite/lens</a>.</p>
+</div>
                 
               
               

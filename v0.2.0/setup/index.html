@@ -268,53 +268,9 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Setup
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Setup
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-an-initializer-with-the-following-content" class="md-nav__link">
-    1. An initializer with the following content:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-configrosettarosettaenyml" class="md-nav__link">
-    2. config/rosetta/rosetta.en.yml
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-configlocalesexampleenyml" class="md-nav__link">
-    3. config/locales/example.en.yml
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -429,35 +385,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-an-initializer-with-the-following-content" class="md-nav__link">
-    1. An initializer with the following content:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-configrosettarosettaenyml" class="md-nav__link">
-    2. config/rosetta/rosetta.en.yml
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-configlocalesexampleenyml" class="md-nav__link">
-    3. config/locales/example.en.yml
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -475,7 +402,7 @@
                 
                 <h1 id="setup">Setup</h1>
 <p>The <code>bin/rosetta --init</code> command will generate the initial files to get started.</p>
-<h3 id="1-an-initializer-with-the-following-content">1. An initializer with the following content:</h3>
+<p><strong>1. An initializer with the following content:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="c1"># config/rosetta.cr</span>
 <span class="k">require</span> <span class="s2">&quot;rosetta&quot;</span>
 
@@ -483,12 +410,12 @@
 <span class="n">Rosetta</span><span class="o">::</span><span class="no">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="sx">%i[en]</span>
 <span class="n">Rosetta</span><span class="o">::</span><span class="n">Backend</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;config/rosetta&quot;</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="2-configrosettarosettaenyml">2. <code>config/rosetta/rosetta.en.yml</code></h3>
+<p><strong>2. <code>config/rosetta/rosetta.en.yml</code></strong></p>
 <p>This file contains localiztions required by Rosetta. For every additional
 locale, you'll need to copy and translate this file.</p>
 <p>In the future, files for many languages will be included. Please consider
 contributing your translations.</p>
-<h3 id="3-configlocalesexampleenyml">3. <code>config/locales/example.en.yml</code></h3>
+<p><strong>3. <code>config/locales/example.en.yml</code></strong></p>
 <p>An example locale file, which you can modify or delete.</p>
                 
               
