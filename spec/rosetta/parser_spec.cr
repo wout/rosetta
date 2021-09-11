@@ -3,16 +3,16 @@ require "../../src/rosetta"
 require "../../src/rosetta/parser"
 
 describe Rosetta::Parser do
-  describe "#load!" do
+  describe "#initializer" do
     it "loads the locales" do
-      parser = make_parser.tap(&.load!)
+      parser = make_parser
 
       parser.translations.dig("en", "user.first_name").should eq("First name")
       parser.translations.dig("nl", "user.first_name").should eq("Voornaam")
     end
 
     it "only loads available locales" do
-      parser = make_parser(available_locales: %w[en]).tap(&.load!)
+      parser = make_parser(available_locales: %w[en])
 
       parser.translations.dig("en", "user.first_name").should eq("First name")
       parser.translations.dig?("nl").should be_nil

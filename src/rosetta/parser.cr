@@ -14,7 +14,7 @@ module Rosetta
     getter flipped_translations : TranslationsHash? = nil
     getter path : String
     getter ruling_key_set : Array(String)? = nil
-    getter translations = TranslationsHash.new
+    getter translations : TranslationsHash
 
     def initialize(
       @path : String,
@@ -24,39 +24,18 @@ module Rosetta
       @default_locale = default_locale.to_s
       @available_locales = available_locales.map(&.to_s)
       @alternative_locales = @available_locales - [@default_locale]
+      @translations = load_translations
     end
 
     # Returns a list of self-containing translation modules.
     def parse! : String
-      load!
-
       return error.to_s unless valid?
 
       builder = Builder.new(default_locale)
 
-      return builder.build_locales(TranslationsHash.new) if translations.empty?
+      return builder.build_locales(translations) if translations.empty?
 
       builder.build_locales(flipped_translations)
-    end
-
-    # Loads and parses JSON files, then YAML files, adds them to the list of
-    # translations.
-    def load! : Void
-      Dir.glob("#{path}/**/*.json") do |file|
-        JSON.parse(File.read(file)).as_h.each do |locale, locale_data|
-          next unless available_locales.includes?(locale.to_s) && locale_data.as_h?
-
-          add_translations(locale.to_s, locale_data)
-        end
-      end
-
-      Dir.glob("#{path}/**/*.yml", "#{path}/**/*.yaml") do |file|
-        YAML.parse(File.read(file)).as_h.each do |locale, locale_data|
-          next unless available_locales.includes?(locale.to_s) && locale_data.as_h?
-
-          add_translations(locale.to_s, locale_data)
-        end
-      end
     end
 
     # Tests validity of alternative locale key sets.
@@ -174,10 +153,39 @@ module Rosetta
         end
     end
 
+    # Loads and parses JSON files, then YAML files, merges them together and
+    # returns the merged list.
+    private def load_translations : TranslationsHash
+      TranslationsHash.new.tap do |translations|
+        Dir.glob("#{path}/**/*.json") do |file|
+          JSON.parse(File.read(file)).as_h.each do |locale, locale_data|
+            next unless available_locales.includes?(locale.to_s) &&
+                        locale_data.as_h?
+
+            add_translations(translations, locale.to_s, locale_data)
+          end
+        end
+
+        Dir.glob("#{path}/**/*.yml", "#{path}/**/*.yaml") do |file|
+          YAML.parse(File.read(file)).as_h.each do |locale, locale_data|
+            next unless available_locales.includes?(locale.to_s) &&
+                        locale_data.as_h?
+
+            add_translations(translations, locale.to_s, locale_data)
+          end
+        end
+      end
+    end
+
     # Adds a set of translations for a given locale to the translations store.
-    private def add_translations(locale : String, hash_from_any)
+    private def add_translations(
+      translations : TranslationsHash,
+      locale : String,
+      hash_from_any
+    ) : TranslationsHash
       translations[locale] = Translations.new unless translations[locale]?
       translations[locale].merge!(flatten_hash_from_any(hash_from_any))
+      translations
     end
 
     # Flattens a nested hash to a key/value hash.

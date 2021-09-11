@@ -44,8 +44,12 @@ module Rosetta
       key : String,
       translation : Translations
     )
-      i12n_keys = translation[default_locale].to_s.scan(/%\{([^\}]+)\}/).map(&.[1])
-      l10n_keys = translation[default_locale].to_s.scan(/%(\^?[a-z])/i).map(&.[1])
+      i12n_keys = translation[default_locale].to_s
+        .scan(/%\{([^\}]+)\}/)
+        .map(&.[1])
+      l10n_keys = translation[default_locale].to_s
+        .scan(/%(\^?[a-z])/i)
+        .map(&.[1])
 
       if i12n_keys.empty? && l10n_keys.empty?
         return <<-METHODS
