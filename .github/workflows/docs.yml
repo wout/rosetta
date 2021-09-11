@@ -37,9 +37,9 @@ jobs:
           git config --global user.name GitHub Actions
           git config --global user.email actions@github.com
       - name: "Deploy documentation"
-        run: mike deploy v0.2.0 latest --push
-      # - name: "Label development version with -dev suffix"
-      #   run: mike retitle v0.3.0 v0.3.0-dev --push
+        run: mike deploy v0.3.0 nightly --push
+      - name: "Label development version with -dev suffix"
+        run: mike retitle v0.3.0 v0.3.0-dev --push
 
   add_crystal_api_docs_versions_file:
     runs-on: "ubuntu-latest"
