@@ -11,10 +11,11 @@ module Rosetta
     getter available_locales : Array(String)
     getter default_locale : String
     getter error : String? = nil
-    getter flipped_translations : TranslationsHash? = nil
     getter path : String
-    getter ruling_key_set : Array(String)? = nil
+    getter ruling_key_set : Array(String)
     getter translations : TranslationsHash
+
+    @processed_translations : TranslationsHash? = nil
 
     def initialize(
       @path : String,
@@ -25,21 +26,21 @@ module Rosetta
       @available_locales = available_locales.map(&.to_s)
       @alternative_locales = @available_locales - [@default_locale]
       @translations = load_translations
+      @ruling_key_set = collect_ruling_keys(@translations, @default_locale)
     end
 
     # Returns a list of self-containing translation modules.
     def parse! : String
-      return error.to_s unless valid?
-
       builder = Builder.new(default_locale)
 
       return builder.build_locales(translations) if translations.empty?
+      return error.to_s unless valid_key_set?
 
-      builder.build_locales(flipped_translations)
+      builder.build_locales(processed_translations)
     end
 
     # Tests validity of alternative locale key sets.
-    private def valid? : Bool
+    private def valid_key_set? : Bool
       return true if available_locales.one?
 
       check_available_locales_present? &&
@@ -108,14 +109,14 @@ module Rosetta
     # Checks if interpolation keys are maching in all available locales.
     private def check_interpolation_keys_matching? : Bool
       errors = ruling_key_set.each_with_object([] of String) do |k, e|
-        ruling_translation = flipped_translations[k][default_locale]
+        ruling_translation = processed_translations[k][default_locale]
         i12n_keys = ruling_translation.to_s.scan(/%\{[^\}]+\}/).map { |m| m[0] }
 
         next if i12n_keys.empty?
 
         alternative_locales.each do |l|
           i12n_keys.each do |key|
-            next if flipped_translations[k][l].index(key)
+            next if processed_translations[k][l].index(key)
 
             e << %(#{l}: #{k} should contain "#{key}")
           end
@@ -134,8 +135,13 @@ module Rosetta
     end
 
     # Returns the key set of the default locale.
-    private def ruling_key_set
-      @ruling_key_set ||= translations[default_locale].keys
+    private def collect_ruling_keys(
+      translations : TranslationsHash,
+      default_locale : String
+    )
+      return %w[] if translations.empty?
+
+      translations[default_locale].keys
     end
 
     # Generate a visual list for errors from an array of strings.
@@ -144,8 +150,8 @@ module Rosetta
     end
 
     # Flips translations from top-level locales to top-level keys.
-    private def flipped_translations
-      @flipped_translations ||= ruling_key_set
+    private def processed_translations
+      @processed_translations ||= ruling_key_set
         .each_with_object(TranslationsHash.new) do |k, h|
           h[k] = available_locales.each_with_object(Translations.new) do |l, t|
             t[l] = translations[l][k]
