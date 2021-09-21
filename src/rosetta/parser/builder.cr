@@ -69,7 +69,7 @@ module Rosetta
             def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
               self.t(**values)
             end
-            def to_s
+            def to_s(io)
               {% raise %(Rosetta.find("#{key}") expected to receive t(#{with_args}) but to_s was called instead) %}
             end
       METHODS

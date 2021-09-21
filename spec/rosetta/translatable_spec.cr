@@ -14,15 +14,22 @@ describe TranslatableTestObject do
   end
 
   describe "#welcome_message_with_arguments" do
-    it "accepts interpolation messages" do
+    it "accepts interpolation arguments" do
       test_object.welcome_message_with_arguments
         .should eq("Hi First name, have a fabulous whenever day!")
     end
   end
 
   describe "#welcome_message_with_hash" do
-    it "accepts interpolation messages" do
+    it "accepts interpolation arguments" do
       test_object.welcome_message_with_hash
+        .should eq("Hi Willy, have a fabulous Wonka day!")
+    end
+  end
+
+  describe "#pluralized_message_with_arguments" do
+    it "pluralizes according to the given count" do
+      test_object.pluralized_message_with_arguments
         .should eq("Hi Willy, have a fabulous Wonka day!")
     end
   end
@@ -56,6 +63,14 @@ class TranslatableTestObject
   def welcome_message_with_hash
     r("interpolatable.string")
       .t_hash({:name => "Willy", "day_name" => "Wonka day"})
+  end
+
+  def pluralized_message_with_arguments
+    r("pluralizable.string").t(name: "Jeremy", count: 23)
+  end
+
+  def pluralized_message_with_hash
+    r("pluralizable.string").t({"name" => "Jeremy", "count" => 23})
   end
 end
 

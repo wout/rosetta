@@ -3,7 +3,7 @@ require "yaml"
 require "./parser/builder"
 
 module Rosetta
-  alias Translations = Hash(String, String)
+  alias Translations = Hash(String, Hash(String, String) | String)
   alias TranslationsHash = Hash(String, Translations)
 
   class Parser
@@ -116,7 +116,7 @@ module Rosetta
 
         alternative_locales.each do |l|
           i12n_keys.each do |key|
-            next if processed_translations[k][l].index(key)
+            next if processed_translations[k][l].to_s.match(%r{#{key}})
 
             e << %(#{l}: #{k} should contain "#{key}")
           end
@@ -199,13 +199,23 @@ module Rosetta
       hash.as_h.each_with_object(Translations.new) do |(k, v), h|
         case v
         when .as_h?
-          flatten_hash_from_any(v).map do |h_k, h_v|
-            h["#{k}.#{h_k}"] = h_v
+          if pluralizable_hash?(v.as_h)
+            h[k.to_s] = v.as_h.transform_keys(&.to_s)
+              .transform_values(&.to_s)
+          else
+            flatten_hash_from_any(v).map do |h_k, h_v|
+              h["#{k}.#{h_k}"] = h_v
+            end
           end
         else
           h[k.to_s] = v.to_s
         end
       end
+    end
+
+    # Test if contents of a translation are pluralizable
+    private def pluralizable_hash?(hash : Hash)
+      hash["other"]? && hash["other"].to_s.match(/%\{count\}/)
     end
   end
 end

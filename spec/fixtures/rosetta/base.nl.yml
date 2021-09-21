@@ -11,3 +11,7 @@ nl:
     string: "Hey %{name}, maak er een geweldige %{day_name} van!"
   localizable:
     string: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."
+  pluralizable:
+    string:
+      one: "Hey %{name}, je hebt een bericht."
+      other: "Hey %{name}, je hebt %{count} berichten."

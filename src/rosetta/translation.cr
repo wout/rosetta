@@ -56,16 +56,31 @@ module Rosetta
 
   # Methods for translations with interpolations.
   module InterpolatedTranslation
-    # Alias to_s to raise a compile error.
-    def to_s(io)
-      to_s
-    end
-
     # Using a hash for interpolation is considered unsafe since the content of
     # hashes can't be checked at compile-time. Try to avoid using this method if
     # you can.
     def t_hash(values : Hash(String | Symbol, String))
       Rosetta.interpolate(raw, values)
+    end
+  end
+
+  # Methods for translations with pluralizable values.
+  module PluralizedTranslation
+    # Using a hash for interpolation is considered unsafe since the content of
+    # hashes can't be checked at compile-time. Try to avoid using this method if
+    # you can.
+    def t_hash(
+      count : Float | Int,
+      values : Hash(String | Symbol, String)
+    )
+      Rosetta.interpolate(Rosetta.pluralize(count, raw), values)
+    end
+
+    # Find the value for `count` in the given hash.
+    def t_hash(values : Hash(String | Symbol, String))
+      values = values.transform_keys(&.to_s)
+
+      t_hash(values.delete("count"), values)
     end
   end
 end
