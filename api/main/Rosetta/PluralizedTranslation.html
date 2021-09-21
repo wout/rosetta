@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Lucky.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/PluralizedTranslation.html">
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Lucky - Rosetta v0.2.0-dev</title>
+  <title>Rosetta::PluralizedTranslation - Rosetta v0.2.0-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -114,7 +114,7 @@
       
     </li>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Lucky" data-name="rosetta::lucky">
+  <li class=" " data-id="Rosetta/Rosetta/Lucky" data-name="rosetta::lucky">
       <a href="../Rosetta/Lucky.html">Lucky</a>
       
     </li>
@@ -124,7 +124,7 @@
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/PluralizedTranslation" data-name="rosetta::pluralizedtranslation">
+  <li class=" current" data-id="Rosetta/Rosetta/PluralizedTranslation" data-name="rosetta::pluralizedtranslation">
       <a href="../Rosetta/PluralizedTranslation.html">PluralizedTranslation</a>
       
     </li>
@@ -168,13 +168,24 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Rosetta::Lucky
+  <span class="kind">module</span> Rosetta::PluralizedTranslation
 
 </h1>
 
 
 
 
+
+  <h2>
+    <a id="overview" class="anchor" href="#overview">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Overview
+  </h2>
+
+  <p>Methods for translations with pluralizable values.</p>
 
 
 
@@ -199,8 +210,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/594da88b/src/rosetta/lucky/integration.cr#L2" target="_blank">
-        rosetta/lucky/integration.cr
+      <a href="https://github.com/wout/rosetta/blob/594da88b/src/rosetta/translation.cr#L68" target="_blank">
+        rosetta/translation.cr
       </a>
     
     <br/>
@@ -214,26 +225,33 @@
 
 
 
-
-
   <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Macro Summary
+    Instance Method Summary
   </h2>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#integrate-macro" class="signature"><strong>integrate</strong></a>
+        <a href="#t_hash(count:Float%7CInt,values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#t_hash</strong>(count : Float | Int, values : Hash(String | Symbol, String))</a>
         
-          <div class="summary"><p>Includes <code><a href="../Rosetta/Translatable.html">Rosetta::Translatable</a></code> where it may be required.</p></div>
+          <div class="summary"><p>Using a hash for interpolation is considered unsafe since the content of hashes can't be checked at compile-time.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method" class="signature"><strong>#t_hash</strong>(values : Hash(String | Symbol, String))</a>
+        
+          <div class="summary"><p>Find the value for <code>count</code> in the given hash.</p></div>
         
       </li>
     
   </ul>
+
+
 
 
 
@@ -246,38 +264,61 @@
 
 
 
-
-
   <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Macro Detail
+    Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="integrate-macro">
+    <div class="entry-detail" id="t_hash(count:Float|Int,values:Hash(String|Symbol,String))-instance-method">
       <div class="signature">
         
-        macro <strong>integrate</strong>
+        def <strong>t_hash</strong>(count : Float | Int, values : Hash(String | Symbol, String))
 
-        <a class="method-permalink" href="#integrate-macro">#</a>
+        <a class="method-permalink" href="#t_hash(count:Float%7CInt,values:Hash(String%7CSymbol,String))-instance-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Includes <code><a href="../Rosetta/Translatable.html">Rosetta::Translatable</a></code> where it may be required.</p>
+          <p>Using a hash for interpolation is considered unsafe since the content of
+hashes can't be checked at compile-time. Try to avoid using this method if
+you can.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/594da88b/src/rosetta/lucky/integration.cr#L4" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/594da88b/src/rosetta/translation.cr#L72" target="_blank">View source</a>]
         
       </div>
     </div>
   
+    <div class="entry-detail" id="t_hash(values:Hash(String|Symbol,String))-instance-method">
+      <div class="signature">
+        
+        def <strong>t_hash</strong>(values : Hash(String | Symbol, String))
+
+        <a class="method-permalink" href="#t_hash(values:Hash(String%7CSymbol,String))-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Find the value for <code>count</code> in the given hash.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/594da88b/src/rosetta/translation.cr#L80" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
 
 
 </div>
