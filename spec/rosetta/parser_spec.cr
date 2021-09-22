@@ -34,14 +34,14 @@ describe Rosetta::Parser do
           struct Interpolatable_StringTranslation < Rosetta::Translation
             getter translations = {en: "Hi %{name}, have a fabulous %{day_name}!", nl: "Hey %{name}, maak er een geweldige %{day_name} van!"}
             include Rosetta::InterpolatedTranslation
-            def t(name : String, day_name : String)
+            def t(day_name : String, name : String)
               {en: "Hi \#{name}, have a fabulous \#{day_name}!", nl: "Hey \#{name}, maak er een geweldige \#{day_name} van!"}[Rosetta.locale]
             end
-            def t(values : NamedTuple(name: String, day_name: String))
+            def t(values : NamedTuple(day_name: String, name: String))
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("interpolatable.string") expected to receive t(name : String, day_name : String) but to_s was called instead) %}
+              {% raise %(Rosetta.find("interpolatable.string") expected to receive t(day_name : String, name : String) but to_s was called instead) %}
             end
           end
       MODULE
@@ -53,7 +53,7 @@ describe Rosetta::Parser do
             getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
             include Rosetta::InterpolatedTranslation
             def t(first_name : String, time : Time)
-              Rosetta.localize_time({en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale], time)
+              Rosetta.localize_time(time, {en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale])
             end
             def t(values : NamedTuple(first_name: String, time: Time))
               self.t(**values)
@@ -68,16 +68,16 @@ describe Rosetta::Parser do
     it "builds a struct for pluralizable translations" do
       make_parser.parse!.should contain <<-MODULE
           struct Pluralizable_StringTranslation < Rosetta::Translation
-            getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
-            include Rosetta::InterpolatedTranslation
-            def t(first_name : String, time : Time)
-              Rosetta.localize_time({en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale], time)
+            getter translations = {en: {one: "Hi %{name}, you've got one message.", other: "Hi %{name}, you've got %{count} messages."}, nl: {one: "Hey %{name}, je hebt een bericht.", other: "Hey %{name}, je hebt %{count} berichten."}}
+            include Rosetta::PluralizedTranslation
+            def t(count : Float | Int, name : String)
+              Rosetta.pluralize(count, {en: {one: "Hi \#{name}, you've got one message.", other: "Hi \#{name}, you've got \#{count} messages."}, nl: {one: "Hey \#{name}, je hebt een bericht.", other: "Hey \#{name}, je hebt \#{count} berichten."}}[Rosetta.locale])
             end
-            def t(values : NamedTuple(first_name: String, time: Time))
+            def t(values : NamedTuple(count: Float | Int, name: String))
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("localizable.string") expected to receive t(first_name : String, time : Time) but to_s was called instead) %}
+              {% raise %(Rosetta.find("pluralizable.string") expected to receive t(count : Float | Int, name : String) but to_s was called instead) %}
             end
           end
       MODULE

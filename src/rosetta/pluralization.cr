@@ -4,6 +4,6 @@ module Rosetta
     count : Float | Int,
     translation : NamedTuple
   )
-    # TO-DO: apply pluralization rule
+    "TO-DO: apply pluralization rule"
   end
 end

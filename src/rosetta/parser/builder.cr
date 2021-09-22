@@ -42,12 +42,14 @@ module Rosetta
     # keys.
     private def build_struct_methods(
       key : String,
-      translation : Translations
+      translations : Translations
     )
-      i12n_keys = translation[default_locale].to_s
+      i12n_keys = translations[default_locale].to_s
         .scan(/%\{([^\}]+)\}/)
         .map(&.[1])
-      l10n_keys = translation[default_locale].to_s
+        .uniq!
+        .sort
+      l10n_keys = translations[default_locale].to_s
         .scan(/%(\^?[a-z])/i)
         .map(&.[1])
 
@@ -57,14 +59,14 @@ module Rosetta
         METHODS
       end
 
-      args = i12n_keys.map { |k| [k, "String"] }
+      args = i12n_keys.map { |k| [k, (k == "count" ? "Float | Int" : "String")] }
       args << ["time", "Time"] unless l10n_keys.empty?
       with_args = args.map(&.join(" : ")).join(", ")
 
       <<-METHODS
-            include Rosetta::InterpolatedTranslation
+            include Rosetta::#{build_inclusion_module(translations)}Translation
             def t(#{with_args})
-              #{build_translation_return_value(translation, l10n_keys)}
+              #{build_translation_return_value(translations, l10n_keys)}
             end
             def t(values : NamedTuple(#{args.map(&.join(": ")).join(", ")}))
               self.t(**values)
@@ -75,10 +77,21 @@ module Rosetta
       METHODS
     end
 
+    # Build a translation type module based on the content of the translations
+    # opbject.
+    private def build_inclusion_module(translations : Translations)
+      pluralizable?(translations) ? "Pluralized" : "Interpolated"
+    end
+
     # Builds a tuple with translation values.
     private def build_translations_tuple(translations : Translations)
       pairs = translations.each_with_object([] of String) do |(k, t), s|
-        s << %(#{k}: "#{t}")
+        case t
+        when String
+          s << %(#{k}: "#{t}")
+        when Hash
+          s << %(#{k}: #{build_translations_tuple(t)})
+        end
       end
 
       "{#{pairs.join(", ")}}"
@@ -90,12 +103,16 @@ module Rosetta
       l10n_keys : Array(String)
     )
       parsed_tuple = build_translations_tuple(translations).gsub(/\%\{/, "\#{")
+      value = "#{parsed_tuple}[Rosetta.locale]"
+      value = "Rosetta.pluralize(count, #{value})" if pluralizable?(translations)
+      value = "Rosetta.localize_time(time, #{value})" unless l10n_keys.empty?
 
-      if l10n_keys.empty?
-        "#{parsed_tuple}[Rosetta.locale]"
-      else
-        "Rosetta.localize_time(#{parsed_tuple}[Rosetta.locale], time)"
-      end
+      value
+    end
+
+    # Test if contents of a translation are pluralizable.
+    private def pluralizable?(translations : Translations) : Bool
+      translations.first[1].is_a?(Hash)
     end
   end
 end
