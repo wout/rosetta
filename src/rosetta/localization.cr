@@ -58,11 +58,11 @@ module Rosetta
   # Uses a given format to localize a given Time object, for example:
   #
   # ```
-  # Rosetta.localize_time("%d %b %Y %H:%M:%S", Time.local)
+  # Rosetta.localize_time(Time.local, "%d %b %Y %H:%M:%S")
   # ```
   def self.localize_time(
-    format : String,
-    time : Time
+    time : Time,
+    format : String
   )
     time.to_s(localize_day_and_month_names(time, format))
   end
@@ -161,11 +161,11 @@ module Rosetta
     end
 
     def l(time : Time)
-      Rosetta.localize_time(format, time)
+      Rosetta.localize_time(time, format)
     end
 
     def l(date : Tuple(Int32, Int32, Int32))
-      Rosetta.localize_time(format, Time.local(*date))
+      Rosetta.localize_time(Time.local(*date), format)
     end
   end
 

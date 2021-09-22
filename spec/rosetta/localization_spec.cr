@@ -5,25 +5,25 @@ describe Rosetta do
     reset_to_default_locale
   end
 
-  describe ".localize" do
+  describe ".localize_time" do
     it "localizes day and month names" do
       time = Time.local(1815, 12, 10, 10, 18, 15)
 
-      Rosetta.localize_time("%a %^a %A %^A", time)
+      Rosetta.localize_time(time, "%a %^a %A %^A")
         .should eq("Sun SUN Sunday SUNDAY")
-      Rosetta.localize_time("%b %^b %B %^B", time)
+      Rosetta.localize_time(time, "%b %^b %B %^B")
         .should eq("Dec DEC December DECEMBER")
-      Rosetta.localize_time("%p %P", time)
+      Rosetta.localize_time(time, "%p %P")
         .should eq("AM am")
 
       Rosetta.locale = "nl"
       time = Time.local(2219, 4, 10, 22, 19, 10)
 
-      Rosetta.localize_time("%a %^a %A %^A", time)
+      Rosetta.localize_time(time, "%a %^a %A %^A")
         .should eq("za ZA zaterdag ZATERDAG")
-      Rosetta.localize_time("%b %^b %B %^B", time)
+      Rosetta.localize_time(time, "%b %^b %B %^B")
         .should eq("apr APR april APRIL")
-      Rosetta.localize_time("%p %P", time)
+      Rosetta.localize_time(time, "%p %P")
         .should eq("PM pm")
     end
   end
