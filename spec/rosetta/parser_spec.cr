@@ -83,6 +83,24 @@ describe Rosetta::Parser do
       MODULE
     end
 
+    it "builds a struct for pluralizable, localizable translations" do
+      make_parser.parse!.should contain <<-MODULE
+          struct Pluralizable_Localizable_StringTranslation < Rosetta::Translation
+            getter translations = {en: {one: "You have an appointment on %A at %H:%M.", other: "You have %{count} appointments on %A at %H:%M."}, nl: {one: "Je hebt een afspraak op %A om %H:%M.", other: "Je hebt %{count} afspraken op %A om %H:%M."}}
+            include Rosetta::PluralizedTranslation
+            def t(count : Float | Int, time : Time)
+              Rosetta.localize_time(time, Rosetta.pluralize(count, {en: {one: "You have an appointment on %A at %H:%M.", other: "You have \#{count} appointments on %A at %H:%M."}, nl: {one: "Je hebt een afspraak op %A om %H:%M.", other: "Je hebt \#{count} afspraken op %A om %H:%M."}}[Rosetta.locale]))
+            end
+            def t(values : NamedTuple(count: Float | Int, time: Time))
+              self.t(**values)
+            end
+            def to_s(io)
+              {% raise %(Rosetta.find("pluralizable.localizable.string") expected to receive t(count : Float | Int, time : Time) but to_s was called instead) %}
+            end
+          end
+      MODULE
+    end
+
     it "returns an error when a complete locale is missing" do
       output = make_parser(available_locales: %i[en fr nl]).parse!
 

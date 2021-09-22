@@ -15,3 +15,7 @@ en:
     string:
       one: "Hi %{name}, you've got one message."
       other: "Hi %{name}, you've got %{count} messages."
+    localizable:
+      string:
+        one: "You have an appointment on %A at %H:%M."
+        other: "You have %{count} appointments on %A at %H:%M."
