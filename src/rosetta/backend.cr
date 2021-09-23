@@ -24,12 +24,20 @@ module Rosetta
       %}
 
       {%
-        translations = run(
-          "./runner",
-          path,
-          default_locale.id,
-          available_locales.join(',').id
-        )
+        yaml = <<-YAML
+        path: #{path}
+        default_locale: #{default_locale.id}
+        available_locales: [#{available_locales.join(',').id}]
+        pluralization_rules:
+          en: Rosetta::Pluralization::Rule::OneOther
+          nl: Rosetta::Pluralization::Rule::OneOther
+        pluralization_tags:
+          Rosetta::Pluralization::Rule::OneOther: [one, other]
+        YAML
+      %}
+
+      {%
+        translations = run("./runner", yaml)
 
         if !translations.stringify.starts_with?("module Rosetta")
           raise translations.stringify

@@ -1,32 +1,29 @@
 require "json"
 require "yaml"
 require "./parser/builder"
+require "./parser/config"
 
 module Rosetta
   alias Translations = Hash(String, Hash(String, String) | String)
   alias TranslationsHash = Hash(String, Translations)
 
   class Parser
+    delegate path, to: config
+    delegate default_locale, to: config
+    delegate available_locales, to: config
+
     getter alternative_locales : Array(String)
-    getter available_locales : Array(String)
-    getter default_locale : String
     getter error : String? = nil
-    getter path : String
     getter ruling_key_set : Array(String)
     getter translations : TranslationsHash
+    getter config : Config
 
     @processed_translations : TranslationsHash? = nil
 
-    def initialize(
-      @path : String,
-      default_locale : String | Symbol,
-      available_locales : Array(String | Symbol)
-    )
-      @default_locale = default_locale.to_s
-      @available_locales = available_locales.map(&.to_s)
-      @alternative_locales = @available_locales - [@default_locale]
+    def initialize(@config : Config)
+      @alternative_locales = available_locales - [default_locale]
       @translations = load_translations
-      @ruling_key_set = collect_ruling_keys(@translations, @default_locale)
+      @ruling_key_set = collect_ruling_keys(@translations, default_locale)
     end
 
     # Returns a list of self-containing translation modules.

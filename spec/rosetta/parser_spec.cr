@@ -1,6 +1,7 @@
 require "spec"
 require "../../src/rosetta"
 require "../../src/rosetta/parser"
+require "../../src/rosetta/parser/config"
 
 describe Rosetta::Parser do
   describe "#initializer" do
@@ -183,11 +184,22 @@ end
 # Helpers
 def make_parser(
   default_locale = "en",
-  available_locales = %w[en nl]
+  available_locales = %w[en nl],
+  pluralization_rules = {
+    en: "Rosetta::Pluralization::Rule::OneOther",
+    nl: "Rosetta::Pluralization::Rule::OneOther",
+  },
+  pluralization_tags = {
+    "Rosetta::Pluralization::Rule::OneOther": %w[one other],
+  }
 )
-  Rosetta::Parser.new(
-    "spec/fixtures/rosetta",
-    default_locale,
-    available_locales
-  )
+  parser_config = Rosetta::Parser::Config.from_yaml({
+    path:                "spec/fixtures/rosetta",
+    default_locale:      default_locale,
+    available_locales:   available_locales,
+    pluralization_rules: pluralization_rules,
+    pluralization_tags:  pluralization_tags,
+  }.to_yaml)
+
+  Rosetta::Parser.new(parser_config)
 end
