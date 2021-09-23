@@ -79,11 +79,6 @@
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/Builder" data-name="rosetta::builder">
-      <a href="../Rosetta/Builder.html">Builder</a>
-      
-    </li>
-  
   <li class=" " data-id="Rosetta/Rosetta/Config" data-name="rosetta::config">
       <a href="../Rosetta/Config.html">Config</a>
       
@@ -119,8 +114,23 @@
       
     </li>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
+  <li class="parent open current" data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
       <a href="../Rosetta/Parser.html">Parser</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Parser/Builder" data-name="rosetta::parser::builder">
+      <a href="../Rosetta/Parser/Builder.html">Builder</a>
+      
+    </li>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Parser/Config" data-name="rosetta::parser::config">
+      <a href="../Rosetta/Parser/Config.html">Config</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -231,8 +241,22 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L9" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L10" target="_blank">
         rosetta/parser.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/builder.cr#L2" target="_blank">
+        rosetta/parser/builder.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L2" target="_blank">
+        rosetta/parser/config.cr
       </a>
     
     <br/>
@@ -253,7 +277,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(path:String,default_locale:String%7CSymbol,available_locales:Array(String%7CSymbol))-class-method" class="signature"><strong>.new</strong>(path : String, default_locale : String | Symbol, available_locales : Array(String | Symbol))</a>
+        <a href="#new(config:Config)-class-method" class="signature"><strong>.new</strong>(config : Config)</a>
         
       </li>
     
@@ -279,12 +303,27 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#available_locales:Array(String)-instance-method" class="signature"><strong>#available_locales</strong> : Array(String)</a>
+        <a href="#available_locales(*args,**options)-instance-method" class="signature"><strong>#available_locales</strong>(*args, **options)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#default_locale:String-instance-method" class="signature"><strong>#default_locale</strong> : String</a>
+        <a href="#available_locales(*args,**options,&)-instance-method" class="signature"><strong>#available_locales</strong>(*args, **options, &)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#config:Config-instance-method" class="signature"><strong>#config</strong> : Config</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_locale(*args,**options)-instance-method" class="signature"><strong>#default_locale</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_locale(*args,**options,&)-instance-method" class="signature"><strong>#default_locale</strong>(*args, **options, &)</a>
         
       </li>
     
@@ -301,7 +340,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#path:String-instance-method" class="signature"><strong>#path</strong> : String</a>
+        <a href="#path(*args,**options)-instance-method" class="signature"><strong>#path</strong>(*args, **options)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path(*args,**options,&)-instance-method" class="signature"><strong>#path</strong>(*args, **options, &)</a>
         
       </li>
     
@@ -355,18 +399,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(path:String,default_locale:String|Symbol,available_locales:Array(String|Symbol))-class-method">
+    <div class="entry-detail" id="new(config:Config)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(path : String, default_locale : String | Symbol, available_locales : Array(String | Symbol))
+        def self.<strong>new</strong>(config : <a href="../Rosetta/Parser/Config.html">Config</a>)
 
-        <a class="method-permalink" href="#new(path:String,default_locale:String%7CSymbol,available_locales:Array(String%7CSymbol))-class-method">#</a>
+        <a class="method-permalink" href="#new(config:Config)-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L20" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L23" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -396,39 +440,87 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L10" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L15" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="available_locales:Array(String)-instance-method">
+    <div class="entry-detail" id="available_locales(*args,**options)-instance-method">
       <div class="signature">
         
-        def <strong>available_locales</strong> : Array(String)
+        def <strong>available_locales</strong>(*args, **options)
 
-        <a class="method-permalink" href="#available_locales:Array(String)-instance-method">#</a>
+        <a class="method-permalink" href="#available_locales(*args,**options)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="default_locale:String-instance-method">
+    <div class="entry-detail" id="available_locales(*args,**options,&amp;)-instance-method">
       <div class="signature">
         
-        def <strong>default_locale</strong> : String
+        def <strong>available_locales</strong>(*args, **options, &)
 
-        <a class="method-permalink" href="#default_locale:String-instance-method">#</a>
+        <a class="method-permalink" href="#available_locales(*args,**options,&)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="config:Config-instance-method">
+      <div class="signature">
+        
+        def <strong>config</strong> : <a href="../Rosetta/Parser/Config.html">Config</a>
+
+        <a class="method-permalink" href="#config:Config-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L19" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_locale(*args,**options)-instance-method">
+      <div class="signature">
+        
+        def <strong>default_locale</strong>(*args, **options)
+
+        <a class="method-permalink" href="#default_locale(*args,**options)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_locale(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>default_locale</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#default_locale(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -444,7 +536,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L13" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L16" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -465,23 +557,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="path:String-instance-method">
+    <div class="entry-detail" id="path(*args,**options)-instance-method">
       <div class="signature">
         
-        def <strong>path</strong> : String
+        def <strong>path</strong>(*args, **options)
 
-        <a class="method-permalink" href="#path:String-instance-method">#</a>
+        <a class="method-permalink" href="#path(*args,**options)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L14" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path(*args,**options,&amp;)-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong>(*args, **options, &)
+
+        <a class="method-permalink" href="#path(*args,**options,&)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L11" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -497,7 +605,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L15" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -513,7 +621,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/ac77da71/src/rosetta/parser.cr#L16" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser.cr#L18" target="_blank">View source</a>]
         
       </div>
     </div>

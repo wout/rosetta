@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Pluralization/Rule.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Parser/Config.html">
 
 <link href="../../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Pluralization::Rule - Rosetta v0.2.0-dev</title>
+  <title>Rosetta::Parser::Config - Rosetta v0.2.0-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -114,7 +114,7 @@
       
     </li>
   
-  <li class="parent " data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
+  <li class="parent open current" data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
       <a href="../../Rosetta/Parser.html">Parser</a>
       
         <ul>
@@ -124,7 +124,7 @@
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/Parser/Config" data-name="rosetta::parser::config">
+  <li class=" current" data-id="Rosetta/Rosetta/Parser/Config" data-name="rosetta::parser::config">
       <a href="../../Rosetta/Parser/Config.html">Config</a>
       
     </li>
@@ -134,7 +134,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="Rosetta/Rosetta/Pluralization" data-name="rosetta::pluralization">
+  <li class="parent " data-id="Rosetta/Rosetta/Pluralization" data-name="rosetta::pluralization">
       <a href="../../Rosetta/Pluralization.html">Pluralization</a>
       
         <ul>
@@ -144,7 +144,7 @@
       
     </li>
   
-  <li class="parent open current" data-id="Rosetta/Rosetta/Pluralization/Rule" data-name="rosetta::pluralization::rule">
+  <li class="parent " data-id="Rosetta/Rosetta/Pluralization/Rule" data-name="rosetta::pluralization::rule">
       <a href="../../Rosetta/Pluralization/Rule.html">Rule</a>
       
         <ul>
@@ -208,32 +208,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">abstract class</span> Rosetta::Pluralization::Rule
+  <span class="kind">class</span> Rosetta::Parser::Config
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Rosetta/Pluralization/Rule.html">Rosetta::Pluralization::Rule</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
-
-
-
-
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
-
-  <p>Abstract pluralization rule.</p>
-<p>A pluralization rule class provides a main <code>#rule</code> method that, given a
-<code>count</code> number, returns the corresponding plural category tag, which
-should be part of the common plural category tags defined
-<a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">by the CLDR</a>:</p>
-<p><code>:zero</code>, <code>:one</code>, <code>:two</code>, <code>:few</code>, <code>:many</code> and <code>:other</code>.</p>
-
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Rosetta/Parser/Config.html">Rosetta::Parser::Config</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -243,18 +223,22 @@ should be part of the common plural category tags defined
 
 
   <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
+    <a id="included-modules" class="anchor" href="#included-modules">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Direct Known Subclasses
+    Included Modules
   </h2>
   <ul class="other-types-list">
     
-      <li class="other-type"><a href="../../Rosetta/Pluralization/Rule/OneOther.html">Rosetta::Pluralization::Rule::OneOther</a></li>
+      <li class="other-type">YAML::Serializable</li>
     
   </ul>
+
+
+
+
 
 
 
@@ -271,15 +255,8 @@ should be part of the common plural category tags defined
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/pluralization/rule.cr#L11" target="_blank">
-        rosetta/pluralization/rule.cr
-      </a>
-    
-    <br/>
-  
-    
-      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/pluralization/rule/one_other.cr#L3" target="_blank">
-        rosetta/pluralization/rule/one_other.cr
+      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L3" target="_blank">
+        rosetta/parser/config.cr
       </a>
     
     <br/>
@@ -288,6 +265,23 @@ should be part of the common plural category tags defined
 
 
 
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method" class="signature"><strong>.new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -304,7 +298,27 @@ should be part of the common plural category tags defined
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#apply(count:Float%7CInt):Symbol-instance-method" class="signature"><strong>#apply</strong>(count : Float | Int) : Symbol</a>
+        <a href="#available_locales:Array(String)-instance-method" class="signature"><strong>#available_locales</strong> : Array(String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_locale:String-instance-method" class="signature"><strong>#default_locale</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#path:String-instance-method" class="signature"><strong>#path</strong> : String</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pluralization_rules:Hash(String,String)-instance-method" class="signature"><strong>#pluralization_rules</strong> : Hash(String, String)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#pluralization_tags:Hash(String,Array(String))-instance-method" class="signature"><strong>#pluralization_tags</strong> : Hash(String, Array(String))</a>
         
       </li>
     
@@ -336,8 +350,44 @@ should be part of the common plural category tags defined
 
 
   
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ctx : YAML::ParseContext, node : YAML::Nodes::Node)
+
+        <a class="method-permalink" href="#new(ctx:YAML::ParseContext,node:YAML::Nodes::Node)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -352,18 +402,82 @@ should be part of the common plural category tags defined
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="apply(count:Float|Int):Symbol-instance-method">
+    <div class="entry-detail" id="available_locales:Array(String)-instance-method">
       <div class="signature">
-        abstract 
-        def <strong>apply</strong>(count : Float | Int) : Symbol
+        
+        def <strong>available_locales</strong> : Array(String)
 
-        <a class="method-permalink" href="#apply(count:Float%7CInt):Symbol-instance-method">#</a>
+        <a class="method-permalink" href="#available_locales:Array(String)-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/pluralization/rule.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L8" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_locale:String-instance-method">
+      <div class="signature">
+        
+        def <strong>default_locale</strong> : String
+
+        <a class="method-permalink" href="#default_locale:String-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="path:String-instance-method">
+      <div class="signature">
+        
+        def <strong>path</strong> : String
+
+        <a class="method-permalink" href="#path:String-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pluralization_rules:Hash(String,String)-instance-method">
+      <div class="signature">
+        
+        def <strong>pluralization_rules</strong> : Hash(String, String)
+
+        <a class="method-permalink" href="#pluralization_rules:Hash(String,String)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="pluralization_tags:Hash(String,Array(String))-instance-method">
+      <div class="signature">
+        
+        def <strong>pluralization_tags</strong> : Hash(String, Array(String))
+
+        <a class="method-permalink" href="#pluralization_tags:Hash(String,Array(String))-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/config.cr#L10" target="_blank">View source</a>]
         
       </div>
     </div>

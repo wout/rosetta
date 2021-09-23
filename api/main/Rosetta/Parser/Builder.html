@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Pluralization/CategoryTags.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Parser/Builder.html">
 
 <link href="../../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Pluralization::CategoryTags - Rosetta v0.2.0-dev</title>
+  <title>Rosetta::Parser::Builder - Rosetta v0.2.0-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -114,12 +114,12 @@
       
     </li>
   
-  <li class="parent " data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
+  <li class="parent open current" data-id="Rosetta/Rosetta/Parser" data-name="rosetta::parser">
       <a href="../../Rosetta/Parser.html">Parser</a>
       
         <ul>
   
-  <li class=" " data-id="Rosetta/Rosetta/Parser/Builder" data-name="rosetta::parser::builder">
+  <li class=" current" data-id="Rosetta/Rosetta/Parser/Builder" data-name="rosetta::parser::builder">
       <a href="../../Rosetta/Parser/Builder.html">Builder</a>
       
     </li>
@@ -134,12 +134,12 @@
       
     </li>
   
-  <li class="parent open current" data-id="Rosetta/Rosetta/Pluralization" data-name="rosetta::pluralization">
+  <li class="parent " data-id="Rosetta/Rosetta/Pluralization" data-name="rosetta::pluralization">
       <a href="../../Rosetta/Pluralization.html">Pluralization</a>
       
         <ul>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Pluralization/CategoryTags" data-name="rosetta::pluralization::categorytags">
+  <li class=" " data-id="Rosetta/Rosetta/Pluralization/CategoryTags" data-name="rosetta::pluralization::categorytags">
       <a href="../../Rosetta/Pluralization/CategoryTags.html">CategoryTags</a>
       
     </li>
@@ -208,10 +208,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">annotation</span> Rosetta::Pluralization::CategoryTags
+  <span class="kind">class</span> Rosetta::Parser::Builder
 
 </h1>
 
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Rosetta/Parser/Builder.html">Rosetta::Parser::Builder</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -239,8 +241,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/pluralization/rule.cr#L15" target="_blank">
-        rosetta/pluralization/rule.cr
+      <a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/builder.cr#L3" target="_blank">
+        rosetta/parser/builder.cr
       </a>
     
     <br/>
@@ -250,9 +252,50 @@
 
 
 
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(default_locale:String)-class-method" class="signature"><strong>.new</strong>(default_locale : String)</a>
+        
+      </li>
+    
+  </ul>
 
 
 
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#build_locales(translations:TranslationsHash)-instance-method" class="signature"><strong>#build_locales</strong>(translations : TranslationsHash)</a>
+        
+          <div class="summary"><p>Builds the wrapping module for all translation structs.</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#default_locale:String-instance-method" class="signature"><strong>#default_locale</strong> : String</a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -260,12 +303,105 @@
 
 <div class="methods-inherited">
   
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
 
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(default_locale:String)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(default_locale : String)
+
+        <a class="method-permalink" href="#new(default_locale:String)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/builder.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="build_locales(translations:TranslationsHash)-instance-method">
+      <div class="signature">
+        
+        def <strong>build_locales</strong>(translations : <a href="../../Rosetta/TranslationsHash.html">TranslationsHash</a>)
+
+        <a class="method-permalink" href="#build_locales(translations:TranslationsHash)-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Builds the wrapping module for all translation structs.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/builder.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="default_locale:String-instance-method">
+      <div class="signature">
+        
+        def <strong>default_locale</strong> : String
+
+        <a class="method-permalink" href="#default_locale:String-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/112d6d18/src/rosetta/parser/builder.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
