@@ -1,0 +1,8 @@
+en-pluralization:
+  hello: "Hello"
+  there:
+    other: "There are %{count}."
+  inbox:
+    messages:
+      one: "You have one message."
+      other: "You have %{count} messages."

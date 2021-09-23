@@ -157,8 +157,31 @@ describe Rosetta::Parser do
 
       output.should eq <<-ERROR
       Some translations have mismatching interpolation keys:
-        ‣ nl-interpolation: interpolatable.missing should contain "%{pet}"
-        ‣ nl-interpolation: interpolatable.one_missing should contain "%{anything}"
+        ‣ nl-interpolation: "interpolatable.missing" should contain "%{pet}"
+        ‣ nl-interpolation: "interpolatable.one_missing" should contain "%{anything}"
+
+
+      ERROR
+    end
+
+    it "returns an error when there are missing category tags for pluralizations" do
+      output = make_parser(
+        default_locale: "en-pluralization",
+        available_locales: %w[en-pluralization nl-pluralization],
+        pluralization_rules: {
+          "en-pluralization": "Rosetta::Pluralization::Rule::OneOther",
+          "nl-pluralization": "Rosetta::Pluralization::Rule::OneFewOther",
+        },
+        pluralization_tags: {
+          "Rosetta::Pluralization::Rule::OneFewOther": %w[one few other],
+          "Rosetta::Pluralization::Rule::OneOther":    %w[one other],
+        }
+      ).parse!
+
+      output.should eq <<-ERROR
+      Some pluralizable translations have missing category tags:
+        ‣ en-pluralization: "there" is missing "one"
+        ‣ nl-pluralization: "inbox.messages" is missing "few"
 
 
       ERROR

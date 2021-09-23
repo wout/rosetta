@@ -11,15 +11,16 @@ module Rosetta
   class Parser
     include Checks
 
-    delegate path, to: config
-    delegate default_locale, to: config
     delegate available_locales, to: config
+    delegate default_locale, to: config
+    delegate path, to: config
 
     getter alternative_locales : Array(String)
+    getter config : Config
     getter error : String? = nil
+    getter pluralization_tags : Hash(String, Array(String))
     getter ruling_key_set : Array(String)
     getter translations : TranslationsHash
-    getter config : Config
 
     @processed_translations : TranslationsHash? = nil
 
@@ -27,6 +28,10 @@ module Rosetta
       @alternative_locales = available_locales - [default_locale]
       @translations = load_translations
       @ruling_key_set = collect_ruling_keys(@translations, default_locale)
+      @pluralization_tags = map_locales_to_pluralization_tags(
+        config.pluralization_rules,
+        config.pluralization_tags
+      )
     end
 
     # Returns a list of self-containing translation modules.
@@ -46,7 +51,8 @@ module Rosetta
       check_available_locales_present? &&
         check_key_set_complete? &&
         check_key_set_overflowing? &&
-        check_interpolation_keys_matching?
+        check_interpolation_keys_matching? &&
+        check_pluralization_tags_complete?
 
       error.nil?
     end
@@ -59,6 +65,16 @@ module Rosetta
       return %w[] if translations.empty?
 
       translations[default_locale].keys
+    end
+
+    # Map locales to pluralization category tags.
+    private def map_locales_to_pluralization_tags(
+      rules : Hash(String, String),
+      tags : Hash(String, Array(String))
+    )
+      rules.each_with_object({} of String => Array(String)) do |(l, r), h|
+        h[l] = tags[r]
+      end
     end
 
     # Generate a visual list for errors from an array of strings.
@@ -131,8 +147,12 @@ module Rosetta
     end
 
     # Test if contents of a translation are pluralizable.
-    private def pluralizable_hash?(hash : Hash) : Bool
+    private def pluralizable_hash?(hash : Hash)
       !!hash["other"]? && !!hash["other"].to_s.match(/%\{count\}/)
+    end
+
+    private def pluralizable_hash?(string : String)
+      false
     end
   end
 end

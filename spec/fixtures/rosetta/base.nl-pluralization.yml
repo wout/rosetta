@@ -1,0 +1,10 @@
+nl-pluralization:
+  hello: "Hallo"
+  there:
+    one: "Er is er één."
+    few: "Er zijn er een paar."
+    other: "Er zijn %{count}."
+  inbox:
+    messages:
+      one: "Je hebt een bericht."
+      other: "Je hebt %{count} berichten."

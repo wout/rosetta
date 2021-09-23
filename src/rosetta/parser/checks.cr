@@ -68,7 +68,7 @@ module Rosetta
             i12n_keys.each do |key|
               next if processed_translations[k][l].to_s.match(%r{#{key}})
 
-              e << %(#{l}: #{k} should contain "#{key}")
+              e << %(#{l}: "#{k}" should contain "#{key}")
             end
           end
         end
@@ -79,6 +79,34 @@ module Rosetta
           #{pretty_list_for_error(errors)}
 
           ERROR
+
+          return false
+        end
+
+        true
+      end
+
+      # Check if every locale has the required category tags for every
+      # pluralizable translation.
+      private def check_pluralization_tags_complete? : Bool
+        errors = processed_translations.each_with_object([] of String) do |(k, h), e|
+          h.each do |l, t|
+            next unless pluralizable_hash?(t)
+
+            diff = pluralization_tags[l] - t.as(Hash).keys
+
+            e << %(#{l}: "#{k}" is missing "#{diff.join(", ")}") unless diff.empty?
+          end
+        end
+
+        unless errors.empty?
+          @error = <<-ERROR
+          Some pluralizable translations have missing category tags:
+          #{pretty_list_for_error(errors)}
+
+          ERROR
+
+          return false
         end
 
         true
