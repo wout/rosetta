@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Slovenian pluralization rule.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :two, :few, :other)]
-      class Slovenian < Rule
+      struct Slovenian < Rule
         def apply(count : Float | Int) : Symbol
           mod100 = count % 100
 

@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Welsh pluralization rule.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:zero, :one, :two, :few, :many, :other)]
-      class Welsh < Rule
+      struct Welsh < Rule
         def apply(count : Float | Int) : Symbol
           case count
           when 0

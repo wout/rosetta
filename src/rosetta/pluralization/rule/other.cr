@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # A rule that only returns the "other" pluralization category.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:other)]
-      class Other < Rule
+      struct Other < Rule
         def apply(count : Float | Int) : Symbol
           :other
         end

@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Scottish gaelic pluralization rule.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :two, :few, :other)]
-      class ScottishGaelic < Rule
+      struct ScottishGaelic < Rule
         def apply(count : Float | Int) : Symbol
           if count == 1 || count == 11
             :one

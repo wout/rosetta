@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Pluralization rule used for: Belarusian, Bosnian, Croatian, Russian, Serbian, Serbo-Croatian, Ukrainian.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :few, :many, :other)]
-      class EastSlavic < Rule
+      struct EastSlavic < Rule
         def apply(count : Float | Int) : Symbol
           mod10 = count % 10
           mod100 = count % 100

@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Pluralization rule used for: Czech, Slovak.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :few, :other)]
-      class WestSlavic < Rule
+      struct WestSlavic < Rule
         def apply(count : Float | Int) : Symbol
           if count == 1
             :one

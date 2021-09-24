@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Maltese pluralization rule.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :few, :many, :other)]
-      class Maltese < Rule
+      struct Maltese < Rule
         def apply(count : Float | Int) : Symbol
           mod100 = count % 100
 

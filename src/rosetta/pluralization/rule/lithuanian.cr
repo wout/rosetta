@@ -1,11 +1,11 @@
 module Rosetta
   module Pluralization
-    abstract class Rule
+    abstract struct Rule
       # Lithuanian pluralization rule.
       #
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :few, :other)]
-      class Lithuanian < Rule
+      struct Lithuanian < Rule
         def apply(count : Float | Int) : Symbol
           mod10 = count % 10
           mod100 = count % 100
