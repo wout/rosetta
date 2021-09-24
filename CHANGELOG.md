@@ -22,6 +22,7 @@
 - Add the `Rosetta::Pluralization::Rule` base class.
 - Add the `Rosetta::Pluralization::CategoryTags` annotation to inform the parser
   about which category tags are required per pluralization rule.
+- Allow localization with a date-formatted tuple.
 
 ## 0.2.0 (2021-09-10)
 
