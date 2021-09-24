@@ -61,7 +61,7 @@ module Rosetta
         end
 
         args = i12n_keys.map { |k| [k, (k == "count" ? "Float | Int" : "String")] }
-        args << ["time", "Time"] unless l10n_keys.empty?
+        args << ["time", "Time | Tuple(Int32, Int32, Int32)"] unless l10n_keys.empty?
         with_args = args.map(&.join(" : ")).join(", ")
 
         <<-METHODS

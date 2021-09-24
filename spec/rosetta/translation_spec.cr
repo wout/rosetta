@@ -41,6 +41,12 @@ describe Rosetta do
         .should eq("Ada is geboren op zondag 10 december 1815 om 10:18:15.")
     end
 
+    it "localizes time with a date formatted tuple" do
+      Rosetta.find("localizable.string")
+        .t({first_name: "Dada", time: {1999, 9, 19}})
+        .should eq("Dada was born on Sunday 19 September 1999 at 00:00:00.")
+    end
+
     # NOTE: uncomment this to see the compilation error
     # it "raises a compilation error" do
     #   Rosetta.find("i_am_definitely_not_in_one_of_the_files")

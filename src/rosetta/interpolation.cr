@@ -3,13 +3,15 @@ module Rosetta
   # tuple.
   def self.interpolate(
     translation : String,
-    values : Hash(String | Symbol, String | Time) | NamedTuple
+    values : Hash | NamedTuple
   )
     values.each do |key, value|
       translation = if value.is_a?(Time)
-                      localize(translation, value)
+                      localize_time(value, translation)
+                    elsif value.is_a?(Tuple(Int32, Int32, Int32))
+                      localize_time(Time.local(*value), translation)
                     else
-                      translation.gsub(/\%{#{key}}/, value)
+                      translation.gsub(/\%\{#{key}\}/, value)
                     end
     end
 

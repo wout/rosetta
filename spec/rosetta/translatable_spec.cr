@@ -13,24 +13,53 @@ describe TranslatableTestObject do
     end
   end
 
-  describe "#welcome_message_with_arguments" do
+  describe "#interpolated_message_with_arguments" do
     it "accepts interpolation arguments" do
-      test_object.welcome_message_with_arguments
+      test_object.interpolated_message_with_arguments
         .should eq("Hi First name, have a fabulous whenever day!")
     end
   end
 
-  describe "#welcome_message_with_hash" do
+  describe "#interpolated_message_with_hash" do
     it "accepts interpolation arguments" do
-      test_object.welcome_message_with_hash
+      test_object.interpolated_message_with_hash
         .should eq("Hi Willy, have a fabulous Wonka day!")
     end
   end
 
   describe "#pluralized_message_with_arguments" do
     it "pluralizes according to the given count" do
-      # test_object.pluralized_message_with_arguments
-      #   .should eq("Hi Willy, have a fabulous Wonka day!")
+      test_object.pluralized_message_with_arguments(1)
+        .should eq("Hi Jeremy, you've got one message.")
+      test_object.pluralized_message_with_arguments(23)
+        .should eq("Hi Jeremy, you've got 23 messages.")
+    end
+  end
+
+  describe "#pluralized_message_with_hash" do
+    it "pluralizes according to the given count" do
+      test_object.pluralized_message_with_hash(1)
+        .should eq("Hi Jeremy, you've got one message.")
+      test_object.pluralized_message_with_hash(23)
+        .should eq("Hi Jeremy, you've got 23 messages.")
+    end
+  end
+
+  describe "#pluralized_message_with_time_and_hash" do
+    it "pluralizes according to the given count" do
+      test_object.pluralized_message_with_time_and_hash(1)
+        .should eq("You have an appointment on Friday at 09:21.")
+      test_object.pluralized_message_with_time_and_hash(11)
+        .should eq("You have 11 appointments on Friday at 09:21.")
+    end
+  end
+
+  describe "#pluralized_message_with_date_and_hash" do
+    it "pluralizes according to the given count" do
+      test_object.pluralized_message_with_date_and_hash(1)
+        .should eq("You have an appointment on Friday at 00:00.")
+      test_object.pluralized_message_with_date_and_hash(11)
+        .should eq("You have 11 appointments on Friday at 00:00.")
     end
   end
 end
@@ -55,22 +84,36 @@ class TranslatableTestObject
     r(".inferred_name").t
   end
 
-  def welcome_message_with_arguments
+  def interpolated_message_with_arguments
     r("interpolatable.string")
       .t(name: "#{first_name}", day_name: "whenever day")
   end
 
-  def welcome_message_with_hash
+  def interpolated_message_with_hash
     r("interpolatable.string")
       .t_hash({:name => "Willy", "day_name" => "Wonka day"})
   end
 
-  def pluralized_message_with_arguments
-    r("pluralizable.string").t(name: "Jeremy", count: 23)
+  def pluralized_message_with_arguments(count)
+    r("pluralizable.string").t(name: "Jeremy", count: count)
   end
 
-  def pluralized_message_with_hash
-    r("pluralizable.string").t({"name" => "Jeremy", "count" => 23})
+  def pluralized_message_with_hash(count)
+    r("pluralizable.string").t_hash({"name" => "Jeremy", "count" => count})
+  end
+
+  def pluralized_message_with_time_and_hash(count)
+    r("pluralizable.localizable.string").t_hash({
+      "count" => count,
+      "time"  => Time.local(2021, 9, 24, 9, 21, 24),
+    })
+  end
+
+  def pluralized_message_with_date_and_hash(count)
+    r("pluralizable.localizable.string").t_hash({
+      "count" => count,
+      "time"  => {2021, 9, 24},
+    })
   end
 end
 

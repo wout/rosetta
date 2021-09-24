@@ -67,6 +67,13 @@ module Rosetta
     time.to_s(localize_day_and_month_names(time, format))
   end
 
+  def self.localize_time(
+    time : Tuple(Int32, Int32, Int32),
+    format : String
+  )
+    localize_time(Time.local(*time), format)
+  end
+
   {% begin %}
     {% namespace = "Rosetta::Locales::RosettaLocalization".id %}
 

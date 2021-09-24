@@ -53,14 +53,14 @@ describe Rosetta::Parser do
           struct Localizable_StringTranslation < Rosetta::Translation
             getter translations = {en: "%{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "%{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}
             include Rosetta::InterpolatedTranslation
-            def t(first_name : String, time : Time)
+            def t(first_name : String, time : Time | Tuple(Int32, Int32, Int32))
               Rosetta.localize_time(time, {en: "\#{first_name} was born on %A %d %B %Y at %H:%M:%S.", nl: "\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S."}[Rosetta.locale])
             end
-            def t(values : NamedTuple(first_name: String, time: Time))
+            def t(values : NamedTuple(first_name: String, time: Time | Tuple(Int32, Int32, Int32)))
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("localizable.string") expected to receive t(first_name : String, time : Time) but to_s was called instead) %}
+              {% raise %(Rosetta.find("localizable.string") expected to receive t(first_name : String, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead) %}
             end
           end
       MODULE
@@ -89,14 +89,14 @@ describe Rosetta::Parser do
           struct Pluralizable_Localizable_StringTranslation < Rosetta::Translation
             getter translations = {en: {one: "You have an appointment on %A at %H:%M.", other: "You have %{count} appointments on %A at %H:%M."}, nl: {one: "Je hebt een afspraak op %A om %H:%M.", other: "Je hebt %{count} afspraken op %A om %H:%M."}}
             include Rosetta::PluralizedTranslation
-            def t(count : Float | Int, time : Time)
+            def t(count : Float | Int, time : Time | Tuple(Int32, Int32, Int32))
               Rosetta.localize_time(time, Rosetta.pluralize(count, {en: {one: "You have an appointment on %A at %H:%M.", other: "You have \#{count} appointments on %A at %H:%M."}, nl: {one: "Je hebt een afspraak op %A om %H:%M.", other: "Je hebt \#{count} afspraken op %A om %H:%M."}}[Rosetta.locale]))
             end
-            def t(values : NamedTuple(count: Float | Int, time: Time))
+            def t(values : NamedTuple(count: Float | Int, time: Time | Tuple(Int32, Int32, Int32)))
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("pluralizable.localizable.string") expected to receive t(count : Float | Int, time : Time) but to_s was called instead) %}
+              {% raise %(Rosetta.find("pluralizable.localizable.string") expected to receive t(count : Float | Int, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead) %}
             end
           end
       MODULE
