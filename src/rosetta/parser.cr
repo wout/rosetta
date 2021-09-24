@@ -148,7 +148,7 @@ module Rosetta
 
     # Test if contents of a translation are pluralizable.
     private def pluralizable_hash?(hash : Hash)
-      !!hash["other"]? && !!hash["other"].to_s.match(/%\{count\}/)
+      hash["other"]? && hash["other"].to_s.match(/%\{count\}/)
     end
 
     private def pluralizable_hash?(string : String)
