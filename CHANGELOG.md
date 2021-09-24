@@ -15,7 +15,7 @@
   pluralizable translations.
 - Rework `Rosetta::Backend` to send a single YAML configuration to the parser
   rather than separate arguments.
-- Add locale/pluralization rule mapping in `Rosetta::Pluralization::RULES`
+- Add locale/pluralization rule mapping in `Rosetta::Pluralization::DEFAULT_RULES`
   (borrowed from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n)).
 - Add most common pluralization rules under `rosetta/pluralization/rule`
   (borrowed from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n)).

@@ -24,15 +24,20 @@ module Rosetta
       %}
 
       {%
-        pluralization_rules = [] of String
-        pluralization_tags = [] of String
-        rules = Rosetta::Pluralization.constant("RULES")
+        rules = Rosetta::Pluralization.constant("DEFAULT_RULES")
 
         if Rosetta.has_constant?("PLURALIZATION_RULES")
           Rosetta::PLURALIZATION_RULES.each do |locale, rule|
             rules[locale] = rule
           end
         end
+      %}
+
+      Rosetta::Pluralization::RULES = {{rules}}
+
+      {%
+        pluralization_rules = [] of String
+        pluralization_tags = [] of String
 
         available_locales.each do |locale|
           rule = rules[locale]
