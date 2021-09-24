@@ -30,7 +30,7 @@ module Rosetta
     abstract def translations
 
     # Return the raw translation value for the current locale.
-    def raw : String
+    def raw
       translations[Rosetta.locale]
     end
   end
@@ -59,7 +59,7 @@ module Rosetta
     # Using a hash for interpolation is considered unsafe since the content of
     # hashes can't be checked at compile-time. Try to avoid using this method if
     # you can.
-    def t_hash(values : Hash(String | Symbol, String))
+    def t_hash(values : Hash)
       Rosetta.interpolate(raw, values)
     end
   end
@@ -69,18 +69,10 @@ module Rosetta
     # Using a hash for interpolation is considered unsafe since the content of
     # hashes can't be checked at compile-time. Try to avoid using this method if
     # you can.
-    def t_hash(
-      count : Float | Int,
-      values : Hash(String | Symbol, String)
-    )
-      Rosetta.interpolate(Rosetta.pluralize(count, raw), values)
-    end
+    def t_hash(values : Hash)
+      raise %(Missing "count" from values) unless count = values["count"]?
 
-    # Find the value for `count` in the given hash.
-    def t_hash(values : Hash(String | Symbol, String))
-      values = values.transform_keys(&.to_s)
-
-      t_hash(values.delete("count"), values)
+      Rosetta.interpolate(Rosetta.pluralize(count.to_s.to_i, raw), values)
     end
   end
 end

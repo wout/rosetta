@@ -4,11 +4,12 @@ module Rosetta
     count : Float | Int,
     translation : NamedTuple
   )
-    "TO-DO: apply pluralization rule"
+    rule = Rosetta::Pluralization::RULES[Rosetta.locale].new
+    translation[rule.apply(count)]
   end
 
   module Pluralization
-    RULES = {
+    DEFAULT_RULES = {
       "ak":     Rosetta::Pluralization::Rule::OneWithZeroOther,
       "am":     Rosetta::Pluralization::Rule::OneWithZeroOther,
       "ar":     Rosetta::Pluralization::Rule::Arabic,
