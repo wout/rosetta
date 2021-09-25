@@ -48,8 +48,19 @@ If not, an error similar to the following will be raised:
 ```bash
 Error: Some translations have mismatching interpolation keys:
 
-  ‣ nl: message.welcome should contain "%{first_name}"
-  ‣ nl: base.validations.min_max should contain "%{min}"
-  ‣ nl: base.validations.min_max should contain "%{max}"
-  ‣ fr: message.welcome should contain "%{first_name}"
+  ‣ nl: "message.welcome" should contain "%{first_name}"
+  ‣ nl: "base.validations.min_max" should contain "%{min}"
+  ‣ nl: "base.validations.min_max" should contain "%{max}"
+  ‣ fr: "message.welcome should" contain "%{first_name}"
+```
+
+## Check 5: pluralization tags are present in every translations
+Every pluralization rule has a `CategoryTags` annotation defining which tags
+should be present in every pluralizable translation. If they are not, an error
+will be raised:
+
+```bash
+Error: Some pluralizable translations have missing category tags:
+       ‣ en: "basket.items" is missing "one"
+       ‣ nl: "inbox.messages" is missing "few"
 ```
