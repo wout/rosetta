@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0 (2021-09-24)
+## 0.3.0 (2021-09-25)
 
 - Change the argument order of `Rosetta.localize_time` to be more consistent
   with the rest of the lib.

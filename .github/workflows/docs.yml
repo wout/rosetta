@@ -116,7 +116,7 @@ jobs:
 
       - name: Build API docs
         run: |
-          crystal docs --json-config-url=/rosetta/cry-versions.json --output=api  --project-version=v0.2.0-dev --project-name=Rosetta \
+          crystal docs --json-config-url=/rosetta/cry-versions.json --output=api  --project-version=v0.3.0-dev --project-name=Rosetta \
           --canonical-base-url="https://wout.github.io/rosetta/api/latest" --source-url-pattern="https://github.com/wout/rosetta/blob/%{refname}/%{path}#L%{line}" \
           --source-refname=${GITHUB_SHA::8}
       - name: Deploy API docs
