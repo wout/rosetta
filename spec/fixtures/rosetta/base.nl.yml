@@ -15,6 +15,10 @@ nl:
     string:
       one: "Hey %{name}, je hebt een bericht."
       other: "Hey %{name}, je hebt %{count} berichten."
+    string_with_zero:
+      zero: "Hey %{name}, er zijn geen berichten"
+      one: "Hey %{name}, je hebt een bericht."
+      other: "Hey %{name}, je hebt %{count} berichten."
     localizable:
       string:
         one: "Je hebt een afspraak op %A om %H:%M."

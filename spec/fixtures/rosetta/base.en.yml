@@ -15,6 +15,10 @@ en:
     string:
       one: "Hi %{name}, you've got one message."
       other: "Hi %{name}, you've got %{count} messages."
+    string_with_zero:
+      zero: "Hi %{name}, there are no messages."
+      one: "Hi %{name}, you've got one message."
+      other: "Hi %{name}, you've got %{count} messages."
     localizable:
       string:
         one: "You have an appointment on %A at %H:%M."

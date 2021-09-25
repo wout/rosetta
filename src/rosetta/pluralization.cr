@@ -2,9 +2,15 @@ module Rosetta
   # Pluralizes a given pluralizable translation.
   def self.pluralize(
     count : Float | Int,
-    translation : NamedTuple
+    translation : NamedTuple,
+    rule : Pluralization::Rule = Pluralization::RULES[Rosetta.locale].new
   )
-    rule = Rosetta::Pluralization::RULES[Rosetta.locale].new
+    if count == 0 &&
+       !rule.is_a?(Pluralization::Rule::RelativeZero) &&
+       translation[:zero]?
+      return translation[:zero]?.to_s
+    end
+
     translation[rule.apply(count)]
   end
 

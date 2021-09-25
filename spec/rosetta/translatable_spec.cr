@@ -48,6 +48,18 @@ describe TranslatableTestObject do
       test_object.pluralized_message_with_arguments(23)
         .should eq("Hi Jeremy, you've got 23 messages.")
     end
+
+    it "falls back to :other if no value is defined for :zero" do
+      test_object.pluralized_message_with_arguments(0)
+        .should eq("Hi Jeremy, you've got 0 messages.")
+    end
+  end
+
+  describe "#pluralized_message_with_arguments_and_zero" do
+    it "falls back to :other if no value is defined for :zero" do
+      test_object.pluralized_message_with_arguments_and_zero(0)
+        .should eq("Hi Jeremy, there are no messages.")
+    end
   end
 
   describe "#pluralized_message_with_hash" do
@@ -120,6 +132,10 @@ class TranslatableTestObject
 
   def pluralized_message_with_arguments(count)
     r("pluralizable.string").t(name: "Jeremy", count: count)
+  end
+
+  def pluralized_message_with_arguments_and_zero(count)
+    r("pluralizable.string_with_zero").t(name: "Jeremy", count: count)
   end
 
   def pluralized_message_with_hash(count)
