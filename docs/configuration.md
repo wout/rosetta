@@ -1,6 +1,10 @@
 # Configuration
 Configuration options are defined as constants in your initializer file.
 
+!!! warning
+    All configuration should happen *before* calling the 
+    `Rosetta::Backend.load` macro.
+
 ## `DEFAULT_LOCALE`
 Defines the default value if no locale is set. The *default* default locale is
 set to `:en`.
@@ -24,6 +28,16 @@ for this setting is `%i[en]`.
 
 ```cr
 Rosetta::AVAILABLE_LOCALES = %i[de en-GB en-US es nl]
+```
+
+## `PLURALIZATION_RULES`
+Defines a custom mapping of pluralization rules:
+
+```cr
+Rosetta::PLURALIZATION_RULES = {
+  en: MyRule,
+  nl: MyRule,
+}
 ```
 
 ## `FALLBACKS`

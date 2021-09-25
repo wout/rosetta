@@ -11,7 +11,8 @@ nav:
   - Locale files: locale_files.md
   - Set the current locale: set_the_current_locale.md
   - Translations: translations.md
-  - Interpolations: interpolations.md
+  - Interpolation: interpolation.md
+  - Pluralization: pluralization.md
   - Date, time and numbers: localization.md
   - Parser checks: parser_checks.md
 
