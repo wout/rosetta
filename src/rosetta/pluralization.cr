@@ -5,11 +5,7 @@ module Rosetta
     translation : NamedTuple,
     rule : Pluralization::Rule = Pluralization::RULES[Rosetta.locale].new
   )
-    if count == 0 &&
-       !rule.is_a?(Pluralization::Rule::RelativeZero) &&
-       translation[:zero]?
-      return translation[:zero]?.to_s
-    end
+    return translation[:zero]?.to_s if count == 0 && translation[:zero]?
 
     translation[rule.apply(count)]
   end

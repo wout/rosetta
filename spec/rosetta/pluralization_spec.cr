@@ -29,7 +29,6 @@ describe Rosetta do
     it "does not force :zero for rules with a relative zero" do
       rule = CustomRuleWithRelativeZero.new
       translation = {
-        zero:  "Nothing here, mate.",
         few:   "Just a few, dear.",
         other: "There are %{count}, love.",
       }
@@ -46,8 +45,6 @@ end
 # Custom pluralization rule
 @[Rosetta::Pluralization::CategoryTags(:few, :other)]
 struct CustomRuleWithRelativeZero < Rosetta::Pluralization::Rule
-  include Rosetta::Pluralization::Rule::RelativeZero
-
   def apply(count : Float | Int) : Symbol
     count <= 3 ? :few : :other
   end
