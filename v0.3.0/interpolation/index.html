@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://wout.github.io/rosetta/v0.3.0/set_the_current_locale/">
+        <link rel="canonical" href="https://wout.github.io/rosetta/v0.3.0/interpolation/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
     
     
       
-        <title>Set the current locale - Rosetta Docs</title>
+        <title>Interpolation - Rosetta Docs</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#globally" class="md-skip">
+        <a href="#arguments-and-namedtuple" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Set the current locale
+              Interpolation
             
           </span>
         </div>
@@ -302,54 +302,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Set the current locale
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../set_the_current_locale/" class="md-nav__link">
         Set the current locale
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#globally" class="md-nav__link">
-    Globally
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#locally" class="md-nav__link">
-    Locally
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -375,11 +332,68 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../interpolation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Interpolation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Interpolation
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#arguments-and-namedtuple" class="md-nav__link">
+    Arguments and NamedTuple
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#time-directives" class="md-nav__link">
+    Time directives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-a-hash" class="md-nav__link">
+    Working with a Hash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-uninterpolated-string" class="md-nav__link">
+    The uninterpolated string
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -453,15 +467,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#globally" class="md-nav__link">
-    Globally
+  <a href="#arguments-and-namedtuple" class="md-nav__link">
+    Arguments and NamedTuple
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#locally" class="md-nav__link">
-    Locally
+  <a href="#time-directives" class="md-nav__link">
+    Time directives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#working-with-a-hash" class="md-nav__link">
+    Working with a Hash
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-uninterpolated-string" class="md-nav__link">
+    The uninterpolated string
   </a>
   
 </li>
@@ -478,48 +506,74 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wout/rosetta/tree/docs/docs/set_the_current_locale.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wout/rosetta/tree/docs/docs/interpolation.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Set the current locale</h1>
+                  <h1>Interpolation</h1>
                 
-                <h2 id="globally">Globally</h2>
-<p>If no value is set, the value of the <code>Rosetta.default_locale</code> macro will be
-used. This macro will first look if <code>Rosetta::DEFAULT_LOCALE</code> is defined, and if
-it is not, it will fall back to an internal value (<code>:en</code>).</p>
-<p>Defining the current locale is done as folows:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:es</span>
+                <h2 id="arguments-and-namedtuple">Arguments and <code>NamedTuple</code></h2>
+<p>Interpolations can be passed as arguments for the <code>t</code> method:
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Ary&quot;</span><span class="p">)</span>
+<span class="c1"># =&gt; &quot;Hi Ary!&quot;</span>
+</code></pre></div></p>
+<p>A <code>NamedTuple</code> works as well:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">({</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Ary&quot;</span><span class="p">})</span>
+<span class="c1"># =&gt; &quot;Hi Ary!&quot;</span>
 </code></pre></div>
-<p>This property accepts a <code>String</code> or a <code>Symbol</code>. But note that the getter variant
-of this property will always return a string:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:nl</span>
-<span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span>
-<span class="c1"># =&gt; &quot;nl&quot;</span>
-</code></pre></div>
-<p>If the given locale identifier is not present in the array returned by the
-<code>Rosetta.available_locales</code> macro, the value of the <code>Rosetta.default_locale</code>
-macro will be used instead:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">::</span><span class="no">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="ss">:es</span>
-<span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:xx</span>
-<span class="n">Roestta</span><span class="o">.</span><span class="n">locale</span>
-<span class="c1"># =&gt; &quot;es&quot;</span>
-</code></pre></div>
-<h2 id="locally">Locally</h2>
-<p>Sometimes you'll want to use a different locale for a specific part of your
-code. In that case, use the <code>Rosetta.with_locale</code> method:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.first_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
-<span class="c1"># =&gt; First name</span>
+<p>Important to know here is that translations with interpolation keys will always
+require you to call the <code>t</code> method with the right number of interpolation keys,
+or the compiler will complain:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># en.user.welcome_message: &quot;Hi %{name}!&quot;</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
 
-<span class="n">Rosetta</span><span class="o">.</span><span class="n">with_locale</span><span class="p">(</span><span class="ss">:nl</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.first_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
-  <span class="c1"># =&gt; &quot;Voornaam&quot;</span>
-<span class="k">end</span>
+<span class="ss">Error</span><span class="p">:</span> <span class="n">wrong</span> <span class="n">number</span> <span class="k">of</span> <span class="n">arguments</span> <span class="n">for</span> <span class="err">&#39;</span><span class="n">Rosetta</span><span class="o">::</span><span class="n">Locales</span><span class="o">::</span><span class="n">User_WelcomeMessage</span><span class="c1">#t&#39;</span>
+<span class="p">(</span><span class="n">given</span> <span class="mi">0</span><span class="p">,</span> <span class="n">expected</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.first_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
-<span class="c1"># =&gt; First name</span>
+<span class="n">Overloads</span> <span class="ss">are</span><span class="p">:</span>
+ <span class="o">-</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Locales</span><span class="o">::</span><span class="n">User_WelcomeMessage</span><span class="c1">#t(name : String)</span>
+ <span class="o">-</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Locales</span><span class="o">::</span><span class="n">User_WelcomeMessage</span><span class="c1">#t(values : NamedTuple(name: String))</span>
 </code></pre></div>
+<p>This is to ensure you're not missing any interpolation values.</p>
+<h2 id="time-directives">Time directives</h2>
+<p>If the string in your locale files contains time format directives, Rosetta will
+require a time object as one of the interpolation arguments and translate the
+value to the current locale:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># es.messages.great_day: &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;messages.great_day&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Brian&quot;</span><span class="p">,</span> <span class="ss">time</span><span class="p">:</span> <span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
+<span class="c1"># =&gt; &quot;¡Hola Brian, que tengas un buen domingo!&quot;</span>
+</code></pre></div>
+<h2 id="working-with-a-hash">Working with a <code>Hash</code></h2>
+<p>The <code>t</code> method does not accept hashes, only arguments or a <code>NamedTuple</code>. For
+situations where you have to use a hash, there's the <code>t_hash</code> method:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t_hash</span><span class="p">({</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="s2">&quot;Beta&quot;</span> <span class="p">})</span>
+<span class="c1"># =&gt; &quot;Hi Beta!&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method is considered unsafe because the content of hashes can't be
+checked at compile-time. It's also much slower, because interpolation values
+are inserted using <code>gsub</code> instead of native string interpolation. So, only
+use it when there's no other way, and use it with care.</p>
+</div>
+<h2 id="the-uninterpolated-string">The uninterpolated string</h2>
+<p>The raw, uninterpolated string, can be accessed with the <code>raw</code> method:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.welcome_message&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span>
+<span class="c1"># =&gt; &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
+</code></pre></div>
+<p>Which can then be interpolated later:</p>
+<div class="highlight"><pre><span></span><code><span class="n">value</span> <span class="o">=</span> <span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;messages.great_day&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span>
+<span class="c1"># =&gt; &quot;¡Hola %{name}, que tengas un buen %A!&quot;</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">{</span><span class="ss">name</span><span class="p">:</span> <span class="s2">&quot;Ary&quot;</span><span class="p">,</span> <span class="ss">time</span><span class="p">:</span> <span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">})</span>
+<span class="c1"># =&gt; &quot;¡Hola Ary, que tengas un buen domingo!&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code>Rosetta.interpolate</code> method uses <code>gsub</code> rather than native string
+interpolation, so it's a lot slower and it doesn't check if all the required
+interpolation keys are given.</p>
+</div>
                 
               
               
@@ -539,7 +593,7 @@ code. In that case, use the <code>Rosetta.with_locale</code> method:</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../locale_files/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Locale files" rel="prev">
+        <a href="../translations/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Translations" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -548,20 +602,20 @@ code. In that case, use the <code>Rosetta.with_locale</code> method:</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Locale files
+              Translations
             </div>
           </div>
         </a>
       
       
         
-        <a href="../translations/" class="md-footer__link md-footer__link--next" aria-label="Next: Translations" rel="next">
+        <a href="../pluralization/" class="md-footer__link md-footer__link--next" aria-label="Next: Pluralization" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Translations
+              Pluralization
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -321,6 +321,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pluralization_rules" class="md-nav__link">
+    PLURALIZATION_RULES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fallbacks" class="md-nav__link">
     FALLBACKS
   </a>
@@ -388,8 +395,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../interpolations/" class="md-nav__link">
-        Interpolations
+      <a href="../interpolation/" class="md-nav__link">
+        Interpolation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pluralization/" class="md-nav__link">
+        Pluralization
       </a>
     </li>
   
@@ -465,6 +487,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pluralization_rules" class="md-nav__link">
+    PLURALIZATION_RULES
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#fallbacks" class="md-nav__link">
     FALLBACKS
   </a>
@@ -490,6 +519,11 @@
                 
                 <h1 id="configuration">Configuration</h1>
 <p>Configuration options are defined as constants in your initializer file.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>All configuration should happen <em>before</em> calling the 
+<code>Rosetta::Backend.load</code> macro.</p>
+</div>
 <h2 id="default_locale"><code>DEFAULT_LOCALE</code></h2>
 <p>Defines the default value if no locale is set. The <em>default</em> default locale is
 set to <code>:en</code>.</p>
@@ -508,6 +542,13 @@ as the default locale.</p>
 <p>Defines all the available locales, including the default locale. The default
 for this setting is <code>%i[en]</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">::</span><span class="no">AVAILABLE_LOCALES</span> <span class="o">=</span> <span class="sx">%i[de en-GB en-US es nl]</span>
+</code></pre></div>
+<h2 id="pluralization_rules"><code>PLURALIZATION_RULES</code></h2>
+<p>Defines a custom mapping of pluralization rules:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">::</span><span class="no">PLURALIZATION_RULES</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">en</span><span class="p">:</span> <span class="n">MyRule</span><span class="p">,</span>
+  <span class="ss">nl</span><span class="p">:</span> <span class="n">MyRule</span><span class="p">,</span>
+<span class="p">}</span>
 </code></pre></div>
 <h2 id="fallbacks"><code>FALLBACKS</code></h2>
 <p>TODO: Fallbacks still need to be implemented.</p>
