@@ -4,15 +4,36 @@ module Rosetta
   #
   # If the key does not exist, a compile error will be raised.
   macro find(key)
-    {%
-      class_name_from_key = key.split('.').map(&.camelcase).join('_')
-      translation_class_name = "#{class_name_from_key.id}Translation".id
-    %}
+    {% if key.is_a?(StringLiteral) %}
+      {%
+        class_name_from_key = key.split('.').map(&.camelcase).join('_')
+        translation_class_name = "#{class_name_from_key.id}Translation".id
+      %}
 
-    {% if Rosetta::Locales.has_constant?(translation_class_name) %}
-      Rosetta::Locales::{{ translation_class_name.id }}.new
+      {% if Rosetta::Locales.has_constant?(translation_class_name) %}
+        Rosetta::Locales::{{ translation_class_name.id }}.new
+      {% else %}
+        {% raise "Missing translation for #{key} in all locales" %}
+      {% end %}
     {% else %}
-      {% raise "Missing translation for #{key} in all locales" %}
+      {%
+        raise <<-ERROR
+        Only a StringLiteral can be used as a locale key.
+
+          Use a case to dynamically switch between locale keys. For example:
+
+            case value
+            when "one"
+              Rosetta.find("key.option.one")
+            when "two"
+              Rosetta.find("key.option.two")
+            else
+              Rosetta.find("key.option.fallback")
+            end
+
+
+        ERROR
+      %}
     {% end %}
   end
 

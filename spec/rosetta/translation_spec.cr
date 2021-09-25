@@ -48,8 +48,15 @@ describe Rosetta do
     end
 
     # NOTE: uncomment this to see the compilation error
-    # it "raises a compilation error" do
+    # it "raises a compilation error when a key is missing" do
     #   Rosetta.find("i_am_definitely_not_in_one_of_the_files")
+    # end
+
+    # NOTE: uncomment this to see the compilation error
+    # it "raises a comilation error when the given key is not a string literal" do
+    #   description = "value"
+
+    #   Rosetta.find("i_am_a.#{description}")
     # end
   end
 

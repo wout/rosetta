@@ -115,8 +115,7 @@ class TranslatableTestObject
   end
 
   def localized_message_with_arguments(time)
-    r("localizable.string")
-      .t(first_name: "Ada", time: time)
+    r("localizable.string").t(first_name: "Ada", time: time)
   end
 
   def pluralized_message_with_arguments(count)
