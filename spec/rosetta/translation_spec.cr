@@ -55,7 +55,7 @@ describe Rosetta do
     # NOTE: uncomment this to see the compilation error
     # it "raises a comilation error when the given key is not a string literal" do
     #   description = "value"
-
+    #
     #   Rosetta.find("i_am_a.#{description}")
     # end
   end
