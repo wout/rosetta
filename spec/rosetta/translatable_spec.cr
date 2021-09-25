@@ -27,6 +27,20 @@ describe TranslatableTestObject do
     end
   end
 
+  describe "#localized_message_with_arguments" do
+    it "accepts a time object" do
+      test_object
+        .localized_message_with_arguments(Time.local(1815, 12, 10, 10, 18, 15))
+        .should eq("Ada was born on Sunday 10 December 1815 at 10:18:15.")
+    end
+
+    it "accepts a date-formatted tuple" do
+      test_object
+        .localized_message_with_arguments({1815, 12, 10})
+        .should eq("Ada was born on Sunday 10 December 1815 at 00:00:00.")
+    end
+  end
+
   describe "#pluralized_message_with_arguments" do
     it "pluralizes according to the given count" do
       test_object.pluralized_message_with_arguments(1)
@@ -98,6 +112,11 @@ class TranslatableTestObject
   def interpolated_message_with_hash
     r("interpolatable.string")
       .t_hash({:name => "Willy", "day_name" => "Wonka day"})
+  end
+
+  def localized_message_with_arguments(time)
+    r("localizable.string")
+      .t(first_name: "Ada", time: time)
   end
 
   def pluralized_message_with_arguments(count)
