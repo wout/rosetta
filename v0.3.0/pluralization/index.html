@@ -537,6 +537,13 @@
 </code></pre></div>
 <p>The parser will interpret a translation as a pluralizable one if it contains a
 key called <code>other</code>, and its value contains a <code>%{count}</code> interpolation key.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The <code>zero</code> category tag is a special case because it is optional in almost
+all pluralization rules. If it is present in the locale files and <code>count</code> is
+<code>0</code>, the value for <code>zero</code> will be used. If not, then Rosetta will fall back
+to <code>other</code>.</p>
+</div>
 <h2 id="category-tags">Category tags</h2>
 <p>All the short category tags defined by <a href="http://cldr.unicode.org/index/cldr-spec/plural-rules">the
 CLDR</a> are supported:</p>
@@ -552,26 +559,26 @@ CLDR</a> are supported:</p>
 <h2 id="pluralizable-translations">Pluralizable translations</h2>
 <p>For pluralizable translations, the <code>t</code> method will require the <code>count</code> argument,
 which can be a <code>Float</code> or an <code>Int</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;example.pluralization&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">count</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;example.pluralization&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">count</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="c1"># =&gt; &quot;One item&quot;</span>
 <span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;example.pluralization&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="ss">count</span><span class="p">:</span> <span class="mi">12</span><span class="p">)</span>
 <span class="c1"># =&gt; &quot;12 items&quot;</span>
 </code></pre></div>
 <h2 id="pluralization-rules">Pluralization rules</h2>
 <p>Rosetta includes pluralization rules for most of the available locales. They can
-ba found in the repo under
+be found in the repo under
 <a href="https://github.com/wout/rosetta/tree/main/src/rosetta/pluralization/rule">src/rosetta/pluralization/rule</a>.</p>
 <h2 id="custom-pluralization-rules">Custom pluralization rules</h2>
 <p>Custom rules need to inherit from <code>Rosetta::Pluralization::Rule</code>, define the
 <code>apply</code> method and define the required <code>CategoryTags</code> annotation. For example:</p>
-<div class="highlight"><pre><span></span><code><span class="o">@[</span><span class="nd">CategoryTags</span><span class="p">(</span><span class="ss">:zero</span><span class="p">,</span> <span class="ss">:one</span><span class="p">,</span> <span class="ss">:other</span><span class="p">)</span><span class="o">]</span>
-<span class="k">struct</span> <span class="nc">MyRule</span> <span class="o">&lt;</span> <span class="n">Rosette</span><span class="o">::</span><span class="n">Pluralization</span><span class="o">::</span><span class="n">Rule</span>
+<div class="highlight"><pre><span></span><code><span class="o">@[</span><span class="nd">Rosetta::Pluralization::CategoryTags</span><span class="p">(</span><span class="ss">:one</span><span class="p">,</span> <span class="ss">:few</span><span class="p">,</span> <span class="ss">:other</span><span class="p">)</span><span class="o">]</span>
+<span class="k">struct</span> <span class="nc">MyRule</span> <span class="o">&lt;</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Pluralization</span><span class="o">::</span><span class="n">Rule</span>
   <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="n">count</span> <span class="p">:</span> <span class="n">Float</span> <span class="o">|</span> <span class="n">Int</span><span class="p">)</span> <span class="p">:</span> <span class="n">Symbol</span>
     <span class="k">case</span> <span class="n">count</span>
-    <span class="k">when</span> <span class="mi">0</span>
-      <span class="ss">:zero</span>
     <span class="k">when</span> <span class="mi">1</span>
       <span class="ss">:one</span>
+    <span class="k">when</span> <span class="mi">2</span><span class="o">..</span><span class="mi">5</span>
+      <span class="ss">:few</span>
     <span class="k">else</span>
       <span class="ss">:other</span>
     <span class="k">end</span>
@@ -582,7 +589,8 @@ ba found in the repo under
 <p class="admonition-title">Info</p>
 <p>The <code>CategoryTags</code> annotation is used by the parser to check if the required
 category tags are all present in the pluralizable translations. If the
-annotation is not defined, the compiler will let you know.</p>
+annotation is not defined, the compiler will let you know. Since <code>zero</code> is
+optional, only include it in the list if it should be required everywhere.</p>
 </div>
 <p>In the initializer Rosetta created at setup, register the rule for one or more
 locales:</p>
