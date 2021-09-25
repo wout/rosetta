@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/Backend.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/InterpolationArgumentException.html">
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Backend - Rosetta v0.2.0-dev</title>
+  <title>Rosetta::InterpolationArgumentException - Rosetta v0.2.0-dev</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -74,7 +74,7 @@
       
         <ul>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Backend" data-name="rosetta::backend">
+  <li class=" " data-id="Rosetta/Rosetta/Backend" data-name="rosetta::backend">
       <a href="../Rosetta/Backend.html">Backend</a>
       
     </li>
@@ -94,7 +94,7 @@
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/InterpolationArgumentException" data-name="rosetta::interpolationargumentexception">
+  <li class=" current" data-id="Rosetta/Rosetta/InterpolationArgumentException" data-name="rosetta::interpolationargumentexception">
       <a href="../Rosetta/InterpolationArgumentException.html">InterpolationArgumentException</a>
       
     </li>
@@ -333,10 +333,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Rosetta::Backend
+  <span class="kind">class</span> Rosetta::InterpolationArgumentException
 
 </h1>
 
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/InterpolationArgumentException.html">Rosetta::InterpolationArgumentException</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -364,8 +366,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/73d5fb92/src/rosetta/backend.cr#L2" target="_blank">
-        rosetta/backend.cr
+      <a href="https://github.com/wout/rosetta/blob/73d5fb92/src/rosetta/interpolation.cr#L21" target="_blank">
+        rosetta/interpolation.cr
       </a>
     
     <br/>
@@ -381,28 +383,39 @@
 
 
 
-  <h2>
-    <a id="macro-summary" class="anchor" href="#macro-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#load(path)-macro" class="signature"><strong>load</strong>(path)</a>
-        
-          <div class="summary"><p>Loads the parsed set of locales from the given path.</p></div>
-        
-      </li>
-    
-  </ul>
-
 
 
 <div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
   
 </div>
 
@@ -412,39 +425,6 @@
 
 
 
-
-  <h2>
-    <a id="macro-detail" class="anchor" href="#macro-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Macro Detail
-  </h2>
-  
-    <div class="entry-detail" id="load(path)-macro">
-      <div class="signature">
-        
-        macro <strong>load</strong>(path)
-
-        <a class="method-permalink" href="#load(path)-macro">#</a>
-      </div>
-      
-        <div class="doc">
-          
-          <p>Loads the parsed set of locales from the given path. This macro should be
-called in an initializer:</p>
-<pre><code class="language-crystal"><span class="t">Rosetta</span><span class="t">::</span><span class="t">Backend</span>.load(<span class="s">&quot;config/locales&quot;</span>)</code></pre>
-        </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/73d5fb92/src/rosetta/backend.cr#L9" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 </div>
