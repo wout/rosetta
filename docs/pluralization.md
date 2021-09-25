@@ -35,7 +35,7 @@ For pluralizable translations, the `t` method will require the `count` argument,
 which can be a `Float` or an `Int`:
 
 ```cr
-Rosetta.find("example.pluralization").t(count: 1)
+Rosetta.find("example.pluralization").t(count: 1.0)
 # => "One item"
 Rosetta.find("example.pluralization").t(count: 12)
 # => "12 items"
@@ -51,8 +51,8 @@ Custom rules need to inherit from `Rosetta::Pluralization::Rule`, define the
 `apply` method and define the required `CategoryTags` annotation. For example:
 
 ```cr
-@[CategoryTags(:one, :few, :other)]
-struct MyRule < Rosette::Pluralization::Rule
+@[Rosetta::Pluralization::CategoryTags(:one, :few, :other)]
+struct MyRule < Rosetta::Pluralization::Rule
   def apply(count : Float | Int) : Symbol
     case count
     when 1
@@ -70,13 +70,7 @@ end
     The `CategoryTags` annotation is used by the parser to check if the required
     category tags are all present in the pluralizable translations. If the
     annotation is not defined, the compiler will let you know. Since `zero` is
-    optional, only include it if it should be required everywhere.
-
-!!! info
-    In some languages, `one` can be `0` or `1` (look at the `OneWithZeroOther`
-    rule). If a custom rule should act in a similar way, include the
-    `Rosetta::Pluralization::RelativeZero` module to avoid the hard fallback to 
-    `:zero` when `0` is given.
+    optional, only include it in the list if it should be required everywhere.
 
 In the initializer Rosetta created at setup, register the rule for one or more
 locales:
