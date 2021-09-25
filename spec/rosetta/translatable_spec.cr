@@ -43,6 +43,12 @@ describe TranslatableTestObject do
       test_object.pluralized_message_with_hash(23)
         .should eq("Hi Jeremy, you've got 23 messages.")
     end
+
+    it "raises an error if no count is given" do
+      expect_raises(Rosetta::InterpolationArgumentException) do
+        test_object.pluralized_message_with_hash(nil)
+      end
+    end
   end
 
   describe "#pluralized_message_with_time_and_hash" do

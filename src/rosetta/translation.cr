@@ -70,7 +70,10 @@ module Rosetta
     # hashes can't be checked at compile-time. Try to avoid using this method if
     # you can.
     def t_hash(values : Hash)
-      raise %(Missing "count" from values) unless count = values["count"]?
+      unless count = values["count"]?
+        message = %(Missing "count" from interpolation values)
+        raise InterpolationArgumentException.new(message)
+      end
 
       Rosetta.interpolate(Rosetta.pluralize(count.to_s.to_i, raw), values)
     end

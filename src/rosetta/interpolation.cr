@@ -17,4 +17,6 @@ module Rosetta
 
     translation
   end
+
+  class InterpolationArgumentException < Exception; end
 end
