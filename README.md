@@ -101,21 +101,21 @@ end
 Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 
 ## To-do
-- [X] Add specs for the existing code
-- [X] Make settings accessible to the compiler
-- [X] Send `default_locale` and `available_locales` to the parser
-- [X] Implement key comparison between available locales in the parser
-- [X] Add compiler error messages for mismatching keys
-- [X] Implement inferred locale keys at macro level
-- [X] Interpolation (with %{} tag for interpolation keys)
-- [X] Check existence of interpolation keys in all translations at compile-time
-- [X] Translatable mixin
-- [X] Localization of numeric values
-- [X] Localization of date and time values
-- [X] Localizable mixin
-- [X] Locale exceptions
-- [X] Add setup scripts
-- [ ] Pluralization (with one/many/other/count/... convention)
+- [x] Add specs for the existing code
+- [x] Make settings accessible to the compiler
+- [x] Send `default_locale` and `available_locales` to the parser
+- [x] Implement key comparison between available locales in the parser
+- [x] Add compiler error messages for mismatching keys
+- [x] Implement inferred locale keys at macro level
+- [x] Interpolation (with %{} tag for interpolation keys)
+- [x] Check existence of interpolation keys in all translations at compile-time
+- [x] Translatable mixin
+- [x] Localization of numeric values
+- [x] Localization of date and time values
+- [x] Localizable mixin
+- [x] Locale exceptions
+- [x] Add setup scripts
+- [x] Pluralization (with one/many/other/count/... convention)
 - [ ] Implement fallbacks
 
 ## Development
