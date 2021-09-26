@@ -14,12 +14,12 @@ module Rosetta
           include Rosetta::Translatable
         end
       {% end %}
-
-      module ::Lucky::HTMLPage
-        macro included
-          include Rosetta::Translatable
-        end
-      end
     end
+  end
+end
+
+module Lucky::HTMLPage
+  macro included
+    include Rosetta::Translatable
   end
 end
