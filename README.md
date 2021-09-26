@@ -28,8 +28,8 @@ compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
 ### Rosetta is 10x faster than similar libraries
-Benchmarking against other libraries which also use YAML or JSON files for
-locales, Rosetta is about 10x faster than any other one.
+Benchmarking against other libraries which also use YAML or JSON backends,
+Rosetta is about 10x faster than any other one.
 
 For simple translations:
 
