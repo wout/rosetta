@@ -14,7 +14,7 @@ Rosetta::Backend.load("config/rosetta")
 
 **2. `config/rosetta/rosetta.en.yml`**
 
-This file contains localiztions required by Rosetta. For every additional
+This file contains localizations required by Rosetta. For every additional
 locale, you'll need to copy and translate this file.
 
 In the future, files for many languages will be included. Please consider

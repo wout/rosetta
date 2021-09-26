@@ -61,6 +61,6 @@ will be raised:
 
 ```bash
 Error: Some pluralizable translations have missing category tags:
-       ‣ en: "basket.items" is missing "one"
-       ‣ nl: "inbox.messages" is missing "few"
+  ‣ en: "basket.items" is missing "one"
+  ‣ nl: "inbox.messages" is missing "few"
 ```
