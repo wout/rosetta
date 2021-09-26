@@ -20,15 +20,15 @@ module Rosetta
         raise <<-ERROR
         Only a StringLiteral can be used as a locale key.
 
-          Use a case to dynamically switch between locale keys. For example:
+          Use case to dynamically switch between locale keys. For example:
 
             case value
             when "one"
-              Rosetta.find("key.option.one")
+              Rosetta.find("key.option.one").t
             when "two"
-              Rosetta.find("key.option.two")
+              Rosetta.find("key.option.two").t
             else
-              Rosetta.find("key.option.fallback")
+              Rosetta.find("key.option.fallback").t
             end
 
 
