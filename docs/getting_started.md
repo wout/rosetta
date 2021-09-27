@@ -54,27 +54,26 @@ en:
   welcome_message: "Hi %{name}!"
 ```
 
-Then `require "config/rosetta"` and `include Rosetta::Translatable`, and you're
-good to go:
+Then `require "config/rosetta"` and you're good to go:
 
 ```cr
+# e.g. src/app_name.cr
 require "kemal"
 require "../config/rosetta"
 
-include Rosetta::Translatable
-
 get "/" do
-  r("welcome_message").t(name: "Serdar") # => "Hi Serdar!"
+  Rosetta.find("welcome_message").t(name: "Serdar") # => "Hi Serdar!"
 end
 ```
 
 ## Other frameworks
-First `require "config/rosetta.cr"` in your app, and include the
+First `require "config/rosetta"` in your app, and include the
 `Rosetta::Translatable` mixin in the base class of controllers, models, views
 and anywhere else where you need Rosetta:
 
 ```cr
-require "config/rosetta.cr"
+# e.g. src/app_name.cr
+require "../config/rosetta"
 
 abstract class BaseController
   include Rosetta::Translatable
