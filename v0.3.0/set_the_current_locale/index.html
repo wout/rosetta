@@ -489,7 +489,7 @@
 <p>If no value is set, the value of the <code>Rosetta.default_locale</code> macro will be
 used. This macro will first look if <code>Rosetta::DEFAULT_LOCALE</code> is defined, and if
 it is not, it will fall back to an internal value (<code>:en</code>).</p>
-<p>Defining the current locale is done as folows:</p>
+<p>Defining the current locale is done as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:es</span>
 </code></pre></div>
 <p>This property accepts a <code>String</code> or a <code>Symbol</code>. But note that the getter variant
@@ -503,11 +503,11 @@ of this property will always return a string:</p>
 macro will be used instead:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">::</span><span class="no">DEFAULT_LOCALE</span> <span class="o">=</span> <span class="ss">:es</span>
 <span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:xx</span>
-<span class="n">Roestta</span><span class="o">.</span><span class="n">locale</span>
+<span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span>
 <span class="c1"># =&gt; &quot;es&quot;</span>
 </code></pre></div>
 <h2 id="locally">Locally</h2>
-<p>Sometimes you'll want to use a different locale for a specific part of your
+<p>Sometimes you may want to use a different locale for a specific part of your
 code. In that case, use the <code>Rosetta.with_locale</code> method:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.first_name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
 <span class="c1"># =&gt; First name</span>
