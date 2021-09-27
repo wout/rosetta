@@ -415,13 +415,13 @@ out of the scope of garbage collector.</p>
 <p>Run <code>bin/rosetta --init</code></p>
 </li>
 <li>
-<p>Require the shard</p>
+<p>Require the generated config file:</p>
 </li>
 </ol>
-<pre><code class="language-crystal"><span class="c"># src/shards.cr</span>
-<span class="k">require</span> <span class="s">&quot;rosetta&quot;</span></code></pre>
+<pre><code class="language-crystal"><span class="c"># e.g. src/app_name.cr</span>
+<span class="k">require</span> <span class="s">&quot;../config/rosetta&quot;</span></code></pre>
 <ol start="5">
-<li>Include the <code><a href="Rosetta/Translatable.html">Rosetta::Translatable</a></code> mixin</li>
+<li>Include the <code><a href="Rosetta/Translatable.html">Rosetta::Translatable</a></code> mixin:</li>
 </ol>
 <pre><code class="language-crystal"><span class="c"># e.g. src/pages/main_layout.cr</span>
 <span class="k">include</span> <span class="t">Rosetta</span><span class="t">::</span><span class="t">Translatable</span></code></pre>
