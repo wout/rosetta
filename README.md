@@ -135,7 +135,7 @@ This will automatically:
 
 ## Documentation
 
-- [Reference](https://wout.github.io/rosetta/main)
+- [Reference](https://wout.github.io/rosetta/latest)
 - [API Docs](https://wout.github.io/rosetta/api/main)
 
 ## Contributing
