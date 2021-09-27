@@ -60,7 +60,7 @@ should be present in every pluralizable translation. If they are not, an error
 will be raised:
 
 ```bash
-Error: Some pluralizable translations have missing category tags:
+Error: Some pluralizable translations are missing category tags:
   ‣ en: "basket.items" is missing "one"
   ‣ nl: "inbox.messages" is missing "few"
 ```
