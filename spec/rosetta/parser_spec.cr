@@ -179,7 +179,7 @@ describe Rosetta::Parser do
       ).parse!
 
       output.should eq <<-ERROR
-      Some pluralizable translations have missing category tags:
+      Some pluralizable translations are missing category tags:
         ‣ en-pluralization: "there" is missing "one"
         ‣ nl-pluralization: "inbox.messages" is missing "few"
 
