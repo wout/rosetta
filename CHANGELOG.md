@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.2 (2021-09-26)
+
+- Add better integration for Lucky pages (Lucky::HTMLPage).
+
+## 0.3.1 (2021-09-26)
+
+- Add better compilation error message for the `r` macro.
+
 ## 0.3.0 (2021-09-25)
 
 - Change the argument order of `Rosetta.localize_time` to be more consistent
