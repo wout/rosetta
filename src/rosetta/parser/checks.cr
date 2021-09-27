@@ -101,7 +101,7 @@ module Rosetta
 
         unless errors.empty?
           @error = <<-ERROR
-          Some pluralizable translations have missing category tags:
+          Some pluralizable translations are missing category tags:
           #{pretty_list_for_error(errors)}
 
           ERROR
