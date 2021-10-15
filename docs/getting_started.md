@@ -45,6 +45,11 @@ class Hello::ShowPage < MainLayout
 end
 ```
 
+Rosetta is officially recommended as the localization library for Lucky. For a
+full tutorial, look at the <a
+href="https://luckyframework.org/guides/frontend/internationalization"
+target="_blank">Lucky Guides</a>.
+
 ## Using Kemal
 Make sure your tranlations are in place:
 
