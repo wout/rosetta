@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 (2021-10-15)
+
+- Add `Rosetta.distance_of_time_in_words` 
+- Add `Rosetta.time_ago_in_words`
+- Add `Rosetta.time_from_now_in_words`
+- Add `Localizable#distance_of_time_in_words` 
+- Add `Localizable#time_ago_in_words`
+- Add `Localizable#time_from_now_in_words`
+- Include `Rosetta::Localizable` everywhere using `Rosetta::Lucky.integrate`
+
 ## 0.3.2 (2021-09-26)
 
 - Add better integration for Lucky pages (`Lucky::HTMLPage`).
