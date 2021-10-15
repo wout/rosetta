@@ -79,6 +79,30 @@ Rosetta.number.l(123_456.789, decimal_places: 6)
     In the background, Rosetta uses Crystal's native `Number#format` method and
     accepts the same parameters.
 
+## Distance of time in words
+A few helpers are included for translating the distance of time.
+
+**The distance between two times**:
+```cr
+Rosetta.distance_of_time_in_words(
+  Time.utc(2021, 10, 15, 8, 0, 0),
+  Time.utc(2021, 10, 15, 8, 0, 5))
+)
+# => "5 seconds"
+```
+
+**Time ago since a given time**:
+```cr
+Rosetta.time_ago_in_words(Time.local - 1.year)
+# => "about a year"
+```
+
+**Time from now to a given time**:
+```cr
+Rosetta.time_from_now_in_words(Time.local + 1.year)
+# => "about a year"
+```
+
 ## The `Localizable` mixin
 Include this mixin anywhere you want to work with localized dates, times and
 numbers. Here's an example of its usage:
@@ -99,3 +123,6 @@ User.new.birthday
 Similarly there are the `r_time` and the `r_number` macros for retrieval,
 returning a struct which accepts the `l` method for the value that needs to be
 localized.
+
+The `distance_of_time_in_words`, `time_ago_in_words` an `time_from_now_in_words`
+helpers are also included with this module.
