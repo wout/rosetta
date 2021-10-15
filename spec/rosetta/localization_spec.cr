@@ -73,4 +73,95 @@ describe Rosetta do
         .should eq("12 34 56.789000")
     end
   end
+
+  describe ".distance_of_time_in_words" do
+    it "considers seconds" do
+      Rosetta.distance_of_time_in_words(
+        Time.utc(2019, 8, 14, 10, 0, 0),
+        Time.utc(2019, 8, 14, 10, 0, 5)
+      ).should eq("5 seconds")
+
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14, 10, 0, 0),
+          Time.utc(2019, 8, 14, 10, 0, 5)
+        ).should eq("5 seconden")
+      end
+    end
+
+    it "considers minutes" do
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14, 10, 0, 0),
+          Time.utc(2019, 8, 14, 10, 1, 0)
+        ).should eq("een minuut")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14, 10, 0, 0),
+          Time.utc(2019, 8, 14, 10, 12, 0)
+        ).should eq("12 minuten")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14, 10, 0, 0),
+          Time.utc(2019, 8, 14, 10, 48, 0)
+        ).should eq("ongeveer een uur")
+      end
+    end
+
+    it "considers hours" do
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 10, 4, 10),
+          Time.utc(2019, 10, 4, 11)
+        ).should eq("een uur")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 10, 10, 1),
+          Time.utc(2019, 10, 10, 13)
+        ).should eq("12 uur")
+      end
+    end
+
+    it "considers days" do
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 10, 3),
+          Time.utc(2019, 10, 4)
+        ).should eq("een dag")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 10, 3),
+          Time.utc(2019, 10, 10)
+        ).should eq("7 dagen")
+      end
+    end
+
+    it "considers months" do
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14),
+          Time.utc(2019, 10, 4)
+        ).should eq("ongeveer een maand")
+      end
+    end
+
+    it "considers years" do
+      Rosetta.with_locale(:nl) do
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2018, 8, 14),
+          Time.utc(2019, 10, 4)
+        ).should eq("ongeveer een jaar")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2016, 10, 4),
+          Time.utc(2019, 10, 4)
+        ).should eq("meer dan 3 jaar")
+
+        Rosetta.distance_of_time_in_words(
+          Time.utc(2019, 8, 14),
+          Time.utc(2061, 10, 4)
+        ).should eq("bijna 42 jaar")
+      end
+    end
+  end
 end

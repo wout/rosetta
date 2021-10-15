@@ -49,6 +49,21 @@ nl:
         short: "%b %d"
     time:
       am: am
+      distance:
+        a_day: "een dag"
+        a_minute: "een minuut"
+        a_second: "een seconde"
+        an_hour: "een uur"
+        about_an_hour: "ongeveer een uur"
+        about_a_month: "ongeveer een maand"
+        about_a_year: "ongeveer een jaar"
+        almost_years: "bijna %{count} jaar"
+        days: "%{count} dagen"
+        hours: "%{count} uur"
+        minutes: "%{count} minuten"
+        months: "%{count} maanden"
+        over_years: "meer dan %{count} jaar"
+        seconds: "%{count} seconden"
       formats:
         default: "%a, %d %b %Y %H:%M:%S %z"
         long: "%B %d, %Y %H:%M"

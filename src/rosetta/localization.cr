@@ -153,6 +153,81 @@ module Rosetta
         raise "Unknown abbreviated month name #{month_name}"
       end
     end
+
+    # Returns a `String` with approximate distance in time between `from` and
+    # `to`. For example:
+    #
+    # ```
+    # Rosetta.distance_of_time_in_words(
+    #   Time.utc(2021, 10, 15, 8, 0, 0),
+    #   Time.utc(2021, 10, 15, 8, 0, 5))
+    # )
+    # # => "5 seconds"
+    # ```
+    #
+    # Most of the code for this method is borrowed from Lucky.
+    def self.distance_of_time_in_words(from : Time, to : Time) : String
+      minutes = (to - from).minutes
+      seconds = (to - from).seconds
+      hours = (to - from).hours
+      days = (to - from).days
+
+      return distance_in_days(days) if days != 0
+      return distance_in_hours(hours) if hours != 0
+      return distance_in_minutes(minutes) if minutes != 0
+      distance_in_seconds(seconds)
+    end
+
+    private def self.distance_in_days(distance : Int) : String
+      case distance
+      when 1...27
+        if distance == 1
+          {{namespace}}_Time_Distance_ADayTranslation.new.to_s
+        else
+          {{namespace}}_Time_Distance_DaysTranslation.new.t(count: distance)
+        end
+      when 27...60
+        {{namespace}}_Time_Distance_AboutAMonthTranslation.new.to_s
+      when 60...365
+        count = (distance / 30).round.to_i
+        {{namespace}}_Time_Distance_MonthsTranslation.new.t(count: count)
+      when 365...730
+        {{namespace}}_Time_Distance_AboutAYearTranslation.new.to_s
+      when 730...1460
+        count = (distance / 365).round.to_i
+        {{namespace}}_Time_Distance_OverYearsTranslation.new.t(count: count)
+      else
+        count = (distance / 365).round.to_i
+        {{namespace}}_Time_Distance_AlmostYearsTranslation.new.t(count: count)
+      end
+    end
+
+    private def self.distance_in_hours(distance : Int32) : String
+      if distance == 1
+        {{namespace}}_Time_Distance_AnHourTranslation.new.to_s
+      else
+        {{namespace}}_Time_Distance_HoursTranslation.new.t(count: distance)
+      end
+    end
+
+    private def self.distance_in_minutes(distance : Int32) : String
+      case distance
+      when 1
+        {{namespace}}_Time_Distance_AMinuteTranslation.new.to_s
+      when 2...45
+        {{namespace}}_Time_Distance_MinutesTranslation.new.t(count: distance)
+      else
+        {{namespace}}_Time_Distance_AboutAnHourTranslation.new.to_s
+      end
+    end
+
+    private def self.distance_in_seconds(distance : Int32) : String
+      if distance == 1
+        {{namespace}}_Time_Distance_ASecondTranslation.new.to_s
+      else
+        {{namespace}}_Time_Distance_SecondsTranslation.new.t(count: distance)
+      end
+    end
   {% end %}
 
   # LocalizedTime is similar to a Translation object; it implements a similar
