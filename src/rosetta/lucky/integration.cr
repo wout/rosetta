@@ -11,6 +11,7 @@ module Rosetta
 
       {% for target in targets %}
         abstract class ::{{target.id}}
+          include Rosetta::Localizable
           include Rosetta::Translatable
         end
       {% end %}
@@ -20,6 +21,7 @@ end
 
 module Lucky::HTMLPage
   macro included
+    include Rosetta::Localizable
     include Rosetta::Translatable
   end
 end
