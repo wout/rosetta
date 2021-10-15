@@ -18,6 +18,31 @@ describe LocalizableTestObject do
       test_object.seconds_since_creation.should eq("1 174 837 850.00")
     end
   end
+
+  describe "#distance_of_time_in_words" do
+    it "returns the distance between tow time objects in words" do
+      test_object.distance_of_time_in_words(
+        Time.local,
+        Time.local + 21.days
+      ).should eq("21 days")
+    end
+  end
+
+  describe "#time_ago_in_words" do
+    it "returns the time ago in words" do
+      test_object.time_ago_in_words(
+        Time.local(2021, 8, 30, 1, 2, 3) - 13.months
+      ).should eq("about a year")
+    end
+  end
+
+  describe "#time_from_now_in_words" do
+    it "returns the time from now in words" do
+      test_object.time_from_now_in_words(
+        Time.local(2021, 8, 30, 1, 2, 3) + 37.months
+      ).should eq("over 3 years")
+    end
+  end
 end
 
 # Test objects

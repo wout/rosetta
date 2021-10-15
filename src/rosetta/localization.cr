@@ -178,6 +178,38 @@ module Rosetta
       distance_in_seconds(seconds)
     end
 
+    # Returns a `String` with approximate distance in time between `from` and
+    # current moment.
+    #
+    # ```
+    # time_ago_in_words(Time.utc(2019, 8, 30))
+    # # => "about a month"
+    # # gives the same result as:
+    # distance_of_time_in_words(Time.utc(2019, 8, 30), Time.utc)
+    # # => "about a month"
+    # ```
+    #
+    # See more examples in `#distance_of_time_in_words`.
+    def self.time_ago_in_words(from : Time) : String
+      distance_of_time_in_words(from, Time.utc)
+    end
+
+    # Returns a `String` with approximate distance in time between current
+    # moment and future date.
+    #
+    # ```
+    # time_from_now_in_words(Time.utc(2022, 8, 30))
+    # # => "about a year"
+    # # gives the same result as:
+    # distance_of_time_in_words(Time.utc, Time.utc(2022, 8, 30))
+    # # => "about a year"
+    # ```
+    #
+    # See more examples in `#distance_of_time_in_words`.
+    def self.time_from_now_in_words(to : Time) : String
+      distance_of_time_in_words(Time.utc, to)
+    end
+
     private def self.distance_in_days(distance : Int) : String
       case distance
       when 1...27

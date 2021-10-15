@@ -164,4 +164,18 @@ describe Rosetta do
       end
     end
   end
+
+  describe ".time_ago_in_words" do
+    it "translates time ago in words" do
+      Rosetta.time_ago_in_words(Time.local - 13.months)
+        .should eq("about a year")
+    end
+  end
+
+  describe ".time_from_now_in_words" do
+    it "translates time ago in words" do
+      Rosetta.time_from_now_in_words(Time.local + 25.months)
+        .should eq("over 2 years")
+    end
+  end
 end
