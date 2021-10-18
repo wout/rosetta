@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="generator" content="Crystal Docs 1.1.1">
-<meta name="crystal_docs.project_version" content="v0.4.0">
+<meta name="crystal_docs.project_version" content="v0.5.0">
 <meta name="crystal_docs.project_name" content="Rosetta">
 
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::Translatable - Rosetta v0.4.0</title>
+  <title>Rosetta::Translatable - Rosetta v0.5.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -42,7 +42,7 @@
       </h1>
 
       <span class="project-version">
-        v0.4.0
+        v0.5.0
       </span>
     </div>
   </div>
@@ -304,8 +304,18 @@
       
     </li>
   
-  <li class=" current" data-id="Rosetta/Rosetta/Translatable" data-name="rosetta::translatable">
+  <li class="parent open current" data-id="Rosetta/Rosetta/Translatable" data-name="rosetta::translatable">
       <a href="../Rosetta/Translatable.html">Translatable</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Rosetta/Rosetta/Translatable/Config" data-name="rosetta::translatable::config">
+      <a href="../Rosetta/Translatable/Config.html">Config</a>
+      
+    </li>
+  
+</ul>
+
       
     </li>
   
@@ -380,7 +390,7 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/526b1bad/src/rosetta/translatable.cr#L3" target="_blank">
+      <a href="https://github.com/wout/rosetta/blob/5cad7ebb/src/rosetta/translatable.cr#L3" target="_blank">
         rosetta/translatable.cr
       </a>
     
@@ -449,14 +459,22 @@
         <div class="doc">
           
           <p>Finds the translation for the given key. If the given key starts with a
-&quot;.&quot;, a prefix based on the current class name will be used. Unless the
-constant ROSETTA_PREFIX is defined, which will then be used instead.</p>
+&quot;.&quot;, a prefix based on the current class name will be used. Unless a
+<code><a href="../Rosetta/Translatable/Config.html">Rosetta::Translatable::Config</a></code> annotation is defined with a value for
+<code>prefix</code>, which will then be used instead.</p>
+<p>@[Rosetta::Translatable::Config(prefix: &quot;user&quot;)]
+class Person
+include Rosetta::Translatable</p>
+<p>def greeting
+r(&quot;.welcome_message&quot;).t # =&gt; key resolves to &quot;user.welcome_message&quot;
+end
+end</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/526b1bad/src/rosetta/translatable.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/5cad7ebb/src/rosetta/translatable.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>
