@@ -87,14 +87,13 @@ This also works with nested class names, for example:
 Using inferred locale keys has an added bonus. You don't need to think about how
 to organise your locale files. And it also makes finding your keys a lot easier.
 
-Finally, in case you want to use another prefix for the current class, a
-constant can be used:
+Finally, in case you want to use another prefix for the current class, an
+annotation can be used:
 
 ```cr
+@[Rosetta::Translatable::Config(prefix: "guest")]
 class User
   include Rosetta::Translatable
-
-  ROSETTA_PREFIX = "guest"
 
   def name_label
     r(".name_label").t # => resolves to "guest.name_label"
