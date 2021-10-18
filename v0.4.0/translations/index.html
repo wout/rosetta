@@ -566,12 +566,11 @@ derived from the current class name:</p>
 </ul>
 <p>Using inferred locale keys has an added bonus. You don't need to think about how
 to organise your locale files. And it also makes finding your keys a lot easier.</p>
-<p>Finally, in case you want to use another prefix for the current class, a
-constant can be used:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span>
+<p>Finally, in case you want to use another prefix for the current class, an
+annotation can be used:</p>
+<div class="highlight"><pre><span></span><code><span class="o">@[</span><span class="nd">Rosetta::Translatable::Config</span><span class="p">(</span><span class="ss">prefix</span><span class="p">:</span> <span class="s2">&quot;guest&quot;</span><span class="p">)</span><span class="o">]</span>
+<span class="k">class</span> <span class="nc">User</span>
   <span class="k">include</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Translatable</span>
-
-  <span class="no">ROSETTA_PREFIX</span> <span class="o">=</span> <span class="s2">&quot;guest&quot;</span>
 
   <span class="k">def</span> <span class="nf">name_label</span>
     <span class="n">r</span><span class="p">(</span><span class="s2">&quot;.name_label&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span> <span class="c1"># =&gt; resolves to &quot;guest.name_label&quot;</span>
