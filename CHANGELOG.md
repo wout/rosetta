@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 (2021-10-18)
+
+- Make `Rosetta::Translatable` compatible with type vars.
+
 ## 0.5.0 (2021-10-18)
 
 - Use an annotation (`Rosetta::Translatable::Config(prefix: "custom_prefix")`)

@@ -23,7 +23,9 @@ module Rosetta
             if config && config[:prefix]
               key = "#{config[:prefix].id}#{key.id}"
             else
-              key = "#{@type.id.underscore.gsub(/::/, ".").id}#{key.id}"
+              inferred_key = @type.id.underscore.gsub(/::|\(/, ".").gsub(/\)/, "")
+
+              key = "#{inferred_key.id}#{key.id}"
             end
           end
         %}

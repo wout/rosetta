@@ -7,6 +7,9 @@ nl:
   fixed:
     prefix:
       name: "Vast voorvoegsel"
+  rosetta_translatable_test_object_with_type_variable:
+    some_test_object:
+      name: "Met type var genaamd %{type_var_name}"
   interpolatable:
     string: "Hey %{name}, maak er een geweldige %{day_name} van!"
   localizable:

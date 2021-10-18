@@ -104,6 +104,15 @@ describe TranslatableTestObjectWithRosettaPrefix do
   end
 end
 
+describe RosettaTranslatableTestObjectWithTypeVariable(SomeTestObject) do
+  describe "#name" do
+    it "uses the defined prefix" do
+      test_object_with_type_var.name
+        .should eq("With type var called SomeTestObject")
+    end
+  end
+end
+
 # Test objects
 class TranslatableTestObject
   include Rosetta::Translatable
@@ -166,6 +175,17 @@ class TranslatableTestObjectWithRosettaPrefix
   end
 end
 
+class RosettaTranslatableTestObjectWithTypeVariable(T)
+  include Rosetta::Translatable
+
+  def name
+    r(".name").t(type_var_name: T.to_s)
+  end
+end
+
+class SomeTestObject
+end
+
 # Helpers
 private def test_object
   TranslatableTestObject.new
@@ -173,4 +193,8 @@ end
 
 private def test_object_with_prefix
   TranslatableTestObjectWithRosettaPrefix.new
+end
+
+private def test_object_with_type_var
+  RosettaTranslatableTestObjectWithTypeVariable(SomeTestObject).new
 end
