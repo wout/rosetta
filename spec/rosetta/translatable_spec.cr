@@ -157,10 +157,9 @@ class TranslatableTestObject
   end
 end
 
+@[Rosetta::Translatable::Config(prefix: "fixed.prefix")]
 class TranslatableTestObjectWithRosettaPrefix
   include Rosetta::Translatable
-
-  ROSETTA_PREFIX = "fixed.prefix"
 
   def name
     r(".name").t
