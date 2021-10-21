@@ -26,3 +26,7 @@ en:
       string:
         one: "You have an appointment on %A at %H:%M."
         other: "You have %{count} appointments on %A at %H:%M."
+  color_variants:
+    pink: "pink"
+    teal: "teal"
+    yellow: "yellow"

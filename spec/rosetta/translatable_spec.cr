@@ -94,6 +94,15 @@ describe TranslatableTestObject do
         .should eq("You have 11 appointments on Friday at 00:00.")
     end
   end
+
+  describe "#color_variant" do
+    it "returns the requested variant" do
+      Rosetta.with_locale(:nl) do
+        test_object.color_variant("teal").should eq("appelblauwzeegroen")
+        test_object.color_variant("yellow").should eq("geel")
+      end
+    end
+  end
 end
 
 describe TranslatableTestObjectWithRosettaPrefix do
@@ -163,6 +172,10 @@ class TranslatableTestObject
       "count" => count,
       "time"  => {2021, 9, 24},
     })
+  end
+
+  def color_variant(variant)
+    r("color_variants").t(variant: variant)
   end
 end
 

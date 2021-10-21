@@ -26,3 +26,7 @@ nl:
       string:
         one: "Je hebt een afspraak op %A om %H:%M."
         other: "Je hebt %{count} afspraken op %A om %H:%M."
+  color_variants:
+    pink: "roze"
+    teal: "appelblauwzeegroen"
+    yellow: "geel"

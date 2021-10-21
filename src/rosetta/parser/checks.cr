@@ -111,6 +111,32 @@ module Rosetta
 
         true
       end
+
+      private def check_variant_keys_matching? : Bool
+        errors = processed_translations.each_with_object([] of String) do |(k, h), e|
+          next unless variants_key?(k.to_s)
+
+          ruling_variants = processed_translations[k][default_locale].as(Hash).keys
+
+          alternative_locales.each do |l|
+            diff = ruling_variants - processed_translations[k][l].as(Hash).keys
+
+            e << %(#{l}: "#{k}" is missing "#{diff.join(", ")}") unless diff.empty?
+          end
+        end
+
+        unless errors.empty?
+          @error = <<-ERROR
+          Some translations with variants have mismatching keys:
+          #{pretty_list_for_error(errors)}
+
+          ERROR
+
+          return false
+        end
+
+        true
+      end
     end
   end
 end

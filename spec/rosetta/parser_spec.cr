@@ -102,6 +102,24 @@ describe Rosetta::Parser do
       MODULE
     end
 
+    it "builds a struct for variant translations" do
+      make_parser.parse!.should contain <<-MODULE
+          struct ColorVariantsTranslation < Rosetta::Translation
+            getter translations = {en: {pink: "pink", teal: "teal", yellow: "yellow"}, nl: {pink: "roze", teal: "appelblauwzeegroen", yellow: "geel"}}
+            include Rosetta::VariantsTranslation
+            def t(variant : String)
+              translations[Rosetta.locale][variant]
+            end
+            def t(values : NamedTuple(variant: String))
+              self.t(**values)
+            end
+            def to_s(io)
+              {% raise %(Rosetta.find("color_variants") expected to receive t(variant : String) but to_s was called instead) %}
+            end
+          end
+      MODULE
+    end
+
     it "returns an error when a complete locale is missing" do
       output = make_parser(available_locales: %i[en fr nl]).parse!
 
@@ -182,6 +200,20 @@ describe Rosetta::Parser do
       Some pluralizable translations are missing category tags:
         ‣ en-pluralization: "there" is missing "one"
         ‣ nl-pluralization: "inbox.messages" is missing "few"
+
+
+      ERROR
+    end
+
+    it "returns an error when there are missing variant keys" do
+      output = make_parser(
+        default_locale: "en-variants",
+        available_locales: %w[en-variants nl-variants]
+      ).parse!
+
+      output.should eq <<-ERROR
+      Some translations with variants have mismatching keys:
+        ‣ nl-variants: "color_variants" is missing "yellow"
 
 
       ERROR

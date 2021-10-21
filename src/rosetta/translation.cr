@@ -99,4 +99,19 @@ module Rosetta
       Rosetta.interpolate(Rosetta.pluralize(count.to_s.to_i, raw), values)
     end
   end
+
+  # Methods for translations with variants.
+  module VariantsTranslation
+    # Using a hash for interpolation is considered unsafe since the content of
+    # hashes can't be checked at compile-time. Try to avoid using this method if
+    # you can.
+    def t_hash(values : Hash)
+      unless variant = values["variant"]?
+        message = %(Missing "variant" from interpolation values)
+        raise InterpolationArgumentException.new(message)
+      end
+
+      Rosetta.interpolate(raw[variant], values)
+    end
+  end
 end

@@ -52,7 +52,8 @@ module Rosetta
         check_key_set_complete? &&
         check_key_set_overflowing? &&
         check_interpolation_keys_matching? &&
-        check_pluralization_tags_complete?
+        check_pluralization_tags_complete? &&
+        check_variant_keys_matching?
 
       error.nil?
     end
@@ -132,7 +133,7 @@ module Rosetta
       hash.as_h.each_with_object(Translations.new) do |(k, v), h|
         case v
         when .as_h?
-          if pluralizable_hash?(v.as_h)
+          if pluralizable_hash?(v.as_h) || variants_key?(k.to_s)
             h[k.to_s] = v.as_h.transform_keys(&.to_s)
               .transform_values(&.to_s)
           else
@@ -144,6 +145,11 @@ module Rosetta
           h[k.to_s] = v.to_s
         end
       end
+    end
+
+    # Test if the key matches the variants convention.
+    private def variants_key?(key : String)
+      key.match(/.+_variants$/)
     end
 
     # Test if contents of a translation are pluralizable.
