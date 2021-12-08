@@ -23,3 +23,7 @@ development_dependencies:
 
 scripts:
   postinstall: make initializer
+
+targets:
+  rosetta:
+    main: tasks/runner.cr
