@@ -101,7 +101,7 @@ module Rosetta
         pairs = translations.each_with_object([] of String) do |(k, t), s|
           case t
           when String
-            s << %(#{k}: "#{t}")
+            s << %(#{k}: %(#{t}))
           when Hash
             s << %(#{k}: #{build_translations_tuple(t)})
           end

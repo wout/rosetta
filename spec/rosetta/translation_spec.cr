@@ -47,6 +47,11 @@ describe Rosetta do
         .should eq("Dada was born on Sunday 19 September 1999 at 00:00:00.")
     end
 
+    it "escapes double quotes in text" do
+      Rosetta.find("long.text").t
+        .should eq(%(Something with "quotes".\n))
+    end
+
     # NOTE: uncomment this to see the compilation error
     # it "raises a compilation error when a key is missing" do
     #   Rosetta.find("i_am_definitely_not_in_one_of_the_files")

@@ -7,6 +7,9 @@ en:
   fixed:
     prefix:
       name: "Fixed prefix"
+  long:
+    text: |
+      Something with "quotes".
   rosetta_translatable_test_object_with_type_variable:
     some_test_object:
       name: "With type var called %{type_var_name}"
