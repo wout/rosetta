@@ -22,8 +22,4 @@ development_dependencies:
     branch: master
 
 scripts:
-  postinstall: make initializer
-
-targets:
-  rosetta:
-    main: tasks/runner.cr
+  postinstall: make shim

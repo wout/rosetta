@@ -1,0 +1,15 @@
+#!/bin/sh
+
+crystal_bin=`which crystal`
+rosetta_bin=./bin/rosetta_bin
+source_file=./lib/rosetta/tasks/runner.cr
+
+if [ ! -f $rosetta_bin ]
+then
+  echo "looks like the first time, generating the rosetta binary..."
+  $crystal_bin build $source_file -o $rosetta_bin
+  sleep 1
+  echo "done!"
+fi
+
+$rosetta_bin $*
