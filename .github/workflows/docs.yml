@@ -98,7 +98,7 @@ jobs:
           ref: main
 
       - name: Install Crystal
-        uses: oprypin/install-crystal@v1.2.4
+        uses: oprypin/install-crystal@v1.6.0
         with:
           crystal: nightly
 
