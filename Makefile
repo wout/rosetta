@@ -1,2 +1,2 @@
 shim:
-  mv ./tasks/rosetta ../../bin/rosetta
+	mv ./tasks/rosetta ../../bin/rosetta
