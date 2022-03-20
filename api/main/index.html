@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.2.2">
+<meta name="generator" content="Crystal Docs 1.3.2">
 <meta name="crystal_docs.project_version" content="v0.6.0">
 <meta name="crystal_docs.project_name" content="Rosetta">
 
@@ -387,24 +387,23 @@ app. This is also true for translation keys in all additional locales.</p>
 you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.</p>
-<h3><a id="rosetta-is-10x-faster-than-similar-libraries" class="anchor" href="#rosetta-is-10x-faster-than-similar-libraries">
+<h3><a id="rosetta-is-more-than-10x-faster-than-similar-libraries" class="anchor" href="#rosetta-is-more-than-10x-faster-than-similar-libraries">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Rosetta is 10x faster than similar libraries</h3>
+</a>Rosetta is more than 10x faster than similar libraries</h3>
 <p>Benchmarking against other libraries which also use YAML or JSON backends,
-Rosetta is about 10x faster than any other one.</p>
+Rosetta is at least 10x faster than any other one.</p>
 <p>For simple translations:</p>
-<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/</span>op <span class="n">178.77</span>× slower
-     crystal<span class="o">-</span>i18n<span class="s">/i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/</span>op  <span class="n">11.05</span>× slower
-         syeopite<span class="s">/lens translation   1.10M (912.67ns) (± 7.10%)   176B/</span>op  <span class="n">22.72</span>× slower
-          wout<span class="s">/rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/</span>op         fastest
-</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr translation 303.57k (  3.29µs) (± 4.62%)  801B/</span>op  <span class="n">702.21</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n translation  18.07M ( 55.35ns) (± 7.28%)  48.0B/</span>op  <span class="n">12.39</span>× slower
+         syeopite<span class="s">/lens translation   5.09M (196.47ns) (± 4.60%)   176B/</span>op  <span class="n">43.98</span>× slower
+          wout<span class="s">/rosetta translation 223.86M (  4.47ns) (± 2.20%)   0.0B/</span>op        fastest</code></pre>
 <p>For translations with interpolations:</p>
-<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/</span>op  <span class="n">23.12</span>× slower
-     crystal<span class="o">-</span>i18n<span class="s">/i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/</span>op  <span class="n">21.23</span>× slower
-         syeopite<span class="s">/lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/</span>op   <span class="n">9.29</span>× slower
-          wout<span class="s">/rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/</span>op         fastest</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr interpolation 318.12k (  3.14µs) (± 0.85%)    801B/</span>op  <span class="n">108.51</span>× slower
+     crystal<span class="o">-</span>i18n<span class="s">/i18n interpolation  65.55k ( 15.26µs) (± 1.01%)  28.2kB/</span>op  <span class="n">664.37</span>× slower
+         syeopite<span class="s">/lens interpolation   2.04M (490.17ns) (± 1.35%)    565B/</span>op   <span class="n">21.35</span>× slower
+          wout<span class="s">/rosetta interpolation  43.55M ( 22.96ns) (± 4.81%)   80.0B/</span>op         fastest</code></pre>
 <p>Rosetta is that much faster because a lot of the hard work happens at
 compile-time. And because the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
 rather than the
