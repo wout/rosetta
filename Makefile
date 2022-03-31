@@ -1,2 +1,5 @@
+SHARD_BIN ?= ../../bin
+
 shim:
-	mv ./tasks/rosetta ../../bin/rosetta
+	mkdir -p $(SHARD_BIN)
+	mv ./tasks/rosetta $(SHARD_BIN)
