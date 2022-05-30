@@ -31,7 +31,7 @@ describe LocalizableTestObject do
   describe "#time_ago_in_words" do
     it "returns the time ago in words" do
       test_object.time_ago_in_words(
-        Time.local(2021, 8, 30, 1, 2, 3) - 13.months
+        Time.local - 13.months
       ).should eq("about a year")
     end
   end
@@ -39,7 +39,7 @@ describe LocalizableTestObject do
   describe "#time_from_now_in_words" do
     it "returns the time from now in words" do
       test_object.time_from_now_in_words(
-        Time.local(2021, 8, 30, 1, 2, 3) + 37.months
+        Time.local + 37.months
       ).should eq("over 3 years")
     end
   end
