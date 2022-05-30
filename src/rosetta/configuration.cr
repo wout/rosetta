@@ -10,7 +10,7 @@ module Rosetta
   # Fetches the available locales from the corresponding annotation.
   macro available_locales
     {% locales = @type.annotation(Rosetta::AvailableLocales).args %}
-    {{locales.map(&.id.stringify)}}
+    [{{locales.map(&.id.stringify).splat}}]
   end
 
   # Sets the current locale at runtime using the config instance stored in the
