@@ -1,12 +1,14 @@
 require "spec"
 require "../src/rosetta"
 
-Rosetta::DEFAULT_LOCALE = :en
-Rosetta::AVAILABLE_LOCALES = %i[en nl]
-Rosetta::PLURALIZATION_RULES = {
+@[Rosetta::DefaultLocale(:en)]
+@[Rosetta::AvailableLocales(:en, :nl)]
+@[Rosetta::PluralizationRules({
   "en-pluralization": Rosetta::Pluralization::Rule::OneTwoOther,
   "nl-pluralization": Rosetta::Pluralization::Rule::OneTwoOther,
-}
+})]
+module Rosetta
+end
 
 Rosetta::Backend.load("spec/fixtures/rosetta")
 

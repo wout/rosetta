@@ -1,22 +1,16 @@
+@[Rosetta::DefaultLocale(:en)]
+@[Rosetta::AvailableLocales(:en)]
+@[Rosetta::PluralizationRules()]
 module Rosetta
-  # Tries to find the default locale configurad by the user. If it's not set,
-  # the default locale defined in the config class is used.
+  # Fetches the default locale from the corresponding annotation.
   macro default_locale
-    {% if Rosetta.has_constant?("DEFAULT_LOCALE") %}
-      {{ Rosetta::DEFAULT_LOCALE }}
-    {% else %}
-      {{ Rosetta::Config::DEFAULT_LOCALE }}
-    {% end %}
+    {{@type.annotation(Rosetta::DefaultLocale).args.first.id.stringify}}
   end
 
-  # Tries to find the available locales configurad by the user. If it's not set,
-  # the available locales defined in the config class is used.
+  # Fetches the available locales from the corresponding annotation.
   macro available_locales
-    {% if Rosetta.has_constant?("AVAILABLE_LOCALES") %}
-      {{ Rosetta::AVAILABLE_LOCALES }}
-    {% else %}
-      {{ Rosetta::Config::AVAILABLE_LOCALES }}
-    {% end %}
+    {% locales = @type.annotation(Rosetta::AvailableLocales).args %}
+    %w[{{locales.map(&.id).join(" ").id}}]
   end
 
   # Sets the current locale at runtime using the config instance stored in the

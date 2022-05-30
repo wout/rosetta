@@ -1,9 +1,6 @@
 module Rosetta
   class Config
-    DEFAULT_LOCALE    = :en
-    AVAILABLE_LOCALES = %i[en]
-
-    getter locale : String | Symbol?
+    getter locale : String?
 
     # Sets the current locale with the given value, if it's found in the
     # available locales.
@@ -19,7 +16,7 @@ module Rosetta
     # Gets the current locale or falls back to the default locale if it's not
     # defined.
     def locale : String
-      (@locale || Rosetta.default_locale).to_s
+      (@locale || Rosetta.default_locale)
     end
   end
 end

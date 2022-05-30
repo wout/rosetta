@@ -1,5 +1,7 @@
 require "rosetta"
 
-Rosetta::DEFAULT_LOCALE = :<%= @default_locale %>
-Rosetta::AVAILABLE_LOCALES = %i[<%= @available_locales.join(' ') %>]
-Rosetta::Backend.load("<%= @locales_dir %>")
+@[Rosetta::DefaultLocale(:<%= @default_locale %>)]
+@[Rosetta::AvailableLocales(<%= @available_locales.map{|l| ":#{l}"}.join(", ") %>)]
+module Rosetta
+  Backend.load("<%= @locales_dir %>")
+end
