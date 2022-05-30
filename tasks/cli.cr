@@ -24,7 +24,10 @@ module Rosetta
     private def parse_options
       OptionParser.parse do |parser|
         parser.on("--init", "Generates the initial file structure") do
-          generate_initial_setup("en", "en".split(','))
+          generate_initial_setup("en", %w[en])
+        end
+        parser.on("--lucky", "Generates translations for lucky") do
+          generate_lucky_setup
         end
       end
     end
@@ -38,6 +41,11 @@ module Rosetta
         available_locales,
         locales_dir
       )
+      template.render ".", interactive: true, list: true, color: true
+    end
+
+    private def generate_lucky_setup
+      template = LuckyTemplate.new(locales_dir)
       template.render ".", interactive: true, list: true, color: true
     end
 
@@ -65,6 +73,15 @@ module Rosetta
       @available_locales,
       @locales_dir
     )
+    end
+  end
+
+  class LuckyTemplate < Teeplate::FileTree
+    directory "#{__DIR__}/templates/lucky"
+
+    @locales_dir : String
+
+    def initialize(@locales_dir)
     end
   end
 end
