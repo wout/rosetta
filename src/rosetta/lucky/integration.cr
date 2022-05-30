@@ -1,6 +1,5 @@
 module Rosetta
   module Lucky
-    # Includes `Rosetta::Translatable` where it may be required.
     macro integrate
       {% targets = {
            "Avram::Model",
