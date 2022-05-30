@@ -16,6 +16,9 @@ module Rosetta
           include Rosetta::Translatable
         end
       {% end %}
+
+      abstract struct Avram::I18nBackend
+      end
     end
   end
 end
@@ -49,6 +52,9 @@ module Lucky::FormHelpers
   def submit(text : Rosetta::Translation, **html_options) : Nil
     submit(text.t, **html_options)
   end
+end
+
+abstract struct Avram::I18nBackend
 end
 
 struct Rosetta::AvramBackend < Avram::I18nBackend
