@@ -10,13 +10,13 @@
   <meta name="crystal_docs.json_config_url" content="/rosetta/cry-versions.json">
 
 
-    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/SimpleTranslation.html">
+    <link rel="canonical" href="https://wout.github.io/rosetta/api/latest/Rosetta/AvramBackend.html">
 
 <link href="../css/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="Rosetta">
-  <title>Rosetta::SimpleTranslation - Rosetta v0.6.0</title>
+  <title>Rosetta::AvramBackend - Rosetta v0.6.0</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -114,7 +114,7 @@
       
     </li>
   
-  <li class=" " data-id="Rosetta/Rosetta/AvramBackend" data-name="rosetta::avrambackend">
+  <li class=" current" data-id="Rosetta/Rosetta/AvramBackend" data-name="rosetta::avrambackend">
       <a href="../Rosetta/AvramBackend.html">AvramBackend</a>
       
     </li>
@@ -354,7 +354,7 @@
       
     </li>
   
-  <li class=" current" data-id="Rosetta/Rosetta/SimpleTranslation" data-name="rosetta::simpletranslation">
+  <li class=" " data-id="Rosetta/Rosetta/SimpleTranslation" data-name="rosetta::simpletranslation">
       <a href="../Rosetta/SimpleTranslation.html">SimpleTranslation</a>
       
     </li>
@@ -408,24 +408,15 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">module</span> Rosetta::SimpleTranslation
+  <span class="kind">struct</span> Rosetta::AvramBackend
 
 </h1>
 
 
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Rosetta/AvramBackend.html">Rosetta::AvramBackend</a></li><li class="superclass"><a href="../Avram/I18nBackend.html">Avram::I18nBackend</a></li><li class="superclass">Struct</li><li class="superclass">Value</li><li class="superclass">Object</li></ul>
 
 
 
-  <h2>
-    <a id="overview" class="anchor" href="#overview">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Overview
-  </h2>
-
-  <p>Methods for translations without interpolations.</p>
 
 
 
@@ -450,8 +441,8 @@
   </h2>
   
     
-      <a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/translation.cr#L60" target="_blank">
-        rosetta/translation.cr
+      <a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/lucky/integration.cr#L60" target="_blank">
+        rosetta/lucky/integration.cr
       </a>
     
     <br/>
@@ -460,6 +451,23 @@
 
 
 
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new-class-method" class="signature"><strong>.new</strong></a>
+        
+      </li>
+    
+  </ul>
 
 
 
@@ -476,17 +484,12 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#t-instance-method" class="signature"><strong>#t</strong></a>
+        <a href="#get%28key%3AString%7CSymbol%29%3AString-instance-method" class="signature"><strong>#get</strong>(key : String | Symbol) : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#to_s%28io%29-instance-method" class="signature"><strong>#to_s</strong>(io)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#to_s-instance-method" class="signature"><strong>#to_s</strong></a>
+        <a href="#initialize-instance-method" class="signature"><strong>#initialize</strong></a>
         
       </li>
     
@@ -498,8 +501,92 @@
 
 <div class="methods-inherited">
   
+    
+
+  <h3>Instance methods inherited from struct <code><a href="../Avram/I18nBackend.html">Avram::I18nBackend</a></code></h3>
+  
+  
+    <a href="../Avram/I18nBackend.html#initialize-instance-method" class="tooltip">
+      <span>initialize</span>
+    initialize</a>
+    
+  
+
+
+    
+
+  <h3>Constructor methods inherited from struct <code><a href="../Avram/I18nBackend.html">Avram::I18nBackend</a></code></h3>
+  
+  
+    <a href="../Avram/I18nBackend.html#new-class-method" class="tooltip">
+      <span>new</span>
+    new</a>
+    
+  
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>
+
+        <a class="method-permalink" href="#new-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/lucky/integration.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
 
 
 
@@ -514,50 +601,34 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="t-instance-method">
+    <div class="entry-detail" id="get(key:String|Symbol):String-instance-method">
       <div class="signature">
         
-        def <strong>t</strong>
+        def <strong>get</strong>(key : String | Symbol) : String
 
-        <a class="method-permalink" href="#t-instance-method">#</a>
+        <a class="method-permalink" href="#get%28key%3AString%7CSymbol%29%3AString-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/translation.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/lucky/integration.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="to_s(io)-instance-method">
+    <div class="entry-detail" id="initialize-instance-method">
       <div class="signature">
         
-        def <strong>to_s</strong>(io)
+        def <strong>initialize</strong>
 
-        <a class="method-permalink" href="#to_s%28io%29-instance-method">#</a>
+        <a class="method-permalink" href="#initialize-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/translation.cr#L73" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="to_s-instance-method">
-      <div class="signature">
-        
-        def <strong>to_s</strong>
-
-        <a class="method-permalink" href="#to_s-instance-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/translation.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/wout/rosetta/blob/e80a0eee/src/rosetta/lucky/integration.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
