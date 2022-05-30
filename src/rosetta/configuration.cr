@@ -1,6 +1,6 @@
 @[Rosetta::DefaultLocale(:en)]
 @[Rosetta::AvailableLocales(:en)]
-@[Rosetta::PluralizationRules()]
+@[Rosetta::PluralizationRules]
 module Rosetta
   # Fetches the default locale from the corresponding annotation.
   macro default_locale
@@ -10,7 +10,7 @@ module Rosetta
   # Fetches the available locales from the corresponding annotation.
   macro available_locales
     {% locales = @type.annotation(Rosetta::AvailableLocales).args %}
-    %w[{{locales.map(&.id).join(" ").id}}]
+    {{locales.map(&.id.stringify)}}
   end
 
   # Sets the current locale at runtime using the config instance stored in the

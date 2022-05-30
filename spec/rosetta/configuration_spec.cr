@@ -9,7 +9,7 @@ describe Rosetta do
 
   describe ".available_locales" do
     it "returns the available locales" do
-      Rosetta.available_locales.should eq(%w[en nl])
+      Rosetta.available_locales.should eq({"en", "nl"})
     end
   end
 end
