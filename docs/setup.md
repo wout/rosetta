@@ -7,8 +7,11 @@ The `bin/rosetta --init` command will generate the initial files to get started.
 # config/rosetta.cr
 require "rosetta"
 
-Rosetta::DEFAULT_LOCALE = :en
-Rosetta::AVAILABLE_LOCALES = %i[en]
+@[Rosetta::DefaultLocale(:en)]
+@[Rosetta::AvailableLocales(:en)]
+module Rosetta
+end
+
 Rosetta::Backend.load("config/rosetta")
 ```
 
@@ -24,3 +27,9 @@ contributing your translations.
 
 An example locale file, which you can modify or delete.
 
+## For Lucky users
+The `bin/rosetta --lucky` command will generate the translations for avram.
+
+**4. `config/locales/avram.en.yml`**
+
+For every additional locale, you'll need to copy and translate this file.

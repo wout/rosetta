@@ -18,6 +18,12 @@ Include rosetta in `src/shards.cr`:
 require "rosetta"
 ```
 
+Generate the translations for Avram validations:
+
+```cr
+$ bin/rosetta --lucky
+```
+
 Use the `integrate` macro in the `config/rosetta.cr` initializer to include
 `Rosetta::Translatable` in every base class where translations are needed:
 

@@ -13,27 +13,26 @@ you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and let you know if some are missing.
 
-## Rosetta is 10x faster than similar libraries
+## Rosetta is 12x faster than similar libraries
 Benchmarking against other libraries which also use YAML or JSON backends,
-Rosetta is about 10x faster than any other one.
+Rosetta is more than 12x faster than any other one.
 
 For simple translations:
 
 ```
-i18n.cr translation 147.72k (  6.77µs) (± 3.36%) 0.99kB/op 178.77× slower
-   i18n translation   2.25M (443.68ns) (± 3.44%)  48.0B/op  11.05× slower
-   lens translation   1.10M (912.67ns) (± 7.10%)   176B/op  22.72× slower
-rosetta translation  24.89M ( 40.17ns) (± 6.59%)   0.0B/op         fastest
-
+i18n.cr translation 303.57k (  3.29µs) (± 4.62%)  801B/op  702.21× slower
+   i18n translation  18.07M ( 55.35ns) (± 7.28%)  48.0B/op  12.39× slower
+   lens translation   5.09M (196.47ns) (± 4.60%)   176B/op  43.98× slower
+rosetta translation 223.86M (  4.47ns) (± 2.20%)   0.0B/op        fastest
 ```
 
 For translations with interpolations:
 
 ```
-i18n.cr interpolation 145.50k (  6.87µs) (± 4.47%)  0.99kB/op  23.12× slower
-   i18n interpolation 138.84k (  7.20µs) (± 4.16%)  2.05kB/op  21.23× slower
-   lens interpolation 314.68k (  3.18µs) (± 7.30%)    561B/op   9.29× slower
-rosetta interpolation   2.95M (339.26ns) (± 7.17%)   80.0B/op         fastest
+i18n.cr interpolation 318.12k (  3.14µs) (± 0.85%)    801B/op  108.51× slower
+   i18n interpolation  65.55k ( 15.26µs) (± 1.01%)  28.2kB/op  664.37× slower
+   lens interpolation   2.04M (490.17ns) (± 1.35%)    565B/op   21.35× slower
+rosetta interpolation  43.55M ( 22.96ns) (± 4.81%)   80.0B/op         fastest
 ```
 
 Rosetta is that much faster because a lot of the hard work happens at

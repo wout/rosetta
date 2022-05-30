@@ -23,7 +23,11 @@ If the given locale identifier is not present in the array returned by the
 macro will be used instead:
 
 ```cr
-Rosetta::DEFAULT_LOCALE = :es
+# Considering
+@[Rosetta::DefaultLocale(:es)]
+module Rosetta; end
+
+# ...
 Rosetta.locale = :xx
 Rosetta.locale
 # => "es"

@@ -1,45 +1,48 @@
 # Configuration
-Configuration options are defined as constants in your initializer file.
+Configuration options are defined as annotations to the main `Rosetta` module in
+the initializer file.
 
 !!! warning
     All configuration should happen *before* calling the 
     `Rosetta::Backend.load` macro.
 
-## `DEFAULT_LOCALE`
+## `Rosetta::DefaultLocale`
 Defines the default value if no locale is set. The *default* default locale is
 set to `:en`.
 
 ```cr
-Rosetta::DEFAULT_LOCALE = "es-ES"
+@[Rosetta::DefaultLocale("es-ES")]
+module Rosetta
+end
 ```
 
 The value can be either a `String` or a `Symbol`.
 
 !!! info
-    The `DEFAULT_LOCALE` is used by the compiler to define the ruling set of
-    locale keys. Which means that, if one of the other available locales is
-    missing some of the keys found in the default key set, the compiler will
-    complain. So every available locale will need to have the exact same key set
-    as the default locale.
+    This value is used by the compiler to define the ruling set of locale keys.
+    Which means that, if one of the other available locales is missing some of
+    the keys found in the default key set, the compiler will complain. So every
+    available locale will need to have the exact same key set as the default
+    locale.
 
-## `AVAILABLE_LOCALES`
+## `Rosetta::AvailableLocales`
 Defines all the available locales, including the default locale. The default
-for this setting is `%i[en]`.
+for this setting is `["en"]`.
 
 ```cr
-Rosetta::AVAILABLE_LOCALES = %i[de en-GB en-US es nl]
+@[Rosetta::AvailableLocales("de", "en-GB", "en-US", "es", "nl")]
+module Rosetta
+end
 ```
 
-## `PLURALIZATION_RULES`
+## `Rosetta::PluralizationRules`
 Defines a custom mapping of pluralization rules:
 
 ```cr
-Rosetta::PLURALIZATION_RULES = {
+@[Rosetta::PluralizationRules({
   en: MyRule,
   nl: MyRule,
-}
+})]
+module Rosetta
+end
 ```
-
-## `FALLBACKS`
-
-TODO: Fallbacks still need to be implemented.

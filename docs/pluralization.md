@@ -76,10 +76,11 @@ In the initializer Rosetta created at setup, register the rule for one or more
 locales:
 
 ```cr
-Rosetta::PLURALIZATION_RULES = {
+@[Rosetta::PluralizationRules({
   en: MyRule,
   nl: MyRule,
-}
+})]
+module Rosetta; end
 ```
 
 !!! warning

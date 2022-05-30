@@ -1,3 +1,6 @@
 lib/
 bin/
+lib/
 shard.lock
+shard.lock
+.vscode
