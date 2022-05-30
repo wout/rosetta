@@ -10,13 +10,13 @@ module Rosetta
       # REMOVE THIS AT THE RELEASE OF VERSION 1.0.0
       {%
         if Rosetta.has_constant?("AVAILABLE_LOCALES") ||
-          Rosetta.has_constant?("DEFAULT_LOCALE") ||
-          Rosetta.has_constant?("PLURALIZATION_RULES")
+           Rosetta.has_constant?("DEFAULT_LOCALE") ||
+           Rosetta.has_constant?("PLURALIZATION_RULES")
           raise <<-ERROR
 
             The Rosetta::DEFAULT_LOCALE, Rosetta::AVAILABLE_LOCALES and
             Rosetta::PLURALIZATION_RULES constants are no longer considered.
-            
+
             Use an annotation instead, for example:
 
               @[Rosetta::DefaultLocale(:en)]
@@ -28,7 +28,7 @@ module Rosetta
               })]
               module Rosetta
               end
-          
+
           ERROR
         end
       %}
@@ -39,27 +39,27 @@ module Rosetta
           raise <<-ERROR
 
             No default locale is defined. Add an annotation with exactly one value:
-              
+
               @[Rosetta::DefaultLocale(:en)]
               @[Rosetta::AvailableLocales(:en, :fr, :nl)]
               module Rosetta
               end
-          
+
           ERROR
         end
       %}
 
-      {% 
+      {%
         available_locales = Rosetta.annotation(Rosetta::AvailableLocales).args
         if available_locales.empty?
           raise <<-ERROR
 
             No available locales defined. Add an annotation with at least one value:
-              
+
               @[Rosetta::AvailableLocales(:en, :fr, :nl)]
               module Rosetta
               end
-          
+
           ERROR
         end
       %}
@@ -68,7 +68,7 @@ module Rosetta
         rules = Rosetta::Pluralization.annotation(
           Rosetta::DefaultPluralizationRules
         ).args.first
-        
+
         if custom_rules = Rosetta.annotation(Rosetta::PluralizationRules).args.first
           custom_rules.each do |locale, rule|
             rules[locale] = rule
