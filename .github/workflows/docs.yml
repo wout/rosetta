@@ -37,7 +37,7 @@ jobs:
           git config --global user.name GitHub Actions
           git config --global user.email actions@github.com
       - name: "Deploy documentation"
-        run: mike deploy v0.6.0 latest -u --push
+        run: mike deploy v0.7.0 latest -u --push
       # - name: "Label development version with -dev suffix"
       #   run: mike retitle v0.4.0 v0.4.0-dev --push
 
@@ -116,7 +116,7 @@ jobs:
 
       - name: Build API docs
         run: |
-          crystal docs --json-config-url=/rosetta/cry-versions.json --output=api  --project-version=v0.6.0 --project-name=Rosetta \
+          crystal docs --json-config-url=/rosetta/cry-versions.json --output=api  --project-version=v0.7.0 --project-name=Rosetta \
           --canonical-base-url="https://wout.github.io/rosetta/api/latest" --source-url-pattern="https://github.com/wout/rosetta/blob/%{refname}/%{path}#L%{line}" \
           --source-refname=${GITHUB_SHA::8}
       - name: Deploy API docs
