@@ -48,9 +48,7 @@ module Rosetta
         end
       end
 
-      abstract struct Avram::I18nBackend
-      end
-
+      abstract struct Avram::I18nBackend; end
 
       struct Rosetta::AvramBackend < Avram::I18nBackend
         def get(key : String | Symbol) : String
