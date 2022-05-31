@@ -502,8 +502,8 @@
                 
                 <h2 id="globally">Globally</h2>
 <p>If no value is set, the value of the <code>Rosetta.default_locale</code> macro will be
-used. This macro will first look if <code>Rosetta::DEFAULT_LOCALE</code> is defined, and if
-it is not, it will fall back to an internal value (<code>:en</code>).</p>
+used. This macro will look at the <code>Rosetta::DefaultLocale</code> annotation which has
+<code>:en</code> as the default value.</p>
 <p>Defining the current locale is done as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">locale</span> <span class="o">=</span> <span class="ss">:es</span>
 </code></pre></div>
