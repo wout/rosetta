@@ -1,7 +1,7 @@
 ## Globally
 If no value is set, the value of the `Rosetta.default_locale` macro will be
-used. This macro will first look if `Rosetta::DEFAULT_LOCALE` is defined, and if
-it is not, it will fall back to an internal value (`:en`).
+used. This macro will look at the `Rosetta::DefaultLocale` annotation which has
+`:en` as the default value.
 
 Defining the current locale is done as follows:
 
