@@ -1,10 +1,12 @@
 # Rosetta
 
 <p align="center">
-  <img src="https://wout.github.io/rosetta/v0.1.0/assets/rosetta-logo-accent.png" width="256" alt="Rosetta logo">
+  <img src="https://wout.github.io/rosetta/v0.7.0/assets/rosetta-logo-accent.png"
+       width="256"
+       alt="Rosetta logo">
 </p>
 
-
+### Probably the fastest internationalization library in the world
 A blazing fast internationalization (i18n) library for Crystal with compile-time
 key lookup. You'll never have a `missing translation` in your app, ever again.
 
@@ -27,9 +29,9 @@ you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
-### Rosetta is more than 10x faster than similar libraries
+### Rosetta is more than 12x faster than similar libraries
 Benchmarking against other libraries which also use YAML or JSON backends,
-Rosetta is at least 10x faster than any other one.
+Rosetta is 12x to 700x faster than any other one.
 
 For simple translations:
 
