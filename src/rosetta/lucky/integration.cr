@@ -16,14 +16,14 @@ module Rosetta
         end
       {% end %}
 
-      module Lucky::HTMLPage
+      module ::Lucky::HTMLPage
         macro included
           include Rosetta::Localizable
           include Rosetta::Translatable
         end
       end
 
-      class Lucky::FlashStore
+      class ::Lucky::FlashStore
         {% for shortcut in [:failure, :info, :success] %}
           def {{ shortcut.id }}=(message : Rosetta::Translation)
             set(:{{ shortcut.id }}, message.t)
@@ -35,21 +35,30 @@ module Rosetta
         end
       end
 
-      module Lucky::SpecialtyTags
+      module ::Lucky::SpecialtyTags
         def raw(string : Rosetta::Translation) : Nil
           view << string.t
         end
       end
 
-      module Lucky::FormHelpers
+      module ::Lucky::FormHelpers
         def submit(text : Rosetta::Translation, **html_options) : Nil
           submit(text.t, **html_options)
         end
       end
 
-      abstract struct Avram::I18nBackend; end
+      module ::Lucky::AllowedInTags
+      end
 
-      struct Rosetta::AvramBackend < Avram::I18nBackend
+      module Rosetta::SimpleTranslation
+        macro included
+          include ::Lucky::AllowedInTags
+        end
+      end
+
+      abstract struct ::Avram::I18nBackend; end
+
+      struct Rosetta::AvramBackend < ::Avram::I18nBackend
         def get(key : String | Symbol) : String
           {% begin %}
             case key
