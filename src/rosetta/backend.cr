@@ -40,7 +40,7 @@ module Rosetta
 
             No default locale is defined. Add an annotation with exactly one value:
 
-              @[Rosetta::DefaultLocale(:en)]
+            + @[Rosetta::DefaultLocale(:en)]
               @[Rosetta::AvailableLocales(:en, :fr, :nl)]
               module Rosetta
               end
@@ -56,7 +56,8 @@ module Rosetta
 
             No available locales defined. Add an annotation with at least one value:
 
-              @[Rosetta::AvailableLocales(:en, :fr, :nl)]
+              @[Rosetta::DefaultLocale(:en)]
+            + @[Rosetta::AvailableLocales(:en, :fr, :nl)]
               module Rosetta
               end
 
