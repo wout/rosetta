@@ -1,5 +1,55 @@
 # Changelog
 
+## 0.7.1 (2022-05-31)
+
+- Move all Lucky-related integration code inside the `Rosetta::Lucky.integrate`
+  macro.
+
+## 0.7.0 (2022-05-30)
+
+- Add better integration for `Lucky::FlashStore`.
+- Add better integration for `Lucky::SpecialtyTags`.
+- Add better integration for `Lucky::FormHelpers`.
+- Add `Rosetta::AvramBackend`.
+- Add `--lucky` flag to `rosetta` binary to generate Avram's validation
+  translations.
+- Change the postinstall command to remove the old compiled binary.
+- Use the `Rosetta::DefaultLocale` annotation to replace the
+  `Rosetta::DEFAULT_LOCALE` constant.
+- Use the `Rosetta::AvailableLocales` annotation to replace the
+  `Rosetta::AVAILABLE_LOCALES` constant.
+- Use the `Rosetta::PluralizationRules` annotation to replace the
+  `Rosetta::PLURALIZATION_RULES` constant.
+- Use the `Rosetta::DefaultPluralizationRules` annotation to replace the
+  `Rosetta::Pluralization::DEFAULT_RULES` constant.
+- Add a compiler error to notify about the change (will be removed in v1.0.0).
+- Change return value of the `Rosetta.available_locales` macro to always return
+  `Array(String)`.
+
+## 0.6.5 (2022-03-31)
+
+- Fix bug in shim to ensure presence of the bin dir. 
+
+## 0.6.4 (2022-03-18)
+
+- Add a shim to build the development binary rather than via postinstall.
+
+## 0.6.3 (2021-12-14)
+
+- Fix bug where double quotes in locales weren't properly escaped.
+
+## 0.6.2 (2021-12-08)
+
+- Add postinstall target for rosetta binary.
+
+## 0.6.1 (2021-10-25)
+
+- Add `Avram::SaveOperation(T)` in Lucky integration macro.
+
+## 0.6.0 (2021-10-21)
+
+- Add translations with variants.
+
 ## 0.5.1 (2021-10-18)
 
 - Make `Rosetta::Translatable` compatible with type vars.
