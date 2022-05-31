@@ -3,7 +3,6 @@ require "yaml"
 
 require "./rosetta/version"
 require "./rosetta/ext/fiber"
-require "./rosetta/lucky/allowed_in_tags"
 require "./rosetta/lucky/integration"
 require "./rosetta/aliases"
 require "./rosetta/annotations"
