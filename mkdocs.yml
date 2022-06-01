@@ -37,6 +37,7 @@ theme:
   logo: assets/rosetta-logo-light.png
   icon:
     repo: fontawesome/brands/github
+  custom_dir: overrides
 
 markdown_extensions:
   - admonition
