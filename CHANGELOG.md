@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0 (2022-09-30)
+
+- Lock lib down at Crystal version 1.4.0.
+
 ## 0.7.1 (2022-05-31)
 
 - Move all Lucky-related integration code inside the `Rosetta::Lucky.integrate`
