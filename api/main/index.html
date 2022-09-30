@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="generator" content="Crystal Docs 1.4.1">
+<meta name="generator" content="Crystal Docs 1.5.0">
 <meta name="crystal_docs.project_version" content="v0.7.0">
 <meta name="crystal_docs.project_name" content="Rosetta">
 
@@ -402,15 +402,15 @@ default locale, and complain if some are missing.</p>
 <p>Benchmarking against other libraries which also use YAML or JSON backends,
 Rosetta is 12x to 700x faster than any other one.</p>
 <p>For simple translations:</p>
-<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr translation 303.57k (  3.29µs) (± 4.62%)  801B/</span>op  <span class="n">702.21</span>× slower
-     crystal<span class="o">-</span>i18n<span class="s">/i18n translation  18.07M ( 55.35ns) (± 7.28%)  48.0B/</span>op  <span class="n">12.39</span>× slower
-         syeopite<span class="s">/lens translation   5.09M (196.47ns) (± 4.60%)   176B/</span>op  <span class="n">43.98</span>× slower
-          wout<span class="s">/rosetta translation 223.86M (  4.47ns) (± 2.20%)   0.0B/</span>op        fastest</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="o">/</span>i18n.cr translation <span class="n">303.57</span>k (  <span class="n">3.29</span>µs) (± <span class="n">4.62</span><span class="o">%</span>)  <span class="n">801</span><span class="t">B</span><span class="o">/</span>op  <span class="n">702.21</span>× slower
+     crystal<span class="o">-</span>i18n<span class="o">/</span>i18n translation  <span class="n">18.07</span><span class="t">M</span> ( <span class="n">55.35</span>ns) (± <span class="n">7.28</span><span class="o">%</span>)  <span class="n">48.0</span><span class="t">B</span><span class="o">/</span>op  <span class="n">12.39</span>× slower
+         syeopite<span class="o">/</span>lens translation   <span class="n">5.09</span><span class="t">M</span> (<span class="n">196.47</span>ns) (± <span class="n">4.60</span><span class="o">%</span>)   <span class="n">176</span><span class="t">B</span><span class="o">/</span>op  <span class="n">43.98</span>× slower
+          wout<span class="o">/</span>rosetta translation <span class="n">223.86</span><span class="t">M</span> (  <span class="n">4.47</span>ns) (± <span class="n">2.20</span><span class="o">%</span>)   <span class="n">0.0</span><span class="t">B</span><span class="o">/</span>op        fastest</code></pre>
 <p>For translations with interpolations:</p>
-<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="s">/i18n.cr interpolation 318.12k (  3.14µs) (± 0.85%)    801B/</span>op  <span class="n">108.51</span>× slower
-     crystal<span class="o">-</span>i18n<span class="s">/i18n interpolation  65.55k ( 15.26µs) (± 1.01%)  28.2kB/</span>op  <span class="n">664.37</span>× slower
-         syeopite<span class="s">/lens interpolation   2.04M (490.17ns) (± 1.35%)    565B/</span>op   <span class="n">21.35</span>× slower
-          wout<span class="s">/rosetta interpolation  43.55M ( 22.96ns) (± 4.81%)   80.0B/</span>op         fastest</code></pre>
+<pre><code class="language-crystal">crimson<span class="o">-</span>knight<span class="o">/</span>i18n.cr interpolation <span class="n">318.12</span>k (  <span class="n">3.14</span>µs) (± <span class="n">0.85</span><span class="o">%</span>)    <span class="n">801</span><span class="t">B</span><span class="o">/</span>op  <span class="n">108.51</span>× slower
+     crystal<span class="o">-</span>i18n<span class="o">/</span>i18n interpolation  <span class="n">65.55</span>k ( <span class="n">15.26</span>µs) (± <span class="n">1.01</span><span class="o">%</span>)  <span class="n">28.2</span>kB<span class="o">/</span>op  <span class="n">664.37</span>× slower
+         syeopite<span class="o">/</span>lens interpolation   <span class="n">2.04</span><span class="t">M</span> (<span class="n">490.17</span>ns) (± <span class="n">1.35</span><span class="o">%</span>)    <span class="n">565</span><span class="t">B</span><span class="o">/</span>op   <span class="n">21.35</span>× slower
+          wout<span class="o">/</span>rosetta interpolation  <span class="n">43.55</span><span class="t">M</span> ( <span class="n">22.96</span>ns) (± <span class="n">4.81</span><span class="o">%</span>)   <span class="n">80.0</span><span class="t">B</span><span class="o">/</span>op         fastest</code></pre>
 <p>Rosetta is that much faster because a lot of the hard work happens at
 compile-time. And because the majority of the data is stored on the <a href="https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap">stack
 rather than the
