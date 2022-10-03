@@ -47,6 +47,20 @@ module Rosetta
         end
       end
 
+      module ::Lucky::LinkHelpers
+        def link(text : Rosetta::Translation, to : ::Lucky::RouteHelper, attrs : Array(Symbol) = [] of Symbol, **html_options) : Nil
+          link(**html_options, to: to, attrs: attrs) do
+            text text.t
+          end
+        end
+
+        def link(text : Rosetta::Translation, to : ::Lucky::Action.class, attrs : Array(Symbol) = [] of Symbol, **html_options) : Nil
+          link(**html_options, to: to, attrs: attrs) do
+            text text.t
+          end
+        end
+      end
+
       module ::Lucky::AllowedInTags
       end
 
