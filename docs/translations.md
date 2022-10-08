@@ -24,17 +24,6 @@ Rosetta.find("user.name").to_s
 # => "User name"
 ```
 
-The translation struct also includes the `Lucky::AllowedInTags` module, so it
-works with Lucky templates as well, even without having to call `t`:
-
-```cr
-class Products::ShowPage < MainLayout
-  def content
-    h1 Rosetta.find(".heading")
-  end
-end
-```
-
 ## Getting all `translations`
 When required, the translations for all locales can be accessed with the
 `translations` property:
