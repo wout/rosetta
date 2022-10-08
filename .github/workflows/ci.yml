@@ -16,6 +16,7 @@ jobs:
         crystal_version:
           - 1.4.1
           - 1.5.1
+          - 1.6.0
         experimental:
           - false
         # include:
@@ -44,6 +45,7 @@ jobs:
         crystal_version:
           - 1.4.1
           - 1.5.1
+          - 1.6.0
         experimental:
           - false
         include:
