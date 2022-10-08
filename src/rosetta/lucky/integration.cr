@@ -23,44 +23,6 @@ module Rosetta
         end
       end
 
-      class ::Lucky::FlashStore
-        {% for shortcut in [:failure, :info, :success] %}
-          def {{ shortcut.id }}=(message : Rosetta::Translation)
-            set(:{{ shortcut.id }}, message.t)
-          end
-        {% end %}
-
-        def set(key : Key, value : Rosetta::Translation) : String
-          set(key, value.t)
-        end
-      end
-
-      module ::Lucky::SpecialtyTags
-        def raw(string : Rosetta::Translation) : Nil
-          view << string.t
-        end
-      end
-
-      module ::Lucky::FormHelpers
-        def submit(text : Rosetta::Translation, **html_options) : Nil
-          submit(text.t, **html_options)
-        end
-      end
-
-      module ::Lucky::LinkHelpers
-        def link(text : Rosetta::Translation, to : ::Lucky::RouteHelper, attrs : Array(Symbol) = [] of Symbol, **html_options) : Nil
-          link(**html_options, to: to, attrs: attrs) do
-            text text.t
-          end
-        end
-
-        def link(text : Rosetta::Translation, to : ::Lucky::Action.class, attrs : Array(Symbol) = [] of Symbol, **html_options) : Nil
-          link(**html_options, to: to, attrs: attrs) do
-            text text.t
-          end
-        end
-      end
-
       module ::Lucky::AllowedInTags
       end
 
