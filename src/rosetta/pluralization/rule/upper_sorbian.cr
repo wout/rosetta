@@ -6,7 +6,7 @@ module Rosetta
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :two, :few, :other)]
       struct UpperSorbian < Rule
-        def apply(count : Float | Int) : Symbol
+        def apply(count : Rosetta::CountArg) : Symbol
           mod100 = count % 100
 
           if mod100 == 1

@@ -6,7 +6,7 @@ module Rosetta
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :other)]
       struct CentralMoroccoTamazight < Rule
-        def apply(count : Float | Int) : Symbol
+        def apply(count : Rosetta::CountArg) : Symbol
           if ([0, 1] + (11..99).to_a).includes?(count)
             :one
           else

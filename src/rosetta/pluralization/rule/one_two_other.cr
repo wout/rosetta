@@ -7,7 +7,7 @@ module Rosetta
       # This rule was extracted from [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n).
       @[CategoryTags(:one, :two, :other)]
       struct OneTwoOther < Rule
-        def apply(count : Float | Int) : Symbol
+        def apply(count : Rosetta::CountArg) : Symbol
           if count == 1
             :one
           elsif count == 2

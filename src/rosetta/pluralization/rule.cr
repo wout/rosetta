@@ -9,7 +9,7 @@ module Rosetta
     #
     # `:zero`, `:one`, `:two`, `:few`, `:many` and `:other`.
     abstract struct Rule
-      abstract def apply(count : Float | Int) : Symbol
+      abstract def apply(count : Rosetta::CountArg) : Symbol
     end
 
     # Define required category tags using this annotation.

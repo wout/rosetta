@@ -55,7 +55,7 @@ module Rosetta
           METHODS
         end
 
-        args = i12n_keys.map { |k| [k, (k == "count" ? "Float | Int" : "String")] }
+        args = i12n_keys.map { |k| [k, (k == "count" ? "Rosetta::CountArg" : "String")] }
         args << ["time", "Time | Tuple(Int32, Int32, Int32)"] unless l10n_keys.empty?
         args << ["variant", "String"] if variants_key?(key)
         with_args = args.map(&.join(" : ")).join(", ")

@@ -1,7 +1,7 @@
 module Rosetta
   # Pluralizes a given pluralizable translation.
   def self.pluralize(
-    count : Float | Int,
+    count : Rosetta::CountArg,
     translation : NamedTuple,
     rule : Pluralization::Rule = Pluralization::RULES[Rosetta.locale].new
   )

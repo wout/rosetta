@@ -45,7 +45,7 @@ end
 # Custom pluralization rule
 @[Rosetta::Pluralization::CategoryTags(:few, :other)]
 struct CustomRuleWithRelativeZero < Rosetta::Pluralization::Rule
-  def apply(count : Float | Int) : Symbol
+  def apply(count : Rosetta::CountArg) : Symbol
     count <= 3 ? :few : :other
   end
 end
