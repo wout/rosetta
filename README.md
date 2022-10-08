@@ -141,11 +141,21 @@ This will automatically:
 
 ## Contributing
 
+### To the lib
+
 1. Fork it (<https://github.com/wout/rosetta/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+### To the docs
+
+Check out the `docs` branch and run the following command to launch the docs locally: 
+
+```
+docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
+```
 
 ## Contributors
 
