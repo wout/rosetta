@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0 (2022-10-09)
+
+- Add support for Crystal 1.6.0.
+- Add compatibility with Lucky 1.0.0-rc1.
+- Change integration with Lucky by always calling `.t`, regardless of the
+  presence of interpolation arguments.
+
 ## 0.8.0 (2022-09-30)
 
 - Lock lib down at Crystal version 1.4.0.
@@ -27,8 +34,7 @@
 - Use the `Rosetta::DefaultPluralizationRules` annotation to replace the
   `Rosetta::Pluralization::DEFAULT_RULES` constant.
 - Add a compiler error to notify about the change (will be removed in v1.0.0).
-- Change return value of the `Rosetta.available_locales` macro to always return
-  `Array(String)`.
+- Change the `Rosetta.available_locales` macro to always return `Array(String)`.
 
 ## 0.6.5 (2022-03-31)
 
