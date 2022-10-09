@@ -53,10 +53,10 @@ Error: Some translations have mismatching interpolation keys:
   ‣ nl: "message.welcome" should contain "%{first_name}"
   ‣ nl: "base.validations.min_max" should contain "%{min}"
   ‣ nl: "base.validations.min_max" should contain "%{max}"
-  ‣ fr: "message.welcome should" contain "%{first_name}"
+  ‣ fr: "message.welcome" should contain "%{first_name}"
 ```
 
-## Check 5: pluralization tags are present in every translations
+## Check 5: pluralization tags are present in every translation
 Every pluralization rule has a `Rosetta::Pluralization::CategoryTags` annotation
 defining which tags should be present in every pluralizable translation. If they
 are not, an error will be raised:
