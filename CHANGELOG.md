@@ -5,7 +5,7 @@
 - Add support for Crystal 1.6.0.
 - Add compatibility with Lucky 1.0.0-rc1.
 - Change integration with Lucky by always calling `.t`, regardless of the
-  presence of interpolation arguments.
+  presence of interpolation arguments (in your editor, do a global find on `r\("([^"]+)"\)([^\.])` and replace with `r("$1").t$2`)
 
 ## 0.8.0 (2022-09-30)
 
