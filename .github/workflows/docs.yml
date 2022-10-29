@@ -41,6 +41,7 @@ jobs:
 
   deploy-api-docs:
     runs-on: ubuntu-latest
+    needs: deploy-docs
     steps:
       - uses: actions/checkout@v2
         with:
@@ -56,4 +57,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./api/main
+          publish_dir: api/main
+          clean: false
