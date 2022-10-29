@@ -109,7 +109,7 @@ Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 - [x] Add compiler error messages for mismatching keys
 - [x] Implement inferred locale keys at macro level
 - [x] Interpolation (with %{} tag for interpolation keys)
-- [x] Check existence of interpolation keys in all translations at compile-time
+- [x] Check the existence of interpolation keys in all translations at compile-time
 - [x] Translatable mixin
 - [x] Localization of numeric values
 - [x] Localization of date and time values
