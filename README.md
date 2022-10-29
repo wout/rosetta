@@ -1,7 +1,7 @@
 # Rosetta
 
 <p align="center">
-  <img src="https://wout.github.io/rosetta/v0.7.0/assets/rosetta-logo-accent.png"
+  <img src="https://wout.github.io/rosetta/v0.9.0/assets/rosetta-logo-accent.png"
        width="256"
        alt="Rosetta logo">
 </p>
