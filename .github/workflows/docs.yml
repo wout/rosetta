@@ -38,24 +38,91 @@ jobs:
           git config --global user.email actions@github.com
       - name: "Deploy documentation"
         run: mike deploy v0.9.0 latest -u --push
+      # - name: "Label development version with -dev suffix"
+      #   run: mike retitle v0.4.0 v0.4.0-dev --push
+
+  # add_crystal_api_docs_versions_file:
+  #   runs-on: "ubuntu-latest"
+  #   needs: deploy-docs
+  #   name: "Deploy Crystal API versions file"
+  #   steps:
+  #     # First we checkout the deploy branch and check
+  #     # if we even need to deploy a new versions file
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         ref: gh-pages
+
+  #     # Get hash
+  #     - name: Hash deployed cry-versions.json
+  #       id: "hash-deployed-version-json"
+  #       run: echo "::set-output name=hashed::${{ hashFiles('cry-versions.json') }}"
+
+  #     # Now we head on over to the docs branch
+  #     # and check if we need to update the deployed versions.json
+  #     - uses: actions/checkout@v2
+  #       with:
+  #         ref: docs
+
+  #     - name: Should we update cry-versions.json?
+  #       id: version-comparison
+  #       run: |
+  #         if [[ ${{steps.hash-deployed-version-json.outputs.hashed}} == ${{hashFiles('cry-versions.json')}} ]]; then
+  #           echo ::set-output name=exit_code::1
+  #         fi
+
+  #     - if: ${{steps.version-comparison.outputs.exit_code }} != 1
+  #       name: "Copy cry-versions.json"
+  #       run: "cp cry-versions.json ../"
+
+  #     - if: ${{steps.version-comparison.outputs.exit_code }} != 1
+  #       uses: actions/checkout@v2
+  #       with:
+  #         ref: gh-pages
+
+  #     - if: ${{steps.version-comparison.outputs.exit_code }} != 1
+  #       name: "Replace cry-versions.json"
+  #       run: "mv ../cry-versions.json ."
+
+  #     - if: ${{steps.version-comparison.outputs.exit_code }} != 1
+  #       uses: stefanzweifel/git-auto-commit-action@v4
+  #       with:
+  #         commit_message: Update cry-versions.cr
 
   deploy-api-docs:
+    needs: add_crystal_api_docs_versions_file
     runs-on: ubuntu-latest
-    needs: deploy-docs
+
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
-      - uses: crystal-lang/install-crystal@v1
+          ref: main
+
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
         with:
-          crystal: latest
-      - name: "Install shards"
-        run: shards install
-      - name: "Generate docs"
-        run: crystal docs
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          crystal: nightly
+
+      - name: Cache Shards
+        uses: actions/cache@v2
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: api/main
+          path: ./lib
+          key: shards-${{ hashFiles('shard.lock') }}
+
+      - name: Install Shards
+        run: |
+          if ! shards check; then
+            shards install
+          fi
+
+      - name: Build API docs
+        run: |
+          crystal docs --output=api --project-name=Rosetta \
+          --canonical-base-url="https://wout.github.io/rosetta/api/latest" --source-url-pattern="https://github.com/wout/rosetta/blob/%{refname}/%{path}#L%{line}" \
+          --source-refname=${GITHUB_SHA::8}
+      - name: Deploy API docs
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: api
+          target-folder: api/main
           clean: false
