@@ -89,7 +89,7 @@ jobs:
   #         commit_message: Update cry-versions.cr
 
   deploy-api-docs:
-    needs: add_crystal_api_docs_versions_file
+    needs: deploy-docs
     runs-on: ubuntu-latest
 
     steps:
