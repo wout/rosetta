@@ -39,21 +39,21 @@ jobs:
       - name: "Deploy documentation"
         run: mike deploy v0.9.0 latest -u --push
 
-  # deploy-api-docs:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         persist-credentials: false
-  #     - uses: crystal-lang/install-crystal@v1
-  #       with:
-  #         crystal: latest
-  #     - name: "Install shards"
-  #       run: shards install
-  #     - name: "Generate docs"
-  #       run: crystal docs
-  #     - name: Deploy to GitHub Pages
-  #       uses: peaceiris/actions-gh-pages@v3
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         publish_dir: ./docs/api
+  deploy-api-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+      - name: "Install shards"
+        run: shards install
+      - name: "Generate docs"
+        run: crystal docs
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./api/main
