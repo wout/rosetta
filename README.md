@@ -12,7 +12,7 @@ key lookup. You'll never have a `missing translation` in your app, ever again.
 
 ![GitHub](https://img.shields.io/github/license/wout/rosetta)
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/wout/rosetta)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/wout/rosetta/workflows/ci.yml?branch=main)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/wout/rosetta/test.yml?branch=main)
 
 ## Why use Rosetta?
 
