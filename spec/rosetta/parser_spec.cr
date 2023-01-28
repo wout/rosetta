@@ -42,7 +42,20 @@ describe Rosetta::Parser do
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("interpolatable.string") expected to receive t(day_name : String, name : String) but to_s was called instead) %}
+              {%
+                raise <<-ERROR
+
+                  Rosetta.find("interpolatable.string") expected to receive
+                  t(day_name : String, name : String) but to_s was called instead.
+
+                  This error may be caused by implicitly or explicitly calling
+                  .to_s on a Rosetta::Translation with interpolations.
+
+                  Make sure you're not using Rosetta::Translation in a string
+                  interpolation or in a type union with String.
+
+                ERROR
+              %}
             end
           end
       MODULE
@@ -60,7 +73,20 @@ describe Rosetta::Parser do
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("localizable.string") expected to receive t(first_name : String, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead) %}
+              {%
+                raise <<-ERROR
+
+                  Rosetta.find("localizable.string") expected to receive
+                  t(first_name : String, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead.
+
+                  This error may be caused by implicitly or explicitly calling
+                  .to_s on a Rosetta::Translation with interpolations.
+
+                  Make sure you're not using Rosetta::Translation in a string
+                  interpolation or in a type union with String.
+
+                ERROR
+              %}
             end
           end
       MODULE
@@ -78,7 +104,20 @@ describe Rosetta::Parser do
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("pluralizable.string") expected to receive t(count : Rosetta::CountArg, name : String) but to_s was called instead) %}
+              {%
+                raise <<-ERROR
+
+                  Rosetta.find("pluralizable.string") expected to receive
+                  t(count : Rosetta::CountArg, name : String) but to_s was called instead.
+
+                  This error may be caused by implicitly or explicitly calling
+                  .to_s on a Rosetta::Translation with interpolations.
+
+                  Make sure you're not using Rosetta::Translation in a string
+                  interpolation or in a type union with String.
+
+                ERROR
+              %}
             end
           end
       MODULE
@@ -96,7 +135,20 @@ describe Rosetta::Parser do
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("pluralizable.localizable.string") expected to receive t(count : Rosetta::CountArg, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead) %}
+              {%
+                raise <<-ERROR
+
+                  Rosetta.find("pluralizable.localizable.string") expected to receive
+                  t(count : Rosetta::CountArg, time : Time | Tuple(Int32, Int32, Int32)) but to_s was called instead.
+
+                  This error may be caused by implicitly or explicitly calling
+                  .to_s on a Rosetta::Translation with interpolations.
+
+                  Make sure you're not using Rosetta::Translation in a string
+                  interpolation or in a type union with String.
+
+                ERROR
+              %}
             end
           end
       MODULE
@@ -114,7 +166,20 @@ describe Rosetta::Parser do
               self.t(**values)
             end
             def to_s(io)
-              {% raise %(Rosetta.find("color_variants") expected to receive t(variant : String) but to_s was called instead) %}
+              {%
+                raise <<-ERROR
+
+                  Rosetta.find("color_variants") expected to receive
+                  t(variant : String) but to_s was called instead.
+
+                  This error may be caused by implicitly or explicitly calling
+                  .to_s on a Rosetta::Translation with interpolations.
+
+                  Make sure you're not using Rosetta::Translation in a string
+                  interpolation or in a type union with String.
+
+                ERROR
+              %}
             end
           end
       MODULE
