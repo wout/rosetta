@@ -74,7 +74,20 @@ module Rosetta
                 self.t(**values)
               end
               def to_s(io)
-                {% raise %(Rosetta.find("#{key}") expected to receive t(#{with_args}) but to_s was called instead) %}
+                {%
+                  raise <<-ERROR
+
+                    Rosetta.find("#{key}") expected to receive
+                    t(#{with_args}) but to_s was called instead.
+
+                    This error may be caused by implicitly or explicitly calling
+                    .to_s on a Rosetta::Translation with interpolations.
+
+                    Make sure you're not using Rosetta::Translation in a string
+                    interpolation or in a type union with String.
+
+                  ERROR
+                %}
               end
         METHODS
       end
