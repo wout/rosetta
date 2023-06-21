@@ -1,3 +1,3 @@
-module Rosetta
-  VERSION = "0.10.1"
+module LuckyVite
+  VERSION = {{ `shards version "#{__DIR__}"`.chomp.stringify }}
 end
