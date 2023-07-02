@@ -84,7 +84,7 @@ module Rosetta
         pluralization_tags = [] of String
 
         available_locales.each do |locale|
-          rule = rules[locale]
+          rule = rules[locale] || rules[locale.split("-").first]
 
           raise %(No pluralization rule is defined for "#{locale.id}") unless rule
 
