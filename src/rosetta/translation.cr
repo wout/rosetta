@@ -38,7 +38,7 @@ module Rosetta
   end
 
   # Temporarily use a different locale.
-  def self.with_locale(locale : String | Symbol)
+  def self.with_locale(locale : String | Symbol, &)
     current_locale = Rosetta.locale
     Rosetta.locale = locale
     yield
