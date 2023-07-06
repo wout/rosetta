@@ -152,7 +152,9 @@ module Rosetta
     private def ensure_fallbacks(hash : TranslationsHash)
       if rules = fallback_rules
         rules.each do |target, fallback|
-          hash[target] = hash[fallback].merge(hash[target]? || {} of String => String)
+          next unless hash[fallback]?
+          hash[target] = hash[fallback]
+            .merge(hash[target]? || {} of String => String)
         end
       end
 

@@ -93,7 +93,8 @@ module Rosetta
           h.each do |l, t|
             next unless pluralizable_hash?(t)
 
-            diff = pluralization_tags[l] - t.as(Hash).keys
+            locale = pluralization_tags[l]? ? l : l[0, 2]
+            diff = pluralization_tags[locale] - t.as(Hash).keys
 
             e << %(#{l}: "#{k}" is missing "#{diff.join(", ")}") unless diff.empty?
           end
