@@ -6,6 +6,7 @@ module Rosetta
       getter path : String
       getter default_locale : String
       getter available_locales : Array(String)
+      getter fallback_rules : Hash(String, String)?
       getter pluralization_rules : Hash(String, String)
       getter pluralization_tags : Hash(String, Array(String))
     end

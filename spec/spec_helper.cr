@@ -2,7 +2,10 @@ require "spec"
 require "../src/rosetta"
 
 @[Rosetta::DefaultLocale(:en)]
-@[Rosetta::AvailableLocales(:en, :nl)]
+@[Rosetta::AvailableLocales(:en, "en-US", :nl)]
+@[Rosetta::FallbackRules({
+  "en-US": "en",
+})]
 @[Rosetta::PluralizationRules({
   "en-pluralization": Rosetta::Pluralization::Rule::OneTwoOther,
   "nl-pluralization": Rosetta::Pluralization::Rule::OneTwoOther,

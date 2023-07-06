@@ -66,6 +66,15 @@ module Rosetta
       %}
 
       {%
+        fallback_rules = %w[]
+        rules = Rosetta.annotation(Rosetta::FallbackRules).args.first ||
+                {} of String => String
+        rules.each do |locale, fallback|
+          fallback_rules.push("  #{locale.id}: #{fallback.id}")
+        end
+      %}
+
+      {%
         rules = Rosetta::Pluralization.annotation(
           Rosetta::DefaultPluralizationRules
         ).args.first
@@ -84,7 +93,7 @@ module Rosetta
         pluralization_tags = [] of String
 
         available_locales.each do |locale|
-          rule = rules[locale]
+          rule = rules[locale] || rules[locale.split("-").first]
 
           raise %(No pluralization rule is defined for "#{locale.id}") unless rule
 
@@ -106,6 +115,8 @@ module Rosetta
         path: #{path.id}
         default_locale: #{default_locale.id}
         available_locales: [#{available_locales.join(',').id}]
+        fallback_rules:
+        #{fallback_rules.join("\n").id}
         pluralization_rules:
         #{pluralization_rules.join("\n").id}
         pluralization_tags:

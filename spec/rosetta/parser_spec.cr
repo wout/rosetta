@@ -24,7 +24,7 @@ describe Rosetta::Parser do
     it "builds a struct for translations without interpolations" do
       make_parser.parse!.should contain <<-MODULE
           struct TitleTranslation < Rosetta::Translation
-            getter translations = {en: %(Title), nl: %(Titel)}
+            getter translations = {en: %(Title), "en-US": %(Title), nl: %(Titel)}
             include Rosetta::SimpleTranslation
           end
       MODULE
@@ -33,10 +33,10 @@ describe Rosetta::Parser do
     it "builds a struct for translations with interpolations" do
       make_parser.parse!.should contain <<-MODULE
           struct Interpolatable_StringTranslation < Rosetta::Translation
-            getter translations = {en: %(Hi %{name}, have a fabulous %{day_name}!), nl: %(Hey %{name}, maak er een geweldige %{day_name} van!)}
+            getter translations = {en: %(Hi %{name}, have a fabulous %{day_name}!), "en-US": %(Hi %{name}, have a fabulous %{day_name}!), nl: %(Hey %{name}, maak er een geweldige %{day_name} van!)}
             include Rosetta::InterpolatedTranslation
             def t(day_name : String, name : String)
-              {en: %(Hi \#{name}, have a fabulous \#{day_name}!), nl: %(Hey \#{name}, maak er een geweldige \#{day_name} van!)}[Rosetta.locale]
+              {en: %(Hi \#{name}, have a fabulous \#{day_name}!), "en-US": %(Hi \#{name}, have a fabulous \#{day_name}!), nl: %(Hey \#{name}, maak er een geweldige \#{day_name} van!)}[Rosetta.locale]
             end
             def t(values : NamedTuple(day_name: String, name: String))
               self.t(**values)
@@ -64,10 +64,10 @@ describe Rosetta::Parser do
     it "builds a struct for translations with localizations" do
       make_parser.parse!.should contain <<-MODULE
           struct Localizable_StringTranslation < Rosetta::Translation
-            getter translations = {en: %(%{first_name} was born on %A %d %B %Y at %H:%M:%S.), nl: %(%{first_name} is geboren op %A %d %B %Y om %H:%M:%S.)}
+            getter translations = {en: %(%{first_name} was born on %A %d %B %Y at %H:%M:%S.), "en-US": %(%{first_name} was born on %A %d %B %Y at %H:%M:%S.), nl: %(%{first_name} is geboren op %A %d %B %Y om %H:%M:%S.)}
             include Rosetta::InterpolatedTranslation
             def t(first_name : String, time : Time | Tuple(Int32, Int32, Int32))
-              Rosetta.localize_time(time, {en: %(\#{first_name} was born on %A %d %B %Y at %H:%M:%S.), nl: %(\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S.)}[Rosetta.locale])
+              Rosetta.localize_time(time, {en: %(\#{first_name} was born on %A %d %B %Y at %H:%M:%S.), "en-US": %(\#{first_name} was born on %A %d %B %Y at %H:%M:%S.), nl: %(\#{first_name} is geboren op %A %d %B %Y om %H:%M:%S.)}[Rosetta.locale])
             end
             def t(values : NamedTuple(first_name: String, time: Time | Tuple(Int32, Int32, Int32)))
               self.t(**values)
@@ -95,10 +95,10 @@ describe Rosetta::Parser do
     it "builds a struct for pluralizable translations" do
       make_parser.parse!.should contain <<-MODULE
           struct Pluralizable_StringTranslation < Rosetta::Translation
-            getter translations = {en: {one: %(Hi %{name}, you've got one message.), other: %(Hi %{name}, you've got %{count} messages.)}, nl: {one: %(Hey %{name}, je hebt een bericht.), other: %(Hey %{name}, je hebt %{count} berichten.)}}
+            getter translations = {en: {one: %(Hi %{name}, you've got one message.), other: %(Hi %{name}, you've got %{count} messages.)}, "en-US": {one: %(Hi %{name}, you've got one message.), other: %(Hi %{name}, you've got %{count} messages.)}, nl: {one: %(Hey %{name}, je hebt een bericht.), other: %(Hey %{name}, je hebt %{count} berichten.)}}
             include Rosetta::PluralizedTranslation
             def t(count : Rosetta::CountArg, name : String)
-              Rosetta.pluralize(count, {en: {one: %(Hi \#{name}, you've got one message.), other: %(Hi \#{name}, you've got \#{count} messages.)}, nl: {one: %(Hey \#{name}, je hebt een bericht.), other: %(Hey \#{name}, je hebt \#{count} berichten.)}}[Rosetta.locale])
+              Rosetta.pluralize(count, {en: {one: %(Hi \#{name}, you've got one message.), other: %(Hi \#{name}, you've got \#{count} messages.)}, "en-US": {one: %(Hi \#{name}, you've got one message.), other: %(Hi \#{name}, you've got \#{count} messages.)}, nl: {one: %(Hey \#{name}, je hebt een bericht.), other: %(Hey \#{name}, je hebt \#{count} berichten.)}}[Rosetta.locale])
             end
             def t(values : NamedTuple(count: Rosetta::CountArg, name: String))
               self.t(**values)
@@ -126,10 +126,10 @@ describe Rosetta::Parser do
     it "builds a struct for pluralizable, localizable translations" do
       make_parser.parse!.should contain <<-MODULE
           struct Pluralizable_Localizable_StringTranslation < Rosetta::Translation
-            getter translations = {en: {one: %(You have an appointment on %A at %H:%M.), other: %(You have %{count} appointments on %A at %H:%M.)}, nl: {one: %(Je hebt een afspraak op %A om %H:%M.), other: %(Je hebt %{count} afspraken op %A om %H:%M.)}}
+            getter translations = {en: {one: %(You have an appointment on %A at %H:%M.), other: %(You have %{count} appointments on %A at %H:%M.)}, "en-US": {one: %(You have an appointment on %A at %H:%M.), other: %(You have %{count} appointments on %A at %H:%M.)}, nl: {one: %(Je hebt een afspraak op %A om %H:%M.), other: %(Je hebt %{count} afspraken op %A om %H:%M.)}}
             include Rosetta::PluralizedTranslation
             def t(count : Rosetta::CountArg, time : Time | Tuple(Int32, Int32, Int32))
-              Rosetta.localize_time(time, Rosetta.pluralize(count, {en: {one: %(You have an appointment on %A at %H:%M.), other: %(You have \#{count} appointments on %A at %H:%M.)}, nl: {one: %(Je hebt een afspraak op %A om %H:%M.), other: %(Je hebt \#{count} afspraken op %A om %H:%M.)}}[Rosetta.locale]))
+              Rosetta.localize_time(time, Rosetta.pluralize(count, {en: {one: %(You have an appointment on %A at %H:%M.), other: %(You have \#{count} appointments on %A at %H:%M.)}, "en-US": {one: %(You have an appointment on %A at %H:%M.), other: %(You have \#{count} appointments on %A at %H:%M.)}, nl: {one: %(Je hebt een afspraak op %A om %H:%M.), other: %(Je hebt \#{count} afspraken op %A om %H:%M.)}}[Rosetta.locale]))
             end
             def t(values : NamedTuple(count: Rosetta::CountArg, time: Time | Tuple(Int32, Int32, Int32)))
               self.t(**values)
@@ -157,7 +157,7 @@ describe Rosetta::Parser do
     it "builds a struct for variant translations" do
       make_parser.parse!.should contain <<-MODULE
           struct ColorVariantsTranslation < Rosetta::Translation
-            getter translations = {en: {pink: %(pink), teal: %(teal), yellow: %(yellow)}, nl: {pink: %(roze), teal: %(appelblauwzeegroen), yellow: %(geel)}}
+            getter translations = {en: {pink: %(pink), teal: %(teal), yellow: %(yellow)}, "en-US": {pink: %(pink), teal: %(teal), yellow: %(yellow)}, nl: {pink: %(roze), teal: %(appelblauwzeegroen), yellow: %(geel)}}
             include Rosetta::VariantsTranslation
             def t(variant : String)
               translations[Rosetta.locale][variant]
@@ -304,7 +304,10 @@ end
 # Helpers
 def make_parser(
   default_locale = "en",
-  available_locales = %w[en nl],
+  available_locales = %w[en en-US nl],
+  fallback_rules = {
+    "en-US": :en,
+  },
   pluralization_rules = {
     en: "Rosetta::Pluralization::Rule::OneOther",
     nl: "Rosetta::Pluralization::Rule::OneOther",
@@ -317,6 +320,7 @@ def make_parser(
     path:                "spec/fixtures/rosetta",
     default_locale:      default_locale,
     available_locales:   available_locales,
+    fallback_rules:      fallback_rules,
     pluralization_rules: pluralization_rules,
     pluralization_tags:  pluralization_tags,
   }.to_yaml)
