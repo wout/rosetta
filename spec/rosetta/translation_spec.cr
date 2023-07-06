@@ -68,7 +68,7 @@ describe Rosetta do
   describe "#translations" do
     it "returns the original translations" do
       Rosetta.find("user.first_name").translations
-        .should eq({en: "First name", nl: "Voornaam"})
+        .should eq({en: "First name", "en-US": "First name", nl: "Voornaam"})
     end
   end
 

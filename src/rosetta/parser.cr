@@ -13,6 +13,7 @@ module Rosetta
 
     delegate available_locales, to: config
     delegate default_locale, to: config
+    delegate fallback_rules, to: config
     delegate path, to: config
 
     getter alternative_locales : Array(String)
@@ -26,7 +27,7 @@ module Rosetta
 
     def initialize(@config : Config)
       @alternative_locales = available_locales - [default_locale]
-      @translations = load_translations
+      @translations = ensure_fallbacks(load_translations)
       @ruling_key_set = collect_ruling_keys(@translations, default_locale)
       @pluralization_tags = map_locales_to_pluralization_tags(
         config.pluralization_rules,
@@ -145,6 +146,17 @@ module Rosetta
           h[k.to_s] = v.to_s
         end
       end
+    end
+
+    # Apply fallback rules
+    private def ensure_fallbacks(hash : TranslationsHash)
+      if rules = fallback_rules
+        rules.each do |target, fallback|
+          hash[target] = hash[fallback].merge(hash[target]? || {} of String => String)
+        end
+      end
+
+      hash
     end
 
     # Test if the key matches the variants convention.

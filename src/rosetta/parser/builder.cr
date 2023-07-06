@@ -111,16 +111,21 @@ module Rosetta
 
       # Builds a tuple with translation values.
       private def build_translations_tuple(translations : Translations)
-        pairs = translations.each_with_object([] of String) do |(k, t), s|
-          case t
-          when String
-            s << %(#{k}: %(#{t}))
-          when Hash
-            s << %(#{k}: #{build_translations_tuple(t)})
+        String.build do |io|
+          io << '{'
+          translations.each_with_index do |(k, t), i|
+            io << ", " if i > 0
+            io << (k.index('-') ? %("#{k}") : k)
+            io << ": "
+            case t
+            when String
+              io << "%(#{t})"
+            when Hash
+              io << build_translations_tuple(t)
+            end
           end
+          io << '}'
         end
-
-        "{#{pairs.join(", ")}}"
       end
 
       # Builds a translation return value and localize it if required.
@@ -130,11 +135,7 @@ module Rosetta
         i12n_keys : Array(String),
         l10n_keys : Array(String)
       )
-        parsed_tuple = if i12n_keys.empty?
-                         "translations"
-                       else
-                         build_translations_tuple(translations).gsub(/\%\{/, "\#{")
-                       end
+        parsed_tuple = i12n_keys.empty? ? "translations" : build_translations_tuple(translations).gsub(/\%\{/, "\#{")
         value = "#{parsed_tuple}[Rosetta.locale]"
 
         if variants_key?(key)
@@ -144,7 +145,6 @@ module Rosetta
         end
 
         value = "Rosetta.localize_time(time, #{value})" unless l10n_keys.empty?
-
         value
       end
 
