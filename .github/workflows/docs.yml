@@ -51,7 +51,7 @@ jobs:
       - name: Install Crystal
         uses: crystal-lang/install-crystal@v1
         with:
-          crystal: nightly
+          crystal: latest
 
       - name: Cache Shards
         uses: actions/cache@v2
