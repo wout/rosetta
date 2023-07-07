@@ -1,4 +1,5 @@
 ## Pluralizable locales
+
 A pluralization in the locale files may look like the one below:
 
 ```cr
@@ -19,6 +20,7 @@ key called `other`, and its value contains a `%{count}` interpolation key.
     to `other`.
 
 ## Category tags
+
 All the short category tags defined by [the
 CLDR](http://cldr.unicode.org/index/cldr-spec/plural-rules) are supported:
 
@@ -31,6 +33,7 @@ CLDR](http://cldr.unicode.org/index/cldr-spec/plural-rules) are supported:
   single form)
 
 ## Pluralizable translations
+
 For pluralizable translations, the `t` method will require the `count` argument,
 which can be a `Float` or an `Int`:
 
@@ -42,11 +45,13 @@ Rosetta.find("example.pluralization").t(count: 12)
 ```
 
 ## Pluralization rules
+
 Rosetta includes pluralization rules for most of the available locales. They can
 be found in the repo under
 [src/rosetta/pluralization/rule](https://github.com/wout/rosetta/tree/main/src/rosetta/pluralization/rule).
 
 ## Custom pluralization rules
+
 Custom rules need to inherit from `Rosetta::Pluralization::Rule`, define the
 `apply` method and define the required `CategoryTags` annotation. For example:
 

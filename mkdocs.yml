@@ -13,6 +13,7 @@ nav:
   - Translations: translations.md
   - Interpolation: interpolation.md
   - Pluralization: pluralization.md
+  - Fallbacks: fallbacks.md
   - Variants: variants.md
   - Date, time and numbers: localization.md
   - Parser checks: parser_checks.md
@@ -20,20 +21,20 @@ nav:
 theme:
   name: material
   palette:
-  - media: "(prefers-color-scheme: light)"
-    scheme: default
-    accent: cyan
-    primary: cyan
-    toggle:
-      icon: material/toggle-switch-off-outline
-      name: Use dark mode
-  - media: "(prefers-color-scheme: dark)"
-    scheme: slate
-    accent: cyan
-    primary: cyan
-    toggle:
-      icon: material/toggle-switch
-      name: Use light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      accent: cyan
+      primary: cyan
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Use dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      accent: cyan
+      primary: cyan
+      toggle:
+        icon: material/toggle-switch
+        name: Use light mode
   logo: assets/rosetta-logo-light.png
   icon:
     repo: fontawesome/brands/github
