@@ -1,6 +1,6 @@
-When working with variations of lanuages, like `en-US` or `en-GB`, it's useful
-for one locale set to fall back on another one. Using fallbacks, you can avoid
-duplication between your locales sets.
+When working with variations of languages, like `en-US` or `en-GB`, it's useful
+for one locale set to fall back to another one to avoid duplication between your
+locales sets.
 
 ## Fallback rules
 
