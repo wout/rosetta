@@ -78,14 +78,14 @@ dependencies:
 4. Require the generated config file:
 
 ```cr
-# e.g. src/app_name.cr
+# src/app_name.cr
 require "../config/rosetta"
 ```
 
 5. Include the `Rosetta::Translatable` mixin:
 
 ```cr
-# e.g. src/pages/main_layout.cr
+# src/pages/main_layout.cr
 include Rosetta::Translatable
 ```
 
