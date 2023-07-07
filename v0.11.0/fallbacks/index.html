@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://wout.github.io/rosetta/v0.11.0/localization/">
+        <link rel="canonical" href="https://wout.github.io/rosetta/v0.11.0/fallbacks/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
     
     
       
-        <title>Date, time and numbers - Rosetta Docs</title>
+        <title>Fallbacks - Rosetta Docs</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#localized-time" class="md-skip">
+        <a href="#fallback-rules" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Date, time and numbers
+              Fallbacks
             
           </span>
         </div>
@@ -365,11 +365,54 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../fallbacks/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Fallbacks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Fallbacks
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fallback-rules" class="md-nav__link">
+    Fallback rules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-fallbacks" class="md-nav__link">
+    Chaining fallbacks
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -395,75 +438,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Date, time and numbers
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../localization/" class="md-nav__link">
         Date, time and numbers
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#localized-time" class="md-nav__link">
-    Localized time
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#localized-date" class="md-nav__link">
-    Localized date
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#localized-number" class="md-nav__link">
-    Localized number
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-of-time-in-words" class="md-nav__link">
-    Distance of time in words
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-localizable-mixin" class="md-nav__link">
-    The Localizable mixin
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -507,36 +486,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#localized-time" class="md-nav__link">
-    Localized time
+  <a href="#fallback-rules" class="md-nav__link">
+    Fallback rules
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#localized-date" class="md-nav__link">
-    Localized date
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#localized-number" class="md-nav__link">
-    Localized number
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#distance-of-time-in-words" class="md-nav__link">
-    Distance of time in words
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-localizable-mixin" class="md-nav__link">
-    The Localizable mixin
+  <a href="#chaining-fallbacks" class="md-nav__link">
+    Chaining fallbacks
   </a>
   
 </li>
@@ -553,101 +511,42 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/wout/rosetta/tree/docs/docs/localization.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/wout/rosetta/tree/docs/docs/fallbacks.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Date, time and numbers</h1>
+                  <h1>Fallbacks</h1>
                 
-                <p>Predefined localization formats, day names and month names, live under the
-<code>rosetta_localization</code> namespace in the locale files. The initializer script
-will install the required files for you in order to be able to work with
-Rosetta.</p>
-<h2 id="localized-time">Localized time</h2>
-<p>Similar to translations, localization formats are fetched at compile-time and 
-localized at runtime.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;Sun, 29 Aug 2021 18:30:57 +0200&quot;</span>
+                <p>When working with variations of lanuages, like <code>en-US</code> or <code>en-GB</code>, it's useful
+for one locale set to fall back on another one. Using fallbacks, you can avoid
+duplication between your locales sets.</p>
+<h2 id="fallback-rules">Fallback rules</h2>
+<p>Fallback rules are configured using the <code>Rosetta::FallbackRules</code> annotation:</p>
+<div class="highlight"><pre><span></span><code><span class="o">@[</span><span class="nd">Rosetta::AvailableLocales</span><span class="p">(</span><span class="s2">&quot;en-GB&quot;</span><span class="p">,</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span> <span class="ss">:nl</span><span class="p">)</span><span class="o">]</span>
+<span class="o">@[</span><span class="nd">Rosetta::FallbackRules</span><span class="p">({</span>
+  <span class="s2">&quot;en-GB&quot;</span><span class="p">:</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+<span class="p">})</span><span class="o">]</span>
 </code></pre></div>
-<p>This will use the <code>:default</code> format to convert the given <code>Time</code> object. Another predefined format can be passed:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="ss">:short</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;29 Aug 18:30&quot;</span>
+<p>In the example above, <code>en-US</code> is treated as the main locale set for English,
+which should be complete. The <code>en-GB</code> set only needs to include the translations
+deviating from <code>en-US</code>.</p>
+<h2 id="chaining-fallbacks">Chaining fallbacks</h2>
+<p>Fallbacks may also be chained:</p>
+<div class="highlight"><pre><span></span><code><span class="o">@[</span><span class="nd">Rosetta::AvailableLocales</span><span class="p">(</span><span class="s2">&quot;en-GB&quot;</span><span class="p">,</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span> <span class="ss">:en</span><span class="p">,</span> <span class="ss">:nl</span><span class="p">)</span><span class="o">]</span>
+<span class="o">@[</span><span class="nd">Rosetta::FallbackRules</span><span class="p">({</span>
+  <span class="s2">&quot;en-US&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span>
+  <span class="s2">&quot;en-GB&quot;</span><span class="p">:</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span>
+<span class="p">})</span><span class="o">]</span>
 </code></pre></div>
-<p>For specific formats, a string can be passed as well:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;18:30:57&quot;</span>
-</code></pre></div>
-<h2 id="localized-date">Localized date</h2>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;2021-08-29&quot;</span>
-</code></pre></div>
-<p>Or with a date-formatted tuple:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">l</span><span class="p">({</span><span class="mi">1991</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">})</span>
-<span class="c1"># =&gt; &quot;1991-09-17&quot;</span>
-</code></pre></div>
-<p>Similar to the <code>time</code> macro, a predefined format can be passed:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="ss">:long</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;August 29, 2021&quot;</span>
-</code></pre></div>
-<p>Or a completely custom format:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="s2">&quot;%Y&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;2021&quot;</span>
-</code></pre></div>
-<h2 id="localized-number">Localized number</h2>
-<p>Number formats work the same as date and time formats.</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">number</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mf">123_456.789</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;123,456.79&quot;</span>
-</code></pre></div>
-<p>With a specific predefined format:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="ss">:custom</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mf">123_456.789</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;12 34 56.789&quot;</span>
-</code></pre></div>
-<p>Or with specific formatting options:</p>
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">number</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="mf">123_456.789</span><span class="p">,</span> <span class="ss">decimal_places</span><span class="p">:</span> <span class="mi">6</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;123,456.789000&quot;</span>
-</code></pre></div>
+<p>The callback change will now be <code>en-GB -&gt; en-US -&gt; en</code>.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>In the background, Rosetta uses Crystal's native <code>Number#format</code> method and
-accepts the same parameters.</p>
+<p>It's important to note that fallback rules are applied sequentially. To be
+able to fall back to a set, it must be "complete". That is why, in the
+example above, <code>en-US</code> is falling back on <code>en</code> first, before <code>en-GB</code> can
+fall back on <code>en-US</code>.</p>
 </div>
-<h2 id="distance-of-time-in-words">Distance of time in words</h2>
-<p>A few helpers are included for translating the distance of time.</p>
-<p><strong>The distance between two times</strong>:
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">distance_of_time_in_words</span><span class="p">(</span>
-  <span class="n">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-  <span class="n">Time</span><span class="o">.</span><span class="n">utc</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="p">)</span>
-<span class="c1"># =&gt; &quot;5 seconds&quot;</span>
-</code></pre></div></p>
-<p><strong>Time ago since a given time</strong>:
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time_ago_in_words</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span> <span class="o">-</span> <span class="mi">1</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;about a year&quot;</span>
-</code></pre></div></p>
-<p><strong>Time from now to a given time</strong>:
-<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">time_from_now_in_words</span><span class="p">(</span><span class="n">Time</span><span class="o">.</span><span class="n">local</span> <span class="o">+</span> <span class="mi">1</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
-<span class="c1"># =&gt; &quot;about a year&quot;</span>
-</code></pre></div></p>
-<h2 id="the-localizable-mixin">The <code>Localizable</code> mixin</h2>
-<p>Include this mixin anywhere you want to work with localized dates, times and
-numbers. Here's an example of its usage:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">User</span>
-  <span class="k">include</span> <span class="n">Rosetta</span><span class="o">::</span><span class="n">Localizable</span>
-
-  <span class="k">def</span> <span class="nf">birthday</span>
-    <span class="n">r_date</span><span class="p">(</span><span class="ss">:short</span><span class="p">)</span><span class="o">.</span><span class="n">l</span><span class="p">(</span><span class="n">born_at</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="n">User</span><span class="o">.</span><span class="n">new</span><span class="o">.</span><span class="n">birthday</span>
-<span class="c1"># =&gt; &quot;Feb 20&quot;</span>
-</code></pre></div>
-<p>Similarly there are the <code>r_time</code> and the <code>r_number</code> macros for retrieval,
-returning a struct which accepts the <code>l</code> method for the value that needs to be
-localized.</p>
-<p>The <code>distance_of_time_in_words</code>, <code>time_ago_in_words</code> an <code>time_from_now_in_words</code>
-helpers are also included with this module.</p>
                 
               
               
@@ -667,7 +566,7 @@ helpers are also included with this module.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../variants/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Variants" rel="prev">
+        <a href="../pluralization/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Pluralization" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -676,20 +575,20 @@ helpers are also included with this module.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Variants
+              Pluralization
             </div>
           </div>
         </a>
       
       
         
-        <a href="../parser_checks/" class="md-footer__link md-footer__link--next" aria-label="Next: Parser checks" rel="next">
+        <a href="../variants/" class="md-footer__link md-footer__link--next" aria-label="Next: Variants" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Parser checks
+              Variants
             </div>
           </div>
           <div class="md-footer__button md-icon">
