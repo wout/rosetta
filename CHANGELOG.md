@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.0 (2023-07-07)
+
+- Add fallbacks.
+
+## 0.10.1 (2023-01-28)
+
+- Add better compile-time error message for to_s with missing interpolations.
+
+## 0.10.0 (2022-12-10)
+
+- Fix bug in loading order of initializer.
+
 ## 0.9.0 (2022-10-09)
 
 - Add support for Crystal 1.6.0.
@@ -38,7 +50,7 @@
 
 ## 0.6.5 (2022-03-31)
 
-- Fix bug in shim to ensure presence of the bin dir. 
+- Fix bug in shim to ensure presence of the bin dir.
 
 ## 0.6.4 (2022-03-18)
 
