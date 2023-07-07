@@ -6,7 +6,6 @@
        alt="Rosetta logo">
 </p>
 
-### Probably the fastest internationalization library in the world
 A blazing fast internationalization (i18n) library for Crystal with compile-time
 key lookup. You'll never have a `missing translation` in your app, ever again.
 
@@ -17,6 +16,7 @@ key lookup. You'll never have a `missing translation` in your app, ever again.
 ## Why use Rosetta?
 
 ### You'll never have a missing translation
+
 Rosetta is different from other internationalization libraries because it
 handles key lookup at compile-time rather than runtime. The significant
 advantage is that you'll be able to find missing translations - or typos in
@@ -24,12 +24,14 @@ your locale keys - during development rather than after you've deployed your
 app. This is also true for translation keys in all additional locales.
 
 ### You'll never have a missing interpolation
+
 In Rosetta, interpolation keys are arguments to the translation method. So if
 you're missing an argument, the compiler will complain. The parser will also
 compare interpolation keys in additional locales to the ones found in the
 default locale, and complain if some are missing.
 
 ### Rosetta is more than 12x faster than similar libraries
+
 Benchmarking against other libraries which also use YAML or JSON backends,
 Rosetta is 12x to 700x faster than any other one.
 
@@ -101,24 +103,6 @@ end
 
 Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 
-## To-do
-- [x] Add specs for the existing code
-- [x] Make settings accessible to the compiler
-- [x] Send `default_locale` and `available_locales` to the parser
-- [x] Implement key comparison between available locales in the parser
-- [x] Add compiler error messages for mismatching keys
-- [x] Implement inferred locale keys at macro level
-- [x] Interpolation (with %{} tag for interpolation keys)
-- [x] Check the existence of interpolation keys in all translations at compile-time
-- [x] Translatable mixin
-- [x] Localization of numeric values
-- [x] Localization of date and time values
-- [x] Localizable mixin
-- [x] Locale exceptions
-- [x] Add setup scripts
-- [x] Pluralization (with one/many/other/count/... convention)
-- [ ] Implement fallbacks
-
 ## Development
 
 Make sure you have [Guardian.cr](https://github.com/f/guardian) installed. Then
@@ -129,6 +113,7 @@ $ guardian
 ```
 
 This will automatically:
+
 - run ameba for src and spec files
 - run the relevant spec for any file in src
 - run spec file whenever they are saved
@@ -151,7 +136,7 @@ This will automatically:
 
 ### To the docs
 
-Check out the `docs` branch and run the following command to launch the docs locally: 
+Check out the `docs` branch and run the following command to launch the docs locally:
 
 ```
 docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
@@ -162,7 +147,9 @@ docker run --rm -it -p 8000:8000 -v ${PWD}:/docs squidfunk/mkdocs-material
 - [wout](https://github.com/wout) - creator and maintainer
 
 ## Acknowledgements
+
 This shard pulls inspiration from the following projects:
+
 - [crimson-knight/i18n.cr](https://github.com/crimson-knight/i18n.cr)
 - [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n)
 - [syeopite/lens](https://github.com/syeopite/lens)
