@@ -29,7 +29,7 @@ Fallbacks may also be chained:
 })]
 ```
 
-The callback change will now be `en-GB -> en-US -> en`.
+The callback chain will now be `en-GB -> en-US -> en`.
 
 !!! info
     It's important to note that fallback rules are applied sequentially. To be
