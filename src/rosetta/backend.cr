@@ -24,8 +24,8 @@ module Rosetta
       %}
 
       {%
-        available_locales = Rosetta.annotation(Rosetta::AvailableLocales).args
-        if available_locales.empty?
+        anno = Rosetta.annotation(Rosetta::AvailableLocales)
+        if anno.nil? || (available_locales = anno.args).empty?
           raise <<-ERROR
 
             No available locales defined. Add an annotation with at least one value:
@@ -41,10 +41,11 @@ module Rosetta
 
       {%
         fallback_rules = %w[]
-        rules = Rosetta.annotation(Rosetta::FallbackRules).args.first ||
-                {} of String => String
-        rules.each do |locale, fallback|
-          fallback_rules.push("  #{locale.id}: #{fallback.id}")
+        anno = Rosetta.annotation(Rosetta::FallbackRules)
+        if anno && (rules = anno.args.first)
+          rules.each do |locale, fallback|
+            fallback_rules.push("  #{locale.id}: #{fallback.id}")
+          end
         end
       %}
 
@@ -52,8 +53,8 @@ module Rosetta
         rules = Rosetta::Pluralization.annotation(
           Rosetta::DefaultPluralizationRules
         ).args.first
-
-        if custom_rules = Rosetta.annotation(Rosetta::PluralizationRules).args.first
+        anno = Rosetta.annotation(Rosetta::PluralizationRules)
+        if anno && (custom_rules = anno.args.first)
           custom_rules.each do |locale, rule|
             rules[locale] = rule
           end
