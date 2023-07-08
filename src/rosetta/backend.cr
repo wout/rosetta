@@ -7,35 +7,9 @@ module Rosetta
     # Rosetta::Backend.load("config/locales")
     # ```
     macro load(path)
-      # REMOVE THIS AT THE RELEASE OF VERSION 1.0.0
       {%
-        if Rosetta.has_constant?("AVAILABLE_LOCALES") ||
-           Rosetta.has_constant?("DEFAULT_LOCALE") ||
-           Rosetta.has_constant?("PLURALIZATION_RULES")
-          raise <<-ERROR
-
-            The Rosetta::DEFAULT_LOCALE, Rosetta::AVAILABLE_LOCALES and
-            Rosetta::PLURALIZATION_RULES constants are no longer considered.
-
-            Use an annotation instead, for example:
-
-              @[Rosetta::DefaultLocale(:en)]
-              @[Rosetta::AvailableLocales(:en, :fr, :nl)]
-              @[Rosetta::PluralizationRules({
-                en: Rosetta::Pluralization::Rule::OneTwoOther,
-                fr: Rosetta::Pluralization::Rule::OneTwoOther,
-                nl: Rosetta::Pluralization::Rule::OneTwoOther,
-              })]
-              module Rosetta
-              end
-
-          ERROR
-        end
-      %}
-
-      {%
-        default_locale = Rosetta.annotation(Rosetta::DefaultLocale).args.first
-        if default_locale.nil?
+        anno = Rosetta.annotation(Rosetta::DefaultLocale)
+        if anno.nil? || (default_locale = anno.args.first).nil?
           raise <<-ERROR
 
             No default locale is defined. Add an annotation with exactly one value:
