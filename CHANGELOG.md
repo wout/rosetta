@@ -1,8 +1,12 @@
 # Changelog
 
+## 0.11.2 (2023-07-10)
+
+- Fix bug in version module.
+
 ## 0.11.1 (2023-07-08)
 
-- Fix bug in backend where the fallback rules annotation wasn't optional
+- Fix bug in backend where the fallback rules annotation wasn't optional.
 
 ## 0.11.0 (2023-07-07)
 
