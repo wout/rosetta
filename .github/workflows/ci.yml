@@ -7,57 +7,25 @@ on:
     branches: "*"
 
 jobs:
-  check_format:
-    strategy:
-      fail-fast: false
-      matrix:
-        shard_file:
-          - shard.yml
-        crystal_version:
-          - 1.6.0
-          - latest
-        experimental:
-          - false
-        # include:
-        #   - shard_file: shard.yml
-        #     crystal_version: nightly
-        #     experimental: true
-    runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental }}
-    steps:
-      - uses: actions/checkout@v1
-      - uses: crystal-lang/install-crystal@v1
-        with:
-          crystal: ${{matrix.crystal_version}}
-      - name: Install shards
-        run: SHARDS_OVERRIDE=${{ matrix.shard_file }} shards install
-      - name: Format
-        run: crystal tool format --check
-      - name: Lint
-        run: ./bin/ameba
   specs:
     strategy:
       fail-fast: false
       matrix:
-        shard_file:
-          - shard.yml
-        crystal_version:
-          - 1.6.0
-          - latest
-        experimental:
-          - false
-        # include:
-        #   - shard_file: shard.yml
-        #     crystal_version: nightly
-        #     experimental: true
-    runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental }}
+        # os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
+        crystal_version: [latest]
+    runs-on: ${{ matrix.os }}
+    continue-on-error: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: crystal-lang/install-crystal@v1
         with:
-          crystal: ${{matrix.crystal_version}}
+          crystal: ${{ matrix.crystal_version }}
       - name: Install shards
-        run: SHARDS_OVERRIDE=${{ matrix.shard_file }} shards install --ignore-crystal-version
+        run: shards install
       - name: Run tests
         run: crystal spec
+      - name: Check format
+        run: crystal tool format --check
+      - name: Lint
+        run: ./bin/ameba
