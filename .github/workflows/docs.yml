@@ -13,11 +13,11 @@ jobs:
     name: "Generate docs"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: docs
           fetch-depth: 0 # fetch all commits/branches
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - uses: actions/cache@v2
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: main
 
