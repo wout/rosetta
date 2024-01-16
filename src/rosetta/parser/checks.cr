@@ -58,17 +58,18 @@ module Rosetta
 
       # Checks if interpolation keys are maching in all available locales.
       private def check_interpolation_keys_matching? : Bool
-        errors = ruling_key_set.each_with_object([] of String) do |k, e|
-          ruling_translation = processed_translations[k][default_locale]
-          i12n_keys = ruling_translation.to_s.scan(/%\{[^\}]+\}/).map { |m| m[0] }
+        errors = ruling_key_set.each_with_object([] of String) do |key, err|
+          ruling_translation = processed_translations[key][default_locale]
+          i12n_keys = ruling_translation.to_s.scan(/%\{[^\}]+\}/)
+            .map { |match| match[0] }
 
           next if i12n_keys.empty?
 
-          alternative_locales.each do |l|
-            i12n_keys.each do |key|
-              next if processed_translations[k][l].to_s.match(%r{#{key}})
+          alternative_locales.each do |locale|
+            i12n_keys.each do |i12n_key|
+              next if processed_translations[key][locale].to_s.match(%r{#{i12n_key}})
 
-              e << %(#{l}: "#{k}" should contain "#{key}")
+              err << %(#{locale}: "#{key}" should contain "#{i12n_key}")
             end
           end
         end
@@ -89,16 +90,19 @@ module Rosetta
       # Check if every locale has the required category tags for every
       # pluralizable translation.
       private def check_pluralization_tags_complete? : Bool
-        errors = processed_translations.each_with_object([] of String) do |(k, h), e|
-          h.each do |l, t|
-            next unless pluralizable_hash?(t)
+        errors = processed_translations
+          .each_with_object([] of String) do |(key, hash), err|
+            hash.each do |locale, trans|
+              next unless pluralizable_hash?(trans)
 
-            locale = pluralization_tags[l]? ? l : l[0, 2]
-            diff = pluralization_tags[locale] - t.as(Hash).keys
+              locale = pluralization_tags[locale]? ? locale : locale[0, 2]
+              diff = pluralization_tags[locale] - trans.as(Hash).keys
 
-            e << %(#{l}: "#{k}" is missing "#{diff.join(", ")}") unless diff.empty?
+              unless diff.empty?
+                err << %(#{locale}: "#{key}" is missing "#{diff.join(", ")}")
+              end
+            end
           end
-        end
 
         unless errors.empty?
           @error = <<-ERROR
@@ -114,17 +118,20 @@ module Rosetta
       end
 
       private def check_variant_keys_matching? : Bool
-        errors = processed_translations.each_with_object([] of String) do |(k, h), e|
-          next unless variants_key?(k.to_s)
+        errors = processed_translations
+          .each_with_object([] of String) do |(key, _), err|
+            next unless variants_key?(key.to_s)
 
-          ruling_variants = processed_translations[k][default_locale].as(Hash).keys
+            ruling_variants = processed_translations[key][default_locale].as(Hash).keys
 
-          alternative_locales.each do |l|
-            diff = ruling_variants - processed_translations[k][l].as(Hash).keys
+            alternative_locales.each do |locale|
+              diff = ruling_variants - processed_translations[key][locale].as(Hash).keys
 
-            e << %(#{l}: "#{k}" is missing "#{diff.join(", ")}") unless diff.empty?
+              unless diff.empty?
+                err << %(#{locale}: "#{key}" is missing "#{diff.join(", ")}")
+              end
+            end
           end
-        end
 
         unless errors.empty?
           @error = <<-ERROR

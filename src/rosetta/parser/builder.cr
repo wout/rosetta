@@ -19,8 +19,8 @@ module Rosetta
 
       # Builds a translation struct for every single translation key.
       private def build_structs(translations : TranslationsHash)
-        translations.each_with_object([] of String) do |(k, t), s|
-          s << build_struct(k, t)
+        translations.each_with_object([] of String) do |(key, trans), object|
+          object << build_struct(key, trans)
         end
       end
 

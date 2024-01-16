@@ -74,8 +74,8 @@ module Rosetta
       rules : Hash(String, String),
       tags : Hash(String, Array(String))
     )
-      rules.each_with_object({} of String => Array(String)) do |(l, r), h|
-        h[l] = tags[r]
+      rules.each_with_object({} of String => Array(String)) do |(locale, rule), hash|
+        hash[locale] = tags[rule]
       end
     end
 
@@ -87,9 +87,9 @@ module Rosetta
     # Flips translations from top-level locales to top-level keys.
     private def processed_translations
       @processed_translations ||= ruling_key_set
-        .each_with_object(TranslationsHash.new) do |k, h|
-          h[k] = available_locales.each_with_object(Translations.new) do |l, t|
-            t[l] = translations[l][k]
+        .each_with_object(TranslationsHash.new) do |key, hash|
+          hash[key] = available_locales.each_with_object(Translations.new) do |locale, trans|
+            trans[locale] = translations[locale][key]
           end
         end
     end
@@ -131,19 +131,19 @@ module Rosetta
 
     # Flattens a nested hash to a key/value hash.
     private def flatten_hash_from_any(hash)
-      hash.as_h.each_with_object(Translations.new) do |(k, v), h|
-        case v
+      hash.as_h.each_with_object(Translations.new) do |(key, value), flat_hash|
+        case value
         when .as_h?
-          if pluralizable_hash?(v.as_h) || variants_key?(k.to_s)
-            h[k.to_s] = v.as_h.transform_keys(&.to_s)
+          if pluralizable_hash?(value.as_h) || variants_key?(key.to_s)
+            flat_hash[key.to_s] = value.as_h.transform_keys(&.to_s)
               .transform_values(&.to_s)
           else
-            flatten_hash_from_any(v).map do |h_k, h_v|
-              h["#{k}.#{h_k}"] = h_v
+            flatten_hash_from_any(value).map do |h_k, h_v|
+              flat_hash["#{key}.#{h_k}"] = h_v
             end
           end
         else
-          h[k.to_s] = v.to_s
+          flat_hash[key.to_s] = value.to_s
         end
       end
     end

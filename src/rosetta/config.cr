@@ -8,7 +8,7 @@ module Rosetta
       @locale = if Rosetta.available_locales.map(&.to_s).includes?(locale.to_s)
                   locale.to_s
                 else
-                  # TODO: make use of a fallback here
+                  # make use of a fallback here
                   Rosetta.default_locale
                 end
     end
