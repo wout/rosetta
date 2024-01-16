@@ -1,5 +1,5 @@
 click==8.0.1
-cython==0.29.37.1
+cython==0.29.37
 ghp-import==2.0.1
 importlib-metadata==4.6.4
 Jinja2==3.0.1
