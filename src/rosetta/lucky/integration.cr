@@ -4,6 +4,7 @@ module Rosetta
       {% targets = {
            "Avram::Model",
            "Avram::Operation",
+           "Avram::DeleteOperation(T)",
            "Avram::SaveOperation(T)",
            "Lucky::Action",
            "Lucky::BaseComponent",
