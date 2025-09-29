@@ -109,7 +109,7 @@ Make sure you have [Guardian.cr](https://github.com/f/guardian) installed. Then
 run:
 
 ```bash
-$ guardian
+guardian
 ```
 
 This will automatically:
