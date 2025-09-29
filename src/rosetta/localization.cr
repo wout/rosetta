@@ -62,14 +62,14 @@ module Rosetta
   # ```
   def self.localize_time(
     time : Time,
-    format : String
+    format : String,
   )
     time.to_s(localize_day_and_month_names(time, format))
   end
 
   def self.localize_time(
     time : Tuple(Int32, Int32, Int32),
-    format : String
+    format : String,
   )
     localize_time(Time.local(*time), format)
   end
@@ -291,7 +291,7 @@ module Rosetta
       @delimiter : String | Char,
       @decimal_places : Int32,
       @group : Int32,
-      @only_significant : Bool
+      @only_significant : Bool,
     )
     end
 
@@ -301,7 +301,7 @@ module Rosetta
       delimiter : String | Char = @delimiter,
       decimal_places : Int32 = @decimal_places,
       group : Int32 = @group,
-      only_significant : Bool = @only_significant
+      only_significant : Bool = @only_significant,
     )
       number.format(
         separator: separator,

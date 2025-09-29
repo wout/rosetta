@@ -62,7 +62,7 @@ module Rosetta
     # Returns the key set of the default locale.
     private def collect_ruling_keys(
       translations : TranslationsHash,
-      default_locale : String
+      default_locale : String,
     )
       return %w[] if translations.empty?
 
@@ -72,7 +72,7 @@ module Rosetta
     # Map locales to pluralization category tags.
     private def map_locales_to_pluralization_tags(
       rules : Hash(String, String),
-      tags : Hash(String, Array(String))
+      tags : Hash(String, Array(String)),
     )
       rules.each_with_object({} of String => Array(String)) do |(locale, rule), hash|
         hash[locale] = tags[rule]
@@ -122,7 +122,7 @@ module Rosetta
     private def add_translations(
       translations : TranslationsHash,
       locale : String,
-      hash_from_any
+      hash_from_any,
     ) : TranslationsHash
       translations[locale] = Translations.new unless translations[locale]?
       translations[locale].merge!(flatten_hash_from_any(hash_from_any))

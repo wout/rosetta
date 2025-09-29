@@ -34,7 +34,7 @@ module Rosetta
 
     private def generate_initial_setup(
       default_locale : String,
-      available_locales : Array(String)
+      available_locales : Array(String),
     )
       template = InitTemplate.new(
         default_locale,
@@ -71,7 +71,7 @@ module Rosetta
     def initialize(
       @default_locale,
       @available_locales,
-      @locales_dir
+      @locales_dir,
     )
     end
   end

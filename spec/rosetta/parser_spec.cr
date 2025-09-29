@@ -314,7 +314,7 @@ def make_parser(
   },
   pluralization_tags = {
     "Rosetta::Pluralization::Rule::OneOther": %w[one other],
-  }
+  },
 )
   parser_config = Rosetta::Parser::Config.from_yaml({
     path:                "spec/fixtures/rosetta",

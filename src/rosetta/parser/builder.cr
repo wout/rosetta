@@ -27,7 +27,7 @@ module Rosetta
       # Builds a dedicated struct for a given translation key.
       private def build_struct(
         key : String,
-        translations : Translations
+        translations : Translations,
       )
         class_name = key.split('.').map(&.camelcase).join('_')
 
@@ -43,7 +43,7 @@ module Rosetta
       # keys.
       private def build_struct_methods(
         key : String,
-        translations : Translations
+        translations : Translations,
       )
         stringified = translations[default_locale].to_s
         i12n_keys = stringified.scan(/%\{([^\}]+)\}/).map(&.[1]).uniq!.sort
@@ -96,7 +96,7 @@ module Rosetta
       # translations object.
       private def build_inclusion_module(
         key : String,
-        translations : Translations
+        translations : Translations,
       )
         module_name = if variants_key?(key)
                         "Variants"
@@ -133,7 +133,7 @@ module Rosetta
         key : String,
         translations : Translations,
         i12n_keys : Array(String),
-        l10n_keys : Array(String)
+        l10n_keys : Array(String),
       )
         parsed_tuple = i12n_keys.empty? ? "translations" : build_translations_tuple(translations).gsub(/\%\{/, "\#{")
         value = "#{parsed_tuple}[Rosetta.locale]"

@@ -3,7 +3,7 @@ module Rosetta
   def self.pluralize(
     count : Rosetta::CountArg,
     translation : NamedTuple,
-    rule : Pluralization::Rule = Pluralization::RULES[Rosetta.locale].new
+    rule : Pluralization::Rule = Pluralization::RULES[Rosetta.locale].new,
   )
     return translation[:zero]?.to_s if count == 0 && translation[:zero]?
 
