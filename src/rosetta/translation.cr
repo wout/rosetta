@@ -2,8 +2,9 @@ module Rosetta
   # Finds the translations for the given key as a dedicated class instance for
   # the translation, which inherits from `Rosetta::Translation`.
   #
-  # If the key does not exist, a compile error will be raised.
-  macro find(key)
+  # If the key does not exist, adn no default value is given, a compile error
+  # will be raised.
+  macro find(key, default = nil)
     {% if key.is_a?(StringLiteral) %}
       {%
         class_name_from_key = key.split('.').map(&.camelcase).join('_')
@@ -12,6 +13,8 @@ module Rosetta
 
       {% if Rosetta::Locales.has_constant?(translation_class_name) %}
         Rosetta::Locales::{{ translation_class_name.id }}.new
+      {% elsif default.is_a?(StringLiteral) %}
+        Rosetta::DefaultTranslation.new({{default}})
       {% else %}
         {% raise "Missing translation for #{key} in all locales" %}
       {% end %}
@@ -108,6 +111,18 @@ module Rosetta
       end
 
       Rosetta.interpolate(raw[variant], values)
+    end
+  end
+
+  # A default value wrapper for default values in locale key lookups.
+  struct DefaultTranslation
+    include Rosetta::SimpleTranslation
+
+    def initialize(@value : String)
+    end
+
+    def raw
+      @value
     end
   end
 end

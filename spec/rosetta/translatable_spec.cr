@@ -103,6 +103,12 @@ describe TranslatableTestObject do
       end
     end
   end
+
+  describe "#default_value" do
+    it "uses the default value provided at lookup" do
+      test_object.default_value.should eq("default value")
+    end
+  end
 end
 
 describe TranslatableTestObjectWithRosettaPrefix do
@@ -176,6 +182,10 @@ class TranslatableTestObject
 
   def color_variant(variant)
     r("color_variants").t(variant: variant)
+  end
+
+  def default_value
+    r("i_am_definitely_not_in_one_of_the_files", "default value").t
   end
 end
 
