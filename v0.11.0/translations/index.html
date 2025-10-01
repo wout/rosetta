@@ -549,6 +549,11 @@ interpolation:</p>
 <span class="s2">&quot;</span><span class="si">#{</span><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;user.name&quot;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="c1"># =&gt; &quot;User name&quot;</span>
 </code></pre></div>
+<p>To safely look up a locale key that may or may not exist, the <code>find</code> macro
+accepts a default value as the second argument:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Rosetta</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;non_existanent_key&quot;</span><span class="p">,</span> <span class="s2">&quot;default value&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">t</span>
+<span class="c1"># =&gt; &quot;default value&quot;</span>
+</code></pre></div>
 <h2 id="getting-all-translations">Getting all <code>translations</code></h2>
 <p>When required, the translations for all locales can be accessed with the
 <code>translations</code> property:</p>
