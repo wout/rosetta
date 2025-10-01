@@ -52,6 +52,11 @@ describe Rosetta do
         .should eq(%(Something with "quotes".\n))
     end
 
+    it "uses the default value provided at lookup" do
+      Rosetta.find("i_am_definitely_not_in_one_of_the_files", "default value").t
+        .should eq("default value")
+    end
+
     # NOTE: uncomment this to see the compilation error
     # it "raises a compilation error when a key is missing" do
     #   Rosetta.find("i_am_definitely_not_in_one_of_the_files")

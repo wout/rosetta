@@ -14,7 +14,7 @@ module Rosetta
     #     r(".welcome_message").t # => key resolves to "user.welcome_message"
     #   end
     # end
-    macro r(key)
+    macro r(key, default = nil)
       {% if key.is_a?(StringLiteral) %}
         {%
           if key.starts_with?('.')
@@ -30,7 +30,7 @@ module Rosetta
           end
         %}
 
-        Rosetta.find({{key}})
+        Rosetta.find({{key}}, {{default}})
       {% else %}
         {%
           raise <<-ERROR
