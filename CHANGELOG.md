@@ -1,9 +1,14 @@
 # Changelog
 
+## 0.11.4 (2025-09-30)
+
+- Fix code styling errors.
+
 ## 0.11.3 (2023-07-10)
 
 - Fix docs build (Pyyaml issue).
 - Add support for `Avram::DeleteOperation(T)`
+- Add support for `Avram::DeleteOperation(T)`.
 
 ## 0.11.2 (2023-07-10)
 
