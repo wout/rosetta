@@ -153,4 +153,4 @@ This shard pulls inspiration from the following projects:
 - [crimson-knight/i18n.cr](https://github.com/crimson-knight/i18n.cr)
 - [crystal-i18n/i18n](https://github.com/crystal-i18n/i18n)
 - [syeopite/lens](https://github.com/syeopite/lens)
-- [Rails](https://github.com/rails/rails)
+- [ruby-i18n/i18n](https://github.com/ruby-i18n/i18n)
