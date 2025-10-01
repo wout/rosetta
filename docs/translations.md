@@ -24,7 +24,16 @@ Rosetta.find("user.name").to_s
 # => "User name"
 ```
 
+To safely look up a locale key that may or may not exist, the `find` macro
+accepts a default value as the second argument:
+
+```cr
+Rosetta.find("non_existanent_key", "default value").t
+# => "default value"
+```
+
 ## Getting all `translations`
+
 When required, the translations for all locales can be accessed with the
 `translations` property:
 
@@ -34,6 +43,7 @@ Rosetta.find("user.first_name").translations
 ```
 
 ## The `Translatable` mixin
+
 This mixin makes it more convenient to work with translated values in your
 classes. Here's an example of its usage:
 
