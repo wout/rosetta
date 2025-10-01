@@ -103,22 +103,6 @@ end
 
 Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 
-## Development
-
-Make sure you have [Guardian.cr](https://github.com/f/guardian) installed. Then
-run:
-
-```bash
-guardian
-```
-
-This will automatically:
-
-- run ameba for src and spec files
-- run the relevant spec for any file in src
-- run spec file whenever they are saved
-- install shards whenever you save shard.yml
-
 ## Documentation
 
 - [Reference](https://wout.github.io/rosetta/latest)
