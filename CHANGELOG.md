@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0 (2025-10-15)
+
+- Add support for `avram.attribute_variants` to translate avram attributes
+
 ## 0.12.0 (2025-10-01)
 
 - Allow a default value for the `Rosetta.find` macro method as the second argument.
