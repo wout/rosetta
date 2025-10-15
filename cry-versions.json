@@ -1,6 +1,10 @@
 {
   "versions": [
     {
+      "name": "v0.13.0",
+      "url": "/rosetta/api/v0.13.0/"
+    },
+    {
       "name": "v0.12.0",
       "url": "/rosetta/api/v0.12.0/"
     },
