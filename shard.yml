@@ -17,9 +17,6 @@ development_dependencies:
   ameba:
     github: crystal-ameba/ameba
     version: ~> 1.4
-  spec_mirror:
-    github: wout/spec_mirror.cr
-    branch: master
 
 scripts:
   postinstall: make shim
