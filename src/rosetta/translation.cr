@@ -121,6 +121,10 @@ module Rosetta
     def initialize(@value : String)
     end
 
+    def t(**args)
+      @value
+    end
+
     def raw
       @value
     end
