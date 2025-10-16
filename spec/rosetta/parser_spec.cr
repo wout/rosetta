@@ -160,7 +160,7 @@ describe Rosetta::Parser do
             getter translations = {en: {pink: %(pink), teal: %(teal), yellow: %(yellow)}, "en-US": {pink: %(pink), teal: %(teal), yellow: %(yellow)}, nl: {pink: %(roze), teal: %(appelblauwzeegroen), yellow: %(geel)}}
             include Rosetta::VariantsTranslation
             def t(variant : String)
-              translations[Rosetta.locale][variant]
+              translations[Rosetta.locale][variant]? || raise VariantMissingException.new("Variant '\#{variant}' missing for 'color_variants'")
             end
             def t(values : NamedTuple(variant: String))
               self.t(**values)

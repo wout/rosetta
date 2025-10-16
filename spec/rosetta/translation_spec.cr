@@ -57,12 +57,29 @@ describe Rosetta do
         .should eq("default value")
     end
 
-    it "accepts any argumet for the fallback translation" do
+    it "accepts any argument for the fallback translation" do
       translation = Rosetta.find(
         "i_am_definitely_not_in_one_of_the_files",
         "default value"
       )
       translation.t(something: "yay").should eq("default value")
+    end
+
+    it "translates a variant" do
+      translation = Rosetta.find("color_variants")
+      translation.t(variant: "teal").should be_a(String)
+      translation.t(variant: "teal").should eq("teal")
+    end
+
+    it "fails when a variant key is not present" do
+      translation = Rosetta.find("color_variants")
+
+      expect_raises(
+        Rosetta::VariantMissingException,
+        "Variant 'non_existant_variant' missing for 'color_variants'"
+      ) do
+        translation.t(variant: "non_existant_variant")
+      end
     end
 
     # NOTE: uncomment this to see the compilation error

@@ -139,7 +139,7 @@ module Rosetta
         value = "#{parsed_tuple}[Rosetta.locale]"
 
         if variants_key?(key)
-          value = "#{value}[variant]"
+          value = %(#{value}[variant]? || raise VariantMissingException.new("Variant '\#{variant}' missing for '#{key}'"))
         elsif pluralizable?(translations)
           value = "Rosetta.pluralize(count, #{value})"
         end

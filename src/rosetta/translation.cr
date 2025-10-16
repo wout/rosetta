@@ -129,4 +129,6 @@ module Rosetta
       @value
     end
   end
+
+  class VariantMissingException < Exception; end
 end
