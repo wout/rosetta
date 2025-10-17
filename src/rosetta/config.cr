@@ -5,12 +5,9 @@ module Rosetta
     # Sets the current locale with the given value, if it's found in the
     # available locales.
     def locale=(locale : String | Symbol)
-      @locale = if Rosetta.available_locales.map(&.to_s).includes?(locale.to_s)
-                  locale.to_s
-                else
-                  # make use of a fallback here
-                  Rosetta.default_locale
-                end
+      locale = locale.to_s.gsub(/_/, "-")
+      default = Rosetta.default_locale
+      @locale = Rosetta.available_locales.includes?(locale) ? locale : default
     end
 
     # Gets the current locale or falls back to the default locale if it's not
