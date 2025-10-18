@@ -25,14 +25,22 @@ describe Rosetta::Config do
       config.locale.should eq("en")
       config.locale = :nl
       config.locale.should eq("nl")
-    end
-
-    it "hyphenates symbols" do
-      config = Rosetta::Config.new
-
-      config.locale.should eq("en")
       config.locale = :en_US
       config.locale.should eq("en-US")
+    end
+
+    it "handles various formats" do
+      config = Rosetta::Config.new
+
+      {
+        "en"          => "en",
+        "en_US"       => "en-US",
+        "en-US"       => "en-US",
+        "en_US.UTF-8" => "en-US",
+      }.each do |given, expected|
+        config.locale = given
+        config.locale.should eq(expected)
+      end
     end
   end
 end

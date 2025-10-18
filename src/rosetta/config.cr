@@ -1,19 +1,26 @@
 module Rosetta
   class Config
+    LOCALE_REGEX = /\A([a-z]{2,3})(?:[_-]([A-Z0-9]{2,4}))?/
+
     getter locale : String?
 
     # Sets the current locale with the given value, if it's found in the
     # available locales.
     def locale=(locale : String | Symbol)
-      locale = locale.to_s.gsub(/_/, "-")
-      default = Rosetta.default_locale
-      @locale = Rosetta.available_locales.includes?(locale) ? locale : default
+      locale = sanitized_locale(locale)
+      @locale = Rosetta.available_locales.includes?(locale) ? locale : Rosetta.default_locale
     end
 
     # Gets the current locale or falls back to the default locale if it's not
     # defined.
     def locale : String
       (@locale || Rosetta.default_locale)
+    end
+
+    private def sanitized_locale(locale)
+      return unless parts = locale.to_s.match(LOCALE_REGEX)
+
+      [parts[1], parts[2]?].compact.join("-")
     end
   end
 end
