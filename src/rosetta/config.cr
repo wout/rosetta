@@ -1,7 +1,5 @@
 module Rosetta
   class Config
-    LOCALE_REGEX = /\A([a-z]{2,3})(?:[_-]([A-Z0-9]{2,4}))?/
-
     getter locale : String?
 
     # Sets the current locale with the given value, if it's found in the

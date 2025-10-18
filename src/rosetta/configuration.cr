@@ -2,9 +2,11 @@
 @[Rosetta::AvailableLocales(:en)]
 @[Rosetta::PluralizationRules]
 module Rosetta
+  LOCALE_REGEX = /\A([a-z]{2,3})(?:[_-]([A-Z0-9]{2,4}))?/
+
   # Fetches the default locale from the corresponding annotation.
   macro default_locale
-    {{@type.annotation(Rosetta::DefaultLocale).args.first.id.stringify}}
+    {{@type.annotation(Rosetta::DefaultLocale).args.first.id.stringify.gsub(/_/, "-")}}
   end
 
   # Fetches the available locales from the corresponding annotation.
