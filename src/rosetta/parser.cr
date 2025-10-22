@@ -49,10 +49,9 @@ module Rosetta
 
     # Tests validity of alternative locale key sets.
     private def valid_key_set? : Bool
-      return true if available_locales.one?
+      return true if check_nested_keys_present? && available_locales.one?
 
       check_available_locales_present? &&
-        # check_nested_keys_present? &&
         check_key_set_complete? &&
         check_key_set_overflowing? &&
         check_interpolation_keys_matching? &&
@@ -171,17 +170,9 @@ module Rosetta
           next unless value.is_a?(String)
           next unless value.includes?("%r{")
           next unless m = value.match(NESTED_KEY_REGEX)
+          next unless resolved = translations[m[1]]?
 
-          if resolved = translations[m[1]]?
-            hash[locale][key] = value.gsub(m[0], resolved)
-          else
-            @error = <<-ERROR
-            A nested key could not be resolved:
-
-              ‣ #{locale}: "#{key}" references missing key "#{m[1]}"
-
-            ERROR
-          end
+          hash[locale][key] = value.gsub(m[0], resolved)
         end
       end
 

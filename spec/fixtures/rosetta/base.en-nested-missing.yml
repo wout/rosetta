@@ -1,0 +1,3 @@
+en-nested-missing:
+  nested:
+    message: "Hello %r{nested.missing}!"

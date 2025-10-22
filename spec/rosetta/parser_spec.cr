@@ -194,6 +194,19 @@ describe Rosetta::Parser do
       MODULE
     end
 
+    it "returns an error when nested keys could not be resolved" do
+      output = make_parser(
+        default_locale: "en-nested-missing",
+        available_locales: %w[en-nested-missing]
+      ).parse!
+
+      output.should eq <<-ERROR
+      Some nested keys could not be resolved:
+        ‣ en-nested-missing: "nested.message" references missing key "nested.missing"
+
+      ERROR
+    end
+
     it "returns an error when a complete locale is missing" do
       output = make_parser(available_locales: %i[en fr nl]).parse!
 
