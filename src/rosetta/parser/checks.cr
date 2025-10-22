@@ -74,17 +74,15 @@ module Rosetta
           end
         end
 
-        unless errors.empty?
-          @error = <<-ERROR
-          Some translations have mismatching interpolation keys:
-          #{pretty_list_for_error(errors)}
+        return true if errors.empty?
 
-          ERROR
+        @error = <<-ERROR
+        Some translations have mismatching interpolation keys:
+        #{pretty_list_for_error(errors)}
 
-          return false
-        end
+        ERROR
 
-        true
+        false
       end
 
       # Check if every locale has the required category tags for every
@@ -104,17 +102,15 @@ module Rosetta
             end
           end
 
-        unless errors.empty?
-          @error = <<-ERROR
-          Some pluralizable translations are missing category tags:
-          #{pretty_list_for_error(errors)}
+        return true if errors.empty?
 
-          ERROR
+        @error = <<-ERROR
+        Some pluralizable translations are missing category tags:
+        #{pretty_list_for_error(errors)}
 
-          return false
-        end
+        ERROR
 
-        true
+        false
       end
 
       private def check_variant_keys_matching? : Bool
@@ -133,17 +129,39 @@ module Rosetta
             end
           end
 
-        unless errors.empty?
-          @error = <<-ERROR
-          Some translations with variants have mismatching keys:
-          #{pretty_list_for_error(errors)}
+        return true if errors.empty?
 
-          ERROR
+        @error = <<-ERROR
+        Some translations with variants have mismatching keys:
+        #{pretty_list_for_error(errors)}
 
-          return false
-        end
+        ERROR
 
-        true
+        false
+      end
+
+      private def check_nested_keys_present?
+        errors = translations
+          .each_with_object([] of String) do |(locale, t10s), err|
+            t10s.each do |key, value|
+              next unless value.is_a?(String)
+              next unless value.includes?("%r{")
+              next unless m = value.match(NESTED_KEY_REGEX)
+              next if t10s[m[1]]?
+
+              err << %(#{locale}: "#{key}" references missing key "#{m[1]}")
+            end
+          end
+
+        return true if errors.empty?
+
+        @error = <<-ERROR
+        Some nested keys could not be resolved:
+        #{pretty_list_for_error(errors)}
+
+        ERROR
+
+        false
       end
     end
   end
