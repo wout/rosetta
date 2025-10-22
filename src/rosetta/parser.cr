@@ -8,6 +8,8 @@ module Rosetta
   alias Translations = Hash(String, Hash(String, String) | String)
   alias TranslationsHash = Hash(String, Translations)
 
+  NESTED_KEY_REGEX = /%r\{\s*([^}]+)\s*\}/
+
   class Parser
     include Checks
 
@@ -27,7 +29,7 @@ module Rosetta
 
     def initialize(@config : Config)
       @alternative_locales = available_locales - [default_locale]
-      @translations = ensure_fallbacks(load_translations)
+      @translations = resolve_nested_keys(ensure_fallbacks(load_translations))
       @ruling_key_set = collect_ruling_keys(@translations, default_locale)
       @pluralization_tags = map_locales_to_pluralization_tags(
         config.pluralization_rules,
@@ -155,6 +157,26 @@ module Rosetta
           next unless hash[fallback]?
           hash[target] = hash[fallback]
             .merge(hash[target]? || {} of String => String)
+        end
+      end
+
+      hash
+    end
+
+    # Resolves nested keys one level deep
+    private def resolve_nested_keys(hash : TranslationsHash)
+      hash.each do |locale, translations|
+        translations.each do |key, value|
+          next unless value.is_a?(String)
+          next unless m = value.match(NESTED_KEY_REGEX)
+
+          if resolved = translations[m[1]]?
+            hash[locale][key] = value.gsub(m[0], resolved)
+          else
+            raise <<-ERROR
+            The nested key "#{m[1]}" referenced in "#{locale}.#{key}" could not be resolved.
+            ERROR
+          end
         end
       end
 

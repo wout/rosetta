@@ -33,3 +33,6 @@ nl:
     pink: "roze"
     teal: "appelblauwzeegroen"
     yellow: "geel"
+  nested:
+    message: "Hallo %r{nested.shared}!"
+    shared: "wereld"

@@ -185,6 +185,15 @@ describe Rosetta::Parser do
       MODULE
     end
 
+    it "resolves nested keys" do
+      make_parser.parse!.should contain <<-MODULE
+          struct Nested_MessageTranslation < Rosetta::Translation
+            getter translations = {en: %(Hello world!), "en-US": %(Hello world!), nl: %(Hallo wereld!)}
+            include Rosetta::SimpleTranslation
+          end
+      MODULE
+    end
+
     it "returns an error when a complete locale is missing" do
       output = make_parser(available_locales: %i[en fr nl]).parse!
 

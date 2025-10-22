@@ -33,3 +33,6 @@ en:
     pink: "pink"
     teal: "teal"
     yellow: "yellow"
+  nested:
+    message: "Hello %r{nested.shared}!"
+    shared: "world"
