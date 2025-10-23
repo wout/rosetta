@@ -1,6 +1,7 @@
 After loading all locales, the parser does a series of checkes on the given set.
 
 ## Check 1: presence of translations for all locales
+
 If the full set of translations is missing for a locale in the configured
 `Rosetta::AvailableLocales` annotation, the parser will raise an error similar
 to the following:
@@ -18,6 +19,7 @@ But missing all translations for:
 ```
 
 ## Check 2: presence of ruling key set in all alternative locales
+
 The `Rosetta::DefaultLocale` annotation will define the key set that should be
 present in every alternative locale. If keys are missing, you'll get an error
 like the one below:
@@ -32,7 +34,8 @@ Error: Missing keys for locale "nl":
 ```
 
 ## Check 3: no additional keys in alternative locales
-If any of the alternative locales has keys that aren't present in the key set 
+
+If any of the alternative locales has keys that aren't present in the key set
 of the `Rosetta::DefaultLocale` annotation, the parser will raise an error:
 
 ```bash
@@ -43,6 +46,7 @@ Error: The "nl" locale has unused keys:
 ```
 
 ## Check 4: interpolation keys are present in every translation
+
 If a translation in the `Rosetta::DefaultLocale` has one or more interpolation
 keys, then those interpolation keys should also be present in the alternative
 locales. If not, an error similar to the following will be raised:
@@ -57,6 +61,7 @@ Error: Some translations have mismatching interpolation keys:
 ```
 
 ## Check 5: pluralization tags are present in every translation
+
 Every pluralization rule has a `Rosetta::Pluralization::CategoryTags` annotation
 defining which tags should be present in every pluralizable translation. If they
 are not, an error will be raised:
@@ -65,4 +70,14 @@ are not, an error will be raised:
 Error: Some pluralizable translations are missing category tags:
   ‣ en: "basket.items" is missing "one"
   ‣ nl: "inbox.messages" is missing "few"
+```
+
+## Check 6: nested keys can be resolved
+
+When using nested keys, those keys should be present. If not, an error similar
+to the following will be raised:
+
+```bash
+Error: Some nested keys could not be resolved:
+  ‣ en: "message.welcome" references missing key "message.world"
 ```

@@ -1,4 +1,5 @@
 ## Lookup
+
 Looking up translations is done with the `find` macro:
 
 ```cr
