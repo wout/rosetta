@@ -72,6 +72,17 @@ module Rosetta
     def to_s(io)
       io.puts raw
     end
+
+    # Better error for using a translation without calling .t on it in Lucky
+    def each(&)
+      {%
+        raise <<-ERROR
+        #{@type} can't be used without calling `.t`.
+
+          ‣ Try this: r(#{@type.stringify.gsub(/_/, ".").underscore.split("::").last}).t
+        ERROR
+      %}
+    end
   end
 
   # Methods for translations with interpolations.
