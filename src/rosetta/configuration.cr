@@ -1,5 +1,5 @@
 @[Rosetta::DefaultLocale(:en)]
-@[Rosetta::AvailableLocales(:en)]
+@[Rosetta::AvailableLocales(:en, :"zh-CN")]
 @[Rosetta::PluralizationRules]
 module Rosetta
   LOCALE_REGEX = /\A([a-z]{2,3})(?:[_-]([A-Z0-9]{2,4}))?/
