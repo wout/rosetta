@@ -101,6 +101,9 @@ class Hello::ShowPage < MainLayout
 end
 ```
 
+> [!TIP]
+> In the `/locales` dir of this repo you'll find locales files for `en`, `es`, `nl`, and `zh-CN`.
+
 Read more on [the official docs page](https://wout.github.io/rosetta/latest).
 
 ## Documentation
