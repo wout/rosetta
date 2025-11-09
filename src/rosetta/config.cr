@@ -12,7 +12,7 @@ module Rosetta
     # Gets the current locale or falls back to the default locale if it's not
     # defined.
     def locale : String
-      (@locale || Rosetta.default_locale)
+      @locale ||= Rosetta.default_locale
     end
 
     private def sanitized_locale(locale)
