@@ -1,0 +1,21 @@
+es:
+  avram:
+    attribute_variants:
+      email: "Email"
+      language: "Idioma"
+      password: "Contraseña"
+      password_confirmation: "Confirmación de contraseña"
+    validate_acceptance_of: "debe ser aceptado"
+    validate_at_most_one_filled: "debe estar vacío"
+    validate_confirmation_of: "debe coincidir"
+    validate_exact_size_of: "debe tener exactamente %{size} caracteres"
+    validate_exactly_one_filled: "al menos uno debe estar completo"
+    validate_format_of: "no es válido"
+    validate_inclusion_of: "no está incluido en la lista"
+    validate_max_size_of: "no debe tener más de %{size} caracteres"
+    validate_min_size_of: "debe tener al menos %{size} caracteres"
+    validate_numeric_max: "debe ser menor que %{size}"
+    validate_numeric_min: "debe ser mayor que %{size}"
+    validate_numeric_nil: "no puede ser nil"
+    validate_required: "es obligatorio"
+    validate_uniqueness_of: "ya está en uso"

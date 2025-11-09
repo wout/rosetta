@@ -1,0 +1,85 @@
+nl:
+  rosetta_localization:
+    date:
+      abbr_day_names:
+        monday: ma
+        tuesday: di
+        wednesday: wo
+        thursday: do
+        friday: vr
+        saturday: za
+        sunday: zo
+      abbr_month_names:
+        january: jan
+        february: feb
+        march: mrt
+        april: apr
+        may: mei
+        june: jun
+        july: jul
+        august: aug
+        september: sep
+        october: okt
+        november: nov
+        december: dec
+      day_names:
+        monday: maandag
+        tuesday: dinsdag
+        wednesday: woensdag
+        thursday: donderdag
+        friday: vrijdag
+        saturday: zaterdag
+        sunday: zondag
+      month_names:
+        january: januari
+        february: februari
+        march: maart
+        april: april
+        may: mei
+        june: juni
+        july: juli
+        august: augustus
+        september: september
+        october: oktober
+        november: november
+        december: december
+      formats:
+        default: "%d-%m-%Y"
+        long: "%d %B %Y"
+        short: "%d %b"
+    time:
+      am: am
+      distance:
+        a_day: "een dag"
+        a_minute: "een minuut"
+        a_second: "een seconde"
+        an_hour: "een uur"
+        about_an_hour: "ongeveer een uur"
+        about_a_month: "ongeveer een maand"
+        about_a_year: "ongeveer een jaar"
+        almost_years: "bijna %{count} jaar"
+        days: "%{count} dagen"
+        hours: "%{count} uur"
+        minutes: "%{count} minuten"
+        months: "%{count} maanden"
+        over_years: "meer dan %{count} jaar"
+        seconds: "%{count} seconden"
+      formats:
+        default: "%a %d %b %Y %H:%M:%S %z"
+        long: "%d %B %Y %H:%M"
+        short: "%d %b %H:%M"
+      pm: pm
+    number:
+      formats:
+        default:
+          delimiter: "."
+          separator: ","
+          decimal_places: 2
+          group: 3
+          only_significant: false
+        custom:
+          delimiter: " "
+          separator: ","
+          decimal_places: 6
+          group: 2
+          only_significant: true

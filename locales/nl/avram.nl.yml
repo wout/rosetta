@@ -1,0 +1,21 @@
+nl:
+  avram:
+    attribute_variants:
+      email: "E-mail"
+      language: "Taal"
+      password: "Wachtwoord"
+      password_confirmation: "Wachtwoordbevestiging"
+    validate_acceptance_of: "moet worden geaccepteerd"
+    validate_at_most_one_filled: "moet leeg zijn"
+    validate_confirmation_of: "moet overeenkomen"
+    validate_exact_size_of: "moet precies %{size} tekens lang zijn"
+    validate_exactly_one_filled: "ten minste één moet ingevuld zijn"
+    validate_format_of: "is ongeldig"
+    validate_inclusion_of: "staat niet in de lijst"
+    validate_max_size_of: "mag niet meer dan %{size} tekens bevatten"
+    validate_min_size_of: "moet minimaal %{size} tekens bevatten"
+    validate_numeric_max: "moet kleiner zijn dan %{size}"
+    validate_numeric_min: "moet groter zijn dan %{size}"
+    validate_numeric_nil: "mag niet nil zijn"
+    validate_required: "is verplicht"
+    validate_uniqueness_of: "is al in gebruik"

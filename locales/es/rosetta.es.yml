@@ -1,0 +1,85 @@
+es:
+  rosetta_localization:
+    date:
+      abbr_day_names:
+        monday: lun
+        tuesday: mar
+        wednesday: mié
+        thursday: jue
+        friday: vie
+        saturday: sáb
+        sunday: dom
+      abbr_month_names:
+        january: ene
+        february: feb
+        march: mar
+        april: abr
+        may: may
+        june: jun
+        july: jul
+        august: ago
+        september: sep
+        october: oct
+        november: nov
+        december: dic
+      day_names:
+        monday: lunes
+        tuesday: martes
+        wednesday: miércoles
+        thursday: jueves
+        friday: viernes
+        saturday: sábado
+        sunday: domingo
+      month_names:
+        january: enero
+        february: febrero
+        march: marzo
+        april: abril
+        may: mayo
+        june: junio
+        july: julio
+        august: agosto
+        september: septiembre
+        october: octubre
+        november: noviembre
+        december: diciembre
+      formats:
+        default: "%d/%m/%Y"
+        long: "%d de %B de %Y"
+        short: "%d %b"
+    time:
+      am: am
+      distance:
+        a_day: "un día"
+        a_minute: "un minuto"
+        a_second: "un segundo"
+        an_hour: "una hora"
+        about_an_hour: "alrededor de una hora"
+        about_a_month: "alrededor de un mes"
+        about_a_year: "alrededor de un año"
+        almost_years: "casi %{count} años"
+        days: "%{count} días"
+        hours: "%{count} horas"
+        minutes: "%{count} minutos"
+        months: "%{count} meses"
+        over_years: "más de %{count} años"
+        seconds: "%{count} segundos"
+      formats:
+        default: "%a, %d %b %Y %H:%M:%S %z"
+        long: "%d de %B de %Y %H:%M"
+        short: "%d %b %H:%M"
+      pm: pm
+    number:
+      formats:
+        default:
+          delimiter: "."
+          separator: ","
+          decimal_places: 2
+          group: 3
+          only_significant: false
+        custom:
+          delimiter: " "
+          separator: ","
+          decimal_places: 6
+          group: 2
+          only_significant: true

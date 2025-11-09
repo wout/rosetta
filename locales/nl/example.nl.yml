@@ -1,0 +1,7 @@
+nl:
+  example:
+    translation: "Dit is een eenvoudige vertaling."
+    interpolation: "Hoi %{name}, hoe gaat het met je?"
+    pluralization:
+      one: "Eén item"
+      other: "%{count} items"

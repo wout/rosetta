@@ -1,0 +1,7 @@
+es:
+  example:
+    translation: "Esta es una traducción simple."
+    interpolation: "Hola %{name}, ¿cómo estás?"
+    pluralization:
+      one: "Un elemento"
+      other: "%{count} elementos"
