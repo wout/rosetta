@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         name: "Cache Python dependencies (mkdocs-material and mike)"
         with:
           # This path is specific to Ubuntu
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: main
 

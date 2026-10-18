@@ -17,7 +17,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     continue-on-error: false
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: crystal-lang/install-crystal@v1
         with:
           crystal: ${{ matrix.crystal_version }}
@@ -28,4 +28,4 @@ jobs:
       - name: Check format
         run: crystal tool format --check
       - name: Lint
-        run: ./bin/ameba
+        run: lib/ameba/bin/ameba
