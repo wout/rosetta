@@ -19,3 +19,4 @@ es:
     validate_numeric_nil: "no puede ser nil"
     validate_required: "es obligatorio"
     validate_uniqueness_of: "ya está en uso"
+    validate_url_format: "debe ser una URL válida que comience con %{scheme}"

@@ -43,12 +43,16 @@ module Rosetta
                             exact_size_of
                             max_size_of
                             min_size_of
-                            numeric_max
-                            numeric_min
                           ] %}
             when :validate_{{val.id}}
               Rosetta.find("avram.validate_{{val.id}}").t(size: "%d")
             {% end %}
+            {% for val in %w[numeric_max numeric_min] %}
+            when :validate_{{val.id}}
+              Rosetta.find("avram.validate_{{val.id}}").t(size: "%s")
+            {% end %}
+            when :validate_url_format
+              Rosetta.find("avram.validate_url_format").t(scheme: "%s")
             {% for val in %w[
                             acceptance_of
                             at_most_one_filled
