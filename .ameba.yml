@@ -1,0 +1,5 @@
+Style/HeredocIndent:
+  Enabled: false
+
+Lint/WhitespaceAroundMacroExpression:
+  Enabled: false

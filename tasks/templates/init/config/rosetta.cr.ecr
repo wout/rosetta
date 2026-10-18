@@ -1,7 +1,7 @@
 require "rosetta"
 
 @[Rosetta::DefaultLocale(:<%= @default_locale %>)]
-@[Rosetta::AvailableLocales(<%= @available_locales.map{|l| ":#{l}"}.join(", ") %>)]
+@[Rosetta::AvailableLocales(<%= @available_locales.map{|locale| ":#{locale}"}.join(", ") %>)]
 module Rosetta
 end
 
