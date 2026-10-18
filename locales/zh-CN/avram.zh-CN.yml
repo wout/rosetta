@@ -19,3 +19,4 @@ zh-CN:
     validate_numeric_nil: "不可以是 nil"
     validate_required: "需要的"
     validate_uniqueness_of: "已经存在了"
+    validate_url_format: "必须是以 %{scheme} 开头的合法网址"

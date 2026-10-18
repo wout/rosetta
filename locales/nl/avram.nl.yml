@@ -19,3 +19,4 @@ nl:
     validate_numeric_nil: "mag niet nil zijn"
     validate_required: "is verplicht"
     validate_uniqueness_of: "is al in gebruik"
+    validate_url_format: "moet een geldige URL zijn die begint met %{scheme}"
