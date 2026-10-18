@@ -27,5 +27,7 @@ jobs:
         run: crystal spec
       - name: Check format
         run: crystal tool format --check
+      - name: Build ameba
+        run: crystal build lib/ameba/src/cli.cr -o bin/ameba
       - name: Lint
-        run: lib/ameba/bin/ameba
+        run: bin/ameba
