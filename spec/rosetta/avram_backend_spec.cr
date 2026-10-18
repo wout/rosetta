@@ -12,4 +12,11 @@ describe Rosetta::AvramBackend do
 
     (message % "https").should eq("must be a valid URL beginning with https")
   end
+
+  it "preserves fractional numeric limits" do
+    backend = Rosetta::AvramBackend.new
+
+    (backend.get(:validate_numeric_min) % 1.5).should eq("must be greater than 1.5")
+    (backend.get(:validate_numeric_max) % 2.5).should eq("must be less than 2.5")
+  end
 end
