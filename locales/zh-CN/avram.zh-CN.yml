@@ -1,5 +1,6 @@
 zh-CN:
   avram:
+    default_error_message: "无效"
     attribute_variants:
       email: "电子邮件"
       language: "语言"

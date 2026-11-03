@@ -1,5 +1,6 @@
 en:
   avram: &avram
+    default_error_message: "has an invalid value"
     validate_acceptance_of: "must be accepted"
     validate_at_most_one_filled: "must be blank"
     validate_confirmation_of: "must match"
