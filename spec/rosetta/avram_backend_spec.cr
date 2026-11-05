@@ -7,6 +7,13 @@ describe Rosetta::AvramBackend do
     Rosetta.with_locale(:en) { example.run }
   end
 
+  it "translates default attribute errors separately from format validation" do
+    backend = Rosetta::AvramBackend.new
+
+    backend.get(:default_error_message).should eq("has an invalid value")
+    backend.get(:validate_format_of).should eq("is invalid")
+  end
+
   it "provides a URL validation message with an interpolatable scheme" do
     message = Rosetta::AvramBackend.new.get(:validate_url_format)
 

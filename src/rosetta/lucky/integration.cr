@@ -39,6 +39,8 @@ module Rosetta
         def get(key : String | Symbol) : String
           {% begin %}
             case key
+            when :default_error_message
+              Rosetta.find("avram.default_error_message").t
             {% for val in %w[
                             exact_size_of
                             max_size_of

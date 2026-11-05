@@ -1,5 +1,6 @@
 nl:
   avram:
+    default_error_message: "is ongeldig"
     attribute_variants:
       email: "E-mail"
       language: "Taal"

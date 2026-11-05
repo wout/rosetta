@@ -70,7 +70,7 @@ module Rosetta
     end
 
     def to_s(io)
-      io.puts raw
+      io << raw
     end
 
     # Better error for using a translation without calling .t on it in Lucky

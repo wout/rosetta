@@ -1,5 +1,6 @@
 en:
   avram:
+    default_error_message: "is invalid"
     attribute_variants:
       email: "Email"
       language: "Language"
